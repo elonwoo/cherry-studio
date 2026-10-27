@@ -141,13 +141,16 @@ artifactBuildCompleted: scripts/artifact-build-completed.js
 releaseInfo:
   releaseNotes: |
     <!--LANG:en-->
-    Cherry Studio 1.9.16 - Personal arm64 build
+    Cherry Studio 1.9.17 - Personal arm64 build
 
     🐛 Bug Fixes
     - [OpenCode] Send a stable per-conversation `x-opencode-session` header, fixing 400 MissingSessionID on OpenCode Go/Zen.
 
     🗑️ Removals
     - Removed the Agent subsystem (channel bots, scheduled tasks, CherryClaw, Skills), OpenClaw, Mini Apps, Code Tools, API Server, Selection Assistant and Quick Assistant.
+
+    🧩 Models
+    - The built-in catalog now keeps 96 models across 11 providers; all other built-in models and the CherryAI Qwen entry are removed.
 
     🎨 Theme
     - Ships the Dracula × shadcn/ui theme by default.
@@ -156,13 +159,16 @@ releaseInfo:
     - macOS: only an arm64 zip is produced. The app is signed with a Developer ID but not notarized.
 
     <!--LANG:zh-CN-->
-    Cherry Studio 1.9.16 - 个人 arm64 构建
+    Cherry Studio 1.9.17 - 个人 arm64 构建
 
     🐛 问题修复
     - [OpenCode] 为每个会话发送稳定的 `x-opencode-session` 请求头，修复 OpenCode Go/Zen 的 400 MissingSessionID。
 
     🗑️ 移除功能
     - 移除智能体子系统（渠道机器人、定时任务、CherryClaw、技能）、OpenClaw、小程序、代码工具、API 服务器、划词助手和快捷助手。
+
+    🧩 模型
+    - 内置模型目录仅保留 11 个服务商的 96 个模型；其余内置模型和 CherryAI 的 Qwen 条目已删除。
 
     🎨 主题
     - 默认内置 Dracula × shadcn/ui 主题。
