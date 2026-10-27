@@ -3465,6 +3465,29 @@ const migrateConfig = {
       logger.error('migrate 215 error', error as Error)
       return state
     }
+  },
+  '216': (state: RootState) => {
+    try {
+      const updates: Record<string, { from: string[]; to: string[] }> = {
+        toggle_show_assistants: { from: ['CommandOrControl', '['], to: ['CommandOrControl', 'S'] },
+        toggle_show_topics: { from: ['CommandOrControl', ']'], to: ['CommandOrControl', 'L'] },
+        clear_topic: { from: ['CommandOrControl', 'L'], to: ['CommandOrControl', 'Shift', 'L'] }
+      }
+      const equals = (a: string[], b: string[]) => a.length === b.length && a.every((value, i) => value === b[i])
+
+      state.shortcuts.shortcuts.forEach((shortcut) => {
+        const update = updates[shortcut.key]
+        if (update && equals(shortcut.shortcut, update.from)) {
+          shortcut.shortcut = [...update.to]
+        }
+      })
+
+      logger.info('migrate 216 success')
+      return state
+    } catch (error) {
+      logger.error('migrate 216 error', error as Error)
+      return state
+    }
   }
 }
 

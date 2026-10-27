@@ -56,7 +56,7 @@ const initialState: ShortcutsState = {
     },
     {
       key: 'toggle_show_assistants',
-      shortcut: ['CommandOrControl', '['],
+      shortcut: ['CommandOrControl', 'S'],
       editable: true,
       enabled: true,
       system: false
@@ -64,7 +64,7 @@ const initialState: ShortcutsState = {
 
     {
       key: 'toggle_show_topics',
-      shortcut: ['CommandOrControl', ']'],
+      shortcut: ['CommandOrControl', 'L'],
       editable: true,
       enabled: true,
       system: false
@@ -99,7 +99,7 @@ const initialState: ShortcutsState = {
     },
     {
       key: 'clear_topic',
-      shortcut: ['CommandOrControl', 'L'],
+      shortcut: ['CommandOrControl', 'Shift', 'L'],
       editable: true,
       enabled: true,
       system: false

@@ -166,4 +166,42 @@ describe('store migrations', () => {
       expect(migrated.assistants.assistants[0].defaultModel).toEqual(customModel)
     })
   })
+
+  describe('migration 216: sidebar and clear-message shortcuts', () => {
+    it('rebinds the old defaults only', async () => {
+      const state = {
+        shortcuts: {
+          shortcuts: [
+            { key: 'toggle_show_assistants', shortcut: ['CommandOrControl', '['] },
+            { key: 'toggle_show_topics', shortcut: ['CommandOrControl', ']'] },
+            { key: 'clear_topic', shortcut: ['CommandOrControl', 'L'] },
+            { key: 'custom', shortcut: ['CommandOrControl', 'L'] }
+          ]
+        },
+        _persist: { version: 215, rehydrated: false }
+      }
+
+      const migrated: any = await migrate(state as any, 216)
+
+      expect(migrated.shortcuts.shortcuts).toEqual([
+        { key: 'toggle_show_assistants', shortcut: ['CommandOrControl', 'S'] },
+        { key: 'toggle_show_topics', shortcut: ['CommandOrControl', 'L'] },
+        { key: 'clear_topic', shortcut: ['CommandOrControl', 'Shift', 'L'] },
+        { key: 'custom', shortcut: ['CommandOrControl', 'L'] }
+      ])
+    })
+
+    it('preserves a customized sidebar binding', async () => {
+      const state = {
+        shortcuts: {
+          shortcuts: [{ key: 'toggle_show_topics', shortcut: ['CommandOrControl', 'Shift', ']'] }]
+        },
+        _persist: { version: 215, rehydrated: false }
+      }
+
+      const migrated: any = await migrate(state as any, 216)
+
+      expect(migrated.shortcuts.shortcuts[0].shortcut).toEqual(['CommandOrControl', 'Shift', ']'])
+    })
+  })
 })
