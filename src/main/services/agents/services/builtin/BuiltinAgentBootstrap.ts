@@ -2,16 +2,15 @@
  * BuiltinAgentBootstrap
  *
  * Encapsulates all startup initialization logic for built-in agents
- * (CherryClaw, Cherry Assistant, etc.). Keeps business details out of
+ * (Cherry Assistant, etc.). Keeps business details out of
  * the main entry point (`src/main/index.ts`).
  */
 import { loggerService } from '@logger'
 
 import type { BuiltinAgentInitResult } from '../AgentService'
 import { agentService } from '../AgentService'
-import { schedulerService } from '../SchedulerService'
 import { sessionService } from '../SessionService'
-import { CHERRY_ASSISTANT_AGENT_ID, CHERRY_CLAW_AGENT_ID } from './BuiltinAgentIds'
+import { CHERRY_ASSISTANT_AGENT_ID } from './BuiltinAgentIds'
 import { provisionBuiltinAgent } from './BuiltinAgentProvisioner'
 
 const logger = loggerService.withContext('BuiltinAgentBootstrap')
@@ -21,12 +20,9 @@ const retryTimers = new Map<string, NodeJS.Timeout>()
 
 /**
  * Initialize all built-in agents. Safe to call multiple times (idempotent).
- *
- * Agent inits run in parallel since they operate on different rows and don't
- * conflict.
  */
 export async function bootstrapBuiltinAgents(): Promise<void> {
-  await Promise.all([initCherryClaw(), initCherryAssistant()])
+  await initCherryAssistant()
 }
 
 function clearRetry(agentId: string): void {
@@ -76,15 +72,11 @@ async function handleInitResult(
   agentId: string,
   label: string,
   result: BuiltinAgentInitResult,
-  initFn: () => Promise<void>,
-  onReady?: (resolvedAgentId: string) => Promise<void>
+  initFn: () => Promise<void>
 ): Promise<void> {
   if (result.agentId) {
     clearRetry(agentId)
     await ensureDefaultSession(result.agentId, label)
-    if (onReady) {
-      await onReady(result.agentId)
-    }
     return
   }
 
@@ -94,19 +86,6 @@ async function handleInitResult(
   }
 
   scheduleRetry(agentId, label, initFn)
-}
-
-// ── CherryClaw ──────────────────────────────────────────────────────
-
-async function initCherryClaw(): Promise<void> {
-  try {
-    const result = await agentService.initDefaultCherryClawAgent()
-    await handleInitResult(CHERRY_CLAW_AGENT_ID, 'CherryClaw', result, initCherryClaw, async (agentId) => {
-      await schedulerService.ensureHeartbeatTask(agentId, 30)
-    })
-  } catch (error) {
-    logger.warn('Failed to init CherryClaw agent:', error as Error)
-  }
 }
 
 // ── Cherry Assistant ────────────────────────────────────────────────

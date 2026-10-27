@@ -2,7 +2,6 @@ import { IpcChannel } from '@shared/IpcChannel'
 import { ipcMain } from 'electron'
 
 import { windowService } from '../../../WindowService'
-import { channelMessageHandler } from './ChannelMessageHandler'
 import { sessionStreamBus, type SessionStreamChunk } from './SessionStreamBus'
 
 const activeSubscriptions = new Map<string, () => void>()
@@ -31,10 +30,7 @@ export function registerSessionStreamIpc(): void {
     return { success: true }
   })
 
-  ipcMain.handle(IpcChannel.AgentSessionStream_Abort, (_event, { sessionId }: { sessionId: string }) => {
-    const aborted = channelMessageHandler.abortSession(sessionId)
-    return { success: aborted }
-  })
+  ipcMain.handle(IpcChannel.AgentSessionStream_Abort, () => ({ success: false }))
 }
 
 export function broadcastSessionChanged(agentId: string, sessionId: string, headless?: boolean): void {

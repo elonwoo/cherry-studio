@@ -26,16 +26,11 @@ vi.mock('@logger', () => ({
 vi.mock('@main/apiServer/config', () => ({ config: { get: vi.fn() } }))
 vi.mock('@main/apiServer/utils', () => ({ validateModelId: vi.fn() }))
 vi.mock('@main/mcpServers/assistant', () => ({ default: class AssistantServer {} }))
-vi.mock('@main/mcpServers/claw', () => ({ default: class ClawServer {} }))
 vi.mock('@main/mcpServers/workspaceMemory', () => ({ default: class WorkspaceMemoryServer {} }))
 vi.mock('@main/services/ConfigManager', () => ({ configManager: {} }))
 vi.mock('@main/services/agents/skills/SkillService', () => ({ skillService: {} }))
 vi.mock('@main/services/agents/services/AgentService', () => ({ agentService: {} }))
-vi.mock('@main/services/agents/services/ChannelService', () => ({ channelService: {} }))
 vi.mock('@main/services/agents/services/SessionService', () => ({ sessionService: {} }))
-vi.mock('@main/services/agents/services/cherryclaw/prompt', () => ({
-  PromptBuilder: class PromptBuilder {}
-}))
 vi.mock('@main/services/agents/services/builtin/BuiltinAgentProvisioner', () => ({
   isProvisioned: vi.fn(),
   provisionBuiltinAgent: vi.fn()

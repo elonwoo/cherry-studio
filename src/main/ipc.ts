@@ -89,7 +89,7 @@ import storeSyncService from './services/StoreSyncService'
 import { themeService } from './services/ThemeService'
 import VertexAIService from './services/VertexAIService'
 import { windowService } from './services/WindowService'
-import { calculateDirectorySize, getDataPath, getResourcePath } from './utils'
+import { calculateDirectorySize, getResourcePath } from './utils'
 import { decrypt, encrypt } from './utils/aes'
 import {
   getCacheDir,
@@ -813,17 +813,6 @@ export async function registerIpc(mainWindow: BrowserWindow, app: Electron.App) 
   ipcMain.handle(IpcChannel.Mcp_GetServerVersion, mcpService.getServerVersion)
   ipcMain.handle(IpcChannel.Mcp_GetServerLogs, mcpService.getServerLogs)
 
-  // Channel logs & status
-  ipcMain.handle(IpcChannel.Channel_GetLogs, async (_event, channelId: string) => {
-    const { channelManager } = await import('@main/services/agents/services/channels/ChannelManager')
-    return channelManager.getChannelLogs(channelId)
-  })
-
-  ipcMain.handle(IpcChannel.Channel_GetStatuses, async () => {
-    const { channelManager } = await import('@main/services/agents/services/channels/ChannelManager')
-    return channelManager.getAllStatuses()
-  })
-
   // DXT upload handler
   ipcMain.handle(IpcChannel.Mcp_UploadDxt, async (event, fileBuffer: ArrayBuffer, fileName: string) => {
     try {
@@ -1037,18 +1026,6 @@ export async function registerIpc(mainWindow: BrowserWindow, app: Electron.App) 
 
   ipcMain.handle(IpcChannel.APP_CrashRenderProcess, () => {
     mainWindow.webContents.forcefullyCrashRenderer()
-  })
-
-  // WeChat
-  ipcMain.handle(IpcChannel.WeChat_HasCredentials, async (_, channelId: string) => {
-    const tokenPath = path.join(getDataPath('Channels'), `weixin_bot_${channelId}.json`)
-    try {
-      const raw = await fs.promises.readFile(tokenPath, 'utf8')
-      const parsed = JSON.parse(raw)
-      return { exists: true, userId: parsed.userId as string | undefined }
-    } catch {
-      return { exists: false }
-    }
   })
 
   // Analytics

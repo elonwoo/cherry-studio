@@ -20,7 +20,6 @@ import { config as apiConfigService } from '@main/apiServer/config'
 import { validateModelId } from '@main/apiServer/utils'
 import { isWin } from '@main/constant'
 import AssistantServer from '@main/mcpServers/assistant'
-import ClawServer from '@main/mcpServers/claw'
 import WorkspaceMemoryServer from '@main/mcpServers/workspaceMemory'
 import { configManager } from '@main/services/ConfigManager'
 import { getProxyEnvironment } from '@main/services/proxy/nodeProxy'
@@ -28,11 +27,7 @@ import { resolveClaudeExecutablePath } from '@main/utils/bundledBinaries'
 import { autoDiscoverGitBash, getBinaryPath } from '@main/utils/process'
 import { rtkRewrite } from '@main/utils/rtk'
 import getLoginShellEnvironment from '@main/utils/shell-env'
-import {
-  CHANNEL_SECURITY_PROMPT,
-  GLOBALLY_DISALLOWED_TOOLS,
-  SOUL_MODE_DISALLOWED_TOOLS
-} from '@shared/agents/claudecode/constants'
+import { GLOBALLY_DISALLOWED_TOOLS, SOUL_MODE_DISALLOWED_TOOLS } from '@shared/agents/claudecode/constants'
 import { languageEnglishNameMap } from '@shared/config/languages'
 import { defaultAppHeaders, withoutTrailingApiVersion } from '@shared/utils'
 import { app } from 'electron'
@@ -47,8 +42,6 @@ import type {
 import { skillService } from '../../skills/SkillService'
 import { agentService } from '../AgentService'
 import { isProvisioned, provisionBuiltinAgent } from '../builtin/BuiltinAgentProvisioner'
-import { channelService } from '../ChannelService'
-import { PromptBuilder } from '../cherryclaw/prompt'
 import { sessionService } from '../SessionService'
 import { buildNamespacedToolCallId } from './claude-stream-state'
 import { mergeUserEnvironmentVariables, withPreferredWindowsShellEnvironment } from './runtimeEnv'
@@ -58,7 +51,6 @@ import { ClaudeStreamState, transformSDKMessageToStreamParts } from './transform
 import { getFirstConfiguredApiKey, with1mContextSuffix } from './utils'
 
 const logger = loggerService.withContext('ClaudeCodeService')
-const promptBuilder = new PromptBuilder()
 const DEFAULT_AUTO_ALLOW_TOOLS = new Set(['Read', 'Glob', 'Grep'])
 const IMAGE_MAX_DIMENSION = 2000
 const IMAGE_MAX_BYTES = 5 * 1024 * 1024 // 5MB API limit
@@ -399,40 +391,13 @@ class ClaudeCodeService implements AgentServiceInterface {
 
     // Soul Mode: read soul_enabled from agent-level configuration (not session)
     const agent = await agentService.getAgent(session.agent_id)
-    const agentConfig = agent?.configuration
-    const soulEnabled = agentConfig?.soul_enabled === true
-    let soulSystemPrompt: string | undefined
-
-    if (soulEnabled && cwd) {
-      soulSystemPrompt = await promptBuilder.buildSystemPrompt(cwd, agentConfig)
-      logger.info('Built Soul Mode system prompt', { cwd, promptLength: soulSystemPrompt.length })
-    }
-
-    // Inject channel security policy into system prompt when session is from an external channel
-    const linkedChannel = await channelService.findBySessionId(session.id)
-    const isChannelSession = !!linkedChannel
-    const channelSecurityBlock = isChannelSession ? `\n\n${CHANNEL_SECURITY_PROMPT}` : ''
+    const soulEnabled = agent?.configuration?.soul_enabled === true
 
     // Built-in agent mode: check builtin_role in configuration
     const builtinRole = (session.configuration as Record<string, unknown> | undefined)?.builtin_role as
       | string
       | undefined
     const isAssistant = builtinRole === 'assistant'
-
-    // For non-Soul, non-Assistant agents we still want the model to know how
-    // to use the memory MCP server we inject for everyone, plus the
-    // shared web tool strategy. This is a lightweight strategy suffix that
-    // sits on top of the SDK's `claude_code` preset rather than replacing it.
-    // Soul agents already get the full guidance via `soulSystemPrompt`, and
-    // Cherry Assistant has its own specialized prompt path.
-    const nonSoulToolGuidance = !soulEnabled && !isAssistant ? promptBuilder.buildToolGuidance() : ''
-
-    // Recall side of the cross-session learning loop for non-Soul agents:
-    // load `memory/FACT.md` (written via the memory tool in previous sessions)
-    // back into the system prompt so the agent remembers what it learned.
-    // Soul agents already get this via `soulSystemPrompt`'s memories section.
-    const nonSoulFactsRecall =
-      !soulEnabled && !isAssistant && cwd ? await promptBuilder.buildFactsSection(cwd) : undefined
 
     // Provision built-in agent workspace (copy skills/plugins to working directory)
     if (builtinRole && cwd && !isProvisioned(cwd)) {
@@ -468,15 +433,11 @@ class ClaudeCodeService implements AgentServiceInterface {
       },
       systemPrompt: assistantSystemPrompt
         ? assistantSystemPrompt
-        : soulSystemPrompt
-          ? `${soulSystemPrompt}${session.instructions ? `\n\n${session.instructions}` : ''}${channelSecurityBlock}\n\n${getLanguageInstruction()}`
-          : {
-              type: 'preset',
-              preset: 'claude_code',
-              append:
-                [nonSoulToolGuidance, nonSoulFactsRecall, session.instructions].filter(Boolean).join('\n\n') +
-                `${channelSecurityBlock}\n\n${getLanguageInstruction()}`
-            },
+        : {
+            type: 'preset',
+            preset: 'claude_code',
+            append: [session.instructions].filter(Boolean).join('\n\n') + `\n\n${getLanguageInstruction()}`
+          },
       // Built-in agents skip CLAUDE.md loading to save tokens
       settingSources: builtinRole ? [] : ['project', 'local'],
       includePartialMessages: true,
@@ -551,31 +512,6 @@ class ClaudeCodeService implements AgentServiceInterface {
       }
     }
 
-    if (soulEnabled) {
-      // Find the channel that owns this session (if any) for context-aware cron defaults
-      const sourceChannelId = await this.resolveSourceChannel(session.agent_id, session.id)
-      const clawServer = new ClawServer(session.agent_id, sourceChannelId)
-      options.mcpServers.claw = { type: 'sdk', name: 'claw', instance: clawServer.mcpServer }
-
-      // Auto-approve claw MCP tools at both layers (see memory above for the
-      // SDK-glob vs canUseTool-exact-match rationale). Soul agents
-      // typically run in bypassPermissions, so this is defense in depth, but
-      // it lets claw also work for any future non-bypass Soul session.
-      autoAllowTools.add('mcp__claw__cron')
-      autoAllowTools.add('mcp__claw__notify')
-      autoAllowTools.add('mcp__claw__config')
-      if (Array.isArray(options.allowedTools) && options.allowedTools.length > 0) {
-        if (!options.allowedTools.includes('mcp__claw__*')) {
-          options.allowedTools = [...options.allowedTools, 'mcp__claw__*']
-        }
-      }
-
-      logger.debug('Soul Mode: injected claw MCP server', {
-        agentId: session.agent_id,
-        totalMcpServers: Object.keys(options.mcpServers).length
-      })
-    }
-
     // Cherry Assistant: inject navigate + diagnose MCP server
     if (isAssistant) {
       const assistantServer = new AssistantServer()
@@ -644,16 +580,6 @@ class ClaudeCodeService implements AgentServiceInterface {
     })
 
     return aiStream
-  }
-
-  private async resolveSourceChannel(agentId: string, sessionId: string): Promise<string | undefined> {
-    try {
-      const { channelService } = await import('../ChannelService')
-      const channels = await channelService.listChannels({ agentId })
-      return channels.find((ch) => ch.sessionId === sessionId)?.id
-    } catch {
-      return undefined
-    }
   }
 
   private async createUserMessageStream(

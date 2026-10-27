@@ -27,8 +27,7 @@ import {
 } from '../database/schema'
 import type { AgentModelField } from '../errors'
 import { skillService } from '../skills/SkillService'
-import { CHERRY_CLAW_AGENT_ID, isBuiltinAgentId } from './builtin/BuiltinAgentIds'
-import { seedWorkspaceTemplates } from './cherryclaw/seedWorkspace'
+import { isBuiltinAgentId } from './builtin/BuiltinAgentIds'
 
 const logger = loggerService.withContext('AgentService')
 
@@ -40,8 +39,6 @@ export type BuiltinAgentInitResult =
   | { agentId: null; skippedReason: 'deleted' | 'no_model' }
 
 export class AgentService extends BaseService {
-  static readonly DEFAULT_AGENT_ID = CHERRY_CLAW_AGENT_ID
-
   private static instance: AgentService | null = null
   private readonly modelFields: AgentModelField[] = ['model', 'plan_model', 'small_model']
 
@@ -97,14 +94,6 @@ export class AgentService extends BaseService {
     }
 
     const agent = this.deserializeJsonFields(result[0]) as AgentEntity
-
-    // Seed workspace templates for soul mode agents
-    if ((req.configuration as Record<string, unknown> | undefined)?.soul_enabled === true) {
-      const workspace = agent.accessible_paths?.[0]
-      if (workspace) {
-        await seedWorkspaceTemplates(workspace)
-      }
-    }
 
     // Auto-enable every builtin skill for the new agent — they ship with the
     // app and users expect them to work without manual opt-in. Non-builtin
@@ -305,106 +294,6 @@ export class AgentService extends BaseService {
       return { agentId: null, skippedReason: 'no_model' }
     }
   }
-
-  /**
-   * Initialize the built-in CherryClaw agent with a fixed ID.
-   * Called once at app startup. Safe to call multiple times — skips if the agent already exists.
-   * Returns the agent ID if created or already present, or null if no compatible model is available yet.
-   */
-  async initDefaultCherryClawAgent(): Promise<BuiltinAgentInitResult> {
-    const id = AgentService.DEFAULT_AGENT_ID
-    try {
-      const database = await this.getDatabase()
-      const existing = await this.findAgentRow(id, { includeDeleted: true })
-
-      if (existing?.deleted_at) {
-        logger.info('Default CherryClaw agent was deleted by user — skipping recreation', { id })
-        return { agentId: null, skippedReason: 'deleted' }
-      }
-
-      if (existing) {
-        return { agentId: id }
-      }
-
-      const modelsRes = await modelsService.getModels({ providerType: 'anthropic', limit: 1 })
-      const firstModel = modelsRes.data?.[0]
-      if (!firstModel) {
-        logger.info('No Anthropic-compatible models available yet — skipping default CherryClaw creation')
-        return { agentId: null, skippedReason: 'no_model' }
-      }
-
-      const now = new Date().toISOString()
-      const configuration: CreateAgentRequest['configuration'] = {
-        avatar: '🦞',
-        permission_mode: 'bypassPermissions',
-        max_turns: 100,
-        soul_enabled: true,
-        scheduler_enabled: true,
-        scheduler_type: 'interval',
-        heartbeat_enabled: true,
-        heartbeat_interval: 30,
-        env_vars: {}
-      }
-
-      const req: CreateAgentRequest = {
-        type: 'claude-code',
-        name: 'Cherry Claw',
-        description: 'Default autonomous CherryClaw agent',
-        model: firstModel.id,
-        accessible_paths: [],
-        configuration
-      }
-
-      const resolvedPaths = this.resolveAccessiblePaths(req.accessible_paths, id)
-      await this.validateAgentModels(req.type, { model: req.model })
-
-      const serialized = this.serializeJsonFields({ ...req, accessible_paths: resolvedPaths })
-
-      const insertData: InsertAgentRow = {
-        id,
-        type: req.type,
-        name: req.name || 'CherryClaw',
-        description: req.description,
-        instructions: 'You are a helpful assistant.',
-        model: req.model,
-        configuration: serialized.configuration,
-        accessible_paths: serialized.accessible_paths,
-        sort_order: 0,
-        created_at: now,
-        updated_at: now
-      }
-
-      const minSortResult = await database
-        .select({ min: min(agentsTable.sort_order) })
-        .from(agentsTable)
-        .where(isNull(agentsTable.deleted_at))
-      const newSortOrder = (minSortResult[0]?.min ?? 0) - 1
-      insertData.sort_order = newSortOrder
-      await database.insert(agentsTable).values(insertData)
-
-      // Seed workspace templates for soul mode
-      const workspace = resolvedPaths?.[0]
-      if (workspace) {
-        await seedWorkspaceTemplates(workspace)
-      }
-
-      try {
-        await skillService.initSkillsForAgent(id, workspace)
-      } catch (error) {
-        logger.warn('Failed to seed builtin skills for CherryClaw agent', {
-          agentId: id,
-          error: error instanceof Error ? error.message : String(error)
-        })
-      }
-
-      logger.info('Created default CherryClaw agent', { id })
-      return { agentId: id }
-    } catch (error) {
-      logger.error('Failed to init default CherryClaw agent', error as Error)
-      return { agentId: null, skippedReason: 'no_model' }
-    }
-  }
-
   async updateAgent(
     id: string,
     updates: UpdateAgentRequest,

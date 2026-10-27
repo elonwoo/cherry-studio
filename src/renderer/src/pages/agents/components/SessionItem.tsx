@@ -14,7 +14,6 @@ import { newMessagesActions } from '@renderer/store/newMessage'
 import { loadTopicMessagesThunk, renameAgentSessionIfNeeded } from '@renderer/store/thunk/messageThunk'
 import type { AgentSessionEntity } from '@renderer/types'
 import { classNames } from '@renderer/utils'
-import { getChannelTypeIcon } from '@renderer/utils/agentSession'
 import { buildAgentSessionTopicId } from '@renderer/utils/agentSession'
 import type { MenuProps } from 'antd'
 import { Dropdown, Tooltip } from 'antd'
@@ -29,12 +28,11 @@ interface SessionItemProps {
   session: AgentSessionEntity
   // use external agentId as SSOT, instead of session.agent_id
   agentId: string
-  channelType?: string
   onDelete: () => void
   onPress: () => void
 }
 
-const SessionItem = ({ session, agentId, channelType, onDelete, onPress }: SessionItemProps) => {
+const SessionItem = ({ session, agentId, onDelete, onPress }: SessionItemProps) => {
   const { t } = useTranslation()
   const { chat } = useRuntime()
   const { updateSession } = useUpdateSession(agentId)
@@ -114,8 +112,6 @@ const SessionItem = ({ session, agentId, channelType, onDelete, onPress }: Sessi
       )
     }
   }, [activeSessionId, dispatch, isFulfilled, session.id, sessionTopicId])
-
-  const channelIcon = getChannelTypeIcon(channelType)
 
   const { topicPosition, setTopicPosition } = useSettings()
   const singlealone = topicPosition === 'right'
@@ -204,7 +200,6 @@ const SessionItem = ({ session, agentId, channelType, onDelete, onPress }: Sessi
           ) : (
             <>
               <SessionName>
-                {channelIcon && <ChannelIconImg src={channelIcon} />}
                 <MarqueeText className="flex min-w-0 flex-1">
                   <SessionLabel
                     session={session}
@@ -285,14 +280,6 @@ const SessionName = styled.div`
   font-size: 13px;
   position: relative;
   min-width: 0;
-`
-
-const ChannelIconImg = styled.img`
-  width: 14px;
-  height: 14px;
-  flex-shrink: 0;
-  border-radius: 2px;
-  object-fit: contain;
 `
 
 const SessionEditInput = styled.input`

@@ -54,7 +54,6 @@ vi.mock('@main/apiServer/utils', () => ({
   }))
 }))
 vi.mock('@main/mcpServers/assistant', () => ({ default: class AssistantServer {} }))
-vi.mock('@main/mcpServers/claw', () => ({ default: class ClawServer {} }))
 vi.mock('@main/mcpServers/workspaceMemory', () => ({
   default: class WorkspaceMemoryServer {
     mcpServer = {}
@@ -73,12 +72,6 @@ vi.mock('@main/services/agents/skills/SkillService', () => ({
 vi.mock('@main/services/agents/services/AgentService', () => ({
   agentService: { getAgent: vi.fn(async () => null) }
 }))
-vi.mock('@main/services/agents/services/ChannelService', () => ({
-  channelService: {
-    findBySessionId: vi.fn(async () => undefined),
-    listChannels: vi.fn(async () => [])
-  }
-}))
 vi.mock('@main/services/agents/services/SessionService', () => ({
   sessionService: {
     listSlashCommands: vi.fn(async () => []),
@@ -88,12 +81,6 @@ vi.mock('@main/services/agents/services/SessionService', () => ({
 vi.mock('@main/services/agents/services/builtin/BuiltinAgentProvisioner', () => ({
   isProvisioned: vi.fn(() => true),
   provisionBuiltinAgent: vi.fn()
-}))
-vi.mock('@main/services/agents/services/cherryclaw/prompt', () => ({
-  PromptBuilder: class PromptBuilder {
-    buildFactsSection = vi.fn(async () => undefined)
-    buildToolGuidance = vi.fn(() => '')
-  }
 }))
 vi.mock('@main/services/proxy/nodeProxy', () => ({ getProxyEnvironment: vi.fn(() => ({})) }))
 vi.mock('@main/utils/bundledBinaries', () => ({

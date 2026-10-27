@@ -41,22 +41,6 @@ export type MCPServerLogEntry = {
   source?: string
 }
 
-// Channel log & status types
-export type ChannelLogLevel = 'debug' | 'info' | 'warn' | 'error'
-
-export type ChannelLogEntry = {
-  timestamp: number
-  level: ChannelLogLevel
-  message: string
-  channelId: string
-}
-
-export type ChannelStatusEvent = {
-  channelId: string
-  connected: boolean
-  error?: string
-}
-
 export interface WebSocketStatusResponse {
   isRunning: boolean
   port?: number
