@@ -482,15 +482,6 @@
         "uninstalling": "アンインストール中..."
       },
       "prompt": "プロンプト設定",
-      "skills": {
-        "addMore": "スキルを追加",
-        "builtin": "組み込み",
-        "noFilterResults": "一致するスキルがありません",
-        "noSkills": "スキルがインストールされていません。設定 > スキルからスキルをインストールしてください。",
-        "searchPlaceholder": "検索スキル…",
-        "tab": "スキル",
-        "title": "インストール済みスキル"
-      },
       "soulMode": {
         "description": "有効にすると、エージェントはワークスペースのsoulファイルからカスタムシステムプロンプトを使用し、自律的タスク管理ツールを注入し、自律動作には不適切なインタラクティブツールを無効化します。",
         "disabledBadge": "自律モードにより無効化されました",
@@ -1103,24 +1094,6 @@
       "pause": "一時停止",
       "placeholder": "ここにメッセージを入力し、{{key}} を押して送信...",
       "placeholder_without_triggers": "ここにメッセージを入力し、{{key}} を押して送信...",
-      "resource_panel": {
-        "categories": {
-          "agents": "エージェント",
-          "files": "ファイル",
-          "skills": "スキル"
-        },
-        "description": "ファイル、エージェント、またはスキルから選択",
-        "loading": "読み込み中...",
-        "no_file_found": {
-          "description": "アクセス可能なディレクトリに利用可能なファイルがありません",
-          "label": "ファイルが見つかりません"
-        },
-        "no_items_found": {
-          "description": "ファイル、エージェント、スキルは利用できません",
-          "label": "アイテムが見つかりません"
-        },
-        "title": "リソース"
-      },
       "send": "送信",
       "settings": "設定",
       "slash_commands": {
@@ -3190,18 +3163,11 @@
     "no_description": "説明なし",
     "no_installed_plugins": "まだプラグインがインストールされていません",
     "no_results": "プラグインが見つかりません",
-    "no_results_skills": "スキルが見つかりません",
     "search_placeholder": "検索プラグイン...",
-    "search_placeholder_skills": "検索スキル…",
     "showing_results": "{{count}} 個のプラグインを表示",
     "showing_results_one": "{{count}} 個のプラグインを表示",
     "showing_results_other": "{{count}} 個のプラグインを表示",
     "showing_results_plural": "{{count}} 個のプラグインを表示",
-    "showing_results_skills": "{{count}}スキルを表示",
-    "showing_results_skills_one": "{{count}}件のスキルを表示",
-    "showing_results_skills_other": "{{count}}件のスキルを表示",
-    "showing_results_skills_plural": "{{count}}件のスキルを表示中",
-    "skills": "スキル",
     "sort": {
       "downloads": "ダウンロード",
       "label": "並び替え",
@@ -5388,41 +5354,6 @@
       "zoom_in": "ズームイン",
       "zoom_out": "ズームアウト",
       "zoom_reset": "ズームをリセット"
-    },
-    "skills": {
-      "author": "著者",
-      "batchUninstallSuccess": "{{count}}個のスキルがアンインストールされました",
-      "builtin": "組み込み",
-      "confirmBatchUninstall": "{{count}}個の選択したスキルをアンインストールしてもよろしいですか？",
-      "confirmUninstall": "このスキルをアンインストールしてもよろしいですか？",
-      "directory": "ディレクトリ",
-      "dropHint": "または、ZIPファイルまたはフォルダをここにドラッグ＆ドロップしてください",
-      "emptyDesc": "ZIP、ディレクトリからスキルをインストールするか、オンラインのレジストリを検索してエージェントの機能を拡張します。",
-      "emptyTip": "ヒント: エージェントにスキルをインストールしてもらうこともできます。",
-      "emptyTitle": "スキルが選択されていません",
-      "filterPlaceholder": "スキルをフィルター...",
-      "install": "インストール",
-      "installFailed": "スキルのインストールに失敗しました: {{name}}",
-      "installFromDirectory": "ディレクトリからインストール",
-      "installFromZip": "ZIPファイルからインストール",
-      "installSuccess": "スキルをインストールしました：{{name}}",
-      "installed": "インストール済みスキル",
-      "invalidFormat": "ZIPファイルとディレクトリのみがサポートされています",
-      "localInstall": "ローカルインストール",
-      "multiSelect": "複数選択",
-      "noFilterResults": "一致するスキルがありません",
-      "noInstalled": "スキルがインストールされていません",
-      "noResults": "スキルが見つかりません",
-      "noSkillFile": "SKILL.mdが見つかりません",
-      "searchPlaceholder": "さらにスキルを見つける...",
-      "searchRegistryTitle": "オンラインでスキルレジストリを検索してください",
-      "searchTitle": "検索スキル",
-      "selectFile": "ファイルを選択して表示",
-      "title": "スキル",
-      "uninstall": "アンインストール",
-      "uninstallSuccess": "スキルがアンインストールされました: {{name}}",
-      "viewSource": "ソースを表示",
-      "zip": "ZIP"
     },
     "theme": {
       "color_primary": "テーマ色",

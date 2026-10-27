@@ -17,7 +17,6 @@ import './newContextTool'
 // Agent Session tools
 import './createSessionTool'
 import './slashCommandsTool'
-import './resourceTool'
 import './permissionModeTool'
 
 // Export registry functions

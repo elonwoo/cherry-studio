@@ -482,15 +482,6 @@
         "uninstalling": "解除安裝中..."
       },
       "prompt": "提示設定",
-      "skills": {
-        "addMore": "添加更多技能",
-        "builtin": "內建",
-        "noFilterResults": "沒有符合的技能",
-        "noSkills": "未安裝任何技能。請前往「設定」>「技能」安裝技能。",
-        "searchPlaceholder": "搜尋技巧...",
-        "tab": "技能",
-        "title": "已安裝技能"
-      },
       "soulMode": {
         "description": "啟用後，代理程式會使用來自工作區靈魂檔案的自訂系統提示，注入自主任務管理工具，並停用不適合自主操作的互動式工具。",
         "disabledBadge": "被自主模式停用",
@@ -1103,24 +1094,6 @@
       "pause": "暫停",
       "placeholder": "在此輸入您的訊息，按 {{key}} 傳送 - @ 選擇模型，/ 包含工具",
       "placeholder_without_triggers": "在此輸入您的訊息，按 {{key}} 傳送",
-      "resource_panel": {
-        "categories": {
-          "agents": "智能體",
-          "files": "檔案",
-          "skills": "技能"
-        },
-        "description": "從檔案、智能體或技能中選擇",
-        "loading": "載入中...",
-        "no_file_found": {
-          "description": "可存取目錄中無可用檔案",
-          "label": "找不到檔案"
-        },
-        "no_items_found": {
-          "description": "沒有可用的檔案、智能體或技能",
-          "label": "未找到項目"
-        },
-        "title": "資源"
-      },
       "send": "傳送",
       "settings": "設定",
       "slash_commands": {
@@ -3191,18 +3164,11 @@
     "no_description": "無描述",
     "no_installed_plugins": "尚未安裝任何技能",
     "no_results": "未找到外掛",
-    "no_results_skills": "未找到技能",
     "search_placeholder": "搜尋外掛...",
-    "search_placeholder_skills": "搜尋技能...",
     "showing_results": "顯示 {{count}} 個外掛",
     "showing_results_one": "顯示 {{count}} 個外掛",
     "showing_results_other": "顯示 {{count}} 個外掛",
     "showing_results_plural": "顯示 {{count}} 個外掛",
-    "showing_results_skills": "顯示 {{count}} 個技能",
-    "showing_results_skills_one": "顯示 {{count}} 個技能",
-    "showing_results_skills_other": "顯示 {{count}} 個技能",
-    "showing_results_skills_plural": "顯示 {{count}} 個技能",
-    "skills": "技能",
     "sort": {
       "downloads": "下載量",
       "label": "排序",
@@ -5389,41 +5355,6 @@
       "zoom_in": "放大介面",
       "zoom_out": "縮小介面",
       "zoom_reset": "重設縮放"
-    },
-    "skills": {
-      "author": "作者",
-      "batchUninstallSuccess": "{{count}} 個技能已解除安裝",
-      "builtin": "內建",
-      "confirmBatchUninstall": "您確定要解除安裝所選的 {{count}} 項技能嗎？",
-      "confirmUninstall": "確定要解除安裝此技能嗎？",
-      "directory": "資料夾",
-      "dropHint": "或將 ZIP 檔案或資料夾拖放到此處",
-      "emptyDesc": "透過 ZIP、資料夾安裝，或在線搜尋登錄檔來擴展 Agent 的能力。",
-      "emptyTip": "提示：你也可以讓 Agent 幫你安裝技能。",
-      "emptyTitle": "未選擇技能",
-      "filterPlaceholder": "篩選技能...",
-      "install": "安裝",
-      "installFailed": "技能安裝失敗：{{name}}",
-      "installFromDirectory": "從資料夾安裝",
-      "installFromZip": "從 ZIP 檔案安裝",
-      "installSuccess": "技能已安裝：{{name}}",
-      "installed": "已安裝",
-      "invalidFormat": "僅支援 ZIP 檔案和資料夾",
-      "localInstall": "本機安裝",
-      "multiSelect": "多選",
-      "noFilterResults": "沒有匹配的技能",
-      "noInstalled": "暫無已安裝的技能",
-      "noResults": "未找到技能",
-      "noSkillFile": "未找到 SKILL.md 檔案",
-      "searchPlaceholder": "發現更多技能...",
-      "searchRegistryTitle": "在線搜尋技能登錄檔",
-      "searchTitle": "搜尋技能",
-      "selectFile": "選擇一個檔案查看",
-      "title": "技能",
-      "uninstall": "解除安裝",
-      "uninstallSuccess": "技能已解除安裝：{{name}}",
-      "viewSource": "查看原始碼",
-      "zip": "ZIP"
     },
     "theme": {
       "color_primary": "主題顏色",

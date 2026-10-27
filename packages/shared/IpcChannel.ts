@@ -404,17 +404,6 @@ export enum IpcChannel {
   // CherryAI
   Cherryai_GetSignature = 'cherryai:get-signature',
 
-  // Global Skills
-  Skill_List = 'skill:list',
-  Skill_Install = 'skill:install',
-  Skill_Uninstall = 'skill:uninstall',
-  Skill_Toggle = 'skill:toggle',
-  Skill_InstallFromZip = 'skill:install-from-zip',
-  Skill_InstallFromDirectory = 'skill:install-from-directory',
-  Skill_ReadFile = 'skill:read-file',
-  Skill_ListFiles = 'skill:list-files',
-  Skill_ListLocal = 'skill:list-local',
-
   // Local Transfer
   LocalTransfer_ListServices = 'local-transfer:list',
   LocalTransfer_StartScan = 'local-transfer:start-scan',

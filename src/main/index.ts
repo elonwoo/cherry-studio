@@ -202,7 +202,7 @@ if (!app.requestSingleInstanceLock()) {
     initSelectionService()
 
     void runAsyncFunction(async () => {
-      // Initialize built-in skills and agents (sequential to avoid SQLITE_BUSY)
+      // Initialize built-in agents (sequential to avoid SQLITE_BUSY)
       // TODO: v2 lifecycle
       await bootstrapBuiltinAgents()
 

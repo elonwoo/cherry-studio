@@ -482,15 +482,6 @@
         "uninstalling": "Desinstalando..."
       },
       "prompt": "Configuración de indicaciones",
-      "skills": {
-        "addMore": "Añadir más habilidades",
-        "builtin": "Incorporado",
-        "noFilterResults": "Sin habilidades coincidentes",
-        "noSkills": "No hay habilidades instaladas. Instala habilidades desde Ajustes > Habilidades.",
-        "searchPlaceholder": "Habilidades de búsqueda...",
-        "tab": "Habilidades",
-        "title": "Habilidades Instaladas"
-      },
       "soulMode": {
         "description": "Cuando está habilitado, el agente utiliza un mensaje del sistema personalizado desde archivos soul del espacio de trabajo, inyecta herramientas de gestión de tareas autónomas y desactiva las herramientas interactivas no adecuadas para el funcionamiento autónomo.",
         "disabledBadge": "Desactivado por el Modo Autónomo",
@@ -1103,24 +1094,6 @@
       "pause": "Pausar",
       "placeholder": "Escribe aquí tu mensaje...",
       "placeholder_without_triggers": "Escribe tu mensaje aquí, presiona {{key}} para enviar",
-      "resource_panel": {
-        "categories": {
-          "agents": "Agentes",
-          "files": "Archivos",
-          "skills": "Habilidades"
-        },
-        "description": "Selecciona entre archivos, agentes o habilidades",
-        "loading": "Cargando...",
-        "no_file_found": {
-          "description": "No hay archivos disponibles en los directorios accesibles",
-          "label": "No se encontró ningún archivo"
-        },
-        "no_items_found": {
-          "description": "Sin archivos, agentes o habilidades disponibles",
-          "label": "No se encontraron elementos"
-        },
-        "title": "Recursos"
-      },
       "send": "Enviar",
       "settings": "Configuración",
       "slash_commands": {
@@ -3190,18 +3163,11 @@
     "no_description": "Sin descripción",
     "no_installed_plugins": "Aún no se ha instalado ningún complemento",
     "no_results": "No se encontró el complemento",
-    "no_results_skills": "No se encontraron habilidades",
     "search_placeholder": "Buscar complemento...",
-    "search_placeholder_skills": "Habilidades de búsqueda...",
     "showing_results": "Mostrar {{count}} complementos",
     "showing_results_one": "Mostrar {{count}} complementos",
     "showing_results_other": "Mostrar {{count}} complementos",
     "showing_results_plural": "Mostrar {{count}} complementos",
-    "showing_results_skills": "Mostrando {{count}} habilidad",
-    "showing_results_skills_one": "Mostrando {{count}} habilidad",
-    "showing_results_skills_other": "Mostrando {{count}} habilidades",
-    "showing_results_skills_plural": "Mostrando {{count}} habilidades",
-    "skills": "habilidad",
     "sort": {
       "downloads": "Descargas",
       "label": "Ordenar",
@@ -5388,41 +5354,6 @@
       "zoom_in": "Ampliar interfaz",
       "zoom_out": "Reducir interfaz",
       "zoom_reset": "Restablecer zoom"
-    },
-    "skills": {
-      "author": "Autor",
-      "batchUninstallSuccess": "{{count}} habilidades desinstaladas",
-      "builtin": "Integrado",
-      "confirmBatchUninstall": "¿Estás seguro de que quieres desinstalar las {{count}} habilidades seleccionadas?",
-      "confirmUninstall": "¿Estás seguro de que quieres desinstalar esta habilidad?",
-      "directory": "Directorio",
-      "dropHint": "O arrastra y suelta aquí un archivo ZIP o una carpeta",
-      "emptyDesc": "Instala habilidades desde ZIP, directorio o busca en registros en línea para ampliar las capacidades del agente.",
-      "emptyTip": "Consejo: También puedes pedirle a un agente que te instale habilidades.",
-      "emptyTitle": "Sin habilidad seleccionada",
-      "filterPlaceholder": "Filtrar habilidades...",
-      "install": "Instalar",
-      "installFailed": "Error al instalar la habilidad: {{name}}",
-      "installFromDirectory": "Instalar desde directorio",
-      "installFromZip": "Instalar desde archivo ZIP",
-      "installSuccess": "Habilidad instalada: {{name}}",
-      "installed": "Habilidades Instaladas",
-      "invalidFormat": "Solo se admiten archivos ZIP y directorios",
-      "localInstall": "Instalación local",
-      "multiSelect": "Selección múltiple",
-      "noFilterResults": "Sin habilidades coincidentes",
-      "noInstalled": "Sin habilidades instaladas",
-      "noResults": "Sin habilidades encontradas",
-      "noSkillFile": "No se encontró SKILL.md",
-      "searchPlaceholder": "Descubrir más habilidades...",
-      "searchRegistryTitle": "Buscar registros de habilidades en línea",
-      "searchTitle": "Habilidades de búsqueda",
-      "selectFile": "Selecciona un archivo para ver",
-      "title": "Habilidades",
-      "uninstall": "Desinstalar",
-      "uninstallSuccess": "Habilidad desinstalada: {{name}}",
-      "viewSource": "Ver fuente",
-      "zip": "CÓDIGO POSTAL"
     },
     "theme": {
       "color_primary": "Color del tema",

@@ -482,15 +482,6 @@
         "uninstalling": "Se dezinstalează..."
       },
       "prompt": "Setări prompt",
-      "skills": {
-        "addMore": "Adaugă mai multe abilități",
-        "builtin": "Încorporat",
-        "noFilterResults": "Nicio abilitate potrivită",
-        "noSkills": "Nicio abilitate instalată. Instalează abilități din Setări > Abilități.",
-        "searchPlaceholder": "Abilități de căutare...",
-        "tab": "Abilități",
-        "title": "Abilități instalate"
-      },
       "soulMode": {
         "description": "Când este activată, agentul folosește o comandă de sistem personalizată din fișierele soul ale spațiului de lucru, injectează instrumente autonome de gestionare a sarcinilor și dezactivează instrumentele interactive care nu sunt potrivite pentru funcționarea autonomă.",
         "disabledBadge": "Dezactivat de Modul Autonom",
@@ -1103,24 +1094,6 @@
       "pause": "Pauză",
       "placeholder": "Scrie mesajul tău aici, apasă {{key}} pentru a trimite - @ pentru a selecta modelul, / pentru a include instrumente",
       "placeholder_without_triggers": "Scrie mesajul tău aici, apasă {{key}} pentru a trimite",
-      "resource_panel": {
-        "categories": {
-          "agents": "Agenți",
-          "files": "Fișiere",
-          "skills": "Abilități"
-        },
-        "description": "Selectați din fișiere, agenți sau competențe",
-        "loading": "Se încarcă...",
-        "no_file_found": {
-          "description": "Nicio fișier disponibil în directoare accesibile",
-          "label": "Niciun fișier găsit"
-        },
-        "no_items_found": {
-          "description": "Niciun fișier, agent sau abilitate disponibilă",
-          "label": "Niciun element găsit"
-        },
-        "title": "Resurse"
-      },
       "send": "Trimite",
       "settings": "Setări",
       "slash_commands": {
@@ -3190,18 +3163,11 @@
     "no_description": "Nicio descriere disponibilă",
     "no_installed_plugins": "Niciun plugin instalat încă",
     "no_results": "Nu s-au găsit pluginuri",
-    "no_results_skills": "Nicio abilitate găsită",
     "search_placeholder": "Caută pluginuri...",
-    "search_placeholder_skills": "Abilități de căutare...",
     "showing_results": "Se afișează {{count}} plugin",
     "showing_results_one": "Se afișează {{count}} plugin",
     "showing_results_other": "Se afișează {{count}} pluginuri",
     "showing_results_plural": "Se afișează {{count}} pluginuri",
-    "showing_results_skills": "Afișare {{count}} abilitate",
-    "showing_results_skills_one": "Afișare {{count}} abilitate",
-    "showing_results_skills_other": "Afișare {{count}} competențe",
-    "showing_results_skills_plural": "Afișare {{count}} competențe",
-    "skills": "Abilități",
     "sort": {
       "downloads": "Descărcări",
       "label": "Sortare",
@@ -5388,41 +5354,6 @@
       "zoom_in": "Mărește",
       "zoom_out": "Micșorează",
       "zoom_reset": "Resetează zoom-ul"
-    },
-    "skills": {
-      "author": "Autor",
-      "batchUninstallSuccess": "{{count}} competențe dezinstalate",
-      "builtin": "Încorporat",
-      "confirmBatchUninstall": "Sigur dorești să dezinstalezi {{count}} competențe selectate?",
-      "confirmUninstall": "Ești sigur că vrei să dezinstalezi această abilitate?",
-      "directory": "Director",
-      "dropHint": "Sau trageți și plasați aici un fișier ZIP sau un folder",
-      "emptyDesc": "Instalează abilități din ZIP, director sau caută în registre online pentru a extinde capabilitățile agentului.",
-      "emptyTip": "Sfat: Poți, de asemenea, să ceri unui agent să instaleze abilități pentru tine.",
-      "emptyTitle": "Nicio competență selectată",
-      "filterPlaceholder": "Filtrează abilitățile...",
-      "install": "Instalare",
-      "installFailed": "Nu s-a putut instala abilitatea: {{name}}",
-      "installFromDirectory": "Instalează din director",
-      "installFromZip": "Instalează din fișier ZIP",
-      "installSuccess": "Abilitate instalată: {{name}}",
-      "installed": "Abilități Instalate",
-      "invalidFormat": "Sunt acceptate doar fișiere ZIP și directoare.",
-      "localInstall": "Instalare locală",
-      "multiSelect": "Selecție multiplă",
-      "noFilterResults": "Niciun abilitate potrivită",
-      "noInstalled": "Nicio competență instalată",
-      "noResults": "Nicio competență găsită",
-      "noSkillFile": "Nu s-a găsit SKILL.md",
-      "searchPlaceholder": "Descoperă mai multe competențe...",
-      "searchRegistryTitle": "Caută registre de competențe online",
-      "searchTitle": "Abilități de căutare",
-      "selectFile": "Selectați un fișier pentru vizualizare",
-      "title": "Abilități",
-      "uninstall": "Dezinstalare",
-      "uninstallSuccess": "Abilitate dezinstalată: {{name}}",
-      "viewSource": "Vezi sursa",
-      "zip": "ZIP"
     },
     "theme": {
       "color_primary": "Culoare primară",

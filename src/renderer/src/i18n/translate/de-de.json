@@ -482,15 +482,6 @@
         "uninstalling": "Deinstallation läuft..."
       },
       "prompt": "Prompt-Einstellungen",
-      "skills": {
-        "addMore": "Weitere Skills hinzufügen",
-        "builtin": "Integriert",
-        "noFilterResults": "Keine übereinstimmenden Fähigkeiten",
-        "noSkills": "Keine Skills installiert. Installiere Skills über Einstellungen > Skills.",
-        "searchPlaceholder": "Suchfähigkeiten...",
-        "tab": "Fähigkeiten",
-        "title": "Installierte Fertigkeiten"
-      },
       "soulMode": {
         "description": "Wenn aktiviert, verwendet der Agent eine benutzerdefinierte Systemaufforderung aus Workspace-Soul-Dateien, fügt autonome Aufgabenverwaltungstools ein und deaktiviert interaktive Tools, die sich nicht für den autonomen Betrieb eignen.",
         "disabledBadge": "Deaktiviert durch den autonomen Modus",
@@ -1103,24 +1094,6 @@
       "pause": "Pause",
       "placeholder": "Geben Sie hier eine Nachricht ein, drücken Sie {{key}} zum Senden - @ für Modellauswahl, / für Tools",
       "placeholder_without_triggers": "Geben Sie hier eine Nachricht ein, drücken Sie {{key}} zum Senden",
-      "resource_panel": {
-        "categories": {
-          "agents": "Agenten",
-          "files": "Dateien",
-          "skills": "Fähigkeiten"
-        },
-        "description": "Wählen Sie aus Dateien, Agenten oder Fähigkeiten",
-        "loading": "Laden...",
-        "no_file_found": {
-          "description": "Keine Dateien in zugänglichen Verzeichnissen verfügbar",
-          "label": "Keine Datei gefunden"
-        },
-        "no_items_found": {
-          "description": "Keine Dateien, Agenten oder Fähigkeiten verfügbar",
-          "label": "Keine Artikel gefunden"
-        },
-        "title": "Ressourcen"
-      },
       "send": "Senden",
       "settings": "Einstellungen",
       "slash_commands": {
@@ -3190,18 +3163,11 @@
     "no_description": "Keine Beschreibung verfügbar",
     "no_installed_plugins": "Noch keine Plugins installiert",
     "no_results": "Keine Plugins gefunden",
-    "no_results_skills": "Keine Fähigkeiten gefunden",
     "search_placeholder": "Such-Plugins...",
-    "search_placeholder_skills": "Suchfähigkeiten...",
     "showing_results": "{{count}} Plugin anzeigen",
     "showing_results_one": "{{count}} Plugin anzeigen",
     "showing_results_other": "Zeige {{count}} Plugins",
     "showing_results_plural": "{{count}} Plugins anzeigen",
-    "showing_results_skills": "Zeige {{count}} Fähigkeit",
-    "showing_results_skills_one": "{{count}} Fähigkeit anzeigen",
-    "showing_results_skills_other": "{{count}} Fähigkeiten anzeigen",
-    "showing_results_skills_plural": "{{count}} Fähigkeiten anzeigen",
-    "skills": "Fähigkeiten",
     "sort": {
       "downloads": "Downloads",
       "label": "Sortieren",
@@ -5388,41 +5354,6 @@
       "zoom_in": "Oberfläche vergrößern",
       "zoom_out": "Oberfläche verkleinern",
       "zoom_reset": "Zoom zurücksetzen"
-    },
-    "skills": {
-      "author": "Autor",
-      "batchUninstallSuccess": "{{count}} Fähigkeiten deinstalliert",
-      "builtin": "Integriert",
-      "confirmBatchUninstall": "Sind Sie sicher, dass Sie {{count}} ausgewählte Fähigkeiten deinstallieren möchten?",
-      "confirmUninstall": "Bist du sicher, dass du diese Fähigkeit deinstallieren möchtest?",
-      "directory": "Verzeichnis",
-      "dropHint": "Oder ziehen Sie eine ZIP-Datei oder einen Ordner hierher.",
-      "emptyDesc": "Installiere Fähigkeiten aus ZIP, Verzeichnis oder suche in Online-Registries, um die Agenten-Fähigkeiten zu erweitern.",
-      "emptyTip": "Tipp: Sie können auch einen Agenten bitten, Fähigkeiten für Sie zu installieren.",
-      "emptyTitle": "Keine Fähigkeit ausgewählt",
-      "filterPlaceholder": "Filter Fähigkeiten...",
-      "install": "Installieren",
-      "installFailed": "Fehler beim Installieren der Fähigkeit: {{name}}",
-      "installFromDirectory": "Aus Verzeichnis installieren",
-      "installFromZip": "Aus ZIP-Datei installieren",
-      "installSuccess": "Fähigkeit installiert: {{name}}",
-      "installed": "Installierte Fähigkeiten",
-      "invalidFormat": "Nur ZIP-Dateien und Verzeichnisse werden unterstützt",
-      "localInstall": "Lokale Installation",
-      "multiSelect": "Mehrfachauswahl",
-      "noFilterResults": "Keine übereinstimmenden Fähigkeiten",
-      "noInstalled": "Keine Fähigkeiten installiert",
-      "noResults": "Keine Fähigkeiten gefunden",
-      "noSkillFile": "Keine SKILL.md gefunden",
-      "searchPlaceholder": "Weitere Fähigkeiten entdecken...",
-      "searchRegistryTitle": "Durchsuche Fähigkeitsregister online",
-      "searchTitle": "Suchfähigkeiten",
-      "selectFile": "Wählen Sie eine Datei zum Anzeigen",
-      "title": "Fähigkeiten",
-      "uninstall": "Deinstallieren",
-      "uninstallSuccess": "Skill deinstalliert: {{name}}",
-      "viewSource": "Quelltext anzeigen",
-      "zip": "PLZ"
     },
     "theme": {
       "color_primary": "Theme-Farbe",

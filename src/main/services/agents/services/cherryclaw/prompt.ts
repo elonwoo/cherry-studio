@@ -40,15 +40,6 @@ const DEFAULT_BASIC_PROMPT = `You are CherryClaw, a personal assistant running i
 
 `
 
-const SKILLS_GUIDANCE = `## Skills
-
-You can manage Claude skills via the \`mcp__skills__skills\` tool — search the marketplace, install / remove existing skills, and author new ones via the \`init\` and \`register\` actions. Discovery and runtime activation of installed skills is handled automatically by the agent SDK; this tool is just the management surface.
-
-When to act:
-- When the user asks for a capability you don't already have, search the marketplace before attempting the task from scratch — there is often an existing skill that fits.
-- After completing a non-trivial task (5+ tool calls, an iterative fix, a workflow you'd want to repeat), offer to save the approach as a new skill via \`init\` + \`register\`.
-- If you find an installed skill is outdated, incomplete, or wrong, fix it in place. Get the skill's \`path\` from \`mcp__skills__skills\` action="list" (or use the path returned by \`init\` if you just created it), then use the native Read / Edit tools on the files in that directory. The live symlink picks up file changes immediately, so no separate "patch" call is needed. Don't wait for the user to ask — patch immediately when you notice the issue.`
-
 const MEMORY_GUIDANCE = `## Workspace Memory
 
 You have persistent memory in this agent's workspace via the \`mcp__agent-memory__memory\` tool: \`update\` rewrites \`memory/FACT.md\` (durable knowledge), \`append\` adds a timestamped entry to \`memory/JOURNAL.jsonl\` (one-off events), and \`search\` queries the journal.
@@ -91,7 +82,7 @@ If the user explicitly needs browser automation (filling forms, clicking, naviga
 
 /**
  * Compose the tool-strategy guidance for an agent based on which MCP servers
- * have actually been injected. The skills, memory, and web-tools sections are
+ * have actually been injected. The memory and web-tools sections are
  * always present (those servers are injected for every agent); the claw
  * section is only included for autonomous (Soul Mode) agents that get the
  * cron / notify / config tools.
@@ -99,7 +90,7 @@ If the user explicitly needs browser automation (filling forms, clicking, naviga
 function composeToolGuidance(opts: { hasClaw: boolean }): string {
   const parts: string[] = []
   if (opts.hasClaw) parts.push(CLAW_GUIDANCE)
-  parts.push(SKILLS_GUIDANCE)
+  parts.push(MEMORY_GUIDANCE)
   parts.push(MEMORY_GUIDANCE)
   parts.push(WEB_TOOLS_GUIDANCE)
   return parts.join('\n\n')
@@ -132,13 +123,13 @@ ${sections}`
  *
  * 1. {@link buildSystemPrompt} — full custom prompt for Soul Mode agents that
  *    REPLACES the SDK preset entirely. Includes the basic identity, the full
- *    tool guidance (claw + skills + memory + web), bootstrap instructions when
+ *    tool guidance (claw + memory + web), bootstrap instructions when
  *    needed, and the workspace memory files (SOUL.md / USER.md / FACT.md).
  *
  * 2. {@link buildToolGuidance} — lightweight tool-strategy suffix for
  *    non-Soul agents. Does not touch workspace files; intended to be APPENDED
  *    to the SDK's `claude_code` preset so the model gets cross-tool strategy
- *    guidance (skills + memory + web) on top of the standard Claude Code
+ *    guidance (memory + web) on top of the standard Claude Code
  *    instructions. Returns a synchronous string — no I/O.
  *
  * Memory files layout (Soul Mode only):
@@ -181,7 +172,7 @@ export class PromptBuilder {
    * Build the cross-tool strategy guidance string for a non-Soul agent. The
    * returned text is meant to be APPENDED to the Claude Code SDK preset so
    * the model gets explicit "when to use which tool" guidance on top of the
-   * SDK's built-in instructions. The skills + memory + web sections are
+   * SDK's built-in instructions. The memory + web sections are
    * always included (those MCP servers are injected for every agent); the
    * claw section is excluded by default (non-Soul agents do not get cron /
    * notify / config).

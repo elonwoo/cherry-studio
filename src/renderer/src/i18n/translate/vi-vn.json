@@ -482,15 +482,6 @@
         "uninstalling": "Đang gỡ cài đặt..."
       },
       "prompt": "Cài đặt lời nhắc",
-      "skills": {
-        "addMore": "Thêm Kỹ Năng",
-        "builtin": "Tích hợp sẵn",
-        "noFilterResults": "Không có kỹ năng phù hợp",
-        "noSkills": "Chưa cài đặt kỹ năng nào. Cài đặt kỹ năng từ Cài đặt > Kỹ năng.",
-        "searchPlaceholder": "Kỹ năng tìm kiếm...",
-        "tab": "Kỹ năng",
-        "title": "Kỹ năng đã cài đặt"
-      },
       "soulMode": {
         "description": "Khi được bật, tác nhân sử dụng lời nhắc hệ thống tùy chỉnh từ các tệp soul trong không gian làm việc, chèn các công cụ quản lý tác vụ tự động và vô hiệu hóa các công cụ tương tác không phù hợp với hoạt động tự động.",
         "disabledBadge": "Bị vô hiệu hóa bởi Chế độ Tự động",
@@ -1103,24 +1094,6 @@
       "pause": "Tạm dừng",
       "placeholder": "Nhập tin nhắn của bạn ở đây, nhấn {{key}} để gửi - @ để Chọn Mô hình, / để Bao gồm Công cụ",
       "placeholder_without_triggers": "Nhập tin nhắn của bạn ở đây, nhấn {{key}} để gửi",
-      "resource_panel": {
-        "categories": {
-          "agents": "Đặc vụ",
-          "files": "Tệp tin",
-          "skills": "Kỹ năng"
-        },
-        "description": "Chọn từ tệp, tác nhân hoặc kỹ năng",
-        "loading": "Đang tải...",
-        "no_file_found": {
-          "description": "Không có tệp nào có sẵn trong các thư mục có thể truy cập",
-          "label": "Không tìm thấy tệp"
-        },
-        "no_items_found": {
-          "description": "Không có tệp nào, đại lý hoặc kỹ năng nào có sẵn",
-          "label": "Không tìm thấy mục nào"
-        },
-        "title": "Tài nguyên"
-      },
       "send": "Gửi",
       "settings": "Cài đặt",
       "slash_commands": {
@@ -3190,18 +3163,11 @@
     "no_description": "Không có mô tả nào",
     "no_installed_plugins": "Chưa cài đặt kỹ năng nào",
     "no_results": "Không tìm thấy plugin nào",
-    "no_results_skills": "Không tìm thấy kỹ năng nào",
     "search_placeholder": "Tìm kiếm plugin...",
-    "search_placeholder_skills": "Kỹ năng tìm kiếm...",
     "showing_results": "Hiển thị {{count}} plugin",
     "showing_results_one": "Hiển thị {{count}} plugin",
     "showing_results_other": "Hiển thị {{count}} plugin",
     "showing_results_plural": "Hiển thị {{count}} plugin",
-    "showing_results_skills": "Hiển thị {{count}} kỹ năng",
-    "showing_results_skills_one": "Hiển thị {{count}} kỹ năng",
-    "showing_results_skills_other": "Hiển thị {{count}} kỹ năng",
-    "showing_results_skills_plural": "Hiển thị {{count}} kỹ năng",
-    "skills": "Kỹ năng",
     "sort": {
       "downloads": "Tải xuống",
       "label": "Sắp xếp",
@@ -5388,41 +5354,6 @@
       "zoom_in": "Phóng to",
       "zoom_out": "Thu nhỏ",
       "zoom_reset": "Đặt lại thu phóng"
-    },
-    "skills": {
-      "author": "Tác giả",
-      "batchUninstallSuccess": "{{count}} kỹ năng đã được gỡ cài đặt",
-      "builtin": "Tích hợp sẵn",
-      "confirmBatchUninstall": "Êtes-vous certain de vouloir désinstaller {{count}} compétences sélectionnées ?",
-      "confirmUninstall": "Bạn có chắc chắn muốn gỡ cài đặt kỹ năng này không?",
-      "directory": "Thư mục",
-      "dropHint": "Hoặc kéo và thả tệp ZIP hoặc thư mục vào đây",
-      "emptyDesc": "Cài đặt kỹ năng từ tập tin ZIP, thư mục hoặc tìm kiếm trong các registry trực tuyến để mở rộng khả năng của tác nhân.",
-      "emptyTip": "Mẹo: Bạn cũng có thể yêu cầu một đại lý cài đặt các kỹ năng cho bạn.",
-      "emptyTitle": "Không có kỹ năng nào được chọn",
-      "filterPlaceholder": "Lọc kỹ năng...",
-      "install": "Cài đặt",
-      "installFailed": "Không thể cài đặt kỹ năng: {{name}}",
-      "installFromDirectory": "Cài đặt từ thư mục",
-      "installFromZip": "Cài đặt từ tệp ZIP",
-      "installSuccess": "Kỹ năng đã được cài đặt: {{name}}",
-      "installed": "Đã cài đặt",
-      "invalidFormat": "Chỉ hỗ trợ các tập tin ZIP và thư mục",
-      "localInstall": "Cài đặt cục bộ",
-      "multiSelect": "Chọn nhiều",
-      "noFilterResults": "Keine passenden Fähigkeiten",
-      "noInstalled": "Không có kỹ năng nào được cài đặt",
-      "noResults": "Không tìm thấy kỹ năng nào",
-      "noSkillFile": "Không tìm thấy SKILL.md",
-      "searchPlaceholder": "Khám phá thêm kỹ năng...",
-      "searchRegistryTitle": "Tìm kiếm sổ đăng ký kỹ năng trực tuyến",
-      "searchTitle": "Kỹ năng tìm kiếm",
-      "selectFile": "Chọn một tệp để xem",
-      "title": "Kỹ năng",
-      "uninstall": "Gỡ cài đặt",
-      "uninstallSuccess": "Kỹ năng đã gỡ cài đặt: {{name}}",
-      "viewSource": "Ver código fuente",
-      "zip": "ZIP"
     },
     "theme": {
       "color_primary": "Warna Primer",

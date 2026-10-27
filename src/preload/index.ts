@@ -49,16 +49,6 @@ import { contextBridge, ipcRenderer, shell, webUtils } from 'electron'
 import type { CreateDirectoryOptions } from 'webdav'
 
 import type { ActionItem } from '../renderer/src/types/selectionTypes'
-import type {
-  InstalledSkill,
-  LocalSkill,
-  SkillFileNode,
-  SkillInstallFromDirectoryOptions,
-  SkillInstallFromZipOptions,
-  SkillInstallOptions,
-  SkillResult,
-  SkillToggleOptions
-} from '../renderer/src/types/skill'
 
 type DirectoryListOptions = {
   recursive?: boolean
@@ -728,25 +718,6 @@ const api = {
         ipcRenderer.removeListener(IpcChannel.ApiServer_Ready, listener)
       }
     }
-  },
-  skill: {
-    list: (agentId?: string): Promise<SkillResult<InstalledSkill[]>> =>
-      ipcRenderer.invoke(IpcChannel.Skill_List, agentId),
-    install: (options: SkillInstallOptions): Promise<SkillResult<InstalledSkill>> =>
-      ipcRenderer.invoke(IpcChannel.Skill_Install, options),
-    uninstall: (skillId: string): Promise<SkillResult<void>> => ipcRenderer.invoke(IpcChannel.Skill_Uninstall, skillId),
-    toggle: (options: SkillToggleOptions): Promise<SkillResult<InstalledSkill | null>> =>
-      ipcRenderer.invoke(IpcChannel.Skill_Toggle, options),
-    installFromZip: (options: SkillInstallFromZipOptions): Promise<SkillResult<InstalledSkill>> =>
-      ipcRenderer.invoke(IpcChannel.Skill_InstallFromZip, options),
-    installFromDirectory: (options: SkillInstallFromDirectoryOptions): Promise<SkillResult<InstalledSkill>> =>
-      ipcRenderer.invoke(IpcChannel.Skill_InstallFromDirectory, options),
-    readSkillFile: (skillId: string, filename: string): Promise<SkillResult<string | null>> =>
-      ipcRenderer.invoke(IpcChannel.Skill_ReadFile, skillId, filename),
-    listFiles: (skillId: string): Promise<SkillResult<SkillFileNode[]>> =>
-      ipcRenderer.invoke(IpcChannel.Skill_ListFiles, skillId),
-    listLocal: (workdir: string): Promise<SkillResult<LocalSkill[]>> =>
-      ipcRenderer.invoke(IpcChannel.Skill_ListLocal, workdir)
   },
   localTransfer: {
     getState: (): Promise<LocalTransferState> => ipcRenderer.invoke(IpcChannel.LocalTransfer_ListServices),

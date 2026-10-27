@@ -55,11 +55,6 @@ vi.mock('@main/apiServer/utils', () => ({
 }))
 vi.mock('@main/mcpServers/assistant', () => ({ default: class AssistantServer {} }))
 vi.mock('@main/mcpServers/claw', () => ({ default: class ClawServer {} }))
-vi.mock('@main/mcpServers/skills', () => ({
-  default: class SkillsServer {
-    mcpServer = {}
-  }
-}))
 vi.mock('@main/mcpServers/workspaceMemory', () => ({
   default: class WorkspaceMemoryServer {
     mcpServer = {}

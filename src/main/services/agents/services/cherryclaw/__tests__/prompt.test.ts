@@ -254,11 +254,9 @@ describe('PromptBuilder', () => {
   })
 
   describe('buildToolGuidance', () => {
-    it('returns skills, memory, and web sections without claw by default', () => {
+    it('returns memory and web sections without claw by default', () => {
       const result = builder.buildToolGuidance()
 
-      expect(result).toContain('## Skills')
-      expect(result).toContain('mcp__skills__skills')
       expect(result).toContain('## Workspace Memory')
       expect(result).toContain('mcp__agent-memory__memory')
       expect(result).toContain('## Web Search Strategy')
@@ -276,31 +274,21 @@ describe('PromptBuilder', () => {
       expect(result).toContain('mcp__claw__cron')
       expect(result).toContain('mcp__claw__notify')
       expect(result).toContain('mcp__claw__config')
-      // Skills, memory, and web are still included
-      expect(result).toContain('mcp__skills__skills')
+      // Memory and web are still included
       expect(result).toContain('mcp__agent-memory__memory')
       expect(result).toContain('## Web Search Strategy')
     })
 
-    it('places claw guidance before skills/memory when present', () => {
+    it('places claw guidance before memory when present', () => {
       const result = builder.buildToolGuidance({ hasClaw: true })
 
       const clawIdx = result.indexOf('## CherryClaw Tools')
-      const skillsIdx = result.indexOf('## Skills')
       const memoryIdx = result.indexOf('## Workspace Memory')
       const webIdx = result.indexOf('## Web Search Strategy')
 
       expect(clawIdx).toBeGreaterThanOrEqual(0)
-      expect(clawIdx).toBeLessThan(skillsIdx)
-      expect(skillsIdx).toBeLessThan(memoryIdx)
+      expect(clawIdx).toBeLessThan(memoryIdx)
       expect(memoryIdx).toBeLessThan(webIdx)
-    })
-
-    it('teaches when to act for skills (init/register and patching)', () => {
-      const result = builder.buildToolGuidance()
-
-      expect(result).toMatch(/init.*register|register.*init/)
-      expect(result).toMatch(/edit.*in place|patch|outdated/i)
     })
 
     it('teaches when to act for memory (search-before-ask, FACT vs JOURNAL)', () => {
@@ -319,7 +307,6 @@ describe('PromptBuilder', () => {
 
       // The Soul prompt should embed every section the with-claw guidance has.
       expect(soulPrompt).toContain('## CherryClaw Tools')
-      expect(soulPrompt).toContain('## Skills')
       expect(soulPrompt).toContain('## Workspace Memory')
       expect(soulPrompt).toContain('## Web Search Strategy')
       // And the guidance string is a contiguous substring of the soul prompt.

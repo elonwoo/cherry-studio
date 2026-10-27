@@ -1,12 +1,11 @@
 /**
  * BuiltinAgentBootstrap
  *
- * Encapsulates all startup initialization logic for built-in skills and agents
+ * Encapsulates all startup initialization logic for built-in agents
  * (CherryClaw, Cherry Assistant, etc.). Keeps business details out of
  * the main entry point (`src/main/index.ts`).
  */
 import { loggerService } from '@logger'
-import { installBuiltinSkills } from '@main/utils/builtinSkills'
 
 import type { BuiltinAgentInitResult } from '../AgentService'
 import { agentService } from '../AgentService'
@@ -21,18 +20,12 @@ const retryAttempts = new Map<string, number>()
 const retryTimers = new Map<string, NodeJS.Timeout>()
 
 /**
- * Initialize all built-in skills and agents. Safe to call multiple times (idempotent).
+ * Initialize all built-in agents. Safe to call multiple times (idempotent).
  *
- * Skills are installed first (shared dependency). Agent inits run in parallel
- * since they operate on different rows and don't conflict.
+ * Agent inits run in parallel since they operate on different rows and don't
+ * conflict.
  */
 export async function bootstrapBuiltinAgents(): Promise<void> {
-  try {
-    await installBuiltinSkills()
-  } catch (error) {
-    logger.error('Failed to install built-in skills', error as Error)
-  }
-
   await Promise.all([initCherryClaw(), initCherryAssistant()])
 }
 

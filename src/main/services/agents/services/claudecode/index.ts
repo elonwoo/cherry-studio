@@ -21,7 +21,6 @@ import { validateModelId } from '@main/apiServer/utils'
 import { isWin } from '@main/constant'
 import AssistantServer from '@main/mcpServers/assistant'
 import ClawServer from '@main/mcpServers/claw'
-import SkillsServer from '@main/mcpServers/skills'
 import WorkspaceMemoryServer from '@main/mcpServers/workspaceMemory'
 import { configManager } from '@main/services/ConfigManager'
 import { getProxyEnvironment } from '@main/services/proxy/nodeProxy'
@@ -421,7 +420,7 @@ class ClaudeCodeService implements AgentServiceInterface {
     const isAssistant = builtinRole === 'assistant'
 
     // For non-Soul, non-Assistant agents we still want the model to know how
-    // to use the skills + memory MCP servers we inject for everyone, plus the
+    // to use the memory MCP server we inject for everyone, plus the
     // shared web tool strategy. This is a lightweight strategy suffix that
     // sits on top of the SDK's `claude_code` preset rather than replacing it.
     // Soul agents already get the full guidance via `soulSystemPrompt`, and
@@ -535,23 +534,6 @@ class ClaudeCodeService implements AgentServiceInterface {
       url: 'https://mcp.exa.ai/mcp'
     }
 
-    // Inject skills MCP for all agents — managing Claude skills (search / install
-    // / list / remove / init / register) is a generally useful capability and is
-    // not coupled to Soul Mode's autonomous-agent semantics.
-    const skillsServer = new SkillsServer(session.agent_id)
-    options.mcpServers.skills = { type: 'sdk', name: 'skills', instance: skillsServer.mcpServer }
-    // Auto-approve via Cherry Studio's own permission gate. The SDK whitelist
-    // (`options.allowedTools`) takes glob patterns, but `canUseTool` checks
-    // `autoAllowTools` with exact string matching, so we have to add the full
-    // tool names there too — otherwise non-Soul agents (which do not run in
-    // bypassPermissions mode) get an approval prompt for every call.
-    autoAllowTools.add('mcp__skills__skills')
-    if (Array.isArray(options.allowedTools) && options.allowedTools.length > 0) {
-      if (!options.allowedTools.includes('mcp__skills__*')) {
-        options.allowedTools = [...options.allowedTools, 'mcp__skills__*']
-      }
-    }
-
     // Inject agent workspace memory MCP for all agents — cross-session FACT.md /
     // JOURNAL.jsonl in the agent's workspace. Distinct from the user-opt-in
     // built-in `memory-server` (knowledge graph). Any agent with a stable
@@ -575,8 +557,8 @@ class ClaudeCodeService implements AgentServiceInterface {
       const clawServer = new ClawServer(session.agent_id, sourceChannelId)
       options.mcpServers.claw = { type: 'sdk', name: 'claw', instance: clawServer.mcpServer }
 
-      // Auto-approve claw MCP tools at both layers (see skills/memory above
-      // for the SDK-glob vs canUseTool-exact-match rationale). Soul agents
+      // Auto-approve claw MCP tools at both layers (see memory above for the
+      // SDK-glob vs canUseTool-exact-match rationale). Soul agents
       // typically run in bypassPermissions, so this is defense in depth, but
       // it lets claw also work for any future non-bypass Soul session.
       autoAllowTools.add('mcp__claw__cron')
@@ -599,8 +581,8 @@ class ClaudeCodeService implements AgentServiceInterface {
       const assistantServer = new AssistantServer()
       options.mcpServers.assistant = { type: 'sdk', name: 'assistant', instance: assistantServer.mcpServer }
 
-      // Auto-approve assistant MCP tools at both layers (see skills/memory
-      // above for the SDK-glob vs canUseTool-exact-match rationale).
+      // Auto-approve assistant MCP tools at both layers (see memory above for
+      // the SDK-glob vs canUseTool-exact-match rationale).
       autoAllowTools.add('mcp__assistant__navigate')
       autoAllowTools.add('mcp__assistant__diagnose')
       if (Array.isArray(options.allowedTools) && options.allowedTools.length > 0) {

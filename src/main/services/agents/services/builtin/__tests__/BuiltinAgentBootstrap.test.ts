@@ -1,23 +1,17 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 const {
-  mockInstallBuiltinSkills,
   mockInitDefaultCherryClawAgent,
   mockInitBuiltinAgent,
   mockListSessions,
   mockCreateSession,
   mockEnsureHeartbeatTask
 } = vi.hoisted(() => ({
-  mockInstallBuiltinSkills: vi.fn(),
   mockInitDefaultCherryClawAgent: vi.fn(),
   mockInitBuiltinAgent: vi.fn(),
   mockListSessions: vi.fn(),
   mockCreateSession: vi.fn(),
   mockEnsureHeartbeatTask: vi.fn()
-}))
-
-vi.mock('@main/utils/builtinSkills', () => ({
-  installBuiltinSkills: mockInstallBuiltinSkills
 }))
 
 vi.mock('../../AgentService', () => ({
@@ -49,7 +43,6 @@ describe('bootstrapBuiltinAgents', () => {
     vi.clearAllMocks()
     vi.useFakeTimers()
     vi.resetModules()
-    mockInstallBuiltinSkills.mockResolvedValue(undefined)
     mockListSessions.mockResolvedValue({ total: 0 })
     mockCreateSession.mockResolvedValue({ id: 'session_1' })
     mockEnsureHeartbeatTask.mockResolvedValue(undefined)

@@ -7,15 +7,7 @@ import { useTranslation } from 'react-i18next'
 
 import { LeftMenu, Settings, settingsModalStyles, StyledMenu, StyledModal } from './shared'
 
-export type SettingsPopupTab =
-  | 'essential'
-  | 'prompt'
-  | 'permission-mode'
-  | 'tools-mcp'
-  | 'mcp'
-  | 'advanced'
-  | 'plugins'
-  | 'installed'
+export type SettingsPopupTab = 'essential' | 'prompt' | 'permission-mode' | 'tools-mcp' | 'mcp' | 'advanced' | 'plugins'
 
 export type SettingsMenuItem = NonNullable<MenuProps['items']>[number] & {
   key: SettingsPopupTab

@@ -482,15 +482,6 @@
         "uninstalling": "Désinstallation en cours..."
       },
       "prompt": "Paramètres de l'invite",
-      "skills": {
-        "addMore": "Ajouter plus de compétences",
-        "builtin": "Intégré",
-        "noFilterResults": "Aucune compétence correspondante",
-        "noSkills": "Aucune compétence installée. Installez des compétences depuis Paramètres > Compétences.",
-        "searchPlaceholder": "Compétences de recherche...",
-        "tab": "Compétences",
-        "title": "Compétences installées"
-      },
       "soulMode": {
         "description": "Lorsqu'il est activé, l'agent utilise une invite système personnée provenant des fichiers soul de l'espace de travail, injecte des outils de gestion autonome des tâches et désactive les outils interactifs non adaptés au fonctionnement autonome.",
         "disabledBadge": "Désactivé par le mode autonome",
@@ -1103,24 +1094,6 @@
       "pause": "Pause",
       "placeholder": "Entrez votre message ici...",
       "placeholder_without_triggers": "Tapez votre message ici, appuyez sur {{key}} pour envoyer",
-      "resource_panel": {
-        "categories": {
-          "agents": "Agents",
-          "files": "Fichiers",
-          "skills": "Compétences"
-        },
-        "description": "Sélectionner parmi les fichiers, les agents ou les compétences",
-        "loading": "Chargement...",
-        "no_file_found": {
-          "description": "Aucun fichier disponible dans les répertoires accessibles",
-          "label": "Aucun fichier trouvé"
-        },
-        "no_items_found": {
-          "description": "Aucun fichier, agent ou compétence disponible",
-          "label": "Aucun élément trouvé"
-        },
-        "title": "Ressources"
-      },
       "send": "Envoyer",
       "settings": "Paramètres",
       "slash_commands": {
@@ -3190,18 +3163,11 @@
     "no_description": "Sans description",
     "no_installed_plugins": "Aucun plugin n’est encore installé",
     "no_results": "Aucun plugin trouvé",
-    "no_results_skills": "Aucune compétence trouvée",
     "search_placeholder": "Rechercher des modules d'extension...",
-    "search_placeholder_skills": "Compétences de recherche...",
     "showing_results": "Afficher {{count}} extensions",
     "showing_results_one": "Afficher {{count}} modules d’extension",
     "showing_results_other": "Afficher {{count}} modules d'extension",
     "showing_results_plural": "Afficher {{count}} modules d'extension",
-    "showing_results_skills": "Affichage de {{count}} compétence",
-    "showing_results_skills_one": "Affichage de {{count}} compétence",
-    "showing_results_skills_other": "Affichage de {{count}} compétences",
-    "showing_results_skills_plural": "Affichage de {{count}} compétences",
-    "skills": "compétence",
     "sort": {
       "downloads": "Téléchargements",
       "label": "Trier",
@@ -5388,41 +5354,6 @@
       "zoom_in": "Agrandir l'interface",
       "zoom_out": "Réduire l'interface",
       "zoom_reset": "Réinitialiser le zoom"
-    },
-    "skills": {
-      "author": "Auteur",
-      "batchUninstallSuccess": "{{count}} compétences désinstallées",
-      "builtin": "Intégré",
-      "confirmBatchUninstall": "Êtes-vous sûr de vouloir désinstaller les {{count}} compétences sélectionnées ?",
-      "confirmUninstall": "Êtes-vous sûr de vouloir désinstaller cette compétence ?",
-      "directory": "Répertoire",
-      "dropHint": "Ou glissez-déposez ici un fichier ZIP ou un dossier",
-      "emptyDesc": "Installez des compétences à partir d’un fichier ZIP, d’un répertoire ou recherchez dans les registres en ligne pour étendre les capacités de l’agent.",
-      "emptyTip": "Astuce : vous pouvez aussi demander à un agent d’installer des compétences pour vous.",
-      "emptyTitle": "Aucune compétence sélectionnée",
-      "filterPlaceholder": "Filtrer les compétences...",
-      "install": "Installer",
-      "installFailed": "Échec de l'installation de la compétence : {{name}}",
-      "installFromDirectory": "Installer depuis le répertoire",
-      "installFromZip": "Installer à partir du fichier ZIP",
-      "installSuccess": "Compétence installée : {{name}}",
-      "installed": "Compétences installées",
-      "invalidFormat": "Seuls les fichiers ZIP et les répertoires sont pris en charge",
-      "localInstall": "Installation locale",
-      "multiSelect": "Sélection multiple",
-      "noFilterResults": "Aucune compétence correspondante",
-      "noInstalled": "Aucune compétence installée",
-      "noResults": "Aucune compétence trouvée",
-      "noSkillFile": "Aucun SKILL.md trouvé",
-      "searchPlaceholder": "Découvrir plus de compétences...",
-      "searchRegistryTitle": "Rechercher des registres de compétences en ligne",
-      "searchTitle": "Compétences de recherche",
-      "selectFile": "Sélectionner un fichier à afficher",
-      "title": "Compétences",
-      "uninstall": "Désinstaller",
-      "uninstallSuccess": "Compétence désinstallée : {{name}}",
-      "viewSource": "Afficher la source",
-      "zip": "ZIP"
     },
     "theme": {
       "color_primary": "Couleur principale",
