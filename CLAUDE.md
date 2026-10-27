@@ -117,7 +117,6 @@ Node.js backend services. Key services:
 | `AppUpdater` | electron-updater auto-update |
 | `ShortcutService` | Global keyboard shortcuts |
 | `ThemeService` | System theme detection/application |
-| `SelectionService` | Text selection toolbar feature |
 | `CopilotService` | GitHub Copilot OAuth integration |
 | `PythonService` | Pyodide WASM Python runtime |
 | `OvmsManager` | OpenVINO model server management |
@@ -206,9 +205,6 @@ src/core/
 
 The renderer builds multiple HTML entry points:
 - `index.html` — Main application window
-- `miniWindow.html` — Compact floating window (`src/renderer/src/windows/mini/`)
-- `selectionToolbar.html` — Text selection action toolbar
-- `selectionAction.html` — Selection action popup
 - `traceWindow.html` — MCP trace viewer
 
 ### Logging

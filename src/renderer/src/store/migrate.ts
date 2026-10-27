@@ -58,7 +58,6 @@ import { DEFAULT_TOOL_ORDER, DEFAULT_TOOL_ORDER_BY_SCOPE } from './inputTools'
 import { initialState as llmInitialState, moveProvider } from './llm'
 import { mcpSlice } from './mcp'
 import { initialState as notesInitialState } from './note'
-import { defaultActionItems } from './selectionStore'
 import { initialState as settingsInitialState } from './settings'
 import { initialState as shortcutsInitialState } from './shortcuts'
 import { defaultWebSearchProviders } from './websearch'
@@ -123,17 +122,6 @@ function updateWebSearchProvider(state: RootState, provider: Partial<WebSearchPr
       state.websearch.providers[index] = {
         ...state.websearch.providers[index],
         ...provider
-      }
-    }
-  }
-}
-
-function addSelectionAction(state: RootState, id: string) {
-  if (state.selectionStore && state.selectionStore.actionItems) {
-    if (!state.selectionStore.actionItems.some((item) => item.id === id)) {
-      const action = defaultActionItems.find((item) => item.id === id)
-      if (action) {
-        state.selectionStore.actionItems.push(action)
       }
     }
   }
@@ -847,25 +835,12 @@ const migrateConfig = {
   },
   '57': (state: RootState) => {
     try {
-      if (state.shortcuts) {
-        state.shortcuts.shortcuts.push({
-          key: 'mini_window',
-          shortcut: [isMac ? 'Command' : 'Ctrl', 'E'],
-          editable: true,
-          enabled: false,
-          system: true
-        })
-      }
-
       state.llm.providers.forEach((provider) => {
         if (provider.id === 'qwenlm') {
           // @ts-ignore eslint-disable-next-line
           provider.type = 'qwenlm'
         }
       })
-
-      state.settings.enableQuickAssistant = false
-      state.settings.clickTrayToShowQuickAssistant = true
 
       return state
     } catch (error) {
@@ -1608,16 +1583,12 @@ const migrateConfig = {
   },
   '111': (state: RootState) => {
     try {
-      addSelectionAction(state, 'quote')
       if (
         state.llm.translateModel.provider === 'silicon' &&
         state.llm.translateModel.id === 'meta-llama/Llama-3.3-70B-Instruct'
       ) {
         state.llm.translateModel = SYSTEM_MODELS.defaultModel[2]
       }
-
-      // add selection_assistant_toggle and selection_assistant_select_text shortcuts after mini_window
-      addShortcuts(state, ['selection_assistant_toggle', 'selection_assistant_select_text'], 'mini_window')
 
       return state
     } catch (error) {
@@ -3043,7 +3014,6 @@ const migrateConfig = {
           provider.anthropicApiHost = 'https://api.302.ai'
         }
       })
-      state.settings.readClipboardAtStartup = false
       logger.info('migrate 192 success')
       return state
     } catch (error) {
@@ -3405,6 +3375,30 @@ const migrateConfig = {
       return state
     } catch (error) {
       logger.error('migrate 212 error', error as Error)
+      return state
+    }
+  },
+  '213': (state: RootState) => {
+    try {
+      delete (state as any).selectionStore
+      delete (state.llm as any).quickAssistantId
+
+      const settings = state.settings as any
+      delete settings.enableQuickAssistant
+      delete settings.clickTrayToShowQuickAssistant
+      delete settings.readClipboardAtStartup
+
+      if (state.shortcuts?.shortcuts) {
+        state.shortcuts.shortcuts = state.shortcuts.shortcuts.filter(
+          (shortcut) =>
+            !['mini_window', 'selection_assistant_toggle', 'selection_assistant_select_text'].includes(shortcut.key)
+        )
+      }
+
+      logger.info('migrate 213 success')
+      return state
+    } catch (error) {
+      logger.error('migrate 213 error', error as Error)
       return state
     }
   }

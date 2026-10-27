@@ -15,7 +15,6 @@ export const SYSTEM_MODELS: Record<SystemProviderId | 'defaultModel', Model[]> =
     qwenModel,
     // Default translation model
     qwenModel,
-    // Default quick assistant model
     qwenModel
   ],
   cherryin: [],
