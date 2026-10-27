@@ -109,8 +109,9 @@ mac:
     - NSDocumentsFolderUsageDescription: Application requests access to the user's Documents folder.
     - NSDownloadsFolderUsageDescription: Application requests access to the user's Downloads folder.
   target:
-    - target: dmg
     - target: zip
+      arch:
+        - arm64
 dmg:
   writeUpdateInfo: false
 linux:
