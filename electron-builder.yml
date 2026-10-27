@@ -141,7 +141,7 @@ artifactBuildCompleted: scripts/artifact-build-completed.js
 releaseInfo:
   releaseNotes: |
     <!--LANG:en-->
-    Cherry Studio 1.9.18 - Personal arm64 build
+    Cherry Studio 1.9.19 - Personal arm64 build
 
     🐛 Bug Fixes
     - [OpenCode] Send a stable per-conversation `x-opencode-session` header, fixing 400 MissingSessionID on OpenCode Go/Zen.
@@ -152,6 +152,9 @@ releaseInfo:
     🧩 Models & Providers
     - The built-in catalog keeps 96 models across 15 selected providers; the other platform presets are removed.
 
+    ⌨️ Shortcuts
+    - Cmd+S toggles the left sidebar, Cmd+L toggles the right sidebar, and clearing messages moves to Cmd+Shift+L.
+
     🎨 Theme
     - Ships the Dracula × shadcn/ui theme by default.
 
@@ -159,7 +162,7 @@ releaseInfo:
     - macOS: only an arm64 zip is produced. The app is signed with a Developer ID but not notarized.
 
     <!--LANG:zh-CN-->
-    Cherry Studio 1.9.18 - 个人 arm64 构建
+    Cherry Studio 1.9.19 - 个人 arm64 构建
 
     🐛 问题修复
     - [OpenCode] 为每个会话发送稳定的 `x-opencode-session` 请求头，修复 OpenCode Go/Zen 的 400 MissingSessionID。
@@ -169,6 +172,9 @@ releaseInfo:
 
     🧩 模型与服务商
     - 内置模型仅保留 15 个服务商的 96 个模型；其余平台预设已移除。
+
+    ⌨️ 快捷键
+    - Cmd+S 切换左侧栏，Cmd+L 切换右侧栏，清空消息改为 Cmd+Shift+L。
 
     🎨 主题
     - 默认内置 Dracula × shadcn/ui 主题。
