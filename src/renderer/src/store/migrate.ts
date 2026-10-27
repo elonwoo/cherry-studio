@@ -32,7 +32,7 @@ import {
 } from '@renderer/config/models'
 import { BUILTIN_OCR_PROVIDERS, BUILTIN_OCR_PROVIDERS_MAP, DEFAULT_OCR_PROVIDER } from '@renderer/config/ocr'
 import { TRANSLATE_PROMPT } from '@renderer/config/prompts'
-import { SYSTEM_PROVIDERS } from '@renderer/config/providers'
+import { REMOVED_SYSTEM_PROVIDER_IDS, SYSTEM_PROVIDERS } from '@renderer/config/providers'
 import { DEFAULT_SIDEBAR_ICONS } from '@renderer/config/sidebar'
 import { DRACULA_SHADCN_CSS } from '@renderer/config/themePresets'
 import db from '@renderer/databases'
@@ -3437,6 +3437,32 @@ const migrateConfig = {
       return state
     } catch (error) {
       logger.error('migrate 214 error', error as Error)
+      return state
+    }
+  },
+  '215': (state: RootState) => {
+    try {
+      const removed = new Set<string>(REMOVED_SYSTEM_PROVIDER_IDS)
+      const isRemovedProvider = (model?: Model) => !!model && removed.has(model.provider)
+
+      state.llm.providers = state.llm.providers.filter((provider) => !removed.has(provider.id))
+
+      if (isRemovedProvider(state.llm.defaultModel)) state.llm.defaultModel = fallbackModel
+      if (isRemovedProvider(state.llm.topicNamingModel)) state.llm.topicNamingModel = fallbackModel
+      if (isRemovedProvider(state.llm.quickModel)) state.llm.quickModel = fallbackModel
+      if (isRemovedProvider(state.llm.translateModel)) state.llm.translateModel = fallbackModel
+
+      const assistants = [...(state.assistants.assistants ?? [])]
+      if (state.assistants.defaultAssistant) assistants.push(state.assistants.defaultAssistant)
+      assistants.forEach((assistant) => {
+        if (isRemovedProvider(assistant.model)) assistant.model = fallbackModel
+        if (isRemovedProvider(assistant.defaultModel)) assistant.defaultModel = fallbackModel
+      })
+
+      logger.info('migrate 215 success')
+      return state
+    } catch (error) {
+      logger.error('migrate 215 error', error as Error)
       return state
     }
   }

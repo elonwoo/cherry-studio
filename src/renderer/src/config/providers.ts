@@ -740,7 +740,58 @@ export const SYSTEM_PROVIDERS_CONFIG: Record<SystemProviderId, SystemProvider> =
   }
 } as const
 
-export const INITIAL_STATE_EXCLUDED_PROVIDER_IDS = ['cephalon', 'tokenflux'] as const satisfies SystemProviderId[]
+export const REMOVED_SYSTEM_PROVIDER_IDS = [
+  'cherryin',
+  'silicon',
+  'aihubmix',
+  'ovms',
+  'ocoolai',
+  'alayanew',
+  'dmxapi',
+  'aionly',
+  'burncloud',
+  'tokenflux',
+  '302ai',
+  'cephalon',
+  'lanyun',
+  'ph8',
+  'sophnet',
+  'ppio',
+  'qiniu',
+  'lmstudio',
+  'azure-openai',
+  'vertexai',
+  'github',
+  'copilot',
+  'baichuan',
+  'stepfun',
+  'yi',
+  'infini',
+  'groq',
+  'together',
+  'fireworks',
+  'nvidia',
+  'hyperbolic',
+  'mistral',
+  'jina',
+  'perplexity',
+  'modelscope',
+  'xirang',
+  'hunyuan',
+  'tencent-cloud-ti',
+  'baidu-cloud',
+  'gpustack',
+  'voyageai',
+  'aws-bedrock',
+  'poe',
+  'longcat',
+  'huggingface',
+  'gateway',
+  'cerebras',
+  'mimo'
+] as const satisfies SystemProviderId[]
+
+export const INITIAL_STATE_EXCLUDED_PROVIDER_IDS = REMOVED_SYSTEM_PROVIDER_IDS
 
 export const SYSTEM_PROVIDERS: SystemProvider[] = Object.values(SYSTEM_PROVIDERS_CONFIG)
 

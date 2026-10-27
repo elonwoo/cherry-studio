@@ -117,4 +117,53 @@ describe('store migrations', () => {
       expect(migrated.assistants.assistants[0].defaultModel).toEqual(fallback)
     })
   })
+
+  describe('migration 215: remove pruned provider presets', () => {
+    it('drops removed system providers while keeping selected and custom ones', async () => {
+      const state = {
+        llm: {
+          providers: [
+            { id: '302ai', models: [] },
+            { id: 'deepseek', models: [] },
+            { id: 'my-opencode', models: [] }
+          ]
+        },
+        assistants: { assistants: [] },
+        _persist: { version: 214, rehydrated: false }
+      }
+
+      const migrated: any = await migrate(state as any, 215)
+      const ids = migrated.llm.providers.map((p: any) => p.id)
+
+      expect(ids).toEqual(['deepseek', 'my-opencode'])
+    })
+
+    it('resets selections that pointed at a removed provider', async () => {
+      const removedModel = { id: 'gpt-4.1', provider: '302ai', name: 'gpt-4.1', group: 'OpenAI' }
+      const customModel = { id: 'my-model', provider: 'my-opencode', name: 'my-model', group: 'Custom' }
+      const state = {
+        llm: {
+          providers: [{ id: '302ai', models: [] }],
+          defaultModel: removedModel,
+          topicNamingModel: removedModel,
+          quickModel: customModel,
+          translateModel: removedModel
+        },
+        assistants: {
+          assistants: [{ model: removedModel, defaultModel: customModel }]
+        },
+        _persist: { version: 214, rehydrated: false }
+      }
+
+      const migrated: any = await migrate(state as any, 215)
+      const fallback = { id: 'deepseek-v4-flash', provider: 'deepseek', name: 'deepseek-v4-flash', group: 'DeepSeek' }
+
+      expect(migrated.llm.defaultModel).toEqual(fallback)
+      expect(migrated.llm.topicNamingModel).toEqual(fallback)
+      expect(migrated.llm.quickModel).toEqual(customModel)
+      expect(migrated.llm.translateModel).toEqual(fallback)
+      expect(migrated.assistants.assistants[0].model).toEqual(fallback)
+      expect(migrated.assistants.assistants[0].defaultModel).toEqual(customModel)
+    })
+  })
 })
