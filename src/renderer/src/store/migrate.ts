@@ -22,7 +22,14 @@ import {
   DEFAULT_TEMPERATURE,
   isMac
 } from '@renderer/config/constant'
-import { isFunctionCallingModel, isNotSupportTextDeltaModel, qwenModel, SYSTEM_MODELS } from '@renderer/config/models'
+import {
+  fallbackModel,
+  isFunctionCallingModel,
+  isNotSupportTextDeltaModel,
+  qwenModel,
+  REMOVED_BUILTIN_MODEL_IDS,
+  SYSTEM_MODELS
+} from '@renderer/config/models'
 import { BUILTIN_OCR_PROVIDERS, BUILTIN_OCR_PROVIDERS_MAP, DEFAULT_OCR_PROVIDER } from '@renderer/config/ocr'
 import { TRANSLATE_PROMPT } from '@renderer/config/prompts'
 import { SYSTEM_PROVIDERS } from '@renderer/config/providers'
@@ -3399,6 +3406,37 @@ const migrateConfig = {
       return state
     } catch (error) {
       logger.error('migrate 213 error', error as Error)
+      return state
+    }
+  },
+  '214': (state: RootState) => {
+    try {
+      const isRemovedBuiltinModel = (model?: Model) =>
+        !!model && !!REMOVED_BUILTIN_MODEL_IDS[model.provider]?.includes(model.id)
+
+      state.llm.providers.forEach((provider) => {
+        const removedIds = REMOVED_BUILTIN_MODEL_IDS[provider.id]
+        if (removedIds) {
+          provider.models = provider.models.filter((model) => !removedIds.includes(model.id))
+        }
+      })
+
+      if (isRemovedBuiltinModel(state.llm.defaultModel)) state.llm.defaultModel = fallbackModel
+      if (isRemovedBuiltinModel(state.llm.topicNamingModel)) state.llm.topicNamingModel = fallbackModel
+      if (isRemovedBuiltinModel(state.llm.quickModel)) state.llm.quickModel = fallbackModel
+      if (isRemovedBuiltinModel(state.llm.translateModel)) state.llm.translateModel = fallbackModel
+
+      const assistants = [...(state.assistants.assistants ?? [])]
+      if (state.assistants.defaultAssistant) assistants.push(state.assistants.defaultAssistant)
+      assistants.forEach((assistant) => {
+        if (isRemovedBuiltinModel(assistant.model)) assistant.model = fallbackModel
+        if (isRemovedBuiltinModel(assistant.defaultModel)) assistant.defaultModel = fallbackModel
+      })
+
+      logger.info('migrate 214 success')
+      return state
+    } catch (error) {
+      logger.error('migrate 214 error', error as Error)
       return state
     }
   }
