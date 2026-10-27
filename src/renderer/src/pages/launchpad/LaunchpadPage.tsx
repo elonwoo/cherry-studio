@@ -1,5 +1,5 @@
 import { useSettings } from '@renderer/hooks/useSettings'
-import { Code, FileSearch, Folder, Languages, NotepadText, Palette, Sparkle } from 'lucide-react'
+import { FileSearch, Folder, Languages, NotepadText, Palette, Sparkle } from 'lucide-react'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
@@ -40,12 +40,6 @@ const LaunchpadPage: FC = () => {
       text: t('title.files'),
       path: '/files',
       bgColor: 'linear-gradient(135deg, #F59E0B, #FBBF24)' // 文件：金色，代表资源和重要性
-    },
-    {
-      icon: <Code size={32} className="icon" />,
-      text: t('title.code'),
-      path: '/code',
-      bgColor: 'linear-gradient(135deg, #1F2937, #374151)' // Code CLI：高级暗黑色，代表专业和技术
     },
     {
       icon: <NotepadText size={32} className="icon" />,

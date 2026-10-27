@@ -1,61 +1,4 @@
 {
-  "apiServer": {
-    "actions": {
-      "copy": "复制",
-      "regenerate": "重新生成",
-      "restart": {
-        "button": "重启",
-        "tooltip": "重启服务器"
-      },
-      "start": "启动",
-      "stop": "停止"
-    },
-    "authHeader": {
-      "title": "授权标头"
-    },
-    "authHeaderText": "在授权标头中使用：",
-    "configuration": "配置",
-    "description": "通过 OpenAI 兼容的 HTTP API 暴露 Cherry Studio 的 AI 功能",
-    "documentation": {
-      "title": "API 文档"
-    },
-    "fields": {
-      "apiKey": {
-        "copyTooltip": "复制 API 密钥",
-        "description": "用于 API 访问的安全认证令牌",
-        "label": "API 密钥",
-        "placeholder": "API 密钥将自动生成"
-      },
-      "port": {
-        "description": "HTTP 服务器的 TCP 端口号 (1000-65535)",
-        "helpText": "停止服务器以更改端口",
-        "label": "端口"
-      },
-      "url": {
-        "copyTooltip": "复制 URL",
-        "label": "URL"
-      }
-    },
-    "messages": {
-      "apiKeyCopied": "API 密钥已复制到剪贴板",
-      "apiKeyRegenerated": "API 密钥已重新生成",
-      "notEnabled": "API 服务器未启用。",
-      "operationFailed": "API 服务器操作失败：",
-      "restartError": "重启 API 服务器失败：",
-      "restartFailed": "API 服务器重启失败：",
-      "restartSuccess": "API 服务器重启成功",
-      "startError": "启动 API 服务器失败：",
-      "startSuccess": "API 服务器启动成功",
-      "stopError": "停止 API 服务器失败：",
-      "stopSuccess": "API 服务器停止成功",
-      "urlCopied": "服务器 URL 已复制到剪贴板"
-    },
-    "status": {
-      "running": "运行中",
-      "stopped": "已停止"
-    },
-    "title": "API 服务器"
-  },
   "appMenu": {
     "about": "关于",
     "close": "关闭窗口",
@@ -787,41 +730,6 @@
         "openai": "GPT5 模型 minimal 思考强度不支持网络搜索"
       }
     }
-  },
-  "code": {
-    "auto_update_to_latest": "检查更新并安装最新版本",
-    "bun_required_message": "运行 CLI 工具需要安装 Bun 环境",
-    "cli_tool": "CLI 工具",
-    "cli_tool_placeholder": "选择要使用的 CLI 工具",
-    "custom_path": "自定义路径",
-    "custom_path_error": "设置自定义终端路径失败",
-    "custom_path_required": "此终端需要设置自定义路径",
-    "custom_path_set": "自定义终端路径设置成功",
-    "description": "快速启动多个代码 CLI 工具，提高开发效率",
-    "env_vars_help": "输入自定义环境变量（每行一个，格式：KEY=value）",
-    "environment_variables": "环境变量",
-    "folder_placeholder": "选择工作目录",
-    "install_bun": "安装 Bun",
-    "installing_bun": "安装中...",
-    "launch": {
-      "bun_required": "请先安装 Bun 环境再启动 CLI 工具",
-      "error": "启动失败，请重试",
-      "label": "启动",
-      "success": "启动成功",
-      "validation_error": "请完成所有必填项：CLI 工具、模型和工作目录"
-    },
-    "launching": "启动中...",
-    "model": "模型",
-    "model_placeholder": "选择要使用的模型",
-    "model_required": "请选择模型",
-    "select_folder": "选择文件夹",
-    "set_custom_path": "设置自定义终端路径",
-    "supported_providers": "支持的服务商",
-    "terminal": "终端",
-    "terminal_placeholder": "选择终端应用",
-    "title": "代码工具",
-    "update_options": "更新选项",
-    "working_directory": "工作目录"
   },
   "code_block": {
     "collapse": "收起",
@@ -4833,7 +4741,6 @@
     }
   },
   "title": {
-    "code": "Code",
     "files": "文件",
     "home": "首页",
     "knowledge": "知识库",

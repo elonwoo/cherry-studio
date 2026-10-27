@@ -1,61 +1,4 @@
 {
-  "apiServer": {
-    "actions": {
-      "copy": "Copiar",
-      "regenerate": "Regenerar",
-      "restart": {
-        "button": "Reiniciar",
-        "tooltip": "Reiniciar Servidor"
-      },
-      "start": "iniciar",
-      "stop": "parar"
-    },
-    "authHeader": {
-      "title": "Cabeçalho de autorização"
-    },
-    "authHeaderText": "Usar no cabeçalho de autorização:",
-    "configuration": "Configuração",
-    "description": "Expõe as capacidades de IA do Cherry Studio através de APIs HTTP compatíveis com OpenAI",
-    "documentation": {
-      "title": "Documentação API"
-    },
-    "fields": {
-      "apiKey": {
-        "copyTooltip": "Copiar Chave API",
-        "description": "Token de autenticação seguro para acesso à API",
-        "label": "Chave API",
-        "placeholder": "A chave API será gerada automaticamente"
-      },
-      "port": {
-        "description": "Número de porta TCP do servidor HTTP (1000-65535)",
-        "helpText": "Pare o servidor para alterar a porta",
-        "label": "Porta"
-      },
-      "url": {
-        "copyTooltip": "Copiar URL",
-        "label": "URL"
-      }
-    },
-    "messages": {
-      "apiKeyCopied": "Chave API copiada para a área de transferência",
-      "apiKeyRegenerated": "Chave API regenerada",
-      "notEnabled": "O Servidor de API não está habilitado.",
-      "operationFailed": "Operação do Servidor API falhou: ",
-      "restartError": "Falha ao reiniciar o Servidor API: ",
-      "restartFailed": "Reinício do Servidor API falhou: ",
-      "restartSuccess": "Servidor API reiniciado com sucesso",
-      "startError": "Falha ao iniciar o Servidor API: ",
-      "startSuccess": "Servidor API iniciado com sucesso",
-      "stopError": "Falha ao parar o Servidor API: ",
-      "stopSuccess": "Servidor API parado com sucesso",
-      "urlCopied": "URL do servidor copiada para a área de transferência"
-    },
-    "status": {
-      "running": "A executar",
-      "stopped": "Parado"
-    },
-    "title": "Servidor API"
-  },
   "appMenu": {
     "about": "Sobre",
     "close": "Fechar Janela",
@@ -797,41 +740,6 @@
         "openai": "O modelo GPT5 com intensidade mínima de pensamento não suporta pesquisa na web"
       }
     }
-  },
-  "code": {
-    "auto_update_to_latest": "Verificar atualizações e instalar a versão mais recente",
-    "bun_required_message": "Executar a ferramenta CLI requer a instalação do ambiente Bun",
-    "cli_tool": "Ferramenta de linha de comando",
-    "cli_tool_placeholder": "Selecione a ferramenta de linha de comando a ser utilizada",
-    "custom_path": "Caminho personalizado",
-    "custom_path_error": "Falha ao definir caminho de terminal personalizado",
-    "custom_path_required": "Este terminal requer a definição de um caminho personalizado",
-    "custom_path_set": "Configuração personalizada do caminho do terminal bem-sucedida",
-    "description": "Inicie rapidamente várias ferramentas de linha de comando de código, aumentando a eficiência do desenvolvimento",
-    "env_vars_help": "Insira variáveis de ambiente personalizadas (uma por linha, formato: CHAVE=valor)",
-    "environment_variables": "variáveis de ambiente",
-    "folder_placeholder": "Selecionar diretório de trabalho",
-    "install_bun": "Instalar o Bun",
-    "installing_bun": "Instalando...",
-    "launch": {
-      "bun_required": "Instale o ambiente Bun antes de iniciar a ferramenta de linha de comando",
-      "error": "Falha ao iniciar, tente novamente",
-      "label": "iniciar",
-      "success": "Início bem-sucedido",
-      "validation_error": "Preencha todos os campos obrigatórios: ferramenta CLI, modelo e diretório de trabalho"
-    },
-    "launching": "Iniciando...",
-    "model": "modelo",
-    "model_placeholder": "Selecione o modelo a ser utilizado",
-    "model_required": "Selecione o modelo",
-    "select_folder": "Selecionar pasta",
-    "set_custom_path": "Definir caminho personalizado do terminal",
-    "supported_providers": "Provedores de serviço suportados",
-    "terminal": "terminal",
-    "terminal_placeholder": "Selecionar aplicativo de terminal",
-    "title": "Ferramenta de código",
-    "update_options": "Opções de atualização",
-    "working_directory": "diretório de trabalho"
   },
   "code_block": {
     "collapse": "Recolher",
@@ -4904,7 +4812,6 @@
     }
   },
   "title": {
-    "code": "Código",
     "files": "Arquivos",
     "home": "Página Inicial",
     "knowledge": "Base de Conhecimento",

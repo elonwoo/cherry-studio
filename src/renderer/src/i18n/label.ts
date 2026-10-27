@@ -176,7 +176,6 @@ export const getThemeModeLabel = (key: string): string => {
 //   translate: t('translate.title'),
 //   knowledge: t('knowledge.title'),
 //   files: t('files.title'),
-//   code_tools: t('code.title'),
 //   notes: t('notes.title')
 // } as const
 
@@ -187,7 +186,6 @@ const sidebarIconKeyMap = {
   translate: 'translate.title',
   knowledge: 'knowledge.title',
   files: 'files.title',
-  code_tools: 'code.title',
   notes: 'notes.title'
 } as const
 

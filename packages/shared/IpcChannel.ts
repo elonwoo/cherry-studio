@@ -332,15 +332,6 @@ export enum IpcChannel {
   TRACE_CLEAN_LOCAL_DATA = 'trace:cleanLocalData',
   TRACE_ADD_STREAM_MESSAGE = 'trace:addStreamMessage',
 
-  // API Server
-  ApiServer_Start = 'api-server:start',
-  ApiServer_Stop = 'api-server:stop',
-  ApiServer_Restart = 'api-server:restart',
-  ApiServer_GetStatus = 'api-server:get-status',
-  ApiServer_Ready = 'api-server:ready',
-  // NOTE: This api is not be used.
-  ApiServer_GetConfig = 'api-server:get-config',
-
   // Anthropic OAuth
   Anthropic_StartOAuthFlow = 'anthropic:start-oauth-flow',
   Anthropic_CompleteOAuthWithCode = 'anthropic:complete-oauth-with-code',
@@ -351,13 +342,6 @@ export enum IpcChannel {
 
   // ExternalApps
   ExternalApps_DetectInstalled = 'external-apps:detect-installed',
-
-  // CodeTools
-  CodeTools_Run = 'code-tools:run',
-  CodeTools_GetAvailableTerminals = 'code-tools:get-available-terminals',
-  CodeTools_SetCustomTerminalPath = 'code-tools:set-custom-terminal-path',
-  CodeTools_GetCustomTerminalPath = 'code-tools:get-custom-terminal-path',
-  CodeTools_RemoveCustomTerminalPath = 'code-tools:remove-custom-terminal-path',
 
   // OCR
   OCR_ocr = 'ocr:ocr',

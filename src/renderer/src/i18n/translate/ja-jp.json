@@ -1,61 +1,4 @@
 {
-  "apiServer": {
-    "actions": {
-      "copy": "コピー",
-      "regenerate": "再生成",
-      "restart": {
-        "button": "再起動",
-        "tooltip": "サーバーを再起動"
-      },
-      "start": "開始",
-      "stop": "停止"
-    },
-    "authHeader": {
-      "title": "認証ヘッダー"
-    },
-    "authHeaderText": "認証ヘッダーで使用：",
-    "configuration": "設定",
-    "description": "OpenAI 互換の HTTP API を通じて Cherry Studio の AI 機能を公開します",
-    "documentation": {
-      "title": "API ドキュメント"
-    },
-    "fields": {
-      "apiKey": {
-        "copyTooltip": "API キーをコピー",
-        "description": "API アクセスのための安全な認証トークン",
-        "label": "API キー",
-        "placeholder": "API キーは自動生成されます"
-      },
-      "port": {
-        "description": "HTTP サーバーの TCP ポート番号 (1000-65535)",
-        "helpText": "ポートを変更するにはサーバーを停止してください",
-        "label": "ポート"
-      },
-      "url": {
-        "copyTooltip": "URL をコピー",
-        "label": "URL"
-      }
-    },
-    "messages": {
-      "apiKeyCopied": "API キーがクリップボードにコピーされました",
-      "apiKeyRegenerated": "API キーが再生成されました",
-      "notEnabled": "APIサーバーが有効になっていません。",
-      "operationFailed": "API サーバーの操作に失敗しました：",
-      "restartError": "API サーバーの再起動に失敗しました：",
-      "restartFailed": "API サーバーの再起動に失敗しました：",
-      "restartSuccess": "API サーバーが正常に再起動されました",
-      "startError": "API サーバーの開始に失敗しました：",
-      "startSuccess": "API サーバーが正常に開始されました",
-      "stopError": "API サーバーの停止に失敗しました：",
-      "stopSuccess": "API サーバーが正常に停止されました",
-      "urlCopied": "サーバー URL がクリップボードにコピーされました"
-    },
-    "status": {
-      "running": "実行中",
-      "stopped": "停止中"
-    },
-    "title": "API サーバー"
-  },
   "appMenu": {
     "about": "について",
     "close": "ウィンドウを閉じる",
@@ -797,41 +740,6 @@
         "openai": "GPT5モデルの最小思考強度ではネット検索はサポートされません"
       }
     }
-  },
-  "code": {
-    "auto_update_to_latest": "最新バージョンを自動的に更新する",
-    "bun_required_message": "CLI ツールを実行するには Bun 環境が必要です",
-    "cli_tool": "CLI ツール",
-    "cli_tool_placeholder": "使用する CLI ツールを選択してください",
-    "custom_path": "カスタムパス",
-    "custom_path_error": "カスタムターミナルパスの設定に失敗しました",
-    "custom_path_required": "この端末にはカスタムパスを設定する必要があります",
-    "custom_path_set": "カスタムターミナルパスの設定が成功しました",
-    "description": "開発効率を向上させるために、複数のコード CLI ツールを迅速に起動します",
-    "env_vars_help": "環境変数を設定して、CLI ツールの実行時に使用します。各変数は 1 行ごとに設定してください。",
-    "environment_variables": "環境変数",
-    "folder_placeholder": "作業ディレクトリを選択してください",
-    "install_bun": "Bun をインストール",
-    "installing_bun": "インストール中...",
-    "launch": {
-      "bun_required": "CLI ツールを実行するには Bun 環境が必要です。まず Bun をインストールしてください",
-      "error": "起動に失敗しました。もう一度試してください",
-      "label": "起動",
-      "success": "起動成功",
-      "validation_error": "必須項目を入力してください：CLI ツール、モデル、作業ディレクトリ"
-    },
-    "launching": "起動中...",
-    "model": "モデル",
-    "model_placeholder": "使用するモデルを選択してください",
-    "model_required": "モデルを選択してください",
-    "select_folder": "フォルダを選択",
-    "set_custom_path": "カスタムターミナルパスを設定",
-    "supported_providers": "サポートされているプロバイダー",
-    "terminal": "端末",
-    "terminal_placeholder": "ターミナルアプリを選択",
-    "title": "コードツール",
-    "update_options": "更新オプション",
-    "working_directory": "作業ディレクトリ"
   },
   "code_block": {
     "collapse": "折りたたむ",
@@ -4904,7 +4812,6 @@
     }
   },
   "title": {
-    "code": "Code",
     "files": "ファイル",
     "home": "ホーム",
     "knowledge": "ナレッジベース",

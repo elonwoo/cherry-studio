@@ -1,61 +1,4 @@
 {
-  "apiServer": {
-    "actions": {
-      "copy": "Kopieren",
-      "regenerate": "Neu generieren",
-      "restart": {
-        "button": "Neustarten",
-        "tooltip": "Server neustarten"
-      },
-      "start": "Starten",
-      "stop": "Stoppen"
-    },
-    "authHeader": {
-      "title": "Autorisierungs-Header"
-    },
-    "authHeaderText": "Im Autorisierungs-Header verwenden:",
-    "configuration": "Konfiguration",
-    "description": "Stellen Sie die KI-Funktionen von Cherry Studio über eine OpenAI-kompatible HTTP-API bereit",
-    "documentation": {
-      "title": "API-Dokumentation"
-    },
-    "fields": {
-      "apiKey": {
-        "copyTooltip": "API-Schlüssel kopieren",
-        "description": "Sicherheits-Token für API-Zugriff",
-        "label": "API-Schlüssel",
-        "placeholder": "API-Schlüssel wird automatisch generiert"
-      },
-      "port": {
-        "description": "TCP-Portnummer des HTTP-Servers (1000-65535)",
-        "helpText": "Server stoppen, um Port zu ändern",
-        "label": "Port"
-      },
-      "url": {
-        "copyTooltip": "URL kopieren",
-        "label": "URL"
-      }
-    },
-    "messages": {
-      "apiKeyCopied": "API-Schlüssel in die Zwischenablage kopiert",
-      "apiKeyRegenerated": "API-Schlüssel wurde neu generiert",
-      "notEnabled": "API server is not enabled.",
-      "operationFailed": "API-Server-Operation fehlgeschlagen:",
-      "restartError": "API-Server-Neustart fehlgeschlagen:",
-      "restartFailed": "API-Server-Neustart fehlgeschlagen:",
-      "restartSuccess": "API-Server erfolgreich neu gestartet",
-      "startError": "API-Server starten fehlgeschlagen:",
-      "startSuccess": "API-Server erfolgreich gestartet",
-      "stopError": "API-Server stoppen fehlgeschlagen:",
-      "stopSuccess": "API-Server erfolgreich gestoppt",
-      "urlCopied": "Server-URL in die Zwischenablage kopiert"
-    },
-    "status": {
-      "running": "Läuft",
-      "stopped": "Gestoppt"
-    },
-    "title": "API-Server"
-  },
   "appMenu": {
     "about": "Über",
     "close": "Fenster schließen",
@@ -797,41 +740,6 @@
         "openai": "GPT5-Modell mit minimaler Denkstärke unterstützt keine Websuche"
       }
     }
-  },
-  "code": {
-    "auto_update_to_latest": "Updates prüfen und neueste Version installieren",
-    "bun_required_message": "Bun-Umgebung erforderlich zum Ausführen von CLI-Tools",
-    "cli_tool": "CLI-Tool",
-    "cli_tool_placeholder": "CLI-Tool auswählen",
-    "custom_path": "Benutzerdefinierter Pfad",
-    "custom_path_error": "Benutzerdefinierten Terminalpfad festlegen fehlgeschlagen",
-    "custom_path_required": "Dieses Terminal erfordert einen benutzerdefinierten Pfad",
-    "custom_path_set": "Benutzerdefinierter Terminalpfad erfolgreich festgelegt",
-    "description": "Starten Sie schnell mehrere Code-CLI-Tools, um die Entwicklungseffizienz zu steigern",
-    "env_vars_help": "Benutzerdefinierte Umgebungsvariablen eingeben (eine pro Zeile, Format: KEY=value)",
-    "environment_variables": "Umgebungsvariablen",
-    "folder_placeholder": "Arbeitsverzeichnis auswählen",
-    "install_bun": "Bun installieren",
-    "installing_bun": "Wird installiert...",
-    "launch": {
-      "bun_required": "Bitte installieren Sie zuerst die Bun-Umgebung, bevor Sie CLI-Tools starten",
-      "error": "Start fehlgeschlagen, bitte versuchen Sie es erneut",
-      "label": "Starten",
-      "success": "Erfolgreich gestartet",
-      "validation_error": "Bitte füllen Sie alle Pflichtfelder aus: CLI-Tool, Modell und Arbeitsverzeichnis"
-    },
-    "launching": "Wird gestartet...",
-    "model": "Modell",
-    "model_placeholder": "Zu verwendendes Modell auswählen",
-    "model_required": "Bitte Modell auswählen",
-    "select_folder": "Ordner auswählen",
-    "set_custom_path": "Benutzerdefinierten Terminalpfad festlegen",
-    "supported_providers": "Unterstützte Anbieter",
-    "terminal": "Terminal",
-    "terminal_placeholder": "Terminal-Anwendung auswählen",
-    "title": "Code-Tools",
-    "update_options": "Update-Optionen",
-    "working_directory": "Arbeitsverzeichnis"
   },
   "code_block": {
     "collapse": "Einklappen",
@@ -4904,7 +4812,6 @@
     }
   },
   "title": {
-    "code": "Code",
     "files": "Datei",
     "home": "Startseite",
     "knowledge": "Wissensdatenbank",

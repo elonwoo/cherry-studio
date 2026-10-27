@@ -49,7 +49,6 @@ import {
   isSupportDeveloperRoleProvider,
   isSupportStreamOptionsProvider
 } from '@renderer/utils/provider'
-import { API_SERVER_DEFAULTS } from '@shared/config/constant'
 import { defaultByPassRules, UpgradeChannel } from '@shared/config/constant'
 import { isEmpty } from 'lodash'
 import { createMigrate } from 'redux-persist'
@@ -1977,15 +1976,6 @@ const migrateConfig = {
   },
   '125': (state: RootState) => {
     try {
-      // Initialize API server configuration if not present
-      if (!state.settings.apiServer) {
-        state.settings.apiServer = {
-          enabled: false,
-          host: API_SERVER_DEFAULTS.HOST,
-          port: API_SERVER_DEFAULTS.PORT,
-          apiKey: `cs-sk-${uuid()}`
-        }
-      }
       return state
     } catch (error) {
       logger.error('migrate 125 error', error as Error)
@@ -2146,14 +2136,6 @@ const migrateConfig = {
   },
   '133': (state: RootState) => {
     try {
-      state.settings.sidebarIcons.visible.push('code_tools')
-      if (state.codeTools) {
-        state.codeTools.environmentVariables = {
-          'qwen-code': '',
-          'claude-code': '',
-          'gemini-cli': ''
-        }
-      }
       return state
     } catch (error) {
       logger.error('migrate 133 error', error as Error)
@@ -2945,9 +2927,6 @@ const migrateConfig = {
   },
   '186': (state: RootState) => {
     try {
-      if (state.settings.apiServer) {
-        state.settings.apiServer.host = API_SERVER_DEFAULTS.HOST
-      }
       // @ts-expect-error
       if (state.settings.openAI.summaryText === 'undefined') {
         state.settings.openAI.summaryText = undefined
@@ -3272,7 +3251,7 @@ const migrateConfig = {
     try {
       localStorage.setItem('onboarding-completed', 'true')
 
-      // Add anthropicApiHost to lmstudio and ollama providers for CodeTools compatibility
+      // Add anthropicApiHost to lmstudio and ollama providers for Anthropic API compatibility
       state.llm.providers.forEach((provider) => {
         if (provider.id === 'lmstudio' && !provider.anthropicApiHost) {
           provider.anthropicApiHost = 'http://localhost:1234'
@@ -3408,6 +3387,24 @@ const migrateConfig = {
       return state
     } catch (error) {
       logger.error('migrate 211 error', error as Error)
+      return state
+    }
+  },
+  '212': (state: RootState) => {
+    try {
+      delete (state as any).codeTools
+      delete (state.settings as any).apiServer
+
+      const settings = state.settings as any
+      if (settings.sidebarIcons) {
+        settings.sidebarIcons.visible = settings.sidebarIcons.visible.filter((icon: string) => icon !== 'code_tools')
+        settings.sidebarIcons.disabled = settings.sidebarIcons.disabled.filter((icon: string) => icon !== 'code_tools')
+      }
+
+      logger.info('migrate 212 success')
+      return state
+    } catch (error) {
+      logger.error('migrate 212 error', error as Error)
       return state
     }
   }

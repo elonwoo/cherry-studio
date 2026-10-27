@@ -1,61 +1,4 @@
 {
-  "apiServer": {
-    "actions": {
-      "copy": "Copier",
-      "regenerate": "Régénérer",
-      "restart": {
-        "button": "Redémarrer",
-        "tooltip": "Redémarrer le Serveur"
-      },
-      "start": "Démarrer",
-      "stop": "Arrêtez"
-    },
-    "authHeader": {
-      "title": "En-tête d'autorisation"
-    },
-    "authHeaderText": "Utiliser dans l'en-tête d'autorisation :",
-    "configuration": "Configuration",
-    "description": "Expose les capacités IA de Cherry Studio via des APIs HTTP compatibles OpenAI",
-    "documentation": {
-      "title": "Documentation API"
-    },
-    "fields": {
-      "apiKey": {
-        "copyTooltip": "Copier la Clé API",
-        "description": "Jeton d'authentification sécurisé pour l'accès à l'API",
-        "label": "Clé API",
-        "placeholder": "La clé API sera générée automatiquement"
-      },
-      "port": {
-        "description": "Numéro de port TCP pour le serveur HTTP (1000-65535)",
-        "helpText": "Arrêtez le serveur pour changer le port",
-        "label": "Port"
-      },
-      "url": {
-        "copyTooltip": "Copier l'URL",
-        "label": "URL"
-      }
-    },
-    "messages": {
-      "apiKeyCopied": "Clé API copiée dans le presse-papiers",
-      "apiKeyRegenerated": "Clé API régénérée",
-      "notEnabled": "Le serveur API n'est pas activé.",
-      "operationFailed": "Opération du Serveur API échouée : ",
-      "restartError": "Échec du redémarrage du Serveur API : ",
-      "restartFailed": "Redémarrage du Serveur API échoué : ",
-      "restartSuccess": "Serveur API redémarré avec succès",
-      "startError": "Échec du démarrage du Serveur API : ",
-      "startSuccess": "Serveur API démarré avec succès",
-      "stopError": "Échec de l'arrêt du Serveur API : ",
-      "stopSuccess": "Serveur API arrêté avec succès",
-      "urlCopied": "URL du serveur copiée dans le presse-papiers"
-    },
-    "status": {
-      "running": "En cours d'exécution",
-      "stopped": "Arrêté"
-    },
-    "title": "Serveur API"
-  },
   "appMenu": {
     "about": "À propos",
     "close": "Fermer la fenêtre",
@@ -797,41 +740,6 @@
         "openai": "Le modèle GPT5 avec une intensité de réflexion minimale ne prend pas en charge la recherche sur Internet."
       }
     }
-  },
-  "code": {
-    "auto_update_to_latest": "Vérifier les mises à jour et installer la dernière version",
-    "bun_required_message": "L'exécution de l'outil en ligne de commande nécessite l'installation de l'environnement Bun",
-    "cli_tool": "Outil CLI",
-    "cli_tool_placeholder": "Sélectionnez l'outil CLI à utiliser",
-    "custom_path": "Chemin personnalisé",
-    "custom_path_error": "Échec de la définition du chemin de terminal personnalisé",
-    "custom_path_required": "Ce terminal nécessite la configuration d’un chemin personnalisé",
-    "custom_path_set": "Paramétrage personnalisé du chemin du terminal réussi",
-    "description": "Lancer rapidement plusieurs outils CLI de code pour améliorer l'efficacité du développement",
-    "env_vars_help": "Saisissez les variables d'environnement personnalisées (une par ligne, format : KEY=value)",
-    "environment_variables": "variables d'environnement",
-    "folder_placeholder": "Sélectionner le répertoire de travail",
-    "install_bun": "Installer Bun",
-    "installing_bun": "Installation en cours...",
-    "launch": {
-      "bun_required": "Veuillez d'abord installer l'environnement Bun avant de lancer l'outil en ligne de commande",
-      "error": "Échec du démarrage, veuillez réessayer",
-      "label": "Démarrer",
-      "success": "Démarrage réussi",
-      "validation_error": "Veuillez remplir tous les champs obligatoires : outil CLI, modèle et répertoire de travail"
-    },
-    "launching": "En cours de démarrage...",
-    "model": "modèle",
-    "model_placeholder": "Sélectionnez le modèle à utiliser",
-    "model_required": "Veuillez sélectionner le modèle",
-    "select_folder": "Sélectionner le dossier",
-    "set_custom_path": "Définir un chemin de terminal personnalisé",
-    "supported_providers": "fournisseurs pris en charge",
-    "terminal": "Terminal",
-    "terminal_placeholder": "Choisir une application de terminal",
-    "title": "Outils de code",
-    "update_options": "Options de mise à jour",
-    "working_directory": "répertoire de travail"
   },
   "code_block": {
     "collapse": "Réduire",
@@ -4904,7 +4812,6 @@
     }
   },
   "title": {
-    "code": "Code",
     "files": "Fichiers",
     "home": "Page d'accueil",
     "knowledge": "Base de connaissances",

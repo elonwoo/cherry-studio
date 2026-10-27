@@ -60,9 +60,6 @@ export interface RuntimeState {
   websearch: WebSearchState
   /** Query whether a task is processing or not. undefined and false share same semantics.  */
   loadingMap: Record<string, boolean>
-  // Migrated from useApiServer, it's global state now
-  /** Is the api server running */
-  apiServerRunning: boolean
 }
 
 export interface ExportState {
@@ -99,8 +96,7 @@ const initialState: RuntimeState = {
   websearch: {
     activeSearches: {}
   },
-  loadingMap: {},
-  apiServerRunning: false
+  loadingMap: {}
 }
 
 const runtimeSlice = createSlice({
@@ -172,9 +168,6 @@ const runtimeSlice = createSlice({
     finishLoadingAction: (state, action: PayloadAction<{ id: string }>) => {
       const { id } = action.payload
       delete state.loadingMap[id]
-    },
-    setApiServerRunningAction: (state, action: PayloadAction<boolean>) => {
-      state.apiServerRunning = action.payload
     }
   }
 })
@@ -199,8 +192,7 @@ export const {
   finishLoadingAction,
   // WebSearch related actions
   setActiveSearches,
-  setWebSearchStatus,
-  setApiServerRunningAction
+  setWebSearchStatus
 } = runtimeSlice.actions
 
 export default runtimeSlice.reducer
