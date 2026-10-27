@@ -74,7 +74,7 @@ Cherry Studio 是一款支持多个大语言模型（LLM）服务商的桌面客
 
 # 🧩 个人分支说明
 
-本仓库是基于上游 `v1.9.13`（v1 最后一个版本）的个人分支，只构建 Apple Silicon macOS 版本。当前构建版本：`1.9.15`。已移除智能体（含渠道机器人、定时任务、CherryClaw、技能）、OpenClaw 和小程序。
+本仓库是基于上游 `v1.9.13`（v1 最后一个版本）的个人分支，只构建 Apple Silicon macOS 版本。当前构建版本：`1.9.16`。已移除智能体（含渠道机器人、定时任务、CherryClaw、技能）、OpenClaw、小程序、代码工具、API 服务器、划词助手和快捷助手。
 
 - **OpenCode Go/Zen**：对话请求会带上稳定的会话头 `x-opencode-session`，修复 `400 MissingSessionID`；若在服务商自定义请求头里显式配置了该头，则以配置值为准。
 - **打包**：`pnpm build:mac:arm64` 只产出 `dist/Cherry-Studio-<version>-arm64.zip`，`electron-builder.yml` 的 mac 目标已收敛为 arm64 zip。

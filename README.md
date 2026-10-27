@@ -71,7 +71,7 @@ Cherry Studio is a desktop client that supports multiple LLM providers, availabl
 
 # 🧩 Fork Notes
 
-This is a personal fork based on upstream `v1.9.13` (the last v1 release), built for Apple Silicon macOS only. Current build: `1.9.15`. The Agent subsystem (channel bots, scheduled tasks, CherryClaw, Skills), OpenClaw and Mini Apps are removed.
+This is a personal fork based on upstream `v1.9.13` (the last v1 release), built for Apple Silicon macOS only. Current build: `1.9.16`. Removed: the Agent subsystem (channel bots, scheduled tasks, CherryClaw, Skills), OpenClaw, Mini Apps, Code Tools, API Server, Selection Assistant and Quick Assistant.
 
 - **OpenCode Go/Zen**: chat requests now carry a stable per-conversation `x-opencode-session` header, fixing `400 MissingSessionID`. A header set in the provider's custom headers takes precedence.
 - **Packaging**: `pnpm build:mac:arm64` produces only `dist/Cherry-Studio-<version>-arm64.zip`; the mac target in `electron-builder.yml` is limited to the arm64 zip.
