@@ -68,6 +68,7 @@ files:
   - "!node_modules/tesseract.js-core/{tesseract-core-lstm.js,tesseract-core-lstm.wasm,tesseract-core-lstm.wasm.js}" # we don't need source files
   - "!node_modules/tesseract.js-core/{tesseract-core-simd-lstm.js,tesseract-core-simd-lstm.wasm,tesseract-core-simd-lstm.wasm.js}" # we don't need source files
   - "!**/*.{h,iobj,ipdb,tlog,recipe,vcxproj,vcxproj.filters,Makefile,*.Makefile}" # filter .node build files
+  - "!node_modules/@anthropic-ai/claude-agent-sdk-darwin-arm64/**" # Agent (Claude Code) binary is unused in this fork; saves ~205 MB
   - "resources/**/*" # include all files in resources, and unpack them from asar for runtime access
 asarUnpack:
   - out/proxy/**
@@ -145,20 +146,22 @@ artifactBuildCompleted: scripts/artifact-build-completed.js
 releaseInfo:
   releaseNotes: |
     <!--LANG:en-->
-    Cherry Studio 1.9.14 - Personal arm64 build
+    Cherry Studio 1.9.15 - Personal arm64 build
 
     🐛 Bug Fixes
     - [OpenCode] Send a stable per-conversation `x-opencode-session` header, fixing 400 MissingSessionID on OpenCode Go/Zen.
 
     📦 Packaging
     - macOS: only an arm64 zip is produced. The app is signed with a Developer ID but not notarized.
+    - The bundled Claude Code agent binary (~205 MB) is excluded; the Agent feature is unavailable.
 
     <!--LANG:zh-CN-->
-    Cherry Studio 1.9.14 - 个人 arm64 构建
+    Cherry Studio 1.9.15 - 个人 arm64 构建
 
     🐛 问题修复
     - [OpenCode] 为每个会话发送稳定的 `x-opencode-session` 请求头，修复 OpenCode Go/Zen 的 400 MissingSessionID。
 
     📦 打包
     - macOS 仅产出 arm64 zip；已用 Developer ID 签名，未做公证。
+    - 移除内置的 Claude Code Agent 二进制（约 205 MB），Agent 功能不可用。
     <!--LANG:END-->
