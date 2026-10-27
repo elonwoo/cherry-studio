@@ -10,12 +10,10 @@ export const DEFAULT_SIDEBAR_ICONS: SidebarIcon[] = [
   'store',
   'paintings',
   'translate',
-  'minapp',
   'knowledge',
   'files',
   'code_tools',
-  'notes',
-  'openclaw'
+  'notes'
 ]
 
 /**

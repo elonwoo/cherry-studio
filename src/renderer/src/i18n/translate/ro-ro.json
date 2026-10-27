@@ -2121,8 +2121,7 @@
     "vietnamese": "Vietnameză"
   },
   "launchpad": {
-    "apps": "Aplicații",
-    "minapps": "Mini-aplicații"
+    "apps": "Aplicații"
   },
   "lmstudio": {
     "keep_alive_time": {
@@ -2588,68 +2587,7 @@
       "rag_failed": "RAG a eșuat, se returnează rezultate goale..."
     }
   },
-  "minapp": {
-    "add_to_launchpad": "Adaugă în Launchpad",
-    "add_to_sidebar": "Adaugă în bara laterală",
-    "popup": {
-      "close": "Închide MinApp",
-      "devtools": "Instrumente dezvoltator",
-      "goBack": "Mergi înapoi",
-      "goForward": "Mergi înainte",
-      "minimize": "Minimizează MinApp",
-      "openExternal": "Deschide în browser",
-      "open_link_external_off": "Curent: Deschide linkurile în fereastra implicită",
-      "open_link_external_on": "Curent: Deschide linkurile în browser",
-      "refresh": "Reîmprospătează",
-      "rightclick_copyurl": "Clic dreapta pentru a copia URL-ul"
-    },
-    "remove_from_launchpad": "Elimină din Launchpad",
-    "remove_from_sidebar": "Elimină din bara laterală",
-    "sidebar": {
-      "close": {
-        "title": "Închide"
-      },
-      "closeall": {
-        "title": "Închide tot"
-      },
-      "hide": {
-        "title": "Ascunde"
-      },
-      "remove_custom": {
-        "title": "Șterge aplicația personalizată"
-      }
-    },
-    "title": "MinApp"
-  },
-  "minapps": {
-    "ant-ling": "Ant Ling",
-    "baichuan": "Baichuan",
-    "baidu-ai-search": "Baidu AI Search",
-    "chatglm": "ChatGLM",
-    "dangbei": "Dangbei",
-    "doubao": "Doubao",
-    "hailuo": "MINIMAX",
-    "ima": "acum",
-    "metaso": "Metaso",
-    "minimax-agent": "Agent Minimax CN",
-    "minimax-global": "Agent Minimax",
-    "nami-ai": "Nami AI",
-    "nami-ai-search": "Nami AI Search",
-    "qwen": "Qwen",
-    "sensechat": "SenseChat",
-    "stepfun": "Stepfun",
-    "tencent-yuanbao": "Yuanbao",
-    "tiangong-ai": "Skywork",
-    "wanzhi": "Wanzhi",
-    "wenxin": "ERNIE",
-    "wps-copilot": "WPS Copilot",
-    "xiaoyi": "Xiaoyi",
-    "zhihu": "Zhihu"
-  },
   "miniwindow": {
-    "alert": {
-      "google_login": "Sfat: Dacă vezi un mesaj 'browser not trusted' când te conectezi la Google, te rugăm să te conectezi mai întâi prin mini-aplicația Google din lista de mini-aplicații, apoi să folosești autentificarea Google în alte mini-aplicații"
-    },
     "clipboard": {
       "empty": "Clipboardul este gol"
     },
@@ -2935,107 +2873,6 @@
       "setup_hint": "Vă rugăm să configurați cel puțin un furnizor pentru cea mai bună experiență",
       "subtitle": "Bucurați-vă de servicii AI de top cu CherryIN",
       "title": "Bun venit la Cherry Studio"
-    }
-  },
-  "openclaw": {
-    "checking_installation": "Verificare instalare OpenClaw...",
-    "description": "Integrează furnizorii Cherry Studio cu Gateway-ul OpenClaw pentru a permite agenților de codificare AI precum Claude Code, Qwen-Coder și alții.",
-    "error": {
-      "select_provider_model": "Vă rugăm să selectați mai întâi un furnizor și un model"
-    },
-    "gateway": {
-      "port": "Port",
-      "restart": "Repornire",
-      "start": "Pornește Gateway",
-      "status": "Stare",
-      "stop": "Oprește",
-      "version": "Versiune"
-    },
-    "git_missing": {
-      "description": "OpenClaw necesită Git pentru a instala unele dependențe. Te rugăm să instalezi mai întâi Git, apoi apasă din nou pe Instalare.",
-      "download_button": "Descarcă Git",
-      "hint": "macOS: brew install git | Windows: Descarcă de pe git-scm.com (asigură-te că adaugi Git la PATH în timpul instalării)",
-      "title": "Git Necesar"
-    },
-    "install_progress": "Progresul instalării",
-    "installed_at": "OpenClaw instalat la",
-    "migration": {
-      "description": "A fost detectată o versiune învechită a OpenClaw instalată prin npm. Reinstalați pentru a obține cea mai recentă versiune oficială.",
-      "install_button": "Reinstalați OpenClaw",
-      "title": "OpenClaw necesită actualizare"
-    },
-    "model_config": {
-      "auth_token": "Token de autentificare",
-      "auth_token_hint": "Token pentru autentificarea gateway-ului. Lăsați gol pentru a dezactiva autentificarea.",
-      "auth_token_placeholder": "Introduceți sau generați un token",
-      "generate_token": "Generează",
-      "model": "Model",
-      "provider": "Furnizor",
-      "select_model": "Selectați un model",
-      "select_provider": "Selectați un furnizor",
-      "sync_hint": "Furnizorul și modelul selectate vor fi sincronizate în fișierul de configurare OpenClaw.",
-      "title": "Configurare model"
-    },
-    "node_missing": {
-      "description": "OpenClaw necesită Node.js 22+. Te rugăm să instalezi mai întâi Node.js, apoi apasă din nou pe Instalare.",
-      "download_button": "Descarcă Node.js",
-      "hint": "macOS: brew install node | Windows: Descarcă versiunea LTS de pe nodejs.org",
-      "title": "Node.js necesar"
-    },
-    "node_version_low": {
-      "description": "OpenClaw necesită Node.js 22.0 sau o versiune superioară. Versiunea ta actuală este v{{version}}. Te rugăm să actualizezi mai întâi Node.js.",
-      "hint": "nvm: nvm install 22 && nvm use 22 | mise: mise use node@22",
-      "title": "Versiunea Node.js este prea mică"
-    },
-    "not_installed": {
-      "description": "OpenClaw nu este instalat pe sistemul dvs. Vă rugăm să-l instalați mai întâi pentru a utiliza această funcție.",
-      "install_button": "Instalează OpenClaw",
-      "install_guide_title": "Ghid de instalare",
-      "macos_linux_title": "macOS / Linux",
-      "refresh": "Reîmprospătare",
-      "step2_hint": "După instalare, faceți clic pe butonul „Reîmprospătare” de mai sus pentru a detecta OpenClaw",
-      "step2_title": "Pasul 2: Verifică instalarea",
-      "title": "OpenClaw Nu Este Instalat",
-      "windows_title": "Windows"
-    },
-    "quick_actions": {
-      "check_update": "Verifică pentru actualizări",
-      "open_dashboard": "Deschide Tabloul de Bord",
-      "title": "Acțiuni rapide",
-      "uninstall": "Dezinstalare",
-      "view_docs": "Vizualizați documentația"
-    },
-    "status": {
-      "error": "Eroare",
-      "running": "Alergare",
-      "starting": "Pornind",
-      "stopped": "Oprit"
-    },
-    "tips": {
-      "permissions": "OpenClaw are permisiuni de sistem ridicate. Utilizați doar în medii de încredere",
-      "title": "Sfaturi",
-      "token_usage": "Modul agent AI poate consuma mai multe tokenuri. Vă rugăm să monitorizați utilizarea"
-    },
-    "title": "OpenClaw",
-    "uninstall_confirm": "Sigur doriți să dezinstalați OpenClaw? Apăsați OK pentru a confirma.",
-    "uninstall_progress": "Progresul dezinstalării",
-    "uninstalled": {
-      "description": "OpenClaw a fost dezinstalat cu succes.",
-      "title": "Dezinstalare completă"
-    },
-    "uninstalling": {
-      "description": "Vă rugăm să așteptați în timp ce OpenClaw este dezinstalat...",
-      "title": "Dezinstalarea OpenClaw"
-    },
-    "update": {
-      "available": "Versiune nouă disponibilă: v{{latest}} (curentă: v{{current}})",
-      "checking": "Se verifică actualizările...",
-      "confirm_button": "Actualizează acum",
-      "failed": "Nu s-a reușit verificarea actualizărilor",
-      "modal_title": "Actualizare OpenClaw",
-      "success": "Actualizare finalizată cu succes!",
-      "up_to_date": "Deja actualizat (v{{current}})",
-      "updating": "Actualizare..."
     }
   },
   "ovms": {
@@ -4030,7 +3867,7 @@
       },
       "clear_cache": {
         "button": "Golește memoria cache",
-        "confirm": "Golirea memoriei cache va șterge datele cache ale aplicației, inclusiv datele minapp. Această acțiune este ireversibilă, continui?",
+        "confirm": "Golirea memoriei cache va șterge datele cache ale aplicației. Această acțiune este ireversibilă, continui?",
         "error": "Eroare la golirea memoriei cache",
         "success": "Memoria cache a fost golită",
         "title": "Golește memoria cache"
@@ -4647,9 +4484,6 @@
         "knowledge": {
           "icon": "Afișează pictograma Cunoștințe"
         },
-        "minapp": {
-          "icon": "Afișează pictograma MinApp"
-        },
         "painting": {
           "icon": "Afișează pictograma Imagini"
         },
@@ -5048,61 +4882,6 @@
       "show_message_outline": "Afișează conturul mesajului",
       "title": "Setări mesaje",
       "use_serif_font": "Folosește font serif"
-    },
-    "miniapps": {
-      "cache_change_notice": "Modificările vor intra în vigoare când numărul de mini-aplicații deschise atinge valoarea setată",
-      "cache_description": "Setează numărul maxim de mini-aplicații active de păstrat în memorie",
-      "cache_settings": "Setări cache",
-      "cache_title": "Limită cache mini-aplicații",
-      "custom": {
-        "conflicting_ids": "ID-uri conflictuale cu aplicațiile implicite: {{ids}}",
-        "duplicate_ids": "ID-uri duplicate găsite: {{ids}}",
-        "edit_description": "Editează configurația mini-aplicației personalizate aici. Fiecare aplicație ar trebui să includă câmpurile id, name, url și logo.",
-        "edit_title": "Editează mini-aplicație personalizată",
-        "id": "ID",
-        "id_error": "ID-ul este obligatoriu.",
-        "id_placeholder": "Introdu ID",
-        "logo": "Logo",
-        "logo_file": "Încarcă fișier logo",
-        "logo_upload_button": "Încarcă",
-        "logo_upload_error": "Încărcarea logo-ului a eșuat.",
-        "logo_upload_label": "Încarcă logo",
-        "logo_upload_success": "Logo încărcat cu succes.",
-        "logo_url": "URL logo",
-        "logo_url_label": "URL logo",
-        "logo_url_placeholder": "Introdu URL logo",
-        "name": "Nume",
-        "name_error": "Numele este obligatoriu.",
-        "name_placeholder": "Introdu nume",
-        "placeholder": "Introdu configurația mini-aplicației personalizate (format JSON)",
-        "remove_error": "Eliminarea mini-aplicației personalizate a eșuat.",
-        "remove_success": "Mini-aplicația personalizată a fost eliminată cu succes.",
-        "save": "Salvează",
-        "save_error": "Salvarea mini-aplicației personalizate a eșuat.",
-        "save_success": "Mini-aplicația personalizată a fost salvată cu succes.",
-        "title": "Personalizat",
-        "url": "URL",
-        "url_error": "URL-ul este obligatoriu.",
-        "url_placeholder": "Introdu URL"
-      },
-      "disabled": "Mini-aplicații ascunse",
-      "display_title": "Setări afișare mini-aplicații",
-      "empty": "Trage mini-aplicațiile din stânga pentru a le ascunde",
-      "open_link_external": {
-        "title": "Deschide în browser linkurile care deschid ferestre noi"
-      },
-      "region": {
-        "auto": "Detectare automată",
-        "cn": "China",
-        "description": "Filtrarea aplicațiilor mini care nu sunt acceptate în funcție de regiunea în care vă aflați",
-        "global": "global",
-        "title": "Filtru zonă aplicație miniatură"
-      },
-      "reset_tooltip": "Resetează la implicit",
-      "sidebar_description": "Afișează mini-aplicațiile active în bara laterală",
-      "sidebar_title": "Afișare mini-aplicații active în bara laterală",
-      "title": "Setări mini-aplicații",
-      "visible": "Mini-aplicații vizibile"
     },
     "model": "Model implicit",
     "models": {
@@ -5874,7 +5653,6 @@
     }
   },
   "title": {
-    "apps": "Aplicații",
     "code": "Cod",
     "files": "Fișiere",
     "home": "Acasă",
@@ -5883,7 +5661,6 @@
     "mcp-servers": "Servere MCP",
     "memories": "Amintiri",
     "notes": "Notițe",
-    "openclaw": "OpenClaw",
     "paintings": "Imagini",
     "settings": "Setări",
     "store": "Bibliotecă asistenți",

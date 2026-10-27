@@ -2121,8 +2121,7 @@
     "vietnamese": "Tiếng Việt"
   },
   "launchpad": {
-    "apps": "Ứng dụng",
-    "minapps": "Minapps"
+    "apps": "Ứng dụng"
   },
   "lmstudio": {
     "keep_alive_time": {
@@ -2588,68 +2587,7 @@
       "rag_failed": "RAG thất bại, trả về kết quả trống..."
     }
   },
-  "minapp": {
-    "add_to_launchpad": "Ajouter à Launchpad",
-    "add_to_sidebar": "Thêm vào thanh bên",
-    "popup": {
-      "close": "Đóng MinApp",
-      "devtools": "Công cụ dành cho nhà phát triển",
-      "goBack": "Quay lại",
-      "goForward": "Tiến về phía trước",
-      "minimize": "Thu nhỏ Ứng dụng Min",
-      "openExternal": "Mở trong trình duyệt",
-      "open_link_external_off": "Hiện tại: Mở liên kết trong cửa sổ mặc định",
-      "open_link_external_on": "Hiện tại: Mở liên kết trong trình duyệt",
-      "refresh": "Làm mới",
-      "rightclick_copyurl": "Nhấp chuột phải để sao chép URL"
-    },
-    "remove_from_launchpad": "Xóa khỏi Launchpad",
-    "remove_from_sidebar": "Xóa khỏi thanh bên",
-    "sidebar": {
-      "close": {
-        "title": "Đóng"
-      },
-      "closeall": {
-        "title": "Đóng tất cả"
-      },
-      "hide": {
-        "title": "Ẩn"
-      },
-      "remove_custom": {
-        "title": "Xóa Ứng dụng Tùy chỉnh"
-      }
-    },
-    "title": "Ứng dụng nhỏ"
-  },
-  "minapps": {
-    "ant-ling": "Kiến Ling",
-    "baichuan": "Baichuan",
-    "baidu-ai-search": "Tìm kiếm AI Baidu",
-    "chatglm": "ChatGLM",
-    "dangbei": "Dangbei",
-    "doubao": "Doubao",
-    "hailuo": "Hailuo",
-    "ima": "ima",
-    "metaso": "Metaso",
-    "minimax-agent": "Đại lý Minimax Trung Quốc",
-    "minimax-global": "Tác nhân Minimax",
-    "nami-ai": "Nami AI",
-    "nami-ai-search": "Tìm kiếm Nami AI",
-    "qwen": "Qwen",
-    "sensechat": "SenseChat",
-    "stepfun": "Stepfun",
-    "tencent-yuanbao": "Nguyên bảo",
-    "tiangong-ai": "Skywork",
-    "wanzhi": "Wanzhi",
-    "wenxin": "ERNIE",
-    "wps-copilot": "WPS Copilot",
-    "xiaoyi": "Tiểu Nghi",
-    "zhihu": "Zhihu"
-  },
   "miniwindow": {
-    "alert": {
-      "google_login": "Mẹo: Nếu bạn thấy thông báo 'trình duyệt không được tin cậy' khi đăng nhập vào Google, vui lòng trước tiên đăng nhập qua mini app Google trong danh sách mini app, sau đó mới dùng đăng nhập Google ở các mini app khác"
-    },
     "clipboard": {
       "empty": "Bộ nhớ tạm trống"
     },
@@ -2935,107 +2873,6 @@
       "setup_hint": "Vui lòng cấu hình ít nhất một nhà cung cấp để có trải nghiệm tốt nhất",
       "subtitle": "Tận hưởng các dịch vụ AI hàng đầu với CherryIN",
       "title": "Chào mừng bạn đến với Cherry Studio"
-    }
-  },
-  "openclaw": {
-    "checking_installation": "Đang kiểm tra cài đặt OpenClaw...",
-    "description": "Sử dụng các nhà cung cấp Cherry Studio để cấp nguồn cho OpenClaw, trợ lý AI cá nhân của bạn hoạt động trên WhatsApp, Telegram, Slack, Discord và nhiều nền tảng khác.",
-    "error": {
-      "select_provider_model": "Vui lòng chọn nhà cung cấp và mô hình trước"
-    },
-    "gateway": {
-      "port": "Cổng",
-      "restart": "Khởi động lại",
-      "start": "Bắt đầu",
-      "status": "Trạng thái",
-      "stop": "Dừng lại",
-      "version": "Phiên bản"
-    },
-    "git_missing": {
-      "description": "OpenClaw yêu cầu Git để cài đặt một số phụ thuộc. Vui lòng cài đặt Git trước, sau đó nhấn Cài đặt lại.",
-      "download_button": "Tải xuống Git",
-      "hint": "macOS: brew install git | Windows: Tải từ git-scm.com (đảm bảo thêm Git vào PATH trong quá trình cài đặt)",
-      "title": "Git Bắt buộc"
-    },
-    "install_progress": "Tiến trình cài đặt",
-    "installed_at": "OpenClaw đã được cài đặt tại",
-    "migration": {
-      "description": "Đã phát hiện phiên bản OpenClaw lỗi thời được cài qua npm. Vui lòng cài lại để nhận phiên bản chính thức mới nhất.",
-      "install_button": "Cài đặt lại OpenClaw",
-      "title": "OpenClaw Cần Cập Nhật"
-    },
-    "model_config": {
-      "auth_token": "Mã xác thực",
-      "auth_token_hint": "Mã thông báo để xác thực gateway (bắt buộc). Sẽ được tạo tự động nếu để trống.",
-      "auth_token_placeholder": "Nhập hoặc tạo một mã thông báo",
-      "generate_token": "Tạo",
-      "model": "Mô hình",
-      "provider": "Nhà cung cấp",
-      "select_model": "Chọn một mô hình",
-      "select_provider": "Chọn một nhà cung cấp",
-      "sync_hint": "Nhà cung cấp và mô hình đã chọn sẽ được đồng bộ vào tệp cấu hình OpenClaw",
-      "title": "Cấu hình mô hình"
-    },
-    "node_missing": {
-      "description": "OpenClaw yêu cầu Node.js 22+. Vui lòng cài đặt Node.js trước, sau đó nhấn Cài đặt lại.",
-      "download_button": "Tải xuống Node.js",
-      "hint": "macOS: brew install node | Windows: Tải phiên bản LTS từ nodejs.org",
-      "title": "Yêu cầu Node.js"
-    },
-    "node_version_low": {
-      "description": "OpenClaw yêu cầu Node.js 22.0 trở lên. Phiên bản hiện tại của bạn là v{{version}}. Vui lòng nâng cấp Node.js trước.",
-      "hint": "nvm: nvm install 22 && nvm use 22 | mise: mise use node@22",
-      "title": "Phiên bản Node.js quá thấp"
-    },
-    "not_installed": {
-      "description": "OpenClaw chưa được cài đặt trên hệ thống của bạn. Vui lòng cài đặt trước để sử dụng tính năng này.",
-      "install_button": "Cài đặt OpenClaw",
-      "install_guide_title": "Hướng dẫn cài đặt",
-      "macos_linux_title": "macOS / Linux",
-      "refresh": "Làm mới",
-      "step2_hint": "Sau khi cài đặt, nhấn nút Làm mới ở trên để phát hiện OpenClaw",
-      "step2_title": "Bước 2: Xác minh cài đặt",
-      "title": "OpenClaw Chưa Được Cài Đặt",
-      "windows_title": "Windows"
-    },
-    "quick_actions": {
-      "check_update": "Überprüfe auf Updates",
-      "open_dashboard": "Mở Bảng điều khiển",
-      "title": "Hành động nhanh",
-      "uninstall": "Gỡ cài đặt",
-      "view_docs": "Xem Tài liệu"
-    },
-    "status": {
-      "error": "Lỗi",
-      "running": "Chạy",
-      "starting": "Bắt đầu",
-      "stopped": "Dừng lại"
-    },
-    "tips": {
-      "permissions": "OpenClaw dispone de permisos elevados en el sistema. Úsalo solo en entornos de confianza",
-      "title": "Mẹo",
-      "token_usage": "El modo de agente de IA puede consumir más tokens. Por favor, supervisa tu uso."
-    },
-    "title": "OpenClaw",
-    "uninstall_confirm": "Bạn có chắc chắn muốn gỡ cài đặt OpenClaw không? Nhấn OK để xác nhận.",
-    "uninstall_progress": "Tiến trình Gỡ cài đặt",
-    "uninstalled": {
-      "description": "OpenClaw đã được gỡ cài đặt thành công.",
-      "title": "Gỡ cài đặt hoàn tất"
-    },
-    "uninstalling": {
-      "description": "Vui lòng đợi trong khi OpenClaw đang được gỡ cài đặt...",
-      "title": "Gỡ cài đặt OpenClaw"
-    },
-    "update": {
-      "available": "Phiên bản mới có sẵn: v{{latest}} (hiện tại: v{{current}})",
-      "checking": "Đang kiểm tra cập nhật...",
-      "confirm_button": "Cập nhật ngay",
-      "failed": "Không thể kiểm tra cập nhật",
-      "modal_title": "Cập nhật OpenClaw",
-      "success": "Cập nhật hoàn tất thành công!",
-      "up_to_date": "Đã cập nhật mới nhất (v{{current}})",
-      "updating": "Đang cập nhật..."
     }
   },
   "ovms": {
@@ -4030,7 +3867,7 @@
       },
       "clear_cache": {
         "button": "Xóa bộ nhớ đệm",
-        "confirm": "Xóa bộ nhớ cache sẽ xóa dữ liệu cache của ứng dụng, bao gồm cả dữ liệu minapp. Hành động này không thể hoàn tác, bạn có muốn tiếp tục?",
+        "confirm": "Xóa bộ nhớ cache sẽ xóa dữ liệu cache của ứng dụng. Hành động này không thể hoàn tác, bạn có muốn tiếp tục?",
         "error": "Lỗi khi xóa bộ nhớ cache",
         "success": "Bộ nhớ đệm đã được xóa",
         "title": "Xóa bộ nhớ đệm"
@@ -4647,9 +4484,6 @@
         "knowledge": {
           "icon": "Hiển thị biểu tượng Kiến thức"
         },
-        "minapp": {
-          "icon": "Hiển thị biểu tượng MinApp"
-        },
         "painting": {
           "icon": "Hiển thị biểu tượng Vẽ"
         },
@@ -5048,61 +4882,6 @@
       "show_message_outline": "Hiển thị dàn bộ tin nhắn",
       "title": "Cài đặt tin nhắn",
       "use_serif_font": "Dùng phông chữ có chân"
-    },
-    "miniapps": {
-      "cache_change_notice": "Các thay đổi sẽ có hiệu lực khi số lượng ứng dụng mini đang mở đạt đến giá trị đã đặt",
-      "cache_description": "Đặt số lượng tối đa các ứng dụng mini đang hoạt động cần giữ trong bộ nhớ",
-      "cache_settings": "Cài đặt bộ nhớ đệm",
-      "cache_title": "Giới hạn bộ nhớ cache của Mini App",
-      "custom": {
-        "conflicting_ids": "IDs conflictivos con aplicaciones predeterminadas: {{ids}}",
-        "duplicate_ids": "ID duplicados encontrados: {{ids}}",
-        "edit_description": "Chỉnh sửa cấu hình mini app tùy chỉnh tại đây. Mỗi app cần bao gồm các trường id, name, url và logo.",
-        "edit_title": "Chỉnh sửa Ứng dụng Nhỏ Tùy chỉnh",
-        "id": "ID",
-        "id_error": "ID diperlukan.",
-        "id_placeholder": "Nhập ID",
-        "logo": "Biểu tượng",
-        "logo_file": "Subir archivo de logotipo",
-        "logo_upload_button": "Subir",
-        "logo_upload_error": "Không thể tải lên logo.",
-        "logo_upload_label": "Tải lên Logo",
-        "logo_upload_success": "Logo cargado correctamente.",
-        "logo_url": "URL biểu tượng",
-        "logo_url_label": "URL biểu tượng",
-        "logo_url_placeholder": "Nhập URL logo",
-        "name": "Tên",
-        "name_error": "Name ist erforderlich.",
-        "name_placeholder": "Nhập tên",
-        "placeholder": "Nhập cấu hình mini app tùy chỉnh (định dạng JSON)",
-        "remove_error": "Không thể xóa ứng dụng nhỏ tùy chỉnh.",
-        "remove_success": "Ứng dụng mini tùy chỉnh đã được gỡ bỏ thành công.",
-        "save": "Lưu",
-        "save_error": "Không lưu được ứng dụng nhỏ tùy chỉnh.",
-        "save_success": "Ứng dụng tùy chỉnh đã được lưu thành công.",
-        "title": "Tùy chỉnh",
-        "url": "URL",
-        "url_error": "URL là bắt buộc.",
-        "url_placeholder": "Nhập URL"
-      },
-      "disabled": "Ứng dụng nhỏ ẩn",
-      "display_title": "Cài đặt hiển thị Mini App",
-      "empty": "Kéo các ứng dụng nhỏ từ bên trái để ẩn chúng",
-      "open_link_external": {
-        "title": "Mở liên kết cửa sổ mới trong trình duyệt"
-      },
-      "region": {
-        "auto": "Tự động phát hiện",
-        "cn": "Trung Quốc",
-        "description": "Filtrar mini-programas no compatibles según la región",
-        "global": "Toàn cầu",
-        "title": "Bộ lọc Mini Program"
-      },
-      "reset_tooltip": "Redefinir para o padrão",
-      "sidebar_description": "Hiển thị ứng dụng mini đang hoạt động trong thanh bên",
-      "sidebar_title": "Hiển thị Ứng dụng Nhỏ Đang Hoạt động trong Thanh Bên",
-      "title": "Cài đặt Ứng dụng Mini",
-      "visible": "Mini aplicaciones visibles"
     },
     "model": "Mô hình Mặc định",
     "models": {
@@ -5874,7 +5653,6 @@
     }
   },
   "title": {
-    "apps": "Ứng dụng",
     "code": "Mã",
     "files": "Tập tin",
     "home": "Trang chủ",
@@ -5883,7 +5661,6 @@
     "mcp-servers": "MCP Servers",
     "memories": "Kỷ niệm",
     "notes": "Ghi chú",
-    "openclaw": "OpenClaw",
     "paintings": "Tranh vẽ",
     "settings": "Cài đặt",
     "store": "Thư viện Trợ lý",

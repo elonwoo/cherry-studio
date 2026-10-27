@@ -2122,8 +2122,7 @@
     "vietnamese": "越南文"
   },
   "launchpad": {
-    "apps": "应用",
-    "minapps": "小程序"
+    "apps": "应用"
   },
   "lmstudio": {
     "keep_alive_time": {
@@ -2589,68 +2588,7 @@
       "rag_failed": "RAG 失败，返回空结果..."
     }
   },
-  "minapp": {
-    "add_to_launchpad": "添加到启动台",
-    "add_to_sidebar": "添加到侧边栏",
-    "popup": {
-      "close": "关闭小程序",
-      "devtools": "开发者工具",
-      "goBack": "后退",
-      "goForward": "前进",
-      "minimize": "最小化小程序",
-      "openExternal": "在浏览器中打开",
-      "open_link_external_off": "当前：使用默认窗口打开链接",
-      "open_link_external_on": "当前：在浏览器中打开链接",
-      "refresh": "刷新",
-      "rightclick_copyurl": "右键复制 URL"
-    },
-    "remove_from_launchpad": "从启动台移除",
-    "remove_from_sidebar": "从侧边栏移除",
-    "sidebar": {
-      "close": {
-        "title": "关闭"
-      },
-      "closeall": {
-        "title": "关闭所有"
-      },
-      "hide": {
-        "title": "隐藏"
-      },
-      "remove_custom": {
-        "title": "删除自定义应用"
-      }
-    },
-    "title": "小程序"
-  },
-  "minapps": {
-    "ant-ling": "蚂蚁百灵",
-    "baichuan": "百小应",
-    "baidu-ai-search": "百度AI搜索",
-    "chatglm": "智谱清言",
-    "dangbei": "当贝AI",
-    "doubao": "豆包",
-    "hailuo": "海螺",
-    "ima": "ima",
-    "metaso": "秘塔AI搜索",
-    "minimax-agent": "MiniMax Agent",
-    "minimax-global": "MiniMax Agent 海外版",
-    "nami-ai": "纳米AI",
-    "nami-ai-search": "纳米AI搜索",
-    "qwen": "通义千问",
-    "sensechat": "商量",
-    "stepfun": "阶跃AI",
-    "tencent-yuanbao": "腾讯元宝",
-    "tiangong-ai": "天工AI",
-    "wanzhi": "万知",
-    "wenxin": "文心一言",
-    "wps-copilot": "WPS灵犀",
-    "xiaoyi": "小艺",
-    "zhihu": "知乎直答"
-  },
   "miniwindow": {
-    "alert": {
-      "google_login": "提示：如遇到Google登录提示\"不受信任的浏览器\"，请先在小程序列表中的Google小程序中完成账号登录，再在其它小程序使用Google登录"
-    },
     "clipboard": {
       "empty": "剪贴板为空"
     },
@@ -2936,107 +2874,6 @@
       "setup_hint": "请您先至少配置一个服务商，以获得最佳使用体验",
       "subtitle": "使用 CherryIN 服务商可畅享顶级 AI 服务",
       "title": "欢迎使用 Cherry Studio"
-    }
-  },
-  "openclaw": {
-    "checking_installation": "正在检查 OpenClaw 安装状态...",
-    "description": "使用 Cherry Studio 服务商为 OpenClaw 提供支持，OpenClaw 是您的个人 AI 助手，可在 WhatsApp、Telegram、Slack、Discord 等平台上使用。",
-    "error": {
-      "select_provider_model": "请先选择服务商和模型"
-    },
-    "gateway": {
-      "port": "端口",
-      "restart": "重启",
-      "start": "启动",
-      "status": "状态",
-      "stop": "停止",
-      "version": "版本"
-    },
-    "git_missing": {
-      "description": "OpenClaw 的部分依赖需要 Git 来安装。请先安装 Git，然后再次点击安装。",
-      "download_button": "下载 Git",
-      "hint": "macOS: brew install git | Windows: 从 git-scm.com 下载（安装时请确保勾选将 Git 添加到 PATH）",
-      "title": "需要安装 Git"
-    },
-    "install_progress": "安装进度",
-    "installed_at": "OpenClaw 安装路径",
-    "migration": {
-      "description": "检测到 PATH 中存在外部 OpenClaw 安装，但 Cherry Studio 只使用托管的 OpenClaw 二进制文件。请安装托管版本后继续。",
-      "install_button": "重新安装 OpenClaw",
-      "title": "OpenClaw 需要更新"
-    },
-    "model_config": {
-      "auth_token": "认证令牌",
-      "auth_token_hint": "网关认证令牌（必填）。留空时将自动生成。",
-      "auth_token_placeholder": "输入或生成令牌",
-      "generate_token": "生成",
-      "model": "模型",
-      "provider": "服务商",
-      "select_model": "选择模型",
-      "select_provider": "选择服务商",
-      "sync_hint": "选择的服务商和模型将同步到 OpenClaw 配置文件",
-      "title": "模型配置"
-    },
-    "node_missing": {
-      "description": "OpenClaw 需要 Node.js/npm。请先安装 Node.js，然后再次点击安装。",
-      "download_button": "下载 Node.js",
-      "hint": "macOS: brew install node | Windows: 从 nodejs.org 下载 LTS 版本",
-      "title": "需要安装 Node.js"
-    },
-    "node_version_low": {
-      "description": "OpenClaw 需要 Node.js 22.0 或以上版本。当前版本为 v{{version}}，请先升级 Node.js。",
-      "hint": "nvm: nvm install 22 && nvm use 22 | mise: mise use node@22",
-      "title": "Node.js 版本过低"
-    },
-    "not_installed": {
-      "description": "OpenClaw 尚未安装在您的系统上。请先安装它以使用此功能。",
-      "install_button": "安装 OpenClaw",
-      "install_guide_title": "安装指南",
-      "macos_linux_title": "macOS / Linux",
-      "refresh": "刷新",
-      "step2_hint": "安装完成后，点击上方的刷新按钮来检测 OpenClaw",
-      "step2_title": "第二步：验证安装",
-      "title": "OpenClaw 未安装",
-      "windows_title": "Windows"
-    },
-    "quick_actions": {
-      "check_update": "检查更新",
-      "open_dashboard": "打开控制面板",
-      "title": "快捷操作",
-      "uninstall": "卸载",
-      "view_docs": "查看文档"
-    },
-    "status": {
-      "error": "错误",
-      "running": "运行中",
-      "starting": "启动中",
-      "stopped": "已停止"
-    },
-    "tips": {
-      "permissions": "OpenClaw 拥有较高的系统权限，建议仅在可信环境中使用",
-      "title": "温馨提示",
-      "token_usage": "AI 代理模式会消耗较多 Token，请注意用量"
-    },
-    "title": "OpenClaw",
-    "uninstall_confirm": "确定要卸载 OpenClaw 吗？点击确定继续。",
-    "uninstall_progress": "卸载进度",
-    "uninstalled": {
-      "description": "OpenClaw 已成功卸载。",
-      "title": "卸载完成"
-    },
-    "uninstalling": {
-      "description": "正在卸载 OpenClaw，请稍候...",
-      "title": "正在卸载 OpenClaw"
-    },
-    "update": {
-      "available": "发现新版本：v{{latest}}（当前版本：v{{current}}）",
-      "checking": "正在检查更新...",
-      "confirm_button": "立即更新",
-      "failed": "检查更新失败",
-      "modal_title": "OpenClaw 更新",
-      "success": "更新成功！",
-      "up_to_date": "已是最新版本（v{{current}}）",
-      "updating": "更新中..."
     }
   },
   "ovms": {
@@ -4031,7 +3868,7 @@
       },
       "clear_cache": {
         "button": "清除缓存",
-        "confirm": "清除缓存将删除应用缓存的数据，包括小程序数据。此操作不可恢复，是否继续？",
+        "confirm": "清除缓存将删除应用缓存的数据。此操作不可恢复，是否继续？",
         "error": "清除缓存失败",
         "success": "缓存清除成功",
         "title": "清除缓存"
@@ -4648,9 +4485,6 @@
         "knowledge": {
           "icon": "显示知识图标"
         },
-        "minapp": {
-          "icon": "显示小程序图标"
-        },
         "painting": {
           "icon": "显示绘画图标"
         },
@@ -5049,61 +4883,6 @@
       "show_message_outline": "显示消息大纲",
       "title": "消息设置",
       "use_serif_font": "使用衬线字体"
-    },
-    "miniapps": {
-      "cache_change_notice": "更改将在打开的小程序增减至设定值后生效",
-      "cache_description": "设置同时保持活跃状态的小程序最大数量",
-      "cache_settings": "缓存设置",
-      "cache_title": "小程序缓存数量",
-      "custom": {
-        "conflicting_ids": "与默认应用 ID 冲突: {{ids}}",
-        "duplicate_ids": "发现重复的 ID: {{ids}}",
-        "edit_description": "在这里编辑自定义小应用的配置。每个应用需要包含 id、name、url 和 logo 字段",
-        "edit_title": "编辑自定义小程序",
-        "id": "ID",
-        "id_error": "ID 是必填项",
-        "id_placeholder": "请输入 ID",
-        "logo": "Logo",
-        "logo_file": "上传 Logo 文件",
-        "logo_upload_button": "上传",
-        "logo_upload_error": "Logo 上传失败",
-        "logo_upload_label": "上传 Logo",
-        "logo_upload_success": "Logo 上传成功",
-        "logo_url": "Logo URL",
-        "logo_url_label": "Logo URL",
-        "logo_url_placeholder": "请输入 Logo URL",
-        "name": "名称",
-        "name_error": "名称是必填项",
-        "name_placeholder": "请输入名称",
-        "placeholder": "请输入自定义小程序配置（JSON 格式）",
-        "remove_error": "自定义小程序删除失败",
-        "remove_success": "自定义小程序删除成功",
-        "save": "保存",
-        "save_error": "自定义小程序保存失败",
-        "save_success": "自定义小程序保存成功",
-        "title": "自定义",
-        "url": "URL",
-        "url_error": "URL 是必填项",
-        "url_placeholder": "请输入 URL"
-      },
-      "disabled": "隐藏的小程序",
-      "display_title": "小程序显示设置",
-      "empty": "把要隐藏的小程序从左侧拖拽到这里",
-      "open_link_external": {
-        "title": "在浏览器中打开新窗口链接"
-      },
-      "region": {
-        "auto": "自动检测",
-        "cn": "中国",
-        "description": "根据所在地区过滤不支持的小程序",
-        "global": "全球",
-        "title": "小程序区域筛选"
-      },
-      "reset_tooltip": "重置为默认值",
-      "sidebar_description": "设置侧边栏是否显示活跃的小程序",
-      "sidebar_title": "侧边栏活跃小程序显示设置",
-      "title": "小程序设置",
-      "visible": "显示的小程序"
     },
     "model": "默认模型",
     "models": {
@@ -5875,7 +5654,6 @@
     }
   },
   "title": {
-    "apps": "小程序",
     "code": "Code",
     "files": "文件",
     "home": "首页",
@@ -5884,7 +5662,6 @@
     "mcp-servers": "MCP 服务器",
     "memories": "记忆",
     "notes": "笔记",
-    "openclaw": "OpenClaw",
     "paintings": "绘画",
     "settings": "设置",
     "store": "助手库",

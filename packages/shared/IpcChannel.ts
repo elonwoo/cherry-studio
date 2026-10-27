@@ -55,17 +55,9 @@ export enum IpcChannel {
   Notification_Send = 'notification:send',
   Notification_OnClick = 'notification:on-click',
 
-  Webview_SetOpenLinkExternal = 'webview:set-open-link-external',
-  Webview_SetSpellCheckEnabled = 'webview:set-spell-check-enabled',
-  Webview_SearchHotkey = 'webview:search-hotkey',
-  Webview_PrintToPDF = 'webview:print-to-pdf',
-  Webview_SaveAsHTML = 'webview:save-as-html',
-
   // Open
   Open_Path = 'open:path',
   Open_Website = 'open:website',
-
-  Minapp = 'minapp',
 
   Config_Set = 'config:set',
   Config_Get = 'config:get',
@@ -433,21 +425,6 @@ export enum IpcChannel {
   LocalTransfer_ClientEvent = 'local-transfer:client-event',
   LocalTransfer_SendFile = 'local-transfer:send-file',
   LocalTransfer_CancelTransfer = 'local-transfer:cancel-transfer',
-
-  // OpenClaw
-  OpenClaw_CheckInstalled = 'openclaw:check-installed',
-  OpenClaw_Install = 'openclaw:install',
-  OpenClaw_Uninstall = 'openclaw:uninstall',
-  OpenClaw_InstallProgress = 'openclaw:install-progress',
-  OpenClaw_StartGateway = 'openclaw:start-gateway',
-  OpenClaw_StopGateway = 'openclaw:stop-gateway',
-  OpenClaw_GetStatus = 'openclaw:get-status',
-  OpenClaw_CheckHealth = 'openclaw:check-health',
-  OpenClaw_GetDashboardUrl = 'openclaw:get-dashboard-url',
-  OpenClaw_SyncConfig = 'openclaw:sync-config',
-  OpenClaw_GetChannels = 'openclaw:get-channels',
-  OpenClaw_CheckUpdate = 'openclaw:check-update',
-  OpenClaw_PerformUpdate = 'openclaw:perform-update',
 
   // Analytics
   Analytics_TrackTokenUsage = 'analytics:track-token-usage'

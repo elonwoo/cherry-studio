@@ -2121,8 +2121,7 @@
     "vietnamese": "Vietnamien"
   },
   "launchpad": {
-    "apps": "Applications",
-    "minapps": "Mini-applications"
+    "apps": "Applications"
   },
   "lmstudio": {
     "keep_alive_time": {
@@ -2588,68 +2587,7 @@
       "rag_failed": "Échec de la RAG, retour d'un résultat vide..."
     }
   },
-  "minapp": {
-    "add_to_launchpad": "Ajouter au tableau de bord",
-    "add_to_sidebar": "Ajouter à la barre latérale",
-    "popup": {
-      "close": "Закрыть мини-программу",
-      "devtools": "Инструменты разработчика",
-      "goBack": "Reculer",
-      "goForward": "Avancer",
-      "minimize": "Свернуть мини-программу",
-      "openExternal": "Открыть в браузере",
-      "open_link_external_off": "Текущий: открывать ссылки в окне по умолчанию",
-      "open_link_external_on": "Текущий: открывать ссылки в браузере",
-      "refresh": "Обновить",
-      "rightclick_copyurl": "Скопировать URL через правую кнопку мыши"
-    },
-    "remove_from_launchpad": "Supprimer du tableau de bord",
-    "remove_from_sidebar": "Supprimer de la barre latérale",
-    "sidebar": {
-      "close": {
-        "title": "Fermer"
-      },
-      "closeall": {
-        "title": "Закрыть все"
-      },
-      "hide": {
-        "title": "Cacher"
-      },
-      "remove_custom": {
-        "title": "Supprimer l'application personnalisée"
-      }
-    },
-    "title": "Mini-programme"
-  },
-  "minapps": {
-    "ant-ling": "Ant Ling",
-    "baichuan": "Baichuan",
-    "baidu-ai-search": "Baidu AI Search",
-    "chatglm": "ChatGLM",
-    "dangbei": "Dangbei",
-    "doubao": "Doubao",
-    "hailuo": "Hailuo",
-    "ima": "ima",
-    "metaso": "Metaso",
-    "minimax-agent": "MiniMax Agent CN",
-    "minimax-global": "MiniMax Agent",
-    "nami-ai": "Nami AI",
-    "nami-ai-search": "Nami AI Search",
-    "qwen": "Qwen",
-    "sensechat": "SenseChat",
-    "stepfun": "Stepfun",
-    "tencent-yuanbao": "Yuanbao",
-    "tiangong-ai": "Skywork",
-    "wanzhi": "Wanzhi",
-    "wenxin": "ERNIE",
-    "wps-copilot": "WPS Copilot",
-    "xiaoyi": "Xiaoyi",
-    "zhihu": "Zhihu"
-  },
   "miniwindow": {
-    "alert": {
-      "google_login": "Remarque : Si vous recevez un message d'alerte Google indiquant que le navigateur n'est pas fiable lors de la connexion, veuillez d'abord vous connecter à votre compte via l'application intégrée Google dans la liste des mini-programmes, puis utilisez la connexion Google dans d'autres mini-programmes"
-    },
     "clipboard": {
       "empty": "Presse-papiers vide"
     },
@@ -2935,107 +2873,6 @@
       "setup_hint": "Veuillez configurer au moins un fournisseur pour une meilleure expérience",
       "subtitle": "Profitez de services d'IA de premier ordre avec CherryIN",
       "title": "Bienvenue à Cherry Studio"
-    }
-  },
-  "openclaw": {
-    "checking_installation": "Vérification de l'installation d'OpenClaw...",
-    "description": "Intégrer les fournisseurs Cherry Studio avec la passerelle OpenClaw pour permettre aux agents de codage IA comme Claude Code, Qwen-Coder, et bien d'autres.",
-    "error": {
-      "select_provider_model": "Veuillez d'abord sélectionner un fournisseur et un modèle"
-    },
-    "gateway": {
-      "port": "Port",
-      "restart": "Redémarrer",
-      "start": "Démarrer la passerelle",
-      "status": "Statut",
-      "stop": "Arrête",
-      "version": "Version"
-    },
-    "git_missing": {
-      "description": "OpenClaw nécessite Git pour installer certaines dépendances. Veuillez d’abord installer Git, puis cliquez à nouveau sur Installer.",
-      "download_button": "Télécharger Git",
-      "hint": "macOS : brew install git | Windows : Télécharger depuis git-scm.com (assurez-vous d’ajouter Git au PATH pendant l’installation)",
-      "title": "Git requis"
-    },
-    "install_progress": "Progression de l'installation",
-    "installed_at": "OpenClaw installé à",
-    "migration": {
-      "description": "Une version obsolète d’OpenClaw installée via npm a été détectée. Veuillez réinstaller pour obtenir la dernière version officielle.",
-      "install_button": "Réinstaller OpenClaw",
-      "title": "OpenClaw nécessite une mise à jour"
-    },
-    "model_config": {
-      "auth_token": "Jeton d'authentification",
-      "auth_token_hint": "Jeton d'authentification de la passerelle. Laissez vide pour désactiver l'authentification.",
-      "auth_token_placeholder": "Entrez ou générez un jeton",
-      "generate_token": "Générer",
-      "model": "Modèle",
-      "provider": "Fournisseur",
-      "select_model": "Sélectionner un modèle",
-      "select_provider": "Sélectionnez un fournisseur",
-      "sync_hint": "Le fournisseur et le modèle sélectionnés seront synchronisés avec le fichier de configuration OpenClaw.",
-      "title": "Configuration du modèle"
-    },
-    "node_missing": {
-      "description": "OpenClaw nécessite Node.js/npm. Veuillez d'abord installer Node.js, puis redémarrez Cherry Studio.",
-      "download_button": "Télécharger Node.js",
-      "hint": "macOS : brew install node | Windows : Télécharger la version LTS depuis nodejs.org",
-      "title": "Node.js requis"
-    },
-    "node_version_low": {
-      "description": "OpenClaw nécessite Node.js 22.0 ou supérieur. Votre version actuelle est v{{version}}. Veuillez d’abord mettre à jour Node.js.",
-      "hint": "nvm : nvm install 22 && nvm use 22 | mise : mise use node@22",
-      "title": "Version de Node.js trop basse"
-    },
-    "not_installed": {
-      "description": "OpenClaw n’est pas installé sur votre système. Veuillez d’abord l’installer pour utiliser cette fonctionnalité.",
-      "install_button": "Installer OpenClaw",
-      "install_guide_title": "Guide d'installation",
-      "macos_linux_title": "macOS / Linux",
-      "refresh": "Actualiser",
-      "step2_hint": "Après l'installation, cliquez sur le bouton Actualiser ci-dessus pour détecter OpenClaw",
-      "step2_title": "Étape 2 : Vérifier l'installation",
-      "title": "OpenClaw Non Installé",
-      "windows_title": "Windows"
-    },
-    "quick_actions": {
-      "check_update": "Vérifier les mises à jour",
-      "open_dashboard": "Ouvrir le tableau de bord",
-      "title": "Actions rapides",
-      "uninstall": "Désinstaller",
-      "view_docs": "Voir la documentation"
-    },
-    "status": {
-      "error": "Erreur",
-      "running": "Courir",
-      "starting": "Commencement",
-      "stopped": "Arrêté"
-    },
-    "tips": {
-      "permissions": "OpenClaw dispose de permissions système élevées. À utiliser uniquement dans des environnements de confiance",
-      "title": "Conseils",
-      "token_usage": "Le mode agent IA peut consommer plus de tokens. Veuillez surveiller votre utilisation"
-    },
-    "title": "OpenClaw",
-    "uninstall_confirm": "Êtes-vous sûr de vouloir désinstaller OpenClaw ? Appuyez sur OK pour confirmer.",
-    "uninstall_progress": "Progression de la désinstallation",
-    "uninstalled": {
-      "description": "OpenClaw a été désinstallé avec succès.",
-      "title": "Désinstallation terminée"
-    },
-    "uninstalling": {
-      "description": "Veuillez patienter pendant la désinstallation d'OpenClaw...",
-      "title": "Désinstallation d'OpenClaw"
-    },
-    "update": {
-      "available": "Nouvelle version disponible : v{{latest}} (actuelle : v{{current}})",
-      "checking": "Vérification des mises à jour...",
-      "confirm_button": "Mettre à jour maintenant",
-      "failed": "Échec de la vérification des mises à jour",
-      "modal_title": "Mise à jour d'OpenClaw",
-      "success": "Mise à jour terminée avec succès !",
-      "up_to_date": "Déjà à jour (v{{current}})",
-      "updating": "Mise à jour..."
     }
   },
   "ovms": {
@@ -4030,7 +3867,7 @@
       },
       "clear_cache": {
         "button": "Effacer le cache",
-        "confirm": "L'effacement du cache supprimera les données du cache de l'application, y compris les données des mini-programmes. Cette action ne peut pas être annulée, voulez-vous continuer ?",
+        "confirm": "L'effacement du cache supprimera les données du cache de l'application. Cette action ne peut pas être annulée, voulez-vous continuer ?",
         "error": "Échec de l'effacement du cache",
         "success": "Le cache a été effacé avec succès",
         "title": "Effacer le cache"
@@ -4647,9 +4484,6 @@
         "knowledge": {
           "icon": "Afficher l'icône des connaissances"
         },
-        "minapp": {
-          "icon": "Afficher l'icône des applications minimisées"
-        },
         "painting": {
           "icon": "Afficher l'icône de peinture"
         },
@@ -5048,61 +4882,6 @@
       "show_message_outline": "Afficher le plan du message",
       "title": "Paramètres des messages",
       "use_serif_font": "Utiliser une police serif"
-    },
-    "miniapps": {
-      "cache_change_notice": "Les modifications prendront effet après l'ajout ou la suppression d'applications ouvertes jusqu'à atteindre la valeur définie",
-      "cache_description": "Définir le nombre maximum d'applications pouvant rester actives simultanément",
-      "cache_settings": "Paramètres du cache",
-      "cache_title": "Nombre de caches d'applications",
-      "custom": {
-        "conflicting_ids": "Конфликтующие ID с ID по умолчанию: {{ids}}",
-        "duplicate_ids": "Обнаружены повторяющиеся ID: {{ids}}",
-        "edit_description": "Здесь вы можете отредактировать конфигурацию пользовательского приложения. Каждое приложение должно содержать поля id, name, url и logo.",
-        "edit_title": "Редактировать пользовательское приложение",
-        "id": "ID",
-        "id_error": "Поле ID обязательно для заполнения.",
-        "id_placeholder": "Введите ID",
-        "logo": "Логотип",
-        "logo_file": "Загрузить файл логотипа",
-        "logo_upload_button": "Загрузить",
-        "logo_upload_error": "Не удалось загрузить логотип.",
-        "logo_upload_label": "Загрузить логотип",
-        "logo_upload_success": "Логотип успешно загружен.",
-        "logo_url": "URL логотипа",
-        "logo_url_label": "URL логотипа",
-        "logo_url_placeholder": "Введите URL логотипа",
-        "name": "Имя",
-        "name_error": "Поле Имя обязательно для заполнения.",
-        "name_placeholder": "Введите имя",
-        "placeholder": "Введите конфигурацию пользовательского приложения (в формате JSON)",
-        "remove_error": "Не удалось удалить пользовательское приложение.",
-        "remove_success": "Пользовательское приложение успешно удалено.",
-        "save": "Сохранить",
-        "save_error": "Не удалось сохранить пользовательское приложение.",
-        "save_success": "Пользовательское приложение успешно сохранено.",
-        "title": "Пользовательское приложение",
-        "url": "URL",
-        "url_error": "Поле URL обязательно для заполнения.",
-        "url_placeholder": "Введите URL"
-      },
-      "disabled": "Applications masquées",
-      "display_title": "Paramètres d'affichage des applications",
-      "empty": "Faites glisser vers ici les applications que vous souhaitez masquer",
-      "open_link_external": {
-        "title": "Ouvrir un nouveau lien dans une fenêtre du navigateur"
-      },
-      "region": {
-        "auto": "Détection automatique",
-        "cn": "Chine",
-        "description": "La filtration des mini-programmes non pris en charge selon la région n'est pas disponible",
-        "global": "mondial",
-        "title": "Filtrage par zone de la mini-application"
-      },
-      "reset_tooltip": "Réinitialiser aux valeurs par défaut",
-      "sidebar_description": "Définir si les applications actives doivent s'afficher dans la barre latérale",
-      "sidebar_title": "Affichage des applications actives dans la barre latérale",
-      "title": "Paramètres de l'application",
-      "visible": "Applications visibles"
     },
     "model": "Modèle par défaut",
     "models": {
@@ -5874,7 +5653,6 @@
     }
   },
   "title": {
-    "apps": "Mini-programmes",
     "code": "Code",
     "files": "Fichiers",
     "home": "Page d'accueil",
@@ -5883,7 +5661,6 @@
     "mcp-servers": "Serveurs MCP",
     "memories": "Mémoires",
     "notes": "notes",
-    "openclaw": "OpenClaw",
     "paintings": "Peintures",
     "settings": "Paramètres",
     "store": "Bibliothèque d'assistants",

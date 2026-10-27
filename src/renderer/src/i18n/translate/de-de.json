@@ -2121,8 +2121,7 @@
     "vietnamese": "Vietnamesisch"
   },
   "launchpad": {
-    "apps": "Apps",
-    "minapps": "Mini-Apps"
+    "apps": "Apps"
   },
   "lmstudio": {
     "keep_alive_time": {
@@ -2588,68 +2587,7 @@
       "rag_failed": "RAG fehlgeschlagen, leere Ergebnisse zurückgegeben..."
     }
   },
-  "minapp": {
-    "add_to_launchpad": "Zu Launchpad hinzufügen",
-    "add_to_sidebar": "Zur Seitenleiste hinzufügen",
-    "popup": {
-      "close": "Mini-App schließen",
-      "devtools": "Entwicklertools",
-      "goBack": "Zurück",
-      "goForward": "Vorwärts",
-      "minimize": "Mini-App minimieren",
-      "openExternal": "In Browser öffnen",
-      "open_link_external_off": "Aktuell: Links im Standardfenster öffnen",
-      "open_link_external_on": "Aktuell: Links im Browser öffnen",
-      "refresh": "Aktualisieren",
-      "rightclick_copyurl": "Rechtsklick zum Kopieren der URL"
-    },
-    "remove_from_launchpad": "Aus Launchpad entfernen",
-    "remove_from_sidebar": "Aus Seitenleiste entfernen",
-    "sidebar": {
-      "close": {
-        "title": "Schließen"
-      },
-      "closeall": {
-        "title": "Alle schließen"
-      },
-      "hide": {
-        "title": "Ausblenden"
-      },
-      "remove_custom": {
-        "title": "Benutzerdefinierte App entfernen"
-      }
-    },
-    "title": "Mini-Apps"
-  },
-  "minapps": {
-    "ant-ling": "Ant Ling",
-    "baichuan": "Baixiaoying",
-    "baidu-ai-search": "Baidu AI Suche",
-    "chatglm": "ChatGLM",
-    "dangbei": "Dangbei AI",
-    "doubao": "Doubao",
-    "hailuo": "Hailuo",
-    "ima": "ima",
-    "metaso": "Metaso AI-Suche",
-    "minimax-agent": "MiniMax Agent CN",
-    "minimax-global": "MiniMax Agent",
-    "nami-ai": "Nami AI",
-    "nami-ai-search": "Nami AI-Suche",
-    "qwen": "Qwen",
-    "sensechat": "SenseChat",
-    "stepfun": "StepFun AI",
-    "tencent-yuanbao": "Tencent Yuanbao",
-    "tiangong-ai": "Tiangong AI",
-    "wanzhi": "Wanzhi",
-    "wenxin": "Wenxin Yiyan",
-    "wps-copilot": "WPS Lingxi",
-    "xiaoyi": "Xiaoyi",
-    "zhihu": "Zhihu Zhida"
-  },
   "miniwindow": {
-    "alert": {
-      "google_login": "Hinweis: Falls Sie beim Google-Login die Meldung \"Nicht vertrauenswürdiger Browser\" erhalten, melden Sie sich bitte zuerst in der Google Mini-App in der Mini-App-Liste an, bevor Sie Google-Login in anderen Mini-Apps verwenden"
-    },
     "clipboard": {
       "empty": "Zwischenablage ist leer"
     },
@@ -2935,107 +2873,6 @@
       "setup_hint": "Bitte konfigurieren Sie mindestens einen Anbieter für die beste Erfahrung.",
       "subtitle": "Genießen Sie erstklassige KI-Dienste mit CherryIN",
       "title": "Willkommen bei Cherry Studio"
-    }
-  },
-  "openclaw": {
-    "checking_installation": "Überprüfe OpenClaw-Installation...",
-    "description": "Integriere Cherry Studio-Anbieter mit OpenClaw Gateway, um KI-Coding-Agenten wie Claude Code, Qwen-Coder und weitere zu ermöglichen.",
-    "error": {
-      "select_provider_model": "Bitte wählen Sie zuerst einen Anbieter und ein Modell aus."
-    },
-    "gateway": {
-      "port": "Hafen",
-      "restart": "Neustart",
-      "start": "Start-Gateway",
-      "status": "Status",
-      "stop": "Halt",
-      "version": "Version"
-    },
-    "git_missing": {
-      "description": "OpenClaw benötigt Git zur Installation einiger Abhängigkeiten. Bitte installieren Sie zuerst Git und klicken Sie dann erneut auf Installieren.",
-      "download_button": "Git herunterladen",
-      "hint": "macOS: brew install git | Windows: Von git-scm.com herunterladen (stelle sicher, dass Git während der Installation zum PATH hinzugefügt wird)",
-      "title": "Git erforderlich"
-    },
-    "install_progress": "Installationsfortschritt",
-    "installed_at": "OpenClaw installiert unter",
-    "migration": {
-      "description": "Eine veraltete Version von OpenClaw, die über npm installiert wurde, wurde erkannt. Bitte installiere sie erneut, um die neueste offizielle Version zu erhalten.",
-      "install_button": "OpenClaw neu installieren",
-      "title": "OpenClaw benötigt ein Update"
-    },
-    "model_config": {
-      "auth_token": "Auth-Token",
-      "auth_token_hint": "Token für Gateway-Authentifizierung. Leer lassen, um die Authentifizierung zu deaktivieren.",
-      "auth_token_placeholder": "Token eingeben oder generieren",
-      "generate_token": "Generieren",
-      "model": "Modell",
-      "provider": "Anbieter",
-      "select_model": "Wählen Sie ein Modell",
-      "select_provider": "Wählen Sie einen Anbieter",
-      "sync_hint": "Ausgewählter Anbieter und Modell werden in die OpenClaw-Konfigurationsdatei synchronisiert",
-      "title": "Modellkonfiguration"
-    },
-    "node_missing": {
-      "description": "OpenClaw benötigt Node.js 22+. Bitte installiere zuerst Node.js und klicke dann erneut auf Installieren.",
-      "download_button": "Node.js herunterladen",
-      "hint": "macOS: brew install node | Windows: LTS-Version von nodejs.org herunterladen",
-      "title": "Node.js erforderlich"
-    },
-    "node_version_low": {
-      "description": "OpenClaw erfordert Node.js 22.0 oder höher. Deine aktuelle Version ist v{{version}}. Bitte aktualisiere Node.js zuerst.",
-      "hint": "nvm: nvm install 22 && nvm use 22 | mise: mise use node@22",
-      "title": "Node.js-Version zu niedrig"
-    },
-    "not_installed": {
-      "description": "OpenClaw ist nicht auf Ihrem System installiert. Bitte installieren Sie es zuerst, um diese Funktion nutzen zu können.",
-      "install_button": "Installiere OpenClaw",
-      "install_guide_title": "Installationsanleitung",
-      "macos_linux_title": "macOS / Linux",
-      "refresh": "Aktualisieren",
-      "step2_hint": "Nach der Installation klicken Sie auf die Schaltfläche „Aktualisieren“ oben, um OpenClaw zu erkennen.",
-      "step2_title": "Schritt 2: Installation überprüfen",
-      "title": "OpenClaw nicht installiert",
-      "windows_title": "Windows"
-    },
-    "quick_actions": {
-      "check_update": "Nach Updates suchen",
-      "open_dashboard": "Dashboard öffnen",
-      "title": "Schnellaktionen",
-      "uninstall": "Deinstallieren",
-      "view_docs": "Dokumentation anzeigen"
-    },
-    "status": {
-      "error": "Fehler",
-      "running": "Laufen",
-      "starting": "Start",
-      "stopped": "Angehalten"
-    },
-    "tips": {
-      "permissions": "OpenClaw hat erweiterte Systemberechtigungen. Nur in vertrauenswürdigen Umgebungen verwenden",
-      "title": "Hinweise",
-      "token_usage": "Der KI-Agentenmodus kann mehr Token verbrauchen. Bitte überwachen Sie Ihre Nutzung"
-    },
-    "title": "OpenClaw",
-    "uninstall_confirm": "Sind Sie sicher, dass Sie OpenClaw deinstallieren möchten? Drücken Sie OK, um zu bestätigen.",
-    "uninstall_progress": "Deinstallationsfortschritt",
-    "uninstalled": {
-      "description": "OpenClaw wurde erfolgreich deinstalliert.",
-      "title": "Deinstallation abgeschlossen"
-    },
-    "uninstalling": {
-      "description": "Bitte warten Sie, während OpenClaw deinstalliert wird...",
-      "title": "Deinstallation von OpenClaw"
-    },
-    "update": {
-      "available": "Neue Version verfügbar: v{{latest}} (aktuell: v{{current}})",
-      "checking": "Nach Updates wird gesucht...",
-      "confirm_button": "Jetzt aktualisieren",
-      "failed": "Fehler bei der Überprüfung auf Updates",
-      "modal_title": "OpenClaw-Update",
-      "success": "Aktualisierung erfolgreich abgeschlossen!",
-      "up_to_date": "Bereits auf dem neuesten Stand (v{{current}})",
-      "updating": "Aktualisierung..."
     }
   },
   "ovms": {
@@ -4030,7 +3867,7 @@
       },
       "clear_cache": {
         "button": "Cache löschen",
-        "confirm": "Cache leeren entfernt alle zwischengespeicherten Daten inkl. Mini-App-Daten. Nicht wiederherstellbar. Fortfahren?",
+        "confirm": "Cache leeren entfernt alle zwischengespeicherten Daten. Nicht wiederherstellbar. Fortfahren?",
         "error": "Cache-Löschen fehlgeschlagen",
         "success": "Cache erfolgreich geleert",
         "title": "Cache löschen"
@@ -4647,9 +4484,6 @@
         "knowledge": {
           "icon": "Wissens-Symbol anzeigen"
         },
-        "minapp": {
-          "icon": "Mini-App-Symbol anzeigen"
-        },
         "painting": {
           "icon": "Zeichen-Symbol anzeigen"
         },
@@ -5048,61 +4882,6 @@
       "show_message_outline": "Nachrichtenübersicht anzeigen",
       "title": "Nachrichteneinstellungen",
       "use_serif_font": "Serifenschrift verwenden"
-    },
-    "miniapps": {
-      "cache_change_notice": "Änderung wird wirksam wenn Anzahl geöffneter Mini-Apps auf festgelegten Wert angepasst wird",
-      "cache_description": "Maximale Anzahl gleichzeitig aktiver Mini-Apps festlegen",
-      "cache_settings": "Cache-Einstellungen",
-      "cache_title": "Anzahl gecachter Mini-Apps",
-      "custom": {
-        "conflicting_ids": "Konflikt mit Standard-App-ID: {{ids}}",
-        "duplicate_ids": "Duplizierte ID gefunden: {{ids}}",
-        "edit_description": "Hier die Konfiguration der benutzerdefinierten Mini-App bearbeiten. Jede App muss id, name, url und logo-Felder enthalten",
-        "edit_title": "Benutzerdefinierte Mini-App bearbeiten",
-        "id": "ID",
-        "id_error": "ID ist Pflichtfeld",
-        "id_placeholder": "Bitte ID eingeben",
-        "logo": "Logo",
-        "logo_file": "Logo-Datei hochladen",
-        "logo_upload_button": "Hochladen",
-        "logo_upload_error": "Logo-Upload fehlgeschlagen",
-        "logo_upload_label": "Logo hochladen",
-        "logo_upload_success": "Logo erfolgreich hochgeladen",
-        "logo_url": "Logo-URL",
-        "logo_url_label": "Logo-URL",
-        "logo_url_placeholder": "Bitte Logo-URL eingeben",
-        "name": "Name",
-        "name_error": "Name ist Pflichtfeld",
-        "name_placeholder": "Bitte Namen eingeben",
-        "placeholder": "Bitte benutzerdefinierte Mini-App-Konfiguration eingeben (JSON-Format)",
-        "remove_error": "Löschen der benutzerdefinierten Mini-App fehlgeschlagen",
-        "remove_success": "Benutzerdefinierte Mini-App erfolgreich gelöscht",
-        "save": "Speichern",
-        "save_error": "Benutzerdefinierte Mini-App-Speicherung fehlgeschlagen",
-        "save_success": "Benutzerdefinierte Mini-App erfolgreich gespeichert",
-        "title": "Benutzerdefiniert",
-        "url": "URL",
-        "url_error": "URL ist Pflichtfeld",
-        "url_placeholder": "Bitte URL eingeben"
-      },
-      "disabled": "Ausgeblendete Mini-Apps",
-      "display_title": "Mini-App-Anzeigeeinstellungen",
-      "empty": "Mini-Apps die ausgeblendet werden sollen von links hierher ziehen",
-      "open_link_external": {
-        "title": "Neue Fensterlinks im Browser öffnen"
-      },
-      "region": {
-        "auto": "Automatische Erkennung",
-        "cn": "China",
-        "description": "Nach Region gefilterte Mini-Programme werden nicht unterstützt",
-        "global": "global",
-        "title": "Bereichsfilterung für Mini-Programme"
-      },
-      "reset_tooltip": "Zurücksetzen auf Standardwert",
-      "sidebar_description": "Festlegen ob Seitenleiste aktive Mini-Apps anzeigt",
-      "sidebar_title": "Einstellungen für aktive Mini-Apps in Seitenleiste",
-      "title": "Mini-App-Einstellungen",
-      "visible": "Angezeigte Mini-Apps"
     },
     "model": "Standardmodell",
     "models": {
@@ -5874,7 +5653,6 @@
     }
   },
   "title": {
-    "apps": "Mini-Apps",
     "code": "Code",
     "files": "Datei",
     "home": "Startseite",
@@ -5883,7 +5661,6 @@
     "mcp-servers": "MCP-Server",
     "memories": "Erinnerungen",
     "notes": "Notizen",
-    "openclaw": "OpenClaw",
     "paintings": "Zeichnen",
     "settings": "Einstellungen",
     "store": "Assistenten-Bibliothek",

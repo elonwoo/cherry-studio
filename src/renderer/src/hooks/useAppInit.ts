@@ -26,8 +26,7 @@ import { useTranslation } from 'react-i18next'
 
 import { useDefaultModel } from './useAssistant'
 import useFullScreenNotice from './useFullScreenNotice'
-import { useRuntime } from './useRuntime'
-import { useNavbarPosition, useSettings } from './useSettings'
+import { useSettings } from './useSettings'
 import useUpdateHandler from './useUpdateHandler'
 
 const logger = loggerService.withContext('useAppInit')
@@ -46,8 +45,6 @@ export function useAppInit() {
     enableDataCollection,
     privacyPolicyVersion
   } = useSettings()
-  const { isLeftNavbar } = useNavbarPosition()
-  const { minappShow } = useRuntime()
   const { setDefaultModel, setQuickModel, setTranslateModel } = useDefaultModel()
   const avatar = useLiveQuery(() => db.settings.get('image://avatar'))
   const { theme } = useTheme()
@@ -140,13 +137,8 @@ export function useAppInit() {
   useEffect(() => {
     const isMacTransparentWindow = windowStyle === 'transparent' && isMac
 
-    if (minappShow && isLeftNavbar) {
-      window.root.style.background = isMacTransparentWindow ? 'var(--color-background)' : 'var(--navbar-background)'
-      return
-    }
-
     window.root.style.background = isMacTransparentWindow ? 'var(--navbar-background-mac)' : 'var(--navbar-background)'
-  }, [windowStyle, minappShow, theme, isLeftNavbar])
+  }, [windowStyle, theme])
 
   useEffect(() => {
     if (isLocalAi) {

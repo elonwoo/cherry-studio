@@ -13,7 +13,6 @@ export class SidebarPage extends BasePage {
   readonly knowledgeLink: Locator
   readonly filesLink: Locator
   readonly settingsLink: Locator
-  readonly appsLink: Locator
   readonly translateLink: Locator
 
   constructor(page: Page) {
@@ -24,7 +23,6 @@ export class SidebarPage extends BasePage {
     this.knowledgeLink = page.locator('a[href*="/knowledge"]')
     this.filesLink = page.locator('a[href*="/files"]')
     this.settingsLink = page.locator('a[href*="/settings"]')
-    this.appsLink = page.locator('a[href*="/apps"]')
     this.translateLink = page.locator('a[href*="/translate"]')
   }
 
@@ -75,18 +73,6 @@ export class SidebarPage extends BasePage {
       await this.navigateTo('/files')
     }
     await this.page.waitForURL('**/#/files**', { timeout: 10000 }).catch(() => {})
-  }
-
-  /**
-   * Navigate to Apps page.
-   */
-  async goToApps(): Promise<void> {
-    try {
-      await this.appsLink.click({ timeout: 5000 })
-    } catch {
-      await this.navigateTo('/apps')
-    }
-    await this.page.waitForURL('**/#/apps**', { timeout: 10000 }).catch(() => {})
   }
 
   /**

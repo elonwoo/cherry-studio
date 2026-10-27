@@ -2122,8 +2122,7 @@
     "vietnamese": "Vietnamese"
   },
   "launchpad": {
-    "apps": "Apps",
-    "minapps": "Minapps"
+    "apps": "Apps"
   },
   "lmstudio": {
     "keep_alive_time": {
@@ -2589,68 +2588,7 @@
       "rag_failed": "RAG failed, returning empty results..."
     }
   },
-  "minapp": {
-    "add_to_launchpad": "Add to Launchpad",
-    "add_to_sidebar": "Add to Sidebar",
-    "popup": {
-      "close": "Close MinApp",
-      "devtools": "Developer Tools",
-      "goBack": "Go Back",
-      "goForward": "Go Forward",
-      "minimize": "Minimize MinApp",
-      "openExternal": "Open in Browser",
-      "open_link_external_off": "Current: Open links in default window",
-      "open_link_external_on": "Current: Open links in browser",
-      "refresh": "Refresh",
-      "rightclick_copyurl": "Right-click to copy URL"
-    },
-    "remove_from_launchpad": "Remove from Launchpad",
-    "remove_from_sidebar": "Remove from Sidebar",
-    "sidebar": {
-      "close": {
-        "title": "Close"
-      },
-      "closeall": {
-        "title": "Close All"
-      },
-      "hide": {
-        "title": "Hide"
-      },
-      "remove_custom": {
-        "title": "Delete Custom App"
-      }
-    },
-    "title": "MinApp"
-  },
-  "minapps": {
-    "ant-ling": "Ant Ling",
-    "baichuan": "Baichuan",
-    "baidu-ai-search": "Baidu AI Search",
-    "chatglm": "ChatGLM",
-    "dangbei": "Dangbei",
-    "doubao": "Doubao",
-    "hailuo": "Hailuo",
-    "ima": "ima",
-    "metaso": "Metaso",
-    "minimax-agent": "Minimax Agent CN",
-    "minimax-global": "Minimax Agent",
-    "nami-ai": "Nami AI",
-    "nami-ai-search": "Nami AI Search",
-    "qwen": "Qwen",
-    "sensechat": "SenseChat",
-    "stepfun": "Stepfun",
-    "tencent-yuanbao": "Yuanbao",
-    "tiangong-ai": "Skywork",
-    "wanzhi": "Wanzhi",
-    "wenxin": "ERNIE",
-    "wps-copilot": "WPS Copilot",
-    "xiaoyi": "Xiaoyi",
-    "zhihu": "Zhihu"
-  },
   "miniwindow": {
-    "alert": {
-      "google_login": "Tip: If you see a 'browser not trusted' message when logging into Google, please first login through the Google mini app in the mini app list, then use Google login in other mini apps"
-    },
     "clipboard": {
       "empty": "Clipboard is empty"
     },
@@ -2936,107 +2874,6 @@
       "setup_hint": "Please configure at least one provider for the best experience",
       "subtitle": "Enjoy top-tier AI services with CherryIN",
       "title": "Welcome to Cherry Studio"
-    }
-  },
-  "openclaw": {
-    "checking_installation": "Checking OpenClaw installation...",
-    "description": "Use Cherry Studio providers to power OpenClaw, your personal AI assistant that works across WhatsApp, Telegram, Slack, Discord and more.",
-    "error": {
-      "select_provider_model": "Please select a provider and model first"
-    },
-    "gateway": {
-      "port": "Port",
-      "restart": "Restart",
-      "start": "Start",
-      "status": "Status",
-      "stop": "Stop",
-      "version": "Version"
-    },
-    "git_missing": {
-      "description": "OpenClaw requires Git for installing some dependencies. Please install Git first, then click Install again.",
-      "download_button": "Download Git",
-      "hint": "macOS: brew install git | Windows: Download from git-scm.com (make sure to add Git to PATH during installation)",
-      "title": "Git Required"
-    },
-    "install_progress": "Install Progress",
-    "installed_at": "OpenClaw installed at",
-    "migration": {
-      "description": "An external OpenClaw installation was detected in PATH, but Cherry Studio uses its managed OpenClaw binary. Install the managed version to continue.",
-      "install_button": "Reinstall OpenClaw",
-      "title": "OpenClaw Needs Update"
-    },
-    "model_config": {
-      "auth_token": "Auth Token",
-      "auth_token_hint": "Token for gateway authentication (required). Will be auto-generated if empty.",
-      "auth_token_placeholder": "Enter or generate a token",
-      "generate_token": "Generate",
-      "model": "Model",
-      "provider": "Provider",
-      "select_model": "Select a model",
-      "select_provider": "Select a provider",
-      "sync_hint": "Selected provider and model will be synced to OpenClaw config file",
-      "title": "Model Configuration"
-    },
-    "node_missing": {
-      "description": "OpenClaw requires Node.js 22+. Please install Node.js first, then click Install again.",
-      "download_button": "Download Node.js",
-      "hint": "macOS: brew install node | Windows: Download LTS version from nodejs.org",
-      "title": "Node.js Required"
-    },
-    "node_version_low": {
-      "description": "OpenClaw requires Node.js 22.0 or above. Your current version is v{{version}}. Please upgrade Node.js first.",
-      "hint": "nvm: nvm install 22 && nvm use 22 | mise: mise use node@22",
-      "title": "Node.js Version Too Low"
-    },
-    "not_installed": {
-      "description": "OpenClaw is not installed on your system. Please install it first to use this feature.",
-      "install_button": "Install OpenClaw",
-      "install_guide_title": "Installation Guide",
-      "macos_linux_title": "macOS / Linux",
-      "refresh": "Refresh",
-      "step2_hint": "After installation, click the Refresh button above to detect OpenClaw",
-      "step2_title": "Step 2: Verify installation",
-      "title": "OpenClaw Not Installed",
-      "windows_title": "Windows"
-    },
-    "quick_actions": {
-      "check_update": "Check for Updates",
-      "open_dashboard": "Open Dashboard",
-      "title": "Quick Actions",
-      "uninstall": "Uninstall",
-      "view_docs": "View Documentation"
-    },
-    "status": {
-      "error": "Error",
-      "running": "Running",
-      "starting": "Starting",
-      "stopped": "Stopped"
-    },
-    "tips": {
-      "permissions": "OpenClaw has elevated system permissions. Use only in trusted environments",
-      "title": "Tips",
-      "token_usage": "AI agent mode may consume more tokens. Please monitor your usage"
-    },
-    "title": "OpenClaw",
-    "uninstall_confirm": "Are you sure you want to uninstall OpenClaw? Press OK to confirm.",
-    "uninstall_progress": "Uninstall Progress",
-    "uninstalled": {
-      "description": "OpenClaw has been successfully uninstalled.",
-      "title": "Uninstall Complete"
-    },
-    "uninstalling": {
-      "description": "Please wait while OpenClaw is being uninstalled...",
-      "title": "Uninstalling OpenClaw"
-    },
-    "update": {
-      "available": "New version available: v{{latest}} (current: v{{current}})",
-      "checking": "Checking for updates...",
-      "confirm_button": "Update Now",
-      "failed": "Failed to check for updates",
-      "modal_title": "OpenClaw Update",
-      "success": "Update completed successfully!",
-      "up_to_date": "Already up to date (v{{current}})",
-      "updating": "Updating..."
     }
   },
   "ovms": {
@@ -4031,7 +3868,7 @@
       },
       "clear_cache": {
         "button": "Clear Cache",
-        "confirm": "Clearing the cache will delete application cache data, including minapp data. This action is irreversible, continue?",
+        "confirm": "Clearing the cache will delete application cache data. This action is irreversible, continue?",
         "error": "Error clearing cache",
         "success": "Cache cleared",
         "title": "Clear Cache"
@@ -4648,9 +4485,6 @@
         "knowledge": {
           "icon": "Show Knowledge icon"
         },
-        "minapp": {
-          "icon": "Show MinApp icon"
-        },
         "painting": {
           "icon": "Show Painting icon"
         },
@@ -5049,61 +4883,6 @@
       "show_message_outline": "Show message outline",
       "title": "Message Settings",
       "use_serif_font": "Use serif font"
-    },
-    "miniapps": {
-      "cache_change_notice": "Changes will take effect when the number of open mini apps reaches the set value",
-      "cache_description": "Set the maximum number of active mini apps to keep in memory",
-      "cache_settings": "Cache Settings",
-      "cache_title": "Mini App Cache Limit",
-      "custom": {
-        "conflicting_ids": "Conflicting IDs with default apps: {{ids}}",
-        "duplicate_ids": "Duplicate IDs found: {{ids}}",
-        "edit_description": "Edit custom mini app configuration here. Each app should include id, name, url, and logo fields.",
-        "edit_title": "Edit Custom Mini App",
-        "id": "ID",
-        "id_error": "ID is required.",
-        "id_placeholder": "Enter ID",
-        "logo": "Logo",
-        "logo_file": "Upload Logo File",
-        "logo_upload_button": "Upload",
-        "logo_upload_error": "Failed to upload logo.",
-        "logo_upload_label": "Upload Logo",
-        "logo_upload_success": "Logo uploaded successfully.",
-        "logo_url": "Logo URL",
-        "logo_url_label": "Logo URL",
-        "logo_url_placeholder": "Enter logo URL",
-        "name": "Name",
-        "name_error": "Name is required.",
-        "name_placeholder": "Enter name",
-        "placeholder": "Enter custom mini app configuration (JSON format)",
-        "remove_error": "Failed to remove custom mini app.",
-        "remove_success": "Custom mini app removed successfully.",
-        "save": "Save",
-        "save_error": "Failed to save custom mini app.",
-        "save_success": "Custom mini app saved successfully.",
-        "title": "Custom",
-        "url": "URL",
-        "url_error": "URL is required.",
-        "url_placeholder": "Enter URL"
-      },
-      "disabled": "Hidden Mini Apps",
-      "display_title": "Mini App Display Settings",
-      "empty": "Drag mini apps from the left to hide them",
-      "open_link_external": {
-        "title": "Open new-window links in browser"
-      },
-      "region": {
-        "auto": "Auto detect",
-        "cn": "China",
-        "description": "Filtering unsupported mini-programs based on the region",
-        "global": "Global",
-        "title": "Mini Program filter"
-      },
-      "reset_tooltip": "Reset to default",
-      "sidebar_description": "Show active mini apps in the sidebar",
-      "sidebar_title": "Sidebar Active Mini Apps Display",
-      "title": "Mini Apps Settings",
-      "visible": "Visible Mini Apps"
     },
     "model": "Default Model",
     "models": {
@@ -5875,7 +5654,6 @@
     }
   },
   "title": {
-    "apps": "Apps",
     "code": "Code",
     "files": "Files",
     "home": "Home",
@@ -5884,7 +5662,6 @@
     "mcp-servers": "MCP Servers",
     "memories": "Memories",
     "notes": "Notes",
-    "openclaw": "OpenClaw",
     "paintings": "Paintings",
     "settings": "Settings",
     "store": "Assistant Library",

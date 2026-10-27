@@ -2,7 +2,6 @@ import type { LanguageModelV3Source } from '@ai-sdk/provider'
 import type { WebSearchResultBlock } from '@anthropic-ai/sdk/resources'
 import type OpenAI from '@cherrystudio/openai'
 import type { GenerateImagesConfig, GroundingMetadata, PersonGeneration } from '@google/genai'
-import type { CSSProperties } from 'react'
 
 export * from './file'
 export * from './note'
@@ -516,28 +515,6 @@ export interface PaintingsState {
   ppio_edit: PpioPainting[]
 }
 
-export type MinAppType = {
-  id: string
-  name: string
-  /** i18n key for translatable names */
-  nameKey?: string
-  /** Regions where this app is available. If includes 'Global', shown to international users. */
-  supportedRegions?: MinAppRegion[]
-  logo?: string
-  url: string
-  // FIXME: It should be `bordered`
-  bodered?: boolean
-  background?: string
-  style?: CSSProperties
-  addTime?: string
-  type?: 'Custom' | 'Default' // Added the 'type' property
-}
-
-/** Region types for miniapps visibility */
-export type MinAppRegion = 'CN' | 'Global'
-
-export type MinAppRegionFilter = 'auto' | MinAppRegion
-
 export enum ThemeMode {
   light = 'light',
   dark = 'dark',
@@ -690,12 +667,10 @@ export type SidebarIcon =
   | 'store'
   | 'paintings'
   | 'translate'
-  | 'minapp'
   | 'knowledge'
   | 'files'
   | 'code_tools'
   | 'notes'
-  | 'openclaw'
 
 export type ExternalToolResult = {
   mcpTools?: MCPTool[]

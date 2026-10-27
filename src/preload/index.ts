@@ -12,9 +12,7 @@ import type {
   LanFileCompleteMessage,
   LanHandshakeAckMessage,
   LocalTransferConnectPayload,
-  LocalTransferState,
-  OperationResult,
-  WebviewKeyEvent
+  LocalTransferState
 } from '@shared/config/types'
 import type { MCPServerLogEntry } from '@shared/config/types'
 import type { ExternalAppInfo } from '@shared/externalApp/types'
@@ -34,7 +32,6 @@ import type {
   MemoryConfig,
   MemoryListOptions,
   MemorySearchOptions,
-  Model,
   OcrProvider,
   OcrResult,
   Provider,
@@ -62,21 +59,6 @@ import type {
   SkillResult,
   SkillToggleOptions
 } from '../renderer/src/types/skill'
-
-// OpenClaw types
-type OpenClawGatewayStatus = 'stopped' | 'starting' | 'running' | 'error'
-
-interface OpenClawHealthInfo {
-  status: 'healthy' | 'unhealthy'
-  gatewayPort: number
-}
-
-interface OpenClawChannelInfo {
-  id: string
-  name: string
-  type: string
-  status: 'connected' | 'disconnected' | 'error'
-}
 
 type DirectoryListOptions = {
   recursive?: boolean
@@ -497,23 +479,6 @@ const api = {
     closeSearchWindow: (uid: string) => ipcRenderer.invoke(IpcChannel.SearchWindow_Close, uid),
     openUrlInSearchWindow: (uid: string, url: string) => ipcRenderer.invoke(IpcChannel.SearchWindow_OpenUrl, uid, url)
   },
-  webview: {
-    setOpenLinkExternal: (webviewId: number, isExternal: boolean) =>
-      ipcRenderer.invoke(IpcChannel.Webview_SetOpenLinkExternal, webviewId, isExternal),
-    setSpellCheckEnabled: (webviewId: number, isEnable: boolean) =>
-      ipcRenderer.invoke(IpcChannel.Webview_SetSpellCheckEnabled, webviewId, isEnable),
-    printToPDF: (webviewId: number) => ipcRenderer.invoke(IpcChannel.Webview_PrintToPDF, webviewId),
-    saveAsHTML: (webviewId: number) => ipcRenderer.invoke(IpcChannel.Webview_SaveAsHTML, webviewId),
-    onFindShortcut: (callback: (payload: WebviewKeyEvent) => void) => {
-      const listener = (_event: Electron.IpcRendererEvent, payload: WebviewKeyEvent) => {
-        callback(payload)
-      }
-      ipcRenderer.on(IpcChannel.Webview_SearchHotkey, listener)
-      return () => {
-        ipcRenderer.off(IpcChannel.Webview_SearchHotkey, listener)
-      }
-    }
-  },
   storeSync: {
     subscribe: () => ipcRenderer.invoke(IpcChannel.StoreSync_Subscribe),
     unsubscribe: () => ipcRenderer.invoke(IpcChannel.StoreSync_Unsubscribe),
@@ -809,29 +774,6 @@ const api = {
     sendFile: (filePath: string): Promise<LanFileCompleteMessage> =>
       ipcRenderer.invoke(IpcChannel.LocalTransfer_SendFile, { filePath }),
     cancelTransfer: (): Promise<void> => ipcRenderer.invoke(IpcChannel.LocalTransfer_CancelTransfer)
-  },
-  openclaw: {
-    checkInstalled: (): Promise<{ installed: boolean; path: string | null; needsMigration: boolean }> =>
-      ipcRenderer.invoke(IpcChannel.OpenClaw_CheckInstalled),
-    install: (): Promise<OperationResult> => ipcRenderer.invoke(IpcChannel.OpenClaw_Install),
-    uninstall: (): Promise<OperationResult> => ipcRenderer.invoke(IpcChannel.OpenClaw_Uninstall),
-    startGateway: (port?: number): Promise<OperationResult> =>
-      ipcRenderer.invoke(IpcChannel.OpenClaw_StartGateway, port),
-    stopGateway: (): Promise<OperationResult> => ipcRenderer.invoke(IpcChannel.OpenClaw_StopGateway),
-    getStatus: (): Promise<{ status: OpenClawGatewayStatus; port: number }> =>
-      ipcRenderer.invoke(IpcChannel.OpenClaw_GetStatus),
-    checkHealth: (): Promise<OpenClawHealthInfo> => ipcRenderer.invoke(IpcChannel.OpenClaw_CheckHealth),
-    getDashboardUrl: (): Promise<string> => ipcRenderer.invoke(IpcChannel.OpenClaw_GetDashboardUrl),
-    syncConfig: (provider: Provider, primaryModel: Model): Promise<OperationResult> =>
-      ipcRenderer.invoke(IpcChannel.OpenClaw_SyncConfig, provider, primaryModel),
-    getChannels: (): Promise<OpenClawChannelInfo[]> => ipcRenderer.invoke(IpcChannel.OpenClaw_GetChannels),
-    checkUpdate: (): Promise<{
-      hasUpdate: boolean
-      currentVersion: string | null
-      latestVersion: string | null
-      message?: string
-    }> => ipcRenderer.invoke(IpcChannel.OpenClaw_CheckUpdate),
-    performUpdate: (): Promise<OperationResult> => ipcRenderer.invoke(IpcChannel.OpenClaw_PerformUpdate)
   },
   analytics: {
     trackTokenUsage: (data: TokenUsageData) => ipcRenderer.invoke(IpcChannel.Analytics_TrackTokenUsage, data)

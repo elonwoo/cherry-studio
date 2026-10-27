@@ -2121,8 +2121,7 @@
     "vietnamese": "Вьетнамский"
   },
   "launchpad": {
-    "apps": "Приложения",
-    "minapps": "Приложения"
+    "apps": "Приложения"
   },
   "lmstudio": {
     "keep_alive_time": {
@@ -2588,68 +2587,7 @@
       "rag_failed": "RAG не удалось, возвращается пустой результат..."
     }
   },
-  "minapp": {
-    "add_to_launchpad": "Добавить в стартовый экран",
-    "add_to_sidebar": "Добавить в боковую панель",
-    "popup": {
-      "close": "Закрыть встроенное приложение",
-      "devtools": "Инструменты разработчика",
-      "goBack": "Назад",
-      "goForward": "Вперед",
-      "minimize": "Свернуть встроенное приложение",
-      "openExternal": "Открыть в браузере",
-      "open_link_external_off": "Текущий: Открыть ссылки в окне по умолчанию",
-      "open_link_external_on": "Текущий: Открыть ссылки в браузере",
-      "refresh": "Обновить",
-      "rightclick_copyurl": "ПКМ → Копировать URL"
-    },
-    "remove_from_launchpad": "Удалить из стартового экрана",
-    "remove_from_sidebar": "Удалить из боковой панели",
-    "sidebar": {
-      "close": {
-        "title": "Закрыть"
-      },
-      "closeall": {
-        "title": "Закрыть все"
-      },
-      "hide": {
-        "title": "Скрыть"
-      },
-      "remove_custom": {
-        "title": "Удалить пользовательское приложение"
-      }
-    },
-    "title": "Встроенные приложения"
-  },
-  "minapps": {
-    "ant-ling": "Ant Ling",
-    "baichuan": "Байчжан",
-    "baidu-ai-search": "Baidu AI Search",
-    "chatglm": "ChatGLM",
-    "dangbei": "Dangbei",
-    "doubao": "Doubao",
-    "hailuo": "Hailuo",
-    "ima": "ima",
-    "metaso": "Metaso",
-    "minimax-agent": "MiniMax Agent CN",
-    "minimax-global": "MiniMax Agent",
-    "nami-ai": "Nami AI",
-    "nami-ai-search": "Nami AI Search",
-    "qwen": "Qwen",
-    "sensechat": "SenseChat",
-    "stepfun": "Stepfun",
-    "tencent-yuanbao": "Tencent Yuanbao",
-    "tiangong-ai": "Skywork",
-    "wanzhi": "Wanzhi",
-    "wenxin": "ERNIE",
-    "wps-copilot": "WPS Copilot",
-    "xiaoyi": "Xiaoyi",
-    "zhihu": "Zhihu"
-  },
   "miniwindow": {
-    "alert": {
-      "google_login": "Совет: Если при входе в Google вы видите сообщение 'ненадежный браузер', сначала войдите в аккаунт через мини-приложение Google в списке мини-приложений, а затем используйте вход через Google в других мини-приложениях"
-    },
     "clipboard": {
       "empty": "Буфер обмена пуст"
     },
@@ -2935,107 +2873,6 @@
       "setup_hint": "Пожалуйста, настройте хотя бы одного поставщика для лучшего опыта",
       "subtitle": "Наслаждайтесь услугами ИИ высшего уровня с CherryIN",
       "title": "Добро пожаловать в Cherry Studio"
-    }
-  },
-  "openclaw": {
-    "checking_installation": "Проверка установки OpenClaw...",
-    "description": "Интегрируйте провайдеров Cherry Studio с шлюзом OpenClaw, чтобы включить агентов кодирования ИИ, таких как Claude Code, Qwen-Coder и другие.",
-    "error": {
-      "select_provider_model": "Пожалуйста, сначала выберите поставщика и модель"
-    },
-    "gateway": {
-      "port": "Порт",
-      "restart": "Перезапуск",
-      "start": "Запустить шлюз",
-      "status": "Статус",
-      "stop": "Остановиться",
-      "version": "Версия"
-    },
-    "git_missing": {
-      "description": "OpenClaw требует Git для установки некоторых зависимостей. Пожалуйста, сначала установите Git, затем нажмите «Установить» снова.",
-      "download_button": "Скачать Git",
-      "hint": "macOS: brew install git | Windows: Скачать с git-scm.com (убедитесь, что добавили Git в PATH при установке)",
-      "title": "Требуется Git"
-    },
-    "install_progress": "Прогресс установки",
-    "installed_at": "OpenClaw установлен в",
-    "migration": {
-      "description": "Обнаружена устаревшая версия OpenClaw, установленная через npm. Пожалуйста, переустановите её, чтобы получить последнюю официальную версию.",
-      "install_button": "Переустановите OpenClaw",
-      "title": "OpenClaw требует обновления"
-    },
-    "model_config": {
-      "auth_token": "Токен аутентификации",
-      "auth_token_hint": "Токен для аутентификации шлюза. Оставьте пустым, чтобы отключить аутентификацию.",
-      "auth_token_placeholder": "Введите или сгенерируйте токен",
-      "generate_token": "Сгенерировать",
-      "model": "Модель",
-      "provider": "Поставщик",
-      "select_model": "Выберите модель",
-      "select_provider": "Выберите поставщика",
-      "sync_hint": "Выбранный поставщик и модель будут синхронизированы с конфигурационным файлом OpenClaw",
-      "title": "Конфигурация модели"
-    },
-    "node_missing": {
-      "description": "OpenClaw требует Node.js/npm. Пожалуйста, сначала установите Node.js, затем перезапустите Cherry Studio.",
-      "download_button": "Скачать Node.js",
-      "hint": "macOS: brew install node | Windows: Скачайте LTS-версию с nodejs.org",
-      "title": "Требуется Node.js"
-    },
-    "node_version_low": {
-      "description": "OpenClaw требует Node.js версии 22.0 или выше. Ваша текущая версия — v{{version}}. Пожалуйста, сначала обновите Node.js.",
-      "hint": "nvm: nvm install 22 && nvm use 22 | mise: mise use node@22",
-      "title": "Слишком низкая версия Node.js"
-    },
-    "not_installed": {
-      "description": "OpenClaw не установлен в вашей системе. Пожалуйста, установите его сначала, чтобы использовать эту функцию.",
-      "install_button": "Установить OpenClaw",
-      "install_guide_title": "Руководство по установке",
-      "macos_linux_title": "macOS / Linux",
-      "refresh": "Обновить",
-      "step2_hint": "После установки нажмите кнопку «Обновить» выше, чтобы обнаружить OpenClaw",
-      "step2_title": "Шаг 2: Проверка установки",
-      "title": "OpenClaw не установлен",
-      "windows_title": "Windows"
-    },
-    "quick_actions": {
-      "check_update": "Проверить обновления",
-      "open_dashboard": "Открыть панель управления",
-      "title": "Быстрые действия",
-      "uninstall": "Удалить",
-      "view_docs": "Просмотреть документацию"
-    },
-    "status": {
-      "error": "Ошибка",
-      "running": "Бег",
-      "starting": "Начало",
-      "stopped": "Остановлено"
-    },
-    "tips": {
-      "permissions": "OpenClaw имеет повышенные системные разрешения. Используйте только в доверенных средах",
-      "title": "Советы",
-      "token_usage": "Режим ИИ-агента может потреблять больше токенов. Пожалуйста, следите за использованием"
-    },
-    "title": "OpenClaw",
-    "uninstall_confirm": "Вы уверены, что хотите удалить OpenClaw? Нажмите OK для подтверждения.",
-    "uninstall_progress": "Прогресс удаления",
-    "uninstalled": {
-      "description": "OpenClaw был успешно удалён.",
-      "title": "Удаление завершено"
-    },
-    "uninstalling": {
-      "description": "Пожалуйста, подождите, пока OpenClaw удаляется...",
-      "title": "Удаление OpenClaw"
-    },
-    "update": {
-      "available": "Новая версия доступна: v{{latest}} (текущая: v{{current}})",
-      "checking": "Проверка обновлений...",
-      "confirm_button": "Обновить сейчас",
-      "failed": "Не удалось проверить наличие обновлений",
-      "modal_title": "Обновление OpenClaw",
-      "success": "Обновление завершено успешно!",
-      "up_to_date": "Уже актуально (v{{current}})",
-      "updating": "Обновление..."
     }
   },
   "ovms": {
@@ -4647,9 +4484,6 @@
         "knowledge": {
           "icon": "Показывать иконку знаний"
         },
-        "minapp": {
-          "icon": "Показывать иконку мини-приложения"
-        },
         "painting": {
           "icon": "Показывать иконку рисования"
         },
@@ -5048,61 +4882,6 @@
       "show_message_outline": "Показать наброски сообщения",
       "title": "Настройки сообщений",
       "use_serif_font": "Использовать serif шрифт"
-    },
-    "miniapps": {
-      "cache_change_notice": "Изменения вступят в силу, когда количество открытых мини-приложений достигнет установленного значения",
-      "cache_description": "Установить максимальное количество активных мини-приложений в памяти",
-      "cache_settings": "Настройки кэша",
-      "cache_title": "Количество кэшируемых мини-приложений",
-      "custom": {
-        "conflicting_ids": "Конфликт ID с приложениями по умолчанию: {{ids}}",
-        "duplicate_ids": "Найдены повторяющиеся ID: {{ids}}",
-        "edit_description": "Здесь вы можете редактировать конфигурации пользовательских мини-приложений. Каждое приложение должно содержать поля id, name, url и logo.",
-        "edit_title": "Редактировать пользовательское мини-приложение",
-        "id": "ID",
-        "id_error": "ID обязателен.",
-        "id_placeholder": "Введите ID",
-        "logo": "Логотип",
-        "logo_file": "Загрузить файл логотипа",
-        "logo_upload_button": "Загрузить",
-        "logo_upload_error": "Не удалось загрузить логотип.",
-        "logo_upload_label": "Загрузить логотип",
-        "logo_upload_success": "Логотип успешно загружен.",
-        "logo_url": "URL логотипа",
-        "logo_url_label": "URL логотипа",
-        "logo_url_placeholder": "Введите URL логотипа",
-        "name": "Имя",
-        "name_error": "Имя обязательно.",
-        "name_placeholder": "Введите имя",
-        "placeholder": "Введите конфигурацию мини-приложения (формат JSON)",
-        "remove_error": "Не удалось удалить мини-приложение.",
-        "remove_success": "Мини-приложение успешно удалено.",
-        "save": "Сохранить",
-        "save_error": "Не удалось сохранить пользовательское мини-приложение.",
-        "save_success": "Пользовательское мини-приложение успешно сохранено.",
-        "title": "Пользовательские мини-приложения",
-        "url": "URL",
-        "url_error": "URL обязателен.",
-        "url_placeholder": "Введите URL"
-      },
-      "disabled": "Скрытые мини-приложения",
-      "display_title": "Настройки отображения мини-приложений",
-      "empty": "Перетащите мини-приложения слева, чтобы скрыть их",
-      "open_link_external": {
-        "title": "Открывать новые окна в браузере"
-      },
-      "region": {
-        "auto": "Автоматическое определение",
-        "cn": "Китай",
-        "description": "Фильтрация неподдерживаемых мини-программ в зависимости от региона",
-        "global": "Глобально",
-        "title": "Фильтрация по регионам в мини-программе"
-      },
-      "reset_tooltip": "Сбросить до значения по умолчанию",
-      "sidebar_description": "Настройка отображения активных мини-приложений в боковой панели",
-      "sidebar_title": "Отображение активных мини-приложений в боковой панели",
-      "title": "Настройки мини-приложений",
-      "visible": "Отображаемые мини-приложения"
     },
     "model": "Модель по умолчанию",
     "models": {
@@ -5874,7 +5653,6 @@
     }
   },
   "title": {
-    "apps": "Приложения",
     "code": "Code",
     "files": "Файлы",
     "home": "Главная",
@@ -5883,7 +5661,6 @@
     "mcp-servers": "MCP серверы",
     "memories": "Память",
     "notes": "заметки",
-    "openclaw": "OpenClaw",
     "paintings": "Рисунки",
     "settings": "Настройки",
     "store": "Библиотека помощников",

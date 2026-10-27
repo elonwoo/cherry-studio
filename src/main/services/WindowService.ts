@@ -112,7 +112,7 @@ export class WindowService {
       this.miniWindow = this.createMiniWindow(true)
     }
 
-    //init the MinApp webviews' useragent
+    //init the webview session useragent
     initSessionUserAgent()
 
     return this.mainWindow
@@ -172,7 +172,7 @@ export class WindowService {
 
   private setupContextMenu(mainWindow: BrowserWindow) {
     contextMenu.contextMenu(mainWindow.webContents)
-    // setup context menu for all webviews like miniapp
+    // setup context menu for created web contents
     app.on('web-contents-created', (_, webContents) => {
       contextMenu.contextMenu(webContents)
     })

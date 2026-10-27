@@ -10,12 +10,6 @@ export interface CodeToolsRunResult {
   command: string
 }
 
-// =============================================================================
-// OpenClaw IPC Types
-// =============================================================================
-
-export type OperationResult = { success: true } | { success: false; message: string }
-
 export type LoaderReturn = {
   entriesAdded: number
   uniqueId: string
@@ -61,15 +55,6 @@ export type ChannelStatusEvent = {
   channelId: string
   connected: boolean
   error?: string
-}
-
-export type WebviewKeyEvent = {
-  webviewId: number
-  key: string
-  control: boolean
-  meta: boolean
-  shift: boolean
-  alt: boolean
 }
 
 export interface WebSocketStatusResponse {

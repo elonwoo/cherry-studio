@@ -2121,8 +2121,7 @@
     "vietnamese": "ベトナム語"
   },
   "launchpad": {
-    "apps": "アプリ",
-    "minapps": "アプリ"
+    "apps": "アプリ"
   },
   "lmstudio": {
     "keep_alive_time": {
@@ -2588,68 +2587,7 @@
       "rag_failed": "RAGが失敗しました。空の結果を返します..."
     }
   },
-  "minapp": {
-    "add_to_launchpad": "スタート画面に追加",
-    "add_to_sidebar": "サイドバーに追加",
-    "popup": {
-      "close": "ミニアプリを閉じる",
-      "devtools": "開発者ツール",
-      "goBack": "戻る",
-      "goForward": "進む",
-      "minimize": "ミニアプリを最小化",
-      "openExternal": "ブラウザで開く",
-      "open_link_external_off": "現在：デフォルトのウィンドウで開く",
-      "open_link_external_on": "現在：ブラウザで開く",
-      "refresh": "更新",
-      "rightclick_copyurl": "右クリックでURLをコピー"
-    },
-    "remove_from_launchpad": "スタート画面から削除",
-    "remove_from_sidebar": "サイドバーから削除",
-    "sidebar": {
-      "close": {
-        "title": "閉じる"
-      },
-      "closeall": {
-        "title": "すべて閉じる"
-      },
-      "hide": {
-        "title": "非表示"
-      },
-      "remove_custom": {
-        "title": "カスタムアプリを削除"
-      }
-    },
-    "title": "ミニアプリ"
-  },
-  "minapps": {
-    "ant-ling": "Ant Ling",
-    "baichuan": "百小應",
-    "baidu-ai-search": "百度AI検索",
-    "chatglm": "ChatGLM",
-    "dangbei": "当贝AI",
-    "doubao": "豆包",
-    "hailuo": "Hailuo",
-    "ima": "ima",
-    "metaso": "Metaso",
-    "minimax-agent": "MiniMax Agent CN",
-    "minimax-global": "MiniMax Agent",
-    "nami-ai": "Nami AI",
-    "nami-ai-search": "Nami AI Search",
-    "qwen": "通義千問",
-    "sensechat": "SenseChat",
-    "stepfun": "Stepfun",
-    "tencent-yuanbao": "騰訊元宝",
-    "tiangong-ai": "Skywork",
-    "wanzhi": "万知",
-    "wenxin": "ERNIE",
-    "wps-copilot": "WPS Copilot",
-    "xiaoyi": "小藝",
-    "zhihu": "知乎直答"
-  },
   "miniwindow": {
-    "alert": {
-      "google_login": "ヒント：Googleログイン時に「信頼できないブラウザ」というメッセージが表示された場合は、先にミニアプリリストのGoogleミニアプリでアカウントログインを完了してから、他のミニアプリでGoogleログインを使用してください"
-    },
     "clipboard": {
       "empty": "クリップボードが空です"
     },
@@ -2935,107 +2873,6 @@
       "setup_hint": "ベストな体験のために、少なくとも1つのプロバイダーを設定してください",
       "subtitle": "CherryINでトップクラスのAIサービスをお楽しみください",
       "title": "Cherry Studioへようこそ"
-    }
-  },
-  "openclaw": {
-    "checking_installation": "OpenClawのインストールを確認しています...",
-    "description": "Cherry Studio プロバイダーを OpenClaw Gateway と統合し、Claude Code、Qwen-Coder などの AI コーディングエージェントを有効にします。",
-    "error": {
-      "select_provider_model": "プロバイダーとモデルをまず選択してください"
-    },
-    "gateway": {
-      "port": "ポート",
-      "restart": "再起動",
-      "start": "スタートゲートウェイ",
-      "status": "ステータス",
-      "stop": "止まれ",
-      "version": "バージョン"
-    },
-    "git_missing": {
-      "description": "OpenClawは一部の依存関係をインストールするためにGitが必要です。まずGitをインストールしてから、もう一度「インストール」をクリックしてください。",
-      "download_button": "Gitをダウンロード",
-      "hint": "macOS: brew install git | Windows: git-scm.com からダウンロード（インストール時に Git を PATH に追加するよう設定してください）",
-      "title": "Gitが必要"
-    },
-    "install_progress": "インストール進行状況",
-    "installed_at": "OpenClawのインストール先",
-    "migration": {
-      "description": "npm経由でインストールされた古いバージョンのOpenClawが検出されました。最新の公式バージョンを入手するために、再インストールをお願いします。",
-      "install_button": "OpenClawを再インストール",
-      "title": "OpenClawはアップデートが必要"
-    },
-    "model_config": {
-      "auth_token": "認証トークン",
-      "auth_token_hint": "ゲートウェイ認証用のトークン。認証を無効にする場合は空のままにしてください。",
-      "auth_token_placeholder": "トークンを入力または生成してください",
-      "generate_token": "生成",
-      "model": "モデル",
-      "provider": "プロバイダー",
-      "select_model": "モデルを選択",
-      "select_provider": "プロバイダーを選択",
-      "sync_hint": "選択されたプロバイダーとモデルはOpenClaw設定ファイルに同期されます",
-      "title": "モデル設定"
-    },
-    "node_missing": {
-      "description": "OpenClawにはNode.js/npmが必要です。まずNode.jsをインストールしてから、Cherry Studioを再起動してください。",
-      "download_button": "Node.jsをダウンロード",
-      "hint": "macOS: brew install node | Windows: nodejs.org から LTS 版をダウンロード",
-      "title": "Node.jsが必要"
-    },
-    "node_version_low": {
-      "description": "OpenClawにはNode.js 22.0以上が必要です。現在のバージョンはv{{version}}です。まずNode.jsをアップグレードしてください。",
-      "hint": "nvm: nvm install 22 && nvm use 22 | mise: mise use node@22",
-      "title": "Node.jsのバージョンが低すぎます"
-    },
-    "not_installed": {
-      "description": "お使いのシステムにはOpenClawがインストールされていません。この機能を使用するには、まずOpenClawをインストールしてください。",
-      "install_button": "OpenClawをインストール",
-      "install_guide_title": "インストールガイド",
-      "macos_linux_title": "macOS / Linux",
-      "refresh": "更新",
-      "step2_hint": "インストール後、上の「更新」ボタンをクリックしてOpenClawを検出してください。",
-      "step2_title": "ステップ2: インストールを確認する",
-      "title": "OpenClaw がインストールされていません",
-      "windows_title": "Windows"
-    },
-    "quick_actions": {
-      "check_update": "アップデートを確認",
-      "open_dashboard": "ダッシュボードを開く",
-      "title": "クイックアクション",
-      "uninstall": "アンインストール",
-      "view_docs": "ドキュメントを表示"
-    },
-    "status": {
-      "error": "エラー",
-      "running": "走っている",
-      "starting": "開始",
-      "stopped": "停止しました"
-    },
-    "tips": {
-      "permissions": "OpenClawは高いシステム権限を持っています。信頼できる環境でのみ使用してください",
-      "title": "ヒント",
-      "token_usage": "AIエージェントモードはより多くのトークンを消費する可能性があります。使用量にご注意ください"
-    },
-    "title": "オープンクロー",
-    "uninstall_confirm": "OpenClawをアンインストールしてもよろしいですか？確認するにはOKを押してください。",
-    "uninstall_progress": "アンインストールの進行状況",
-    "uninstalled": {
-      "description": "OpenClawは正常にアンインストールされました。",
-      "title": "アンインストール完了"
-    },
-    "uninstalling": {
-      "description": "OpenClawがアンインストールされるまでお待ちください...",
-      "title": "OpenClawのアンインストール"
-    },
-    "update": {
-      "available": "新しいバージョンが利用可能です: v{{latest}}（現在: v{{current}}）",
-      "checking": "アップデートを確認中...",
-      "confirm_button": "今すぐアップデート",
-      "failed": "アップデートの確認に失敗しました",
-      "modal_title": "OpenClawアップデート",
-      "success": "アップデートが正常に完了しました！",
-      "up_to_date": "すでに最新です (v{{current}})",
-      "updating": "更新中..."
     }
   },
   "ovms": {
@@ -4030,7 +3867,7 @@
       },
       "clear_cache": {
         "button": "キャッシュをクリア",
-        "confirm": "キャッシュをクリアすると、アプリのキャッシュデータ（ミニアプリデータを含む）が削除されます。この操作は元に戻せません。続行しますか？",
+        "confirm": "キャッシュをクリアすると、アプリのキャッシュデータが削除されます。この操作は元に戻せません。続行しますか？",
         "error": "キャッシュのクリアに失敗しました",
         "success": "キャッシュがクリアされました",
         "title": "キャッシュをクリア"
@@ -4647,9 +4484,6 @@
         "knowledge": {
           "icon": "ナレッジのアイコンを表示"
         },
-        "minapp": {
-          "icon": "ミニアプリのアイコンを表示"
-        },
         "painting": {
           "icon": "絵画のアイコンを表示"
         },
@@ -5048,61 +4882,6 @@
       "show_message_outline": "メッセージの概要を表示します",
       "title": "メッセージ設定",
       "use_serif_font": "セリフフォントを使用"
-    },
-    "miniapps": {
-      "cache_change_notice": "設定値に達するまでミニアプリの開閉が行われた後に変更が適用されます",
-      "cache_description": "メモリに保持するアクティブなミニアプリの最大数を設定します",
-      "cache_settings": "キャッシュ設定",
-      "cache_title": "ミニアプリのキャッシュ数",
-      "custom": {
-        "conflicting_ids": "デフォルトアプリとIDが競合しています: {{ids}}",
-        "duplicate_ids": "重複するIDが見つかりました: {{ids}}",
-        "edit_description": "ここでカスタムミニアプリの設定を編集します。各アプリにはid、name、url、logoフィールドが必要です。",
-        "edit_title": "カスタムミニアプリの編集",
-        "id": "ID",
-        "id_error": "IDは必須項目です。",
-        "id_placeholder": "IDを入力してください",
-        "logo": "ロゴ",
-        "logo_file": "ロゴファイルをアップロード",
-        "logo_upload_button": "アップロード",
-        "logo_upload_error": "ロゴのアップロードに失敗しました。",
-        "logo_upload_label": "ロゴをアップロード",
-        "logo_upload_success": "ロゴのアップロードに成功しました。",
-        "logo_url": "ロゴURL",
-        "logo_url_label": "ロゴURL",
-        "logo_url_placeholder": "ロゴURLを入力してください",
-        "name": "名前",
-        "name_error": "名前は必須項目です。",
-        "name_placeholder": "名前を入力してください",
-        "placeholder": "カスタムミニアプリの設定を入力してください（JSON形式）",
-        "remove_error": "カスタムミニアプリの削除に失敗しました。",
-        "remove_success": "カスタムミニアプリの削除に成功しました。",
-        "save": "保存",
-        "save_error": "カスタムミニアプリの保存に失敗しました。",
-        "save_success": "カスタムミニアプリの保存に成功しました。",
-        "title": "カスタムミニアプリ",
-        "url": "URL",
-        "url_error": "URLは必須項目です。",
-        "url_placeholder": "URLを入力してください"
-      },
-      "disabled": "非表示のミニアプリ",
-      "display_title": "ミニアプリ表示設定",
-      "empty": "非表示にするミニアプリを左側からここにドラッグしてください",
-      "open_link_external": {
-        "title": "新視窗のリンクをブラウザで開く"
-      },
-      "region": {
-        "auto": "自動検出",
-        "cn": "中国",
-        "description": "地域に基づいてサポートされていないミニアプリをフィルタリングします",
-        "global": "世界中",
-        "title": "ミニアプリ地域絞り込み"
-      },
-      "reset_tooltip": "デフォルト値にリセット",
-      "sidebar_description": "サイドバーにアクティブなミニアプリを表示するかどうかを設定します",
-      "sidebar_title": "サイドバーのアクティブなミニアプリ表示",
-      "title": "ミニアプリ設定",
-      "visible": "表示するミニアプリ"
     },
     "model": "デフォルトモデル",
     "models": {
@@ -5874,7 +5653,6 @@
     }
   },
   "title": {
-    "apps": "アプリ",
     "code": "Code",
     "files": "ファイル",
     "home": "ホーム",
@@ -5883,7 +5661,6 @@
     "mcp-servers": "MCP サーバー",
     "memories": "メモリ",
     "notes": "ノート",
-    "openclaw": "オープンクロー",
     "paintings": "ペインティング",
     "settings": "設定",
     "store": "アシスタントライブラリ",

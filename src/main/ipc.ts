@@ -64,7 +64,6 @@ import NotificationService from './services/NotificationService'
 import * as NutstoreService from './services/NutstoreService'
 import ObsidianVaultService from './services/ObsidianVaultService'
 import { ocrService } from './services/ocr/OcrService'
-import { openClawService } from './services/OpenClawService'
 import { isOvmsSupported } from './services/OvmsManager'
 import powerMonitorService from './services/PowerMonitorService'
 import { proxyManager } from './services/ProxyManager'
@@ -90,7 +89,6 @@ import {
 import storeSyncService from './services/StoreSyncService'
 import { themeService } from './services/ThemeService'
 import VertexAIService from './services/VertexAIService'
-import { setOpenLinkExternal } from './services/WebviewService'
 import { windowService } from './services/WindowService'
 import { calculateDirectorySize, getDataPath, getResourcePath } from './utils'
 import { decrypt, encrypt } from './utils/aes'
@@ -902,27 +900,6 @@ export async function registerIpc(mainWindow: BrowserWindow, app: Electron.App) 
     return await searchService.openUrlInSearchWindow(uid, url)
   })
 
-  // webview
-  ipcMain.handle(IpcChannel.Webview_SetOpenLinkExternal, (_, webviewId: number, isExternal: boolean) =>
-    setOpenLinkExternal(webviewId, isExternal)
-  )
-  ipcMain.handle(IpcChannel.Webview_SetSpellCheckEnabled, (_, webviewId: number, isEnable: boolean) => {
-    const webview = webContents.fromId(webviewId)
-    if (!webview) return
-    webview.session.setSpellCheckerEnabled(isEnable)
-  })
-
-  // Webview print and save handlers
-  ipcMain.handle(IpcChannel.Webview_PrintToPDF, async (_, webviewId: number) => {
-    const { printWebviewToPDF } = await import('./services/WebviewService')
-    return await printWebviewToPDF(webviewId)
-  })
-
-  ipcMain.handle(IpcChannel.Webview_SaveAsHTML, async (_, webviewId: number) => {
-    const { saveWebviewAsHTML } = await import('./services/WebviewService')
-    return await saveWebviewAsHTML(webviewId)
-  })
-
   // store sync
   storeSyncService.registerIpcHandler()
 
@@ -1166,20 +1143,6 @@ export async function registerIpc(mainWindow: BrowserWindow, app: Electron.App) 
   ipcMain.handle(IpcChannel.APP_CrashRenderProcess, () => {
     mainWindow.webContents.forcefullyCrashRenderer()
   })
-
-  // OpenClaw
-  ipcMain.handle(IpcChannel.OpenClaw_CheckInstalled, openClawService.checkInstalled)
-  ipcMain.handle(IpcChannel.OpenClaw_Install, openClawService.install)
-  ipcMain.handle(IpcChannel.OpenClaw_Uninstall, openClawService.uninstall)
-  ipcMain.handle(IpcChannel.OpenClaw_StartGateway, openClawService.startGateway)
-  ipcMain.handle(IpcChannel.OpenClaw_StopGateway, openClawService.stopGateway)
-  ipcMain.handle(IpcChannel.OpenClaw_GetStatus, openClawService.getStatus)
-  ipcMain.handle(IpcChannel.OpenClaw_CheckHealth, openClawService.checkHealth)
-  ipcMain.handle(IpcChannel.OpenClaw_GetDashboardUrl, openClawService.getDashboardUrl)
-  ipcMain.handle(IpcChannel.OpenClaw_SyncConfig, openClawService.syncProviderConfig)
-  ipcMain.handle(IpcChannel.OpenClaw_GetChannels, openClawService.getChannelStatus)
-  ipcMain.handle(IpcChannel.OpenClaw_CheckUpdate, openClawService.checkUpdate)
-  ipcMain.handle(IpcChannel.OpenClaw_PerformUpdate, openClawService.performUpdate)
 
   // WeChat
   ipcMain.handle(IpcChannel.WeChat_HasCredentials, async (_, channelId: string) => {

@@ -22,7 +22,6 @@ import {
   DEFAULT_TEMPERATURE,
   isMac
 } from '@renderer/config/constant'
-import { allMinApps } from '@renderer/config/minapps'
 import { isFunctionCallingModel, isNotSupportTextDeltaModel, qwenModel, SYSTEM_MODELS } from '@renderer/config/models'
 import { BUILTIN_OCR_PROVIDERS, BUILTIN_OCR_PROVIDERS_MAP, DEFAULT_OCR_PROVIDER } from '@renderer/config/ocr'
 import { TRANSLATE_PROMPT } from '@renderer/config/prompts'
@@ -65,43 +64,6 @@ import { initialState as shortcutsInitialState } from './shortcuts'
 import { defaultWebSearchProviders } from './websearch'
 
 const logger = loggerService.withContext('Migrate')
-
-// remove logo base64 data to reduce the size of the state
-function removeMiniAppIconsFromState(state: RootState) {
-  if (state.minapps) {
-    state.minapps.enabled = state.minapps.enabled.map((app) => ({
-      ...app,
-      logo: undefined
-    }))
-    state.minapps.disabled = state.minapps.disabled.map((app) => ({
-      ...app,
-      logo: undefined
-    }))
-    state.minapps.pinned = state.minapps.pinned.map((app) => ({
-      ...app,
-      logo: undefined
-    }))
-  }
-}
-
-function removeMiniAppFromState(state: RootState, id: string) {
-  if (state.minapps) {
-    state.minapps.pinned = state.minapps.pinned.filter((app) => app.id !== id)
-    state.minapps.enabled = state.minapps.enabled.filter((app) => app.id !== id)
-    state.minapps.disabled = state.minapps.disabled.filter((app) => app.id !== id)
-  }
-}
-
-function addMiniApp(state: RootState, id: string) {
-  if (state.minapps) {
-    const app = allMinApps.find((app) => app.id === id)
-    if (app) {
-      if (!state.minapps.enabled.find((app) => app.id === id)) {
-        state.minapps.enabled.push(app)
-      }
-    }
-  }
-}
 
 // add provider to state
 function addProvider(state: RootState, id: string) {
@@ -937,7 +899,6 @@ const migrateConfig = {
   },
   '59': (state: RootState) => {
     try {
-      addMiniApp(state, 'flowith')
       return state
     } catch (error) {
       return state
@@ -979,7 +940,6 @@ const migrateConfig = {
   },
   '63': (state: RootState) => {
     try {
-      addMiniApp(state, '3mintop')
       return state
     } catch (error) {
       return state
@@ -1007,7 +967,6 @@ const migrateConfig = {
     try {
       addProvider(state, 'gitee-ai')
       addProvider(state, 'ppio')
-      addMiniApp(state, 'aistudio')
       state.llm.providers = state.llm.providers.filter((provider) => provider.id !== 'graphrag-kylin-mountain')
 
       return state
@@ -1017,7 +976,6 @@ const migrateConfig = {
   },
   '67': (state: RootState) => {
     try {
-      addMiniApp(state, 'xiaoyi')
       addProvider(state, 'modelscope')
       addProvider(state, 'lmstudio')
       addProvider(state, 'perplexity')
@@ -1035,7 +993,6 @@ const migrateConfig = {
   },
   '68': (state: RootState) => {
     try {
-      addMiniApp(state, 'notebooklm')
       addProvider(state, 'modelscope')
       addProvider(state, 'lmstudio')
       return state
@@ -1045,7 +1002,6 @@ const migrateConfig = {
   },
   '69': (state: RootState) => {
     try {
-      addMiniApp(state, 'coze')
       state.settings.gridColumns = 2
       state.settings.gridPopoverTrigger = 'hover'
       return state
@@ -1067,20 +1023,6 @@ const migrateConfig = {
   },
   '71': (state: RootState) => {
     try {
-      const appIds = ['dify', 'wpslingxi', 'lechat', 'abacus', 'lambdachat', 'baidu-ai-search']
-
-      if (state.minapps) {
-        appIds.forEach((id) => {
-          const app = allMinApps.find((app) => app.id === id)
-          if (app) {
-            state.minapps.enabled.push(app)
-          }
-        })
-        // remove zhihu-zhiada
-        state.minapps.enabled = state.minapps.enabled.filter((app) => app.id !== 'zhihu-zhiada')
-        state.minapps.disabled = state.minapps.disabled.filter((app) => app.id !== 'zhihu-zhiada')
-      }
-
       state.settings.thoughtAutoCollapse = true
 
       return state
@@ -1090,8 +1032,6 @@ const migrateConfig = {
   },
   '72': (state: RootState) => {
     try {
-      addMiniApp(state, 'monica')
-
       // remove duplicate lmstudio providers
       const emptyLmStudioProviderIndex = state.llm.providers.findLastIndex(
         (provider) => provider.id === 'lmstudio' && provider.models.length === 0
@@ -1159,9 +1099,6 @@ const migrateConfig = {
   },
   '75': (state: RootState) => {
     try {
-      addMiniApp(state, 'you')
-      addMiniApp(state, 'cici')
-      addMiniApp(state, 'zhihu')
       return state
     } catch (error) {
       return state
@@ -1194,7 +1131,6 @@ const migrateConfig = {
     try {
       state.llm.providers = moveProvider(state.llm.providers, 'ppio', 9)
       state.llm.providers = moveProvider(state.llm.providers, 'infini', 10)
-      removeMiniAppIconsFromState(state)
       return state
     } catch (error) {
       return state
@@ -1293,8 +1229,6 @@ const migrateConfig = {
   },
   '87': (state: RootState) => {
     try {
-      state.settings.maxKeepAliveMinapps = 3
-      state.settings.showOpenedMinappsInSidebar = true
       return state
     } catch (error) {
       return state
@@ -1316,7 +1250,6 @@ const migrateConfig = {
   },
   '89': (state: RootState) => {
     try {
-      removeMiniAppFromState(state, 'aistudio')
       return state
     } catch (error) {
       return state
@@ -1348,7 +1281,6 @@ const migrateConfig = {
   },
   '92': (state: RootState) => {
     try {
-      addMiniApp(state, 'dangbei')
       state.llm.providers = moveProvider(state.llm.providers, 'qiniu', 12)
       return state
     } catch (error) {
@@ -1408,7 +1340,6 @@ const migrateConfig = {
   },
   '97': (state: RootState) => {
     try {
-      addMiniApp(state, 'zai')
       state.settings.webdavMaxBackups = 0
       if (state.websearch && state.websearch.providers) {
         state.websearch.providers.forEach((provider) => {
@@ -1608,7 +1539,6 @@ const migrateConfig = {
   '105': (state: RootState) => {
     try {
       state.settings.notification = settingsInitialState.notification
-      addMiniApp(state, 'google')
       if (!state.settings.openAI) {
         state.settings.openAI = {
           // @ts-expect-error it's a removed type. migrated on 177
@@ -2386,7 +2316,6 @@ const migrateConfig = {
   },
   '143': (state: RootState) => {
     try {
-      addMiniApp(state, 'longcat')
       return state
     } catch (error) {
       return state
@@ -2633,9 +2562,6 @@ const migrateConfig = {
   },
   '161': (state: RootState) => {
     try {
-      removeMiniAppFromState(state, 'nm-search')
-      removeMiniAppFromState(state, 'hika')
-      removeMiniAppFromState(state, 'hugging-chat')
       addProvider(state, 'cherryin')
       state.llm.providers = moveProvider(state.llm.providers, 'cherryin', 1)
       return state
@@ -2715,10 +2641,6 @@ const migrateConfig = {
   },
   '172': (state: RootState) => {
     try {
-      // Add ling and huggingchat mini apps
-      addMiniApp(state, 'ling')
-      addMiniApp(state, 'huggingchat')
-
       // Add ovocr provider and clear ovms paintings
       addOcrProvider(state, BUILTIN_OCR_PROVIDERS_MAP.ovocr)
       if (isEmpty(state.paintings.ovms_paintings)) {
@@ -3179,8 +3101,6 @@ const migrateConfig = {
           assistant.defaultModel = qwenModel
         }
       })
-      // Initialize mini app region filter setting
-      state.settings.minAppRegion ??= 'auto'
       return state
     } catch (error) {
       logger.error('migrate 194 error', error as Error)
@@ -3189,12 +3109,6 @@ const migrateConfig = {
   },
   '195': (state: RootState) => {
     try {
-      if (state.settings && state.settings.sidebarIcons) {
-        // Add 'openclaw' to visible icons if not already present
-        if (!state.settings.sidebarIcons.visible.includes('openclaw')) {
-          state.settings.sidebarIcons.visible = [...state.settings.sidebarIcons.visible, 'openclaw']
-        }
-      }
       logger.info('migrate 195 success')
       return state
     } catch (error) {
@@ -3219,9 +3133,6 @@ const migrateConfig = {
   },
   '197': (state: RootState) => {
     try {
-      if (state.openclaw?.gatewayPort === 18789) {
-        state.openclaw.gatewayPort = 18790
-      }
       logger.info('migrate 197 success')
       return state
     } catch (error) {
@@ -3260,19 +3171,6 @@ const migrateConfig = {
         }
       })
 
-      // Migrate minimax app id to hailuo
-      if (state.minapps) {
-        const lists: Array<'enabled' | 'disabled' | 'pinned'> = ['enabled', 'disabled', 'pinned']
-        lists.forEach((list) => {
-          state.minapps[list] = state.minapps[list].map((app) =>
-            app.id === 'minimax' ? { ...app, id: 'hailuo' } : app
-          )
-        })
-      }
-      // Add new MiniMax Agent apps
-      addMiniApp(state, 'minimax-agent')
-      addMiniApp(state, 'minimax-agent-global')
-      addMiniApp(state, 'ima')
       // Add new providers: minimax-global and zai
       addProvider(state, 'minimax-global')
       addProvider(state, 'zai')
@@ -3445,6 +3343,36 @@ const migrateConfig = {
       return state
     } catch (error) {
       logger.error('migrate 208 error', error as Error)
+      return state
+    }
+  },
+  '209': (state: RootState) => {
+    try {
+      const settings = state.settings as any
+      if (settings.sidebarIcons) {
+        settings.sidebarIcons.visible = settings.sidebarIcons.visible.filter(
+          (icon: string) => icon !== 'openclaw' && icon !== 'minapp'
+        )
+        settings.sidebarIcons.disabled = settings.sidebarIcons.disabled.filter(
+          (icon: string) => icon !== 'openclaw' && icon !== 'minapp'
+        )
+      }
+
+      if (state.tabs?.tabs) {
+        state.tabs.tabs = state.tabs.tabs.filter((tab) => tab.path !== '/openclaw' && !tab.path.startsWith('/apps'))
+      }
+
+      delete (state as any).openclaw
+      delete (state as any).minapps
+      delete settings.maxKeepAliveMinapps
+      delete settings.showOpenedMinappsInSidebar
+      delete settings.minappsOpenLinkExternal
+      delete settings.minAppRegion
+
+      logger.info('migrate 209 success')
+      return state
+    } catch (error) {
+      logger.error('migrate 209 error', error as Error)
       return state
     }
   }
