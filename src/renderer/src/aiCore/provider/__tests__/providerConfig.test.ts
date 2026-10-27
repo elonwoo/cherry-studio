@@ -73,7 +73,13 @@ import type { AwsBedrockAuthType, Model, Provider } from '@renderer/types'
 import { COPILOT_DEFAULT_HEADERS } from '../constants'
 import type { AihubmixProviderSettings } from '../custom/aihubmix-provider'
 import type { NewApiProviderSettings } from '../custom/newapi-provider'
-import { adaptProvider, formatProviderApiHost, getActualProvider, providerToAiSdkConfig } from '../providerConfig'
+import {
+  adaptProvider,
+  formatProviderApiHost,
+  getActualProvider,
+  providerToAiSdkConfig,
+  withOpenCodeSessionHeader
+} from '../providerConfig'
 
 const { __mockGetState: mockGetState } = vi.mocked(await import('@renderer/store')) as unknown as {
   __mockGetState: ReturnType<typeof vi.fn>
@@ -1096,5 +1102,79 @@ describe('providerToAiSdkConfig', () => {
 
       expect(config.endpoint).toBe('')
     })
+  })
+})
+
+// ==================== withOpenCodeSessionHeader ====================
+
+describe('withOpenCodeSessionHeader', () => {
+  const makeOpenCodeProvider = (overrides: Partial<Provider> = {}) =>
+    makeProvider({
+      id: 'opencode',
+      name: 'OpenCode Go',
+      type: 'openai',
+      apiHost: 'https://opencode.ai/zen/go/v1',
+      ...overrides
+    })
+
+  const makeConfig = (headers: Record<string, string> = {}) =>
+    ({
+      providerId: 'openai-compatible',
+      providerSettings: { baseURL: 'https://opencode.ai/zen/go/v1', apiKey: 'test-key', headers }
+    }) as unknown as ProviderConfig
+
+  const headersOf = (config: ProviderConfig) =>
+    (config.providerSettings as { headers?: Record<string, string> }).headers
+
+  it('adds a stable header per session and isolates sessions', () => {
+    const provider = makeOpenCodeProvider()
+
+    const first = headersOf(withOpenCodeSessionHeader(makeConfig(), provider, 'session-1'))
+    const repeated = headersOf(withOpenCodeSessionHeader(makeConfig(), provider, 'session-1'))
+    const second = headersOf(withOpenCodeSessionHeader(makeConfig(), provider, 'session-2'))
+
+    expect(first).toEqual({ 'x-opencode-session': 'session-1' })
+    expect(repeated).toEqual(first)
+    expect(second).toEqual({ 'x-opencode-session': 'session-2' })
+  })
+
+  it('recognizes OpenCode providers added by api host', () => {
+    const provider = makeOpenCodeProvider({ id: 'custom-uuid', name: 'My Provider' })
+
+    const headers = headersOf(withOpenCodeSessionHeader(makeConfig(), provider, 'session-1'))
+
+    expect(headers).toEqual({ 'x-opencode-session': 'session-1' })
+  })
+
+  it('keeps an explicit session header regardless of casing', () => {
+    const provider = makeOpenCodeProvider()
+    const config = makeConfig({ 'X-OpenCode-Session': 'chosen-session', 'x-tenant': 'tenant-1' })
+
+    expect(headersOf(withOpenCodeSessionHeader(config, provider, 'session-1'))).toEqual({
+      'X-OpenCode-Session': 'chosen-session',
+      'x-tenant': 'tenant-1'
+    })
+  })
+
+  it('falls back to a stable id when the request has no session', () => {
+    const provider = makeOpenCodeProvider()
+
+    const first = headersOf(withOpenCodeSessionHeader(makeConfig(), provider))
+    const second = headersOf(withOpenCodeSessionHeader(makeConfig(), provider))
+
+    expect(first?.['x-opencode-session']).toBeTruthy()
+    expect(second).toEqual(first)
+  })
+
+  it('leaves unrelated providers untouched', () => {
+    const provider = makeProvider({
+      id: 'deepseek',
+      name: 'DeepSeek',
+      type: 'openai',
+      apiHost: 'https://api.deepseek.com/v1'
+    })
+    const config = makeConfig({ 'x-tenant': 'tenant-1' })
+
+    expect(withOpenCodeSessionHeader(config, provider, 'session-1')).toBe(config)
   })
 })

@@ -11,7 +11,12 @@ import { buildClaudeCodeSystemModelMessage } from '@shared/anthropic'
 
 import AiSdkToChunkAdapter from './chunk/AiSdkToChunkAdapter'
 import { buildPlugins } from './plugins/PluginBuilder'
-import { adaptProvider, getActualProvider, providerToAiSdkConfig } from './provider/providerConfig'
+import {
+  adaptProvider,
+  getActualProvider,
+  providerToAiSdkConfig,
+  withOpenCodeSessionHeader
+} from './provider/providerConfig'
 import { listModels } from './services/listModels'
 import type { AppProviderSettingsMap, CompletionsResult, ProviderConfig } from './types'
 import type { AiSdkMiddlewareConfig } from './types/middlewareConfig'
@@ -234,6 +239,8 @@ export default class AiProvider {
     middlewareConfig: AiProviderConfig,
     providerConfig: ProviderConfig
   ): Promise<CompletionsResult> {
+    const config = withOpenCodeSessionHeader(providerConfig, this.actualProvider, middlewareConfig.topicId)
+
     const plugins = buildPlugins({
       provider: this.actualProvider,
       model: this.model!,
@@ -241,11 +248,7 @@ export default class AiProvider {
     })
 
     // 用构建好的插件数组创建executor
-    const executor = await createExecutor<AppProviderSettingsMap>(
-      providerConfig.providerId,
-      providerConfig.providerSettings,
-      plugins
-    )
+    const executor = await createExecutor<AppProviderSettingsMap>(config.providerId, config.providerSettings, plugins)
 
     // 创建带有中间件的执行器
     if (middlewareConfig.onChunk) {
@@ -257,7 +260,7 @@ export default class AiProvider {
         middlewareConfig.enableWebSearch,
         undefined,
         undefined,
-        providerConfig.providerId,
+        config.providerId,
         middlewareConfig.idleTimeout
       )
 

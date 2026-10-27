@@ -159,6 +159,46 @@ export function isModernSdkSupported(provider: Provider): boolean {
   return hasProviderConfig(getAiSdkProviderId(provider))
 }
 
+const OPENCODE_SESSION_HEADER = 'x-opencode-session'
+// Requests without a topic (e.g. title generation) still need one stable id.
+const FALLBACK_OPENCODE_SESSION_ID = 'cherry-studio'
+
+function isOpenCodeProvider(provider: Provider): boolean {
+  return (
+    /opencode/i.test(provider.id) ||
+    /opencode/i.test(provider.name) ||
+    [provider.apiHost, provider.anthropicApiHost].some((host) => host?.includes('opencode.ai'))
+  )
+}
+
+/**
+ * OpenCode Go/Zen rejects requests that lack a stable per-conversation session id.
+ * An explicit `x-opencode-session` header configured by the user wins, regardless of casing.
+ */
+export function withOpenCodeSessionHeader(
+  config: ProviderConfig,
+  provider: Provider,
+  sessionId?: string
+): ProviderConfig {
+  if (!isOpenCodeProvider(provider)) {
+    return config
+  }
+
+  const settings = config.providerSettings as { headers?: Record<string, string | undefined> }
+  const headers = settings.headers ?? {}
+  if (Object.keys(headers).some((name) => name.toLowerCase() === OPENCODE_SESSION_HEADER)) {
+    return config
+  }
+
+  return {
+    ...config,
+    providerSettings: {
+      ...settings,
+      headers: { ...headers, [OPENCODE_SESSION_HEADER]: sessionId || FALLBACK_OPENCODE_SESSION_ID }
+    }
+  } as ProviderConfig
+}
+
 // === Config Builders ===
 
 function buildCommonOptions(ctx: BuilderContext) {
