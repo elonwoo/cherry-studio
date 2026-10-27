@@ -19,6 +19,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { DEFAULT_STREAM_OPTIONS_INCLUDE_USAGE, isMac, LATEST_PRIVACY_POLICY_VERSION } from '@renderer/config/constant'
 import { TRANSLATE_PROMPT } from '@renderer/config/prompts'
 import { DEFAULT_SIDEBAR_ICONS } from '@renderer/config/sidebar'
+import { DRACULA_SHADCN_CSS } from '@renderer/config/themePresets'
 import type {
   ApiServerConfig,
   AssistantsSortType,
@@ -268,7 +269,7 @@ export const initialState: SettingsState = {
   tray: true,
   theme: ThemeMode.system,
   userTheme: {
-    colorPrimary: '#00b96b',
+    colorPrimary: '#BD93F9',
     userFontFamily: '',
     userCodeFontFamily: ''
   },
@@ -333,7 +334,7 @@ export const initialState: SettingsState = {
   autoTranslateWithSpace: false,
   showTranslateConfirm: true,
   enableTopicNaming: true,
-  customCss: '',
+  customCss: DRACULA_SHADCN_CSS,
   topicNamingPrompt: '',
   sidebarIcons: {
     visible: DEFAULT_SIDEBAR_ICONS,

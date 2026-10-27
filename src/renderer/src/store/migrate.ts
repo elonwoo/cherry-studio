@@ -27,6 +27,7 @@ import { BUILTIN_OCR_PROVIDERS, BUILTIN_OCR_PROVIDERS_MAP, DEFAULT_OCR_PROVIDER 
 import { TRANSLATE_PROMPT } from '@renderer/config/prompts'
 import { SYSTEM_PROVIDERS } from '@renderer/config/providers'
 import { DEFAULT_SIDEBAR_ICONS } from '@renderer/config/sidebar'
+import { DRACULA_SHADCN_CSS } from '@renderer/config/themePresets'
 import db from '@renderer/databases'
 import { getModel } from '@renderer/hooks/useModel'
 import i18n from '@renderer/i18n'
@@ -3395,6 +3396,18 @@ const migrateConfig = {
       return state
     } catch (error) {
       logger.error('migrate 210 error', error as Error)
+      return state
+    }
+  },
+  '211': (state: RootState) => {
+    try {
+      state.settings.userTheme.colorPrimary = '#BD93F9'
+      state.settings.customCss = DRACULA_SHADCN_CSS
+
+      logger.info('migrate 211 success')
+      return state
+    } catch (error) {
+      logger.error('migrate 211 error', error as Error)
       return state
     }
   }
