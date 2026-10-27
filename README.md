@@ -69,6 +69,13 @@ Cherry Studio is a desktop client that supports multiple LLM providers, availabl
 
 ❤️ Like Cherry Studio? Give it a star 🌟 or [Sponsor](docs/zh/guides/sponsor.md) to support the development!
 
+# 🧩 Fork Notes
+
+This is a personal fork pinned to `v1.9.13`, the last v1 release, built for Apple Silicon macOS only.
+
+- **OpenCode Go/Zen**: chat requests now carry a stable per-conversation `x-opencode-session` header, fixing `400 MissingSessionID`. A header set in the provider's custom headers takes precedence.
+- **Packaging**: `pnpm build:mac:arm64` produces only `dist/Cherry-Studio-<version>-arm64.zip`; the mac target in `electron-builder.yml` is limited to the arm64 zip.
+
 # 🌠 Screenshot
 
 ![](https://github.com/user-attachments/assets/36dddb2c-e0fb-4a5f-9411-91447bab6e18)
