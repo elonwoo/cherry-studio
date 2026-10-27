@@ -105,12 +105,8 @@ export function getMcpServerByTool(tool: MCPTool) {
   return undefined
 }
 
-export function isToolAutoApproved(tool: MCPTool, server?: MCPServer, allowedTools?: string[]): boolean {
+export function isToolAutoApproved(tool: MCPTool, server?: MCPServer): boolean {
   if (tool.isBuiltIn) {
-    return true
-  }
-  // Check agent-level pre-authorization (allowed_tools from Agent Settings)
-  if (allowedTools?.includes(tool.id)) {
     return true
   }
   // Fall back to server-level auto-approve setting

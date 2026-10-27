@@ -663,7 +663,6 @@ export const isAutoDetectionMethod = (method: string): method is AutoDetectionMe
 
 export type SidebarIcon =
   | 'assistants'
-  | 'agents'
   | 'store'
   | 'paintings'
   | 'translate'
@@ -1211,7 +1210,6 @@ type BaseParams = {
   requestOptions?: FetchChatCompletionRequestOptions
   onChunkReceived: (chunk: Chunk) => void
   topicId?: string // 添加 topicId 参数
-  allowedTools?: string[]
   uiMessages?: Message[]
 }
 

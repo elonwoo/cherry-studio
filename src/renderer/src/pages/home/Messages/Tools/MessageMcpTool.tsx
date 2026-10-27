@@ -18,13 +18,8 @@ import { memo, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
+import { getEffectiveStatus, SkeletonSpan, ToolStatusIndicator, TruncatedIndicator } from './GenericTools'
 import { useToolApproval } from './hooks/useToolApproval'
-import {
-  getEffectiveStatus,
-  SkeletonSpan,
-  ToolStatusIndicator,
-  TruncatedIndicator
-} from './MessageAgentTools/GenericTools'
 import {
   ArgKey,
   ArgsSection,

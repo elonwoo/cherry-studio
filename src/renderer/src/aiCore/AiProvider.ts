@@ -258,8 +258,6 @@ export default class AiProvider {
         middlewareConfig.mcpTools,
         accumulate,
         middlewareConfig.enableWebSearch,
-        undefined,
-        undefined,
         config.providerId,
         middlewareConfig.idleTimeout
       )

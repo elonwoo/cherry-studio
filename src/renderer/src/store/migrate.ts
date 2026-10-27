@@ -3212,17 +3212,17 @@ const migrateConfig = {
     try {
       if (state.settings && state.settings.sidebarIcons) {
         // Add 'agents' to visible icons if not already present
-        if (!state.settings.sidebarIcons.visible.includes('agents')) {
+        if (!(state.settings.sidebarIcons.visible as string[]).includes('agents')) {
           // Insert after 'assistants' if present, otherwise append
           const assistantsIndex = state.settings.sidebarIcons.visible.indexOf('assistants')
           if (assistantsIndex !== -1) {
             state.settings.sidebarIcons.visible = [
               ...state.settings.sidebarIcons.visible.slice(0, assistantsIndex + 1),
-              'agents',
+              'agents' as any,
               ...state.settings.sidebarIcons.visible.slice(assistantsIndex + 1)
             ]
           } else {
-            state.settings.sidebarIcons.visible = [...state.settings.sidebarIcons.visible, 'agents']
+            state.settings.sidebarIcons.visible = [...state.settings.sidebarIcons.visible, 'agents' as any]
           }
         }
       }
@@ -3290,7 +3290,7 @@ const migrateConfig = {
   },
   '206': (state: RootState) => {
     try {
-      const { sessionToolOrder } = state.inputTools
+      const { sessionToolOrder } = state.inputTools as any
       const permissionModeKey = 'permission_mode'
       if (
         sessionToolOrder &&
@@ -3373,6 +3373,28 @@ const migrateConfig = {
       return state
     } catch (error) {
       logger.error('migrate 209 error', error as Error)
+      return state
+    }
+  },
+  '210': (state: RootState) => {
+    try {
+      const settings = state.settings as any
+      if (settings.sidebarIcons) {
+        settings.sidebarIcons.visible = settings.sidebarIcons.visible.filter((icon: string) => icon !== 'agents')
+        settings.sidebarIcons.disabled = settings.sidebarIcons.disabled.filter((icon: string) => icon !== 'agents')
+      }
+
+      if (state.tabs?.tabs) {
+        state.tabs.tabs = state.tabs.tabs.filter((tab) => tab.path !== '/agents')
+      }
+
+      delete (state.runtime?.chat as any)?.activeAgentId
+      delete (state.runtime?.chat as any)?.activeSessionIdMap
+
+      logger.info('migrate 210 success')
+      return state
+    } catch (error) {
+      logger.error('migrate 210 error', error as Error)
       return state
     }
   }

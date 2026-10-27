@@ -21,12 +21,6 @@ vi.mock('@renderer/services/KnowledgeService', () => ({
   processKnowledgeReferences: vi.fn()
 }))
 
-vi.mock('../MessageAgentTools', () => ({
-  MessageAgentTools: ({ toolResponse }: { toolResponse: NormalToolResponse }) => (
-    <div data-testid="agent-tool">Agent: {toolResponse.tool.name}</div>
-  )
-}))
-
 vi.mock('../MessageKnowledgeSearch', () => ({
   MessageKnowledgeSearchToolTitle: () => <div data-testid="knowledge-tool">Knowledge</div>
 }))
@@ -59,16 +53,10 @@ const createBlock = (name: string, type: NormalToolResponse['tool']['type']): To
 }
 
 describe('MessageTool', () => {
-  it('routes PowerShell provider tools to the Agent renderer', () => {
-    render(<MessageTool block={createBlock('PowerShell', 'provider')} />)
+  it('leaves provider tools unrendered', () => {
+    const { container } = render(<MessageTool block={createBlock('PowerShell', 'provider')} />)
 
-    expect(screen.getByTestId('agent-tool')).toHaveTextContent('Agent: PowerShell')
-  })
-
-  it('routes an unknown future provider tool to the Agent generic-renderer path', () => {
-    render(<MessageTool block={createBlock('FutureProviderTool', 'provider')} />)
-
-    expect(screen.getByTestId('agent-tool')).toHaveTextContent('Agent: FutureProviderTool')
+    expect(container).toBeEmptyDOMElement()
   })
 
   it('preserves prefixed knowledge routing for provider tools', () => {
@@ -77,13 +65,13 @@ describe('MessageTool', () => {
     expect(screen.getByTestId('knowledge-tool')).toBeInTheDocument()
   })
 
-  it('routes an unknown prefixed provider tool to the Agent generic-renderer path', () => {
-    render(<MessageTool block={createBlock('builtin_FutureProviderTool', 'provider')} />)
+  it('leaves an unknown prefixed provider tool unrendered', () => {
+    const { container } = render(<MessageTool block={createBlock('builtin_FutureProviderTool', 'provider')} />)
 
-    expect(screen.getByTestId('agent-tool')).toHaveTextContent('Agent: builtin_FutureProviderTool')
+    expect(container).toBeEmptyDOMElement()
   })
 
-  it('preserves unknown prefixed provider classification through streaming and final rendering', () => {
+  it('preserves unknown prefixed provider classification through streaming', () => {
     const emittedChunks: Chunk[] = []
     const handler = new ToolCallChunkHandler((chunk) => emittedChunks.push(chunk), [])
     const toolCallId = 'future-provider-call'
@@ -141,14 +129,6 @@ describe('MessageTool', () => {
     expect(finalResponse.tool.name).toBe(toolName)
     expect(finalResponse.arguments).toEqual(input)
     expect(finalResponse.response).toBe('future provider output')
-
-    const block = createBlock(toolName, 'provider')
-    if (block.metadata) {
-      block.metadata.rawMcpToolResponse = finalResponse
-    }
-    render(<MessageTool block={block} />)
-
-    expect(screen.getByTestId('agent-tool')).toHaveTextContent(`Agent: ${toolName}`)
   })
 
   it('keeps an unknown builtin tool unrendered', () => {
@@ -178,9 +158,9 @@ describe('MessageTool', () => {
     expect(screen.getByTestId(testId)).toBeInTheDocument()
   })
 
-  it('preserves MCP Agent routing', () => {
-    render(<MessageTool block={createBlock('mcp__filesystem__read_file', 'mcp')} />)
+  it('leaves MCP tools unrendered', () => {
+    const { container } = render(<MessageTool block={createBlock('mcp__filesystem__read_file', 'mcp')} />)
 
-    expect(screen.getByTestId('agent-tool')).toHaveTextContent('Agent: mcp__filesystem__read_file')
+    expect(container).toBeEmptyDOMElement()
   })
 })

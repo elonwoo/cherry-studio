@@ -96,7 +96,6 @@ export async function buildStreamTextParams(
   provider: Provider,
   options: {
     mcpTools?: MCPTool[]
-    allowedTools?: string[]
     webSearchProviderId?: string
     webSearchConfig?: CherryWebSearchConfig
     requestOptions?: {
@@ -155,7 +154,7 @@ export async function buildStreamTextParams(
 
   const enableGenerateImage = !!(isGenerateImageModel(model) && assistant.enableGenerateImage)
 
-  const tools = setupToolsConfig(mcpTools, options.allowedTools)
+  const tools = setupToolsConfig(mcpTools)
 
   // 构建真正的 providerOptions
   const webSearchConfig: CherryWebSearchConfig = {
@@ -259,7 +258,6 @@ export async function buildGenerateTextParams(
   provider: Provider,
   options: {
     mcpTools?: MCPTool[]
-    allowedTools?: string[]
     enableTools?: boolean
   } = {}
 ): Promise<any> {

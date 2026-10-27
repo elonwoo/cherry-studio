@@ -72,19 +72,6 @@ describe('isToolAutoApproved', () => {
     })
   })
 
-  describe('agent allowed_tools', () => {
-    it('returns true when tool.id is in allowedTools', () => {
-      const tool = makeTool({ id: 'server1__tool1' })
-      expect(isToolAutoApproved(tool, undefined, ['server1__tool1'])).toBe(true)
-    })
-
-    it('returns false when tool.id is not in allowedTools', () => {
-      const tool = makeTool({ id: 'server1__tool1' })
-      const server = makeServer({ disabledAutoApproveTools: ['tool1'] })
-      expect(isToolAutoApproved(tool, server, ['other_tool'])).toBe(false)
-    })
-  })
-
   describe('server-level auto-approve', () => {
     it('returns true when tool is not in disabledAutoApproveTools', () => {
       const tool = makeTool({ name: 'tool1' })
@@ -139,12 +126,6 @@ describe('isToolAutoApproved', () => {
       const tool = makeTool({ serverId: 'hub', name: 'invoke', isBuiltIn: true })
       const hubServer = makeServer({ id: 'hub' })
       expect(isToolAutoApproved(tool, hubServer)).toBe(true)
-    })
-
-    it('still allows agent allowed_tools for hub', () => {
-      const tool = makeTool({ id: 'hub__invoke', serverId: 'hub', name: 'invoke' })
-      const hubServer = makeServer({ id: 'hub' })
-      expect(isToolAutoApproved(tool, hubServer, ['hub__invoke'])).toBe(true)
     })
   })
 })

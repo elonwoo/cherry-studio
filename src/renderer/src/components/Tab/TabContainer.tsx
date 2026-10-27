@@ -21,7 +21,6 @@ import {
   Languages,
   Monitor,
   Moon,
-  MousePointerClick,
   NotepadText,
   Palette,
   Settings,
@@ -46,8 +45,6 @@ const getTabIcon = (tabId: string): React.ReactNode | undefined => {
   switch (tabId) {
     case 'home':
       return <Home size={14} />
-    case 'agents':
-      return <MousePointerClick size={14} />
     case 'store':
       return <Sparkle size={14} />
     case 'translate':
@@ -166,7 +163,7 @@ const TabsContainer: React.FC<TabsContainerProps> = ({ children }) => {
             onSortEnd={onSortEnd}
             className="tabs-sortable"
             renderItem={(tab) => {
-              const isClosable = tab.id !== 'home' && tab.id !== 'agents'
+              const isClosable = tab.id !== 'home'
               return (
                 <Tab
                   key={tab.id}

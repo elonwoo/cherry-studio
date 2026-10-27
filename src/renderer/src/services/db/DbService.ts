@@ -18,25 +18,20 @@ import { loggerService } from '@logger'
 import store from '@renderer/store'
 import type { Message, MessageBlock } from '@renderer/types/newMessage'
 
-import { AgentMessageDataSource } from './AgentMessageDataSource'
 import { DexieMessageDataSource } from './DexieMessageDataSource'
 import type { MessageDataSource } from './types'
-import { buildAgentSessionTopicId, isAgentSessionTopicId } from './types'
 
 const logger = loggerService.withContext('DbService')
 
 /**
- * Facade service that routes data operations to the appropriate data source
- * based on the topic ID type (regular chat or agent session)
+ * Facade service that routes data operations to the Dexie data source
  */
 class DbService implements MessageDataSource {
   private static instance: DbService
   private dexieSource: DexieMessageDataSource
-  private agentSource: AgentMessageDataSource
 
   private constructor() {
     this.dexieSource = new DexieMessageDataSource()
-    this.agentSource = new AgentMessageDataSource()
   }
 
   /**
@@ -52,16 +47,8 @@ class DbService implements MessageDataSource {
   /**
    * Determine which data source to use based on topic ID
    */
-  private getDataSource(topicId: string): MessageDataSource {
-    if (isAgentSessionTopicId(topicId)) {
-      logger.silly(`Using AgentMessageDataSource for topic ${topicId}`)
-      return this.agentSource
-    }
-
-    // Future: Could add more data source types here
-    // e.g., if (isCloudTopicId(topicId)) return this.cloudSource
-
-    logger.silly(`Using DexieMessageDataSource for topic ${topicId}`)
+  private getDataSource(_topicId: string): MessageDataSource {
+    logger.silly(`Using DexieMessageDataSource for topic ${_topicId}`)
     return this.dexieSource
   }
 
@@ -74,11 +61,6 @@ class DbService implements MessageDataSource {
     const parentMessage = state.messages.entities[messageId]
     if (parentMessage) {
       return parentMessage.topicId
-    }
-
-    const agentInfo = this.agentSource.getStreamingCacheInfo(messageId)
-    if (agentInfo) {
-      return buildAgentSessionTopicId(agentInfo.sessionId)
     }
 
     return undefined
@@ -134,29 +116,14 @@ class DbService implements MessageDataSource {
       return
     }
 
-    const agentBlocks: MessageBlock[] = []
-    const regularBlocks: MessageBlock[] = []
-
     for (const block of blocks) {
       const topicId = this.resolveMessageTopicId(block.messageId)
-
-      if (topicId && isAgentSessionTopicId(topicId)) {
-        agentBlocks.push(block)
-      } else {
-        if (!topicId) {
-          logger.warn(`Unable to resolve topicId for block ${block.id}, defaulting to Dexie`)
-        }
-        regularBlocks.push(block)
+      if (!topicId) {
+        logger.warn(`Unable to resolve topicId for block ${block.id}, defaulting to Dexie`)
       }
     }
 
-    if (agentBlocks.length > 0) {
-      await this.agentSource.updateBlocks(agentBlocks)
-    }
-
-    if (regularBlocks.length > 0) {
-      await this.dexieSource.updateBlocks(regularBlocks)
-    }
+    return this.dexieSource.updateBlocks(blocks)
   }
 
   async deleteBlocks(blockIds: string[]): Promise<void> {
@@ -198,18 +165,11 @@ class DbService implements MessageDataSource {
       return this.dexieSource.updateSingleBlock(blockId, updates)
     }
 
-    const topicId = this.resolveMessageTopicId(existingBlock.messageId)
-
-    if (topicId && isAgentSessionTopicId(topicId)) {
-      return this.agentSource.updateSingleBlock(blockId, updates)
-    }
-
     // Default to Dexie for regular blocks
     return this.dexieSource.updateSingleBlock(blockId, updates)
   }
 
   async bulkAddBlocks(blocks: MessageBlock[]): Promise<void> {
-    // For bulk add operations, default to Dexie since agent blocks use persistExchange
     return this.dexieSource.bulkAddBlocks(blocks)
   }
 
@@ -221,26 +181,6 @@ class DbService implements MessageDataSource {
   async updateFileCounts(files: Array<{ id: string; delta: number; deleteIfZero?: boolean }>): Promise<void> {
     // File operations only apply to Dexie source
     return this.dexieSource.updateFileCounts(files)
-  }
-
-  // ============ Utility Methods ============
-
-  /**
-   * Check if a topic is an agent session
-   */
-  isAgentSession(topicId: string): boolean {
-    return isAgentSessionTopicId(topicId)
-  }
-
-  /**
-   * Get the data source type for a topic
-   */
-  getSourceType(topicId: string): 'dexie' | 'agent' | 'unknown' {
-    if (isAgentSessionTopicId(topicId)) {
-      return 'agent'
-    }
-    // Add more checks for other source types as needed
-    return 'dexie'
   }
 }
 

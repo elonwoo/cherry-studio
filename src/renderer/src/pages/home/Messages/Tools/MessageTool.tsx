@@ -1,8 +1,6 @@
 import type { NormalToolResponse } from '@renderer/types'
 import type { ToolMessageBlock } from '@renderer/types/newMessage'
 
-import { MessageAgentTools } from './MessageAgentTools'
-import { AgentToolsType } from './MessageAgentTools/types'
 import { MessageKnowledgeSearchToolTitle } from './MessageKnowledgeSearch'
 import { MessageMemorySearchToolTitle } from './MessageMemorySearch'
 import { MessageWebSearchToolTitle } from './MessageWebSearch'
@@ -11,15 +9,6 @@ interface Props {
   block: ToolMessageBlock
 }
 const builtinToolsPrefix = 'builtin_'
-const agentMcpToolsPrefix = 'mcp__'
-const agentTools = Object.values(AgentToolsType)
-
-const isAgentTool = (toolName: AgentToolsType) => {
-  if (agentTools.includes(toolName) || toolName.startsWith(agentMcpToolsPrefix)) {
-    return true
-  }
-  return false
-}
 
 const ChooseTool = (toolResponse: NormalToolResponse): React.ReactNode | null => {
   let toolName = toolResponse.tool.name
@@ -35,10 +24,8 @@ const ChooseTool = (toolResponse: NormalToolResponse): React.ReactNode | null =>
       case 'memory_search':
         return <MessageMemorySearchToolTitle toolResponse={toolResponse} />
       default:
-        return toolType === 'provider' ? <MessageAgentTools toolResponse={toolResponse} /> : null
+        return null
     }
-  } else if (isAgentTool(toolName as AgentToolsType) || toolType === 'provider') {
-    return <MessageAgentTools toolResponse={toolResponse} />
   }
   return null
 }
@@ -55,11 +42,3 @@ export default function MessageTool({ block }: Props) {
 
   return toolRenderer
 }
-
-// const PrepareToolWrapper = styled.span`
-//   display: flex;
-//   align-items: center;
-//   gap: 4px;
-//   font-size: 14px;
-//   padding-left: 0;
-// `
