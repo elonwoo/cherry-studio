@@ -1,7 +1,6 @@
 // TODO(v2): All Redux store reads in this file (state.knowledge.bases, state.llm.providers)
-//           should migrate to the V2 SQLite/Drizzle data layer (src/main/services/agents/).
+//           should migrate to the V2 SQLite/Drizzle data layer.
 //           Redux is blocked for new data-model features until v2.0.0.
-//           See: src/main/services/agents/database/schema/index.ts
 
 import { loggerService } from '@logger'
 import KnowledgeService from '@main/services/KnowledgeService'
@@ -10,7 +9,7 @@ import type { KnowledgeBase, KnowledgeBaseParams, Provider } from '@types'
 import type { Response } from 'express'
 import type * as z from 'zod'
 
-import type { ValidationRequest } from '../agents/validators/zodValidator'
+import type { ValidationRequest } from '../../utils/zodValidator'
 import type { KnowledgeSearchSchema } from './validators/zodSchemas'
 
 const logger = loggerService.withContext('KnowledgeHandlers')

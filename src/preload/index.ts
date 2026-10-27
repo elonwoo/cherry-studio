@@ -1,4 +1,3 @@
-import type { PermissionUpdate } from '@anthropic-ai/claude-agent-sdk'
 import type { TokenUsageData } from '@cherrystudio/analytics-client'
 import { electronAPI } from '@electron-toolkit/preload'
 import type { SpanEntity, TokenUsage } from '@mcp-trace/trace-core'
@@ -493,72 +492,6 @@ const api = {
     minimizeActionWindow: () => ipcRenderer.invoke(IpcChannel.Selection_ActionWindowMinimize),
     pinActionWindow: (isPinned: boolean) => ipcRenderer.invoke(IpcChannel.Selection_ActionWindowPin, isPinned),
     getLinuxEnvInfo: () => ipcRenderer.invoke(IpcChannel.Selection_GetLinuxEnvInfo)
-  },
-  agentTools: {
-    respondToPermission: (payload: {
-      requestId: string
-      behavior: 'allow' | 'deny'
-      updatedInput?: Record<string, unknown>
-      message?: string
-      updatedPermissions?: PermissionUpdate[]
-    }) => ipcRenderer.invoke(IpcChannel.AgentToolPermission_Response, payload)
-  },
-  agentSessionStream: {
-    subscribe: (sessionId: string) => ipcRenderer.invoke(IpcChannel.AgentSessionStream_Subscribe, { sessionId }),
-    unsubscribe: (sessionId: string) => ipcRenderer.invoke(IpcChannel.AgentSessionStream_Unsubscribe, { sessionId }),
-    abort: (sessionId: string) => ipcRenderer.invoke(IpcChannel.AgentSessionStream_Abort, { sessionId }),
-    onChunk: (
-      callback: (chunk: {
-        sessionId: string
-        agentId: string
-        type: string
-        chunk?: any
-        error?: any
-        userMessage?: {
-          chatId: string
-          userId: string
-          userName: string
-          text: string
-          images?: Array<{ data: string; media_type: string }>
-          files?: Array<{ filename: string; media_type: string; size: number }>
-        }
-      }) => void
-    ): (() => void) => {
-      const listener = (
-        _event: Electron.IpcRendererEvent,
-        chunk: {
-          sessionId: string
-          agentId: string
-          type: string
-          chunk?: any
-          error?: any
-          userMessage?: {
-            chatId: string
-            userId: string
-            userName: string
-            text: string
-            images?: Array<{ data: string; media_type: string }>
-            files?: Array<{ filename: string; media_type: string; size: number }>
-          }
-        }
-      ) => {
-        callback(chunk)
-      }
-      ipcRenderer.on(IpcChannel.AgentSessionStream_Chunk, listener)
-      return () => ipcRenderer.off(IpcChannel.AgentSessionStream_Chunk, listener)
-    },
-    onSessionChanged: (
-      callback: (data: { agentId: string; sessionId: string; headless?: boolean }) => void
-    ): (() => void) => {
-      const listener = (
-        _event: Electron.IpcRendererEvent,
-        data: { agentId: string; sessionId: string; headless?: boolean }
-      ) => {
-        callback(data)
-      }
-      ipcRenderer.on(IpcChannel.AgentSession_Changed, listener)
-      return () => ipcRenderer.off(IpcChannel.AgentSession_Changed, listener)
-    }
   },
   quoteToMainWindow: (text: string) => ipcRenderer.invoke(IpcChannel.App_QuoteToMain, text),
   setDisableHardwareAcceleration: (isDisable: boolean) =>

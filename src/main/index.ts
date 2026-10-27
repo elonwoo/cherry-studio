@@ -15,9 +15,6 @@ import { isDev, isLinux, isWin } from './constant'
 import process from 'node:process'
 
 import { registerIpc } from './ipc'
-import { agentService } from './services/agents'
-import { bootstrapBuiltinAgents } from './services/agents/services/builtin/BuiltinAgentBootstrap'
-import { registerSessionStreamIpc } from './services/agents/services/channels/sessionStreamIpc'
 import { analyticsService } from './services/AnalyticsService'
 import { apiServerService } from './services/ApiServerService'
 import { appMenuService } from './services/AppMenuService'
@@ -200,35 +197,14 @@ if (!app.requestSingleInstanceLock()) {
     initSelectionService()
 
     void runAsyncFunction(async () => {
-      // Initialize built-in agents (sequential to avoid SQLITE_BUSY)
-      // TODO: v2 lifecycle
-      await bootstrapBuiltinAgents()
-
-      // Start API server if enabled or if agents exist
+      // Start API server if enabled
       try {
         const config = await apiServerService.getCurrentConfig()
         logger.info('API server config:', config)
 
-        // Check if there are any agents
-        let shouldStart = config.enabled
-        if (!shouldStart) {
-          try {
-            const { total } = await agentService.listAgents({ limit: 1 })
-            if (total > 0) {
-              shouldStart = true
-              logger.info(`Detected ${total} agent(s), auto-starting API server`)
-            }
-          } catch (error: any) {
-            logger.warn('Failed to check agent count:', error)
-          }
-        }
-
-        if (shouldStart) {
+        if (config.enabled) {
           await apiServerService.start()
         }
-
-        // Register IPC handlers for session stream
-        registerSessionStreamIpc()
       } catch (error: any) {
         logger.error('Failed to check/start API server:', error)
       }

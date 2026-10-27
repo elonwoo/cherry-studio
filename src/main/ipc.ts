@@ -24,21 +24,11 @@ import { MIN_WINDOW_HEIGHT, MIN_WINDOW_WIDTH } from '@shared/config/constant'
 import type { LocalTransferConnectPayload } from '@shared/config/types'
 import { IpcChannel } from '@shared/IpcChannel'
 import { extractPdfText } from '@shared/utils/pdf'
-import type {
-  AgentPersistedMessage,
-  FileMetadata,
-  Notification,
-  OcrProvider,
-  Provider,
-  Shortcut,
-  SupportedOcrFile,
-  ThemeMode
-} from '@types'
+import type { FileMetadata, Notification, OcrProvider, Provider, Shortcut, SupportedOcrFile, ThemeMode } from '@types'
 import type { ProxyConfig } from 'electron'
 import { BrowserWindow, dialog, ipcMain, session, shell, systemPreferences, webContents } from 'electron'
 import fontList from 'font-list'
 
-import { agentMessageRepository } from './services/agents/database'
 import { analyticsService } from './services/AnalyticsService'
 import { apiServerService } from './services/ApiServerService'
 import appService from './services/AppService'
@@ -245,27 +235,6 @@ export async function registerIpc(mainWindow: BrowserWindow, app: Electron.App) 
       configManager.setTestChannel(channel)
     }
   })
-
-  ipcMain.handle(IpcChannel.AgentMessage_PersistExchange, async (_event, payload) => {
-    try {
-      return await agentMessageRepository.persistExchange(payload)
-    } catch (error) {
-      logger.error('Failed to persist agent session messages', error as Error)
-      throw error
-    }
-  })
-
-  ipcMain.handle(
-    IpcChannel.AgentMessage_GetHistory,
-    async (_event, { sessionId }: { sessionId: string }): Promise<AgentPersistedMessage[]> => {
-      try {
-        return await agentMessageRepository.getSessionHistory(sessionId)
-      } catch (error) {
-        logger.error('Failed to get agent session history', error as Error)
-        throw error
-      }
-    }
-  )
 
   //only for mac
   if (isMac) {
