@@ -142,31 +142,21 @@ artifactBuildCompleted: scripts/artifact-build-completed.js
 releaseInfo:
   releaseNotes: |
     <!--LANG:en-->
-    Pear Studio 1.9.22 - Personal arm64 build
+    Pear Studio 1.9.23 - Personal arm64 build
 
-    🚀 First launch
-    - The welcome/onboarding flow is removed; the app opens straight into the chat UI.
-
-    🎛️ New defaults
-    - Navigation bar on the left, topics on the right.
-    - Topic time and pin-to-top are shown; assistant avatars use model icons.
-    - Chinese UI, system proxy, tray icon and minimize-to-tray are off by default.
-    - Provider presets are ordered English first, then Chinese by pinyin.
+    🎨 App icon
+    - Settings → About now has an app icon picker with 23 designs: the pear set, the sticker set and the P Studio lettermarks.
+    - The choice updates the Dock and Finder icon and is restored on launch; the About header follows it too.
 
     📦 Packaging
     - macOS: arm64 zip only; Developer ID signed, not notarized.
 
     <!--LANG:zh-CN-->
-    Pear Studio 1.9.22 - 个人 arm64 构建
+    Pear Studio 1.9.23 - 个人 arm64 构建
 
-    🚀 首次启动
-    - 移除欢迎引导页，打开软件直接进入聊天界面。
-
-    🎛️ 新的默认设置
-    - 导航栏默认左侧，话题默认右侧。
-    - 默认显示话题时间和固定话题置顶；助手头像使用模型图标。
-    - 中文界面、系统代理；托盘图标与关闭时最小化到托盘默认关闭。
-    - 服务商预设按英文在前、中文在后的字母/拼音顺序排列。
+    🎨 应用图标
+    - 设置 → 关于我们 新增应用图标切换，内置 23 种图标：黄梨系列、贴纸系列、P 字标系列。
+    - 选择后 Dock 与访达图标同步变化，重启后保持；关于页标题图标也会跟随。
 
     📦 打包
     - macOS 仅产出 arm64 zip；Developer ID 签名，未做公证。

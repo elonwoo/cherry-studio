@@ -60,6 +60,7 @@ arm64 zip 从 1.9.14 的 **220 MB** 降到 1.9.20 的 **156 MB**；解包后的�
 | [1.9.20](https://github.com/elonwoo/pear-studio/releases/tag/v1.9.20) | About 页移除测试计划、官网、企业版、邮件联系和招聘；检查更新/自动更新/更新日志/反馈指向本仓库；移除匿名错误报告与数据采集。 |
 | [1.9.21](https://github.com/elonwoo/pear-studio/releases/tag/v1.9.21) | 全面更名为 Pear Studio：应用身份、图标、托盘、界面文案与仓库地址；数据目录改为 `~/Library/Application Support/Pear Studio`，旧数据不自动迁移。 |
 | [1.9.22](https://github.com/elonwoo/pear-studio/releases/tag/v1.9.22) | 移除欢迎引导页，打开即进主界面；默认导航栏左侧、话题右侧，显示话题时间与置顶，助手用模型图标，托盘与关闭驻留默认关闭；服务商预设按英文在前、中文拼音在后排序。 |
+| [1.9.23](https://github.com/elonwoo/pear-studio/releases/tag/v1.9.23) | 关于页新增应用图标切换，内置 23 种图标（黄梨、贴纸、P 字标三套）；Dock 与访达图标同步，重启保持，关于页标题图标跟随。 |
 
 ## 数据与迁移
 
