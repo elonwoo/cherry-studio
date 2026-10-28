@@ -8,21 +8,18 @@ import Sidebar from './components/app/Sidebar'
 import { ErrorBoundary } from './components/ErrorBoundary'
 import TabsContainer from './components/Tab/TabContainer'
 import NavigationHandler from './handler/NavigationHandler'
-import { useOnboardingState } from './hooks/useOnboardingState'
 import { useNavbarPosition } from './hooks/useSettings'
 import FilesPage from './pages/files/FilesPage'
 import HomePage from './pages/home/HomePage'
 import KnowledgePage from './pages/knowledge/KnowledgePage'
 import LaunchpadPage from './pages/launchpad/LaunchpadPage'
 import NotesPage from './pages/notes/NotesPage'
-import { OnboardingPage } from './pages/onboarding'
 import PaintingsRoutePage from './pages/paintings/PaintingsRoutePage'
 import SettingsPage from './pages/settings/SettingsPage'
 import AssistantPresetsPage from './pages/store/assistants/presets/AssistantPresetsPage'
 import TranslatePage from './pages/translate/TranslatePage'
 
 const Router: FC = () => {
-  const { onboardingCompleted, completeOnboarding } = useOnboardingState()
   const { navbarPosition } = useNavbarPosition()
 
   const routes = useMemo(() => {
@@ -42,10 +39,6 @@ const Router: FC = () => {
       </ErrorBoundary>
     )
   }, [])
-
-  if (!onboardingCompleted) {
-    return <OnboardingPage onComplete={completeOnboarding} />
-  }
 
   if (navbarPosition === 'left') {
     return (

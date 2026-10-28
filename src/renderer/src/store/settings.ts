@@ -245,7 +245,7 @@ export const initialState: SettingsState = {
   showTopics: true,
   assistantsTabSortType: 'list',
   sendMessageShortcut: 'Enter',
-  language: navigator.language as LanguageVarious,
+  language: 'zh-CN',
   targetLanguage: 'en-us',
   proxyMode: 'system',
   proxyUrl: undefined,
@@ -258,8 +258,8 @@ export const initialState: SettingsState = {
   showInputEstimatedTokens: false,
   launchOnBoot: false,
   launchToTray: false,
-  trayOnClose: true,
-  tray: true,
+  trayOnClose: false,
+  tray: false,
   theme: ThemeMode.system,
   userTheme: {
     colorPrimary: '#BD93F9',
@@ -268,10 +268,10 @@ export const initialState: SettingsState = {
   },
   windowStyle: isMac ? 'transparent' : 'opaque',
   fontSize: 14,
-  topicPosition: 'left',
-  showTopicTime: false,
-  pinTopicsToTop: false,
-  assistantIconType: 'emoji',
+  topicPosition: 'right',
+  showTopicTime: true,
+  pinTopicsToTop: true,
+  assistantIconType: 'model',
   pasteLongTextAsFile: false,
   pasteLongTextThreshold: 1500,
   clickAssistantToShowTopic: true,
@@ -422,7 +422,7 @@ export const initialState: SettingsState = {
   // Developer mode
   enableDeveloperMode: false,
   // UI
-  navbarPosition: 'top',
+  navbarPosition: 'left',
   showMessageOutline: false
 }
 

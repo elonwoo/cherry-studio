@@ -18,6 +18,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
 import { isLocalAi } from '@renderer/config/env'
 import { SYSTEM_MODELS } from '@renderer/config/models'
+import { orderProvidersByPreset } from '@renderer/config/providerOrder'
 import { INITIAL_STATE_EXCLUDED_PROVIDER_IDS, SYSTEM_PROVIDERS_CONFIG } from '@renderer/config/providers'
 import type { AwsBedrockAuthType, Model, Provider } from '@renderer/types'
 import { omit, uniqBy } from 'lodash'
@@ -68,7 +69,7 @@ export const initialState: LlmState = {
   topicNamingModel: SYSTEM_MODELS.defaultModel[1],
   quickModel: SYSTEM_MODELS.defaultModel[1],
   translateModel: SYSTEM_MODELS.defaultModel[2],
-  providers: Object.values(omit(SYSTEM_PROVIDERS_CONFIG, INITIAL_STATE_EXCLUDED_PROVIDER_IDS)),
+  providers: orderProvidersByPreset(Object.values(omit(SYSTEM_PROVIDERS_CONFIG, INITIAL_STATE_EXCLUDED_PROVIDER_IDS))),
   settings: {
     ollama: {
       keepAliveTime: 0

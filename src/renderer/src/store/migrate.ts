@@ -32,6 +32,7 @@ import {
 } from '@renderer/config/models'
 import { BUILTIN_OCR_PROVIDERS, BUILTIN_OCR_PROVIDERS_MAP, DEFAULT_OCR_PROVIDER } from '@renderer/config/ocr'
 import { TRANSLATE_PROMPT } from '@renderer/config/prompts'
+import { orderProvidersByPreset } from '@renderer/config/providerOrder'
 import { REMOVED_SYSTEM_PROVIDER_IDS, SYSTEM_PROVIDERS } from '@renderer/config/providers'
 import { DEFAULT_SIDEBAR_ICONS } from '@renderer/config/sidebar'
 import { DRACULA_SHADCN_CSS } from '@renderer/config/themePresets'
@@ -3500,6 +3501,31 @@ const migrateConfig = {
       return state
     } catch (error) {
       logger.error('migrate 217 error', error as Error)
+      return state
+    }
+  },
+  '218': (state: RootState) => {
+    try {
+      // 导航栏默认左侧、话题默认右侧
+      state.settings.navbarPosition = 'left'
+      state.settings.topicPosition = 'right'
+
+      logger.info('migrate 218 success')
+      return state
+    } catch (error) {
+      logger.error('migrate 218 error', error as Error)
+      return state
+    }
+  },
+  '219': (state: RootState) => {
+    try {
+      // 模型服务按预设顺序排列，之后用户仍可自行拖动
+      state.llm.providers = orderProvidersByPreset(state.llm.providers)
+
+      logger.info('migrate 219 success')
+      return state
+    } catch (error) {
+      logger.error('migrate 219 error', error as Error)
       return state
     }
   }
