@@ -62,6 +62,8 @@ export function tracedInvoke(channel: string, spanContext: SpanContext | undefin
 // Custom APIs for renderer
 const api = {
   getAppInfo: () => ipcRenderer.invoke(IpcChannel.App_Info),
+  getAppIcon: () => ipcRenderer.invoke(IpcChannel.App_Icon_Get),
+  setAppIcon: (id: string) => ipcRenderer.invoke(IpcChannel.App_Icon_Set, id),
   getDiskInfo: (directoryPath: string): Promise<{ free: number; size: number } | null> =>
     ipcRenderer.invoke(IpcChannel.App_GetDiskInfo, directoryPath),
   reload: () => ipcRenderer.invoke(IpcChannel.App_Reload),

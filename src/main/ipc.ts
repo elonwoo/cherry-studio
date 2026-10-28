@@ -18,6 +18,7 @@ import {
 } from '@main/utils/process'
 import { handleZoomFactor } from '@main/utils/zoom'
 import type { SpanEntity, TokenUsage } from '@mcp-trace/trace-core'
+import { normalizeAppIconId } from '@shared/config/appIcons'
 import { MIN_WINDOW_HEIGHT, MIN_WINDOW_WIDTH } from '@shared/config/constant'
 import type { LocalTransferConnectPayload } from '@shared/config/types'
 import { IpcChannel } from '@shared/IpcChannel'
@@ -27,6 +28,7 @@ import type { ProxyConfig } from 'electron'
 import { BrowserWindow, dialog, ipcMain, session, shell, systemPreferences, webContents } from 'electron'
 import fontList from 'font-list'
 
+import { applyAppIcon, persistMacDockIcon } from './services/AppIconService'
 import appService from './services/AppService'
 import AppUpdater from './services/AppUpdater'
 import BackupManager from './services/BackupManager'
@@ -838,6 +840,13 @@ export async function registerIpc(mainWindow: BrowserWindow, app: Electron.App) 
   })
   ipcMain.handle(IpcChannel.App_SetUseSystemTitleBar, (_, isActive: boolean) => {
     configManager.setUseSystemTitleBar(isActive)
+  })
+  ipcMain.handle(IpcChannel.App_Icon_Get, () => configManager.getAppIcon())
+  ipcMain.handle(IpcChannel.App_Icon_Set, (_, id: string) => {
+    const iconId = normalizeAppIconId(id)
+    configManager.setAppIcon(iconId)
+    applyAppIcon(iconId)
+    void persistMacDockIcon(iconId)
   })
   ipcMain.handle(IpcChannel.TRACE_SAVE_DATA, (_, topicId: string) => saveSpans(topicId))
   ipcMain.handle(IpcChannel.TRACE_GET_DATA, (_, topicId: string, traceId: string, modelName?: string) =>

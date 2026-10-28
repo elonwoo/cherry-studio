@@ -14,6 +14,7 @@
  * - v2 Refactor PR   : https://github.com/CherryHQ/cherry-studio/pull/10162
  * --------------------------------------------------------------------------
  */
+import { type AppIconId, DEFAULT_APP_ICON_ID, normalizeAppIconId } from '@shared/config/appIcons'
 import { defaultLanguage, ZOOM_SHORTCUTS } from '@shared/config/constant'
 import type { LanguageVarious, Shortcut } from '@types'
 import { ThemeMode } from '@types'
@@ -38,7 +39,8 @@ export enum ConfigKeys {
   EnableDeveloperMode = 'enableDeveloperMode',
   ClientId = 'clientId',
   GitBashPath = 'gitBashPath',
-  GitBashPathSource = 'gitBashPathSource' // 'manual' | 'auto' | null
+  GitBashPathSource = 'gitBashPathSource', // 'manual' | 'auto' | null
+  AppIcon = 'appIcon'
 }
 
 export class ConfigManager {
@@ -155,6 +157,14 @@ export class ConfigManager {
 
   setUseSystemTitleBar(value: boolean) {
     this.set(ConfigKeys.UseSystemTitleBar, value)
+  }
+
+  getAppIcon(): AppIconId {
+    return normalizeAppIconId(this.get(ConfigKeys.AppIcon, DEFAULT_APP_ICON_ID))
+  }
+
+  setAppIcon(id: AppIconId) {
+    this.set(ConfigKeys.AppIcon, normalizeAppIconId(id))
   }
 
   setAndNotify(key: string, value: unknown) {

@@ -2729,6 +2729,11 @@
   },
   "settings": {
     "about": {
+      "app_icon": {
+        "next": "Next icon",
+        "previous": "Previous icon",
+        "title": "App icon"
+      },
       "checkUpdate": {
         "available": "Cập nhật",
         "label": "Kiểm tra cập nhật"

@@ -10,9 +10,10 @@ import i18n from '@renderer/i18n'
 import { useAppDispatch } from '@renderer/store'
 import { setUpdateState } from '@renderer/store/runtime'
 import { runAsyncFunction } from '@renderer/utils'
+import { APP_ICON_OPTIONS, type AppIconId, DEFAULT_APP_ICON_ID, normalizeAppIconId } from '@shared/config/appIcons'
 import { Avatar, Button, Progress, Row, Switch, Tag } from 'antd'
 import { debounce } from 'lodash'
-import { Bug, Github, Rss } from 'lucide-react'
+import { Bug, ChevronLeft, ChevronRight, Github, Rss } from 'lucide-react'
 import { BadgeQuestionMark } from 'lucide-react'
 import type { FC } from 'react'
 import { useEffect, useState } from 'react'
@@ -26,6 +27,8 @@ import { SettingContainer, SettingDivider, SettingGroup, SettingRow, SettingTitl
 const AboutSettings: FC = () => {
   const [version, setVersion] = useState('')
   const [isPortable, setIsPortable] = useState(false)
+  const [appPath, setAppPath] = useState('')
+  const [appIcon, setAppIconState] = useState<AppIconId>(DEFAULT_APP_ICON_ID)
   const { t } = useTranslation()
   const { autoCheckUpdate, setAutoCheckUpdate } = useSettings()
   const { theme } = useTheme()
@@ -67,11 +70,28 @@ const AboutSettings: FC = () => {
     await window.api.devTools.toggle()
   }
 
+  const selectAppIcon = (id: AppIconId) => {
+    setAppIconState(id)
+    void window.api.setAppIcon(id)
+  }
+
+  const cycleAppIcon = (offset: number) => {
+    const index = APP_ICON_OPTIONS.findIndex((option) => option.id === appIcon)
+    const currentIndex = index >= 0 ? index : 0
+    const nextIndex = (currentIndex + offset + APP_ICON_OPTIONS.length) % APP_ICON_OPTIONS.length
+    selectAppIcon(APP_ICON_OPTIONS[nextIndex].id)
+  }
+
+  const currentAppIcon = APP_ICON_OPTIONS.find((option) => option.id === appIcon) ?? APP_ICON_OPTIONS[0]
+  const currentAppIconSrc = appPath ? `file://${appPath}/resources/app-icons/${appIcon}.png` : AppLogo
+
   useEffect(() => {
     void runAsyncFunction(async () => {
       const appInfo = await window.api.getAppInfo()
       setVersion(appInfo.version)
       setIsPortable(appInfo.isPortable)
+      setAppPath(appInfo.appPath)
+      setAppIconState(normalizeAppIconId(await window.api.getAppIcon()))
     })
     setAutoCheckUpdate(autoCheckUpdate)
   }, [autoCheckUpdate, setAutoCheckUpdate])
@@ -106,7 +126,7 @@ const AboutSettings: FC = () => {
                   strokeColor="#67ad5b"
                 />
               )}
-              <Avatar src={AppLogo} size={80} style={{ minHeight: 80 }} />
+              <Avatar src={currentAppIconSrc} size={80} style={{ minHeight: 80 }} />
             </AvatarWrapper>
             <VersionWrapper>
               <Title>{APP_NAME}</Title>
@@ -141,6 +161,25 @@ const AboutSettings: FC = () => {
             </SettingRow>
           </>
         )}
+        <SettingDivider />
+        <SettingRow>
+          <SettingRowTitle>{t('settings.about.app_icon.title')}</SettingRowTitle>
+          <HStack alignItems="center" gap={4}>
+            <Button
+              type="text"
+              icon={<ChevronLeft size={18} />}
+              aria-label={t('settings.about.app_icon.previous')}
+              onClick={() => cycleAppIcon(-1)}
+            />
+            <AppIconPreview src={currentAppIconSrc} alt={currentAppIcon.label} />
+            <Button
+              type="text"
+              icon={<ChevronRight size={18} />}
+              aria-label={t('settings.about.app_icon.next')}
+              onClick={() => cycleAppIcon(1)}
+            />
+          </HStack>
+        </SettingRow>
       </SettingGroup>
       {update.info && update.available && (
         <SettingGroup theme={theme}>
@@ -231,6 +270,13 @@ const Description = styled.div`
 `
 
 const CheckUpdateButton = styled(Button)``
+
+const AppIconPreview = styled.img`
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  object-fit: contain;
+`
 
 const AvatarWrapper = styled.div`
   position: relative;

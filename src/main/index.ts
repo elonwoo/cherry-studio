@@ -16,6 +16,7 @@ import process from 'node:process'
 
 import { registerIpc } from './ipc'
 import { appMenuService } from './services/AppMenuService'
+import { initAppIcon } from './services/AppIconService'
 import { configManager } from './services/ConfigManager'
 import { lanTransferClientService } from './services/lanTransfer'
 import mcpService from './services/MCPService'
@@ -134,6 +135,8 @@ if (!app.requestSingleInstanceLock()) {
 
     // Set app user model id for windows
     electronApp.setAppUserModelId(import.meta.env.VITE_MAIN_BUNDLE_ID || 'com.elonwoo.pearstudio')
+
+    initAppIcon()
 
     // Mac: Hide dock icon before window creation when launch to tray is set
     const isLaunchToTray = configManager.getLaunchToTray()
