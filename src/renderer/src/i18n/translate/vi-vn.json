@@ -2057,7 +2057,7 @@
       "select_other_provider": "Chọn Nhà Cung Cấp Khác",
       "setup_hint": "Vui lòng cấu hình ít nhất một nhà cung cấp để có trải nghiệm tốt nhất",
       "subtitle": "Tận hưởng các dịch vụ AI hàng đầu với CherryIN",
-      "title": "Chào mừng bạn đến với Cherry Studio"
+      "title": "Chào mừng bạn đến với Pear Studio"
     }
   },
   "ovms": {
@@ -2892,14 +2892,14 @@
             "test_message_received": "Đã nhận pong từ {{device}}",
             "test_message_sent": "Gửi tải trọng kiểm tra hello world"
           },
-          "idle_hint": "Quét đã tạm dừng. Bắt đầu quét để tìm các máy ngang hàng Cherry Studio trong mạng LAN của bạn.",
+          "idle_hint": "Quét đã tạm dừng. Bắt đầu quét để tìm các máy ngang hàng Pear Studio trong mạng LAN của bạn.",
           "ip_addresses": "Địa chỉ IP",
           "last_seen": "Lần cuối thấy tại {{time}}",
           "metadata": "Siêu dữ liệu",
-          "no_connection_warning": "Vui lòng mở LAN Transfer trên ứng dụng Cherry Studio di động",
+          "no_connection_warning": "Vui lòng mở LAN Transfer trên ứng dụng Pear Studio di động",
           "no_devices": "Chưa tìm thấy thiết bị LAN nào",
           "scan_devices": "Quét thiết bị",
-          "scanning_hint": "Đang quét mạng cục bộ của bạn để tìm các máy ngang hàng Cherry Studio...",
+          "scanning_hint": "Đang quét mạng cục bộ của bạn để tìm các máy ngang hàng Pear Studio...",
           "send_file": "Gửi tệp",
           "status": {
             "completed": "Chuyển khoản hoàn tất",
@@ -3285,7 +3285,7 @@
           "title": "Kiểm tra kết nối"
         },
         "root_path": "Đường dẫn gốc của Siyuan Note",
-        "root_path_placeholder": "ví dụ: /CherryStudio",
+        "root_path_placeholder": "ví dụ: /PearStudio",
         "title": "Cấu hình Siyuan Note",
         "token": {
           "help": "Lấy mã thông báo Siyuan Note",
@@ -3670,7 +3670,7 @@
       },
       "oauth": {
         "callback": {
-          "message": "Bạn có thể đóng trang này và quay lại Cherry Studio",
+          "message": "Bạn có thể đóng trang này và quay lại Pear Studio",
           "title": "Autenticación exitosa"
         }
       },

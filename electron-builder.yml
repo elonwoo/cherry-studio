@@ -1,5 +1,5 @@
-appId: com.kangfenmao.CherryStudio
-productName: Cherry Studio
+appId: com.elonwoo.pearstudio
+productName: Pear Studio
 electronLanguages:
   - zh-CN
   - zh-TW
@@ -14,7 +14,7 @@ directories:
   buildResources: build
 
 protocols:
-  - name: Cherry Studio
+  - name: Pear Studio
     schemes:
       - cherrystudio
 files:
@@ -74,7 +74,7 @@ asarUnpack:
   - "node_modules/@cherrystudio/ripgrep/vendor/ripgrep/**"
 
 win:
-  executableName: Cherry Studio
+  executableName: Pear Studio
   artifactName: ${productName}-${version}-${arch}-setup.${ext}
   target:
     - target: nsis
@@ -112,7 +112,7 @@ dmg:
   writeUpdateInfo: false
 linux:
   artifactName: ${productName}-${version}-${arch}.${ext}
-  executableName: CherryStudio
+  executableName: PearStudio
   target:
     - target: AppImage
     - target: deb
@@ -121,8 +121,8 @@ linux:
   category: Utility
   desktop:
     entry:
-      Name: Cherry Studio
-      StartupWMClass: CherryStudio
+      Name: Pear Studio
+      StartupWMClass: PearStudio
   mimeTypes:
     - x-scheme-handler/cherrystudio
 rpm:
@@ -132,7 +132,7 @@ rpm:
 publish:
   provider: github
   owner: elonwoo
-  repo: cherry-studio
+  repo: pear-studio
 electronDownload:
   mirror: https://npmmirror.com/mirrors/electron/
 beforePack: scripts/before-pack.js
@@ -142,7 +142,7 @@ artifactBuildCompleted: scripts/artifact-build-completed.js
 releaseInfo:
   releaseNotes: |
     <!--LANG:en-->
-    Cherry Studio 1.9.20 - Personal arm64 build
+    Pear Studio 1.9.21 - Personal arm64 build
 
     🧹 About & Updates
     - Removed the test plan, official website, enterprise, contact and careers entries.
@@ -167,7 +167,7 @@ releaseInfo:
     - macOS: arm64 zip only; Developer ID signed, not notarized.
 
     <!--LANG:zh-CN-->
-    Cherry Studio 1.9.20 - 个人 arm64 构建
+    Pear Studio 1.9.21 - 个人 arm64 构建
 
     🧹 关于与更新
     - 移除测试计划、官方网站、企业版、邮件联系和加入我们。

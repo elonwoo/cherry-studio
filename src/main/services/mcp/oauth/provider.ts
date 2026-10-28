@@ -8,6 +8,7 @@ import type {
   OAuthClientInformationMixed,
   OAuthTokens
 } from '@modelcontextprotocol/sdk/shared/auth'
+import { APP_NAME } from '@shared/config/constant'
 import open from 'open'
 import { sanitizeUrl } from 'strict-url-sanitise'
 
@@ -27,8 +28,8 @@ export class McpOAuthClientProvider implements OAuthClientProvider {
       callbackPort: options.callbackPort || 12346,
       callbackPath: options.callbackPath || '/oauth/callback',
       configDir: options.configDir || configDir,
-      clientName: options.clientName || 'Cherry Studio',
-      clientUri: options.clientUri || 'https://github.com/CherryHQ/cherry-studio'
+      clientName: options.clientName || APP_NAME,
+      clientUri: options.clientUri || 'https://github.com/elonwoo/pear-studio'
     }
     this.storage = new JsonFileStorage(this.config.serverUrlHash, this.config.configDir)
   }

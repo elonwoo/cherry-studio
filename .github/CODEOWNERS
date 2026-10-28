@@ -7,8 +7,8 @@
 
 # Privacy policy ownership
 /PRIVACY.md @kangfenmao
-/resources/cherry-studio/privacy-en.html @kangfenmao
-/resources/cherry-studio/privacy-zh.html @kangfenmao
+/resources/pear-studio/privacy-en.html @kangfenmao
+/resources/pear-studio/privacy-zh.html @kangfenmao
 /src/main/services/AnalyticsService.ts @kangfenmao
 /src/main/services/ConfigManager.ts @kangfenmao
 /src/renderer/src/components/Popups/PrivacyPopup.tsx @kangfenmao

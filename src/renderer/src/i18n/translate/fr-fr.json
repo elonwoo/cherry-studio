@@ -2057,7 +2057,7 @@
       "select_other_provider": "Sélectionner un autre fournisseur",
       "setup_hint": "Veuillez configurer au moins un fournisseur pour une meilleure expérience",
       "subtitle": "Profitez de services d'IA de premier ordre avec CherryIN",
-      "title": "Bienvenue à Cherry Studio"
+      "title": "Bienvenue à Pear Studio"
     }
   },
   "ovms": {
@@ -2866,7 +2866,7 @@
           "button": "Démarrer le transfert",
           "connected": "Connecté",
           "connection_failed": "Échec de la connexion",
-          "content": "Assurez-vous que l'ordinateur et le téléphone sont connectés au même réseau pour utiliser le transfert en réseau local. Ouvrez l'application Cherry Studio et scannez ce code QR.",
+          "content": "Assurez-vous que l'ordinateur et le téléphone sont connectés au même réseau pour utiliser le transfert en réseau local. Ouvrez l'application Pear Studio et scannez ce code QR.",
           "device_list_title": "Périphériques réseau locaux",
           "discovered_devices": "Appareils découverts",
           "error": {
@@ -2892,14 +2892,14 @@
             "test_message_received": "Pong reçu de {{device}}",
             "test_message_sent": "Envoyé la charge utile de test hello world"
           },
-          "idle_hint": "Analyse en pause. Lancez l’analyse pour détecter les pairs Cherry Studio sur votre réseau local.",
+          "idle_hint": "Analyse en pause. Lancez l’analyse pour détecter les pairs Pear Studio sur votre réseau local.",
           "ip_addresses": "Adresses IP",
           "last_seen": "Vu pour la dernière fois à {{time}}",
           "metadata": "Métadonnées",
-          "no_connection_warning": "Veuillez ouvrir le transfert LAN sur l'application mobile Cherry Studio.",
+          "no_connection_warning": "Veuillez ouvrir le transfert LAN sur l'application mobile Pear Studio.",
           "no_devices": "Aucun pair LAN trouvé pour l'instant",
           "scan_devices": "Analyser les appareils",
-          "scanning_hint": "Analyse de votre réseau local à la recherche d’homologues Cherry Studio…",
+          "scanning_hint": "Analyse de votre réseau local à la recherche d’homologues Pear Studio…",
           "send_file": "Envoyer le fichier",
           "status": {
             "completed": "Transfert terminé",
@@ -3285,7 +3285,7 @@
           "title": "Проверка подключения"
         },
         "root_path": "Корневой путь документа",
-        "root_path_placeholder": "Например: /CherryStudio",
+        "root_path_placeholder": "Например: /PearStudio",
         "title": "Настройка CherryNote",
         "token": {
           "help": "Получить в разделе CherryNote -> Настройки -> О программе",
@@ -3670,7 +3670,7 @@
       },
       "oauth": {
         "callback": {
-          "message": "Vous pouvez fermer cette page et retourner à Cherry Studio",
+          "message": "Vous pouvez fermer cette page et retourner à Pear Studio",
           "title": "Authentification Réussie"
         }
       },

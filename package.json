@@ -1,12 +1,13 @@
 {
-  "name": "CherryStudio",
-  "version": "1.9.20",
+  "name": "pear-studio",
+  "productName": "Pear Studio",
+  "version": "1.9.21",
   "private": true,
-  "description": "A powerful AI assistant for producer.",
-  "desktopName": "CherryStudio.desktop",
+  "description": "A personal, chat-only AI client for Apple Silicon.",
+  "desktopName": "PearStudio.desktop",
   "main": "./out/main/index.js",
-  "author": "support@cherry-ai.com",
-  "homepage": "https://github.com/CherryHQ/cherry-studio",
+  "author": "elonwoo",
+  "homepage": "https://github.com/elonwoo/pear-studio",
   "engines": {
     "node": ">=24.11.1"
   },
@@ -27,6 +28,7 @@
     "build:linux": "dotenv npm run build && electron-builder --linux --x64 --arm64",
     "build:linux:arm64": "dotenv npm run build && electron-builder --linux --arm64",
     "build:linux:x64": "dotenv npm run build && electron-builder --linux --x64",
+    "generate:icons": "electron scripts/generate-icons.cjs",
     "release": "node scripts/version.js",
     "publish": "pnpm build:check && pnpm release patch push",
     "pulish:artifacts": "cd packages/artifacts && npm publish && cd -",

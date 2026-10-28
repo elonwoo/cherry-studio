@@ -87,7 +87,7 @@ const AboutSettings: FC = () => {
         <SettingTitle>
           {t('settings.about.title')}
           <HStack alignItems="center">
-            <Link to="https://github.com/elonwoo/cherry-studio">
+            <Link to="https://github.com/elonwoo/pear-studio">
               <GithubOutlined style={{ marginRight: 4, color: 'var(--color-text)', fontSize: 20 }} />
             </Link>
           </HStack>
@@ -95,7 +95,7 @@ const AboutSettings: FC = () => {
         <SettingDivider />
         <AboutHeader>
           <Row align="middle">
-            <AvatarWrapper onClick={() => onOpenWebsite('https://github.com/elonwoo/cherry-studio')}>
+            <AvatarWrapper onClick={() => onOpenWebsite('https://github.com/elonwoo/pear-studio')}>
               {update.downloadProgress > 0 && (
                 <ProgressCircle
                   type="circle"
@@ -112,7 +112,7 @@ const AboutSettings: FC = () => {
               <Title>{APP_NAME}</Title>
               <Description>{t('settings.about.description')}</Description>
               <Tag
-                onClick={() => onOpenWebsite('https://github.com/elonwoo/cherry-studio/releases')}
+                onClick={() => onOpenWebsite('https://github.com/elonwoo/pear-studio/releases')}
                 color="cyan"
                 style={{ marginTop: 8, cursor: 'pointer' }}>
                 v{version}
@@ -173,7 +173,7 @@ const AboutSettings: FC = () => {
             <Rss size={18} />
             {t('settings.about.releases.title')}
           </SettingRowTitle>
-          <Button onClick={() => onOpenWebsite('https://github.com/elonwoo/cherry-studio/releases')}>
+          <Button onClick={() => onOpenWebsite('https://github.com/elonwoo/pear-studio/releases')}>
             {t('settings.about.releases.button')}
           </Button>
         </SettingRow>
@@ -183,7 +183,7 @@ const AboutSettings: FC = () => {
             <Github size={18} />
             {t('settings.about.feedback.title')}
           </SettingRowTitle>
-          <Button onClick={() => onOpenWebsite('https://github.com/elonwoo/cherry-studio/issues/new/choose')}>
+          <Button onClick={() => onOpenWebsite('https://github.com/elonwoo/pear-studio/issues/new/choose')}>
             {t('settings.about.feedback.button')}
           </Button>
         </SettingRow>

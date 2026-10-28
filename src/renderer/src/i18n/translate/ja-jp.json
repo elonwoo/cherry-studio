@@ -2057,7 +2057,7 @@
       "select_other_provider": "他のプロバイダーを選択",
       "setup_hint": "ベストな体験のために、少なくとも1つのプロバイダーを設定してください",
       "subtitle": "CherryINでトップクラスのAIサービスをお楽しみください",
-      "title": "Cherry Studioへようこそ"
+      "title": "Pear Studioへようこそ"
     }
   },
   "ovms": {
@@ -2866,7 +2866,7 @@
           "button": "転送を開始",
           "connected": "接続済み",
           "connection_failed": "接続に失敗しました",
-          "content": "コンピューターとスマートフォンが同じネットワークに接続されていることを確認し、ローカルエリアネットワーク転送を使用してください。Cherry Studioアプリを開き、このQRコードをスキャンしてください。",
+          "content": "コンピューターとスマートフォンが同じネットワークに接続されていることを確認し、ローカルエリアネットワーク転送を使用してください。Pear Studioアプリを開き、このQRコードをスキャンしてください。",
           "device_list_title": "ローカルネットワークデバイス",
           "discovered_devices": "発見されたデバイス",
           "error": {
@@ -2892,14 +2892,14 @@
             "test_message_received": "{{device}}からpongを受信しました",
             "test_message_sent": "hello world テストペイロードを送信しました"
           },
-          "idle_hint": "スキャンが一時停止されました。スキャンを開始して、LAN上のCherry Studioピアを検索してください。",
+          "idle_hint": "スキャンが一時停止されました。スキャンを開始して、LAN上のPear Studioピアを検索してください。",
           "ip_addresses": "IPアドレス",
           "last_seen": "最後に見たのは{{time}}",
           "metadata": "メタデータ",
-          "no_connection_warning": "Cherry StudioモバイルでLAN転送を開いてください",
+          "no_connection_warning": "Pear StudioモバイルでLAN転送を開いてください",
           "no_devices": "まだLANピアが見つかっていません",
           "scan_devices": "デバイスをスキャン",
-          "scanning_hint": "ローカルネットワークでCherry Studioのピアをスキャンしています...",
+          "scanning_hint": "ローカルネットワークでPear Studioのピアをスキャンしています...",
           "send_file": "ファイルを送信",
           "status": {
             "completed": "転送完了",
@@ -3285,7 +3285,7 @@
           "title": "接続チェック"
         },
         "root_path": "ドキュメントルートパス",
-        "root_path_placeholder": "例：/CherryStudio",
+        "root_path_placeholder": "例：/PearStudio",
         "title": "思源ノート設定",
         "token": {
           "help": "思源ノート->設定->について で取得",
@@ -3670,7 +3670,7 @@
       },
       "oauth": {
         "callback": {
-          "message": "このページを閉じてCherry Studioに戻ることができます",
+          "message": "このページを閉じてPear Studioに戻ることができます",
           "title": "認証成功"
         }
       },

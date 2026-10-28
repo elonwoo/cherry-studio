@@ -2057,7 +2057,7 @@
       "select_other_provider": "Selectați alt furnizor",
       "setup_hint": "Vă rugăm să configurați cel puțin un furnizor pentru cea mai bună experiență",
       "subtitle": "Bucurați-vă de servicii AI de top cu CherryIN",
-      "title": "Bun venit la Cherry Studio"
+      "title": "Bun venit la Pear Studio"
     }
   },
   "ovms": {
@@ -2892,14 +2892,14 @@
             "test_message_received": "Primit pong de la {{device}}",
             "test_message_sent": "Trimis payload test hello world"
           },
-          "idle_hint": "Scanare în pauză. Începe scanarea pentru a găsi parteneri Cherry Studio în LAN.",
+          "idle_hint": "Scanare în pauză. Începe scanarea pentru a găsi parteneri Pear Studio în LAN.",
           "ip_addresses": "Adrese IP",
           "last_seen": "Văzut ultima dată la {{time}}",
           "metadata": "Metadate",
-          "no_connection_warning": "Te rugăm să deschizi Transfer LAN pe mobil în Cherry Studio",
+          "no_connection_warning": "Te rugăm să deschizi Transfer LAN pe mobil în Pear Studio",
           "no_devices": "Încă nu s-au găsit parteneri LAN",
           "scan_devices": "Scanează dispozitive",
-          "scanning_hint": "Se scanează rețeaua locală pentru parteneri Cherry Studio...",
+          "scanning_hint": "Se scanează rețeaua locală pentru parteneri Pear Studio...",
           "send_file": "Trimite fișier",
           "status": {
             "completed": "Transfer finalizat",
@@ -3285,7 +3285,7 @@
           "title": "Verificare conexiune"
         },
         "root_path": "Cale rădăcină SiYuan Note",
-        "root_path_placeholder": "de ex.: /CherryStudio",
+        "root_path_placeholder": "de ex.: /PearStudio",
         "title": "Configurare SiYuan Note",
         "token": {
           "help": "Obține token SiYuan Note",
@@ -3670,7 +3670,7 @@
       },
       "oauth": {
         "callback": {
-          "message": "Poți închide această pagină și te poți întoarce la Cherry Studio",
+          "message": "Poți închide această pagină și te poți întoarce la Pear Studio",
           "title": "Autentificare reușită"
         }
       },

@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 vi.mock('electron', () => ({
   app: {
-    getAppPath: vi.fn(() => '/Applications/Cherry Studio.app/Contents/Resources/app.asar'),
+    getAppPath: vi.fn(() => '/Applications/Pear Studio.app/Contents/Resources/app.asar'),
     isPackaged: false
   }
 }))
@@ -15,7 +15,7 @@ import { getRipgrepPlatformKey, resolveBundledRipgrepPath } from '../bundledBina
 
 describe('bundled native binaries', () => {
   beforeEach(() => {
-    vi.mocked(app.getAppPath).mockReturnValue('/Applications/Cherry Studio.app/Contents/Resources/app.asar')
+    vi.mocked(app.getAppPath).mockReturnValue('/Applications/Pear Studio.app/Contents/Resources/app.asar')
     Object.defineProperty(app, 'isPackaged', { configurable: true, value: false })
   })
 

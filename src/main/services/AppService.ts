@@ -49,10 +49,10 @@ export class AppService {
           // Create desktop file content
           const desktopContent = `[Desktop Entry]
   Type=Application
-  Name=Cherry Studio
-  Comment=A powerful AI assistant for producer.
+  Name=Pear Studio
+  Comment=A personal, chat-only AI client.
   Exec=${executablePath}
-  Icon=cherrystudio
+  Icon=pearstudio
   Terminal=false
   StartupNotify=false
   Categories=Development;Utility;

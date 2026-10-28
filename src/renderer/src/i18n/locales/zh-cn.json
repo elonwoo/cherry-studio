@@ -1986,7 +1986,7 @@
       "select_other_provider": "选择其他服务商",
       "setup_hint": "请您先至少配置一个服务商，以获得最佳使用体验",
       "subtitle": "使用 CherryIN 服务商可畅享顶级 AI 服务",
-      "title": "欢迎使用 Cherry Studio"
+      "title": "欢迎使用 Pear Studio"
     }
   },
   "ovms": {
@@ -2821,14 +2821,14 @@
             "test_message_received": "已收到 {{device}} 的 pong 响应",
             "test_message_sent": "已发送 hello world 测试数据"
           },
-          "idle_hint": "扫描已暂停。开始扫描以发现局域网中的 Cherry Studio 设备。",
+          "idle_hint": "扫描已暂停。开始扫描以发现局域网中的 Pear Studio 设备。",
           "ip_addresses": "IP 地址",
           "last_seen": "最后活动：{{time}}",
           "metadata": "元数据",
-          "no_connection_warning": "请在 Cherry Studio 移动端打开局域网传输",
+          "no_connection_warning": "请在 Pear Studio 移动端打开局域网传输",
           "no_devices": "尚未发现局域网设备",
           "scan_devices": "扫描设备",
-          "scanning_hint": "正在扫描局域网中的 Cherry Studio 设备...",
+          "scanning_hint": "正在扫描局域网中的 Pear Studio 设备...",
           "send_file": "发送文件",
           "status": {
             "completed": "传输完成",
@@ -3214,7 +3214,7 @@
           "title": "连接检测"
         },
         "root_path": "文档根路径",
-        "root_path_placeholder": "例如：/CherryStudio",
+        "root_path_placeholder": "例如：/PearStudio",
         "title": "思源笔记配置",
         "token": {
           "help": "在思源笔记 -> 设置 -> 关于中获取",
@@ -3599,7 +3599,7 @@
       },
       "oauth": {
         "callback": {
-          "message": "您可以关闭此页面并返回 Cherry Studio",
+          "message": "您可以关闭此页面并返回 Pear Studio",
           "title": "认证成功"
         }
       },

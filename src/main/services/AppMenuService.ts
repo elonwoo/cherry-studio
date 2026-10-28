@@ -1,9 +1,10 @@
 import { isMac } from '@main/constant'
 import { windowService } from '@main/services/WindowService'
 import { locales } from '@main/utils/locales'
+import { APP_NAME } from '@shared/config/constant'
 import { IpcChannel } from '@shared/IpcChannel'
 import type { MenuItemConstructorOptions } from 'electron'
-import { app, Menu, shell } from 'electron'
+import { Menu, shell } from 'electron'
 
 import { configManager } from './ConfigManager'
 export class AppMenuService {
@@ -30,10 +31,10 @@ export class AppMenuService {
 
     const template: MenuItemConstructorOptions[] = [
       {
-        label: app.name,
+        label: APP_NAME,
         submenu: [
           {
-            label: appMenu.about + ' ' + app.name,
+            label: appMenu.about + ' ' + APP_NAME,
             click: () => {
               // Emit event to navigate to About page
               const mainWindow = windowService.getMainWindow()
@@ -46,11 +47,11 @@ export class AppMenuService {
           { type: 'separator' },
           { role: 'services', label: appMenu.services },
           { type: 'separator' },
-          { role: 'hide', label: `${appMenu.hide} ${app.name}` },
+          { role: 'hide', label: `${appMenu.hide} ${APP_NAME}` },
           { role: 'hideOthers', label: appMenu.hideOthers },
           { role: 'unhide', label: appMenu.unhide },
           { type: 'separator' },
-          { role: 'quit', label: `${appMenu.quit} ${app.name}` }
+          { role: 'quit', label: `${appMenu.quit} ${APP_NAME}` }
         ]
       },
       {
@@ -97,27 +98,15 @@ export class AppMenuService {
         label: appMenu.help,
         submenu: [
           {
-            label: appMenu.website,
-            click: () => {
-              void shell.openExternal('https://cherry-ai.com')
-            }
-          },
-          {
-            label: appMenu.documentation,
-            click: () => {
-              void shell.openExternal('https://cherry-ai.com/docs')
-            }
-          },
-          {
             label: appMenu.feedback,
             click: () => {
-              void shell.openExternal('https://github.com/CherryHQ/cherry-studio/issues/new/choose')
+              void shell.openExternal('https://github.com/elonwoo/pear-studio/issues/new/choose')
             }
           },
           {
             label: appMenu.releases,
             click: () => {
-              void shell.openExternal('https://github.com/CherryHQ/cherry-studio/releases')
+              void shell.openExternal('https://github.com/elonwoo/pear-studio/releases')
             }
           }
         ]

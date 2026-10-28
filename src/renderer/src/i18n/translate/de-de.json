@@ -2057,7 +2057,7 @@
       "select_other_provider": "Wählen Sie einen anderen Anbieter",
       "setup_hint": "Bitte konfigurieren Sie mindestens einen Anbieter für die beste Erfahrung.",
       "subtitle": "Genießen Sie erstklassige KI-Dienste mit CherryIN",
-      "title": "Willkommen bei Cherry Studio"
+      "title": "Willkommen bei Pear Studio"
     }
   },
   "ovms": {
@@ -2866,7 +2866,7 @@
           "button": "Übertragung starten",
           "connected": "Verbunden",
           "connection_failed": "Verbindung fehlgeschlagen",
-          "content": "Bitte stelle sicher, dass sich dein Computer und dein Telefon im selben Netzwerk befinden, um eine LAN-Übertragung durchzuführen. Öffne die Cherry Studio App, um diesen QR-Code zu scannen.",
+          "content": "Bitte stelle sicher, dass sich dein Computer und dein Telefon im selben Netzwerk befinden, um eine LAN-Übertragung durchzuführen. Öffne die Pear Studio App, um diesen QR-Code zu scannen.",
           "device_list_title": "Lokale Netzwerkgeräte",
           "discovered_devices": "Entdeckte Geräte",
           "error": {
@@ -2896,7 +2896,7 @@
           "ip_addresses": "IP-Adressen",
           "last_seen": "Zuletzt gesehen um {{time}}",
           "metadata": "Metadaten",
-          "no_connection_warning": "Bitte öffne LAN-Transfer in der Cherry Studio Mobile-App.",
+          "no_connection_warning": "Bitte öffne LAN-Transfer in der Pear Studio Mobile-App.",
           "no_devices": "Noch keine LAN-Peers gefunden",
           "scan_devices": "Geräte scannen",
           "scanning_hint": "Scanne dein lokales Netzwerk nach Cherry-Studio-Peers …",
@@ -3285,7 +3285,7 @@
           "title": "Verbindungsprüfung"
         },
         "root_path": "Dokumentenwurzelverzeichnis",
-        "root_path_placeholder": "z. B.: /CherryStudio",
+        "root_path_placeholder": "z. B.: /PearStudio",
         "title": "SiYuan-Notizen-Konfiguration",
         "token": {
           "help": "Erhalten unter SiYuan Notizen -> Einstellungen -> Über",
@@ -3670,7 +3670,7 @@
       },
       "oauth": {
         "callback": {
-          "message": "Sie können diese Seite schließen und zu Cherry Studio zurückkehren",
+          "message": "Sie können diese Seite schließen und zu Pear Studio zurückkehren",
           "title": "Authentifizierung erfolgreich"
         }
       },

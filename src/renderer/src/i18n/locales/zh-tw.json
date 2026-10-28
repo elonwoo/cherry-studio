@@ -1986,7 +1986,7 @@
       "select_other_provider": "選擇其他供應商",
       "setup_hint": "請至少設定一個提供者以獲得最佳體驗",
       "subtitle": "享受頂尖 AI 服務，盡在 CherryIN",
-      "title": "歡迎來到 Cherry Studio"
+      "title": "歡迎來到 Pear Studio"
     }
   },
   "ovms": {
@@ -2821,14 +2821,14 @@
             "test_message_received": "收到來自 {{device}} 的 pong",
             "test_message_sent": "已送出 hello world 測試封包"
           },
-          "idle_hint": "掃描已暫停。開始掃描以尋找區域網路中的 Cherry Studio 裝置。",
+          "idle_hint": "掃描已暫停。開始掃描以尋找區域網路中的 Pear Studio 裝置。",
           "ip_addresses": "IP 位址",
           "last_seen": "上次看到：{{time}}",
           "metadata": "中繼資料",
-          "no_connection_warning": "請在 Cherry Studio 行動裝置開啟區域網路傳輸",
+          "no_connection_warning": "請在 Pear Studio 行動裝置開啟區域網路傳輸",
           "no_devices": "尚未找到區域網路節點",
           "scan_devices": "掃描裝置",
-          "scanning_hint": "正在掃描區域網路中的 Cherry Studio 裝置...",
+          "scanning_hint": "正在掃描區域網路中的 Pear Studio 裝置...",
           "send_file": "傳送檔案",
           "status": {
             "completed": "傳輸完成",
@@ -3214,7 +3214,7 @@
           "title": "連線檢查"
         },
         "root_path": "思源筆記根路徑",
-        "root_path_placeholder": "例如：/CherryStudio",
+        "root_path_placeholder": "例如：/PearStudio",
         "title": "思源筆記設定",
         "token": {
           "help": "在思源筆記 → 設定 → 關於中取得",
@@ -3599,7 +3599,7 @@
       },
       "oauth": {
         "callback": {
-          "message": "關閉此頁面後即可回到 Cherry Studio",
+          "message": "關閉此頁面後即可回到 Pear Studio",
           "title": "認證成功"
         }
       },

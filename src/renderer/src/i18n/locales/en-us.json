@@ -1986,7 +1986,7 @@
       "select_other_provider": "Select Other Provider",
       "setup_hint": "Please configure at least one provider for the best experience",
       "subtitle": "Enjoy top-tier AI services with CherryIN",
-      "title": "Welcome to Cherry Studio"
+      "title": "Welcome to Pear Studio"
     }
   },
   "ovms": {
@@ -2821,14 +2821,14 @@
             "test_message_received": "Received pong from {{device}}",
             "test_message_sent": "Sent hello world test payload"
           },
-          "idle_hint": "Scan paused. Start scanning to find Cherry Studio peers on your LAN.",
+          "idle_hint": "Scan paused. Start scanning to find Pear Studio peers on your LAN.",
           "ip_addresses": "IP addresses",
           "last_seen": "Last seen at {{time}}",
           "metadata": "Metadata",
-          "no_connection_warning": "Please open LAN Transfer on Cherry Studio mobile",
+          "no_connection_warning": "Please open LAN Transfer on Pear Studio mobile",
           "no_devices": "No LAN peers found yet",
           "scan_devices": "Scan devices",
-          "scanning_hint": "Scanning your local network for Cherry Studio peers...",
+          "scanning_hint": "Scanning your local network for Pear Studio peers...",
           "send_file": "Send File",
           "status": {
             "completed": "Transfer completed",
@@ -3214,7 +3214,7 @@
           "title": "Connection Check"
         },
         "root_path": "Siyuan Note Root Path",
-        "root_path_placeholder": "e.g.: /CherryStudio",
+        "root_path_placeholder": "e.g.: /PearStudio",
         "title": "Siyuan Note Configuration",
         "token": {
           "help": "Get Siyuan Note Token",
@@ -3599,7 +3599,7 @@
       },
       "oauth": {
         "callback": {
-          "message": "You can close this page and return to Cherry Studio",
+          "message": "You can close this page and return to Pear Studio",
           "title": "Authentication Successful"
         }
       },
