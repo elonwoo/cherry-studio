@@ -1,3 +1,5 @@
+import fs from 'node:fs'
+
 import { isLinux, isMac, isWin } from '@main/constant'
 import { locales } from '@main/utils/locales'
 import type { MenuItemConstructorOptions } from 'electron'
@@ -33,10 +35,9 @@ export class TrayService {
     if (isWin) {
       tray.setImage(iconPath)
     } else if (isMac) {
-      const image = nativeImage.createFromPath(iconPath)
-      const resizedImage = image.resize({ width: 16, height: 16 })
-      resizedImage.setTemplateImage(true)
-      tray.setImage(resizedImage)
+      const image = nativeImage.createFromBuffer(fs.readFileSync(iconPath), { scaleFactor: 2 })
+      image.setTemplateImage(true)
+      tray.setImage(image)
     } else if (isLinux) {
       const image = nativeImage.createFromPath(iconPath)
       const resizedImage = image.resize({ width: 16, height: 16 })
@@ -51,7 +52,7 @@ export class TrayService {
       this.tray.setContextMenu(this.contextMenu)
     }
 
-    this.tray.setToolTip('Cherry Studio')
+    this.tray.setToolTip('Pear Studio')
 
     this.tray.on('right-click', () => {
       if (this.contextMenu) {
