@@ -20,7 +20,7 @@
 xattr -dr com.apple.quarantine "/Applications/Cherry Studio.app"
 ```
 
-arm64 zip 从 1.9.14 的 **220 MB** 降到 1.9.19 的 **156 MB**；解包后的应用从 665 MB 降到 432 MB。
+arm64 zip 从 1.9.14 的 **220 MB** 降到 1.9.20 的 **156 MB**；解包后的应用从 665 MB 降到 432 MB。
 
 ## 保留的纯聊天能力
 
