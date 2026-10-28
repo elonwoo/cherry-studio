@@ -57,6 +57,7 @@ arm64 zip 从 1.9.14 的 **220 MB** 降到 1.9.19 的 **156 MB**；解包后的�
 | [1.9.17](https://github.com/elonwoo/cherry-studio/releases/tag/v1.9.17) | 内置模型从 350 个裁到 11 个服务商的 96 个；移除 CherryAI 的 Qwen 条目。 |
 | [1.9.18](https://github.com/elonwoo/cherry-studio/releases/tag/v1.9.18) | 服务商预设从 63 个裁到 15 个。 |
 | [1.9.19](https://github.com/elonwoo/cherry-studio/releases/tag/v1.9.19) | 快捷键：`⌘S` 左侧栏、`⌘L` 右侧栏、`⌘⇧L` 清空消息；README 重写。 |
+| [1.9.20](https://github.com/elonwoo/cherry-studio/releases/tag/v1.9.20) | About 页移除测试计划、官网、企业版、邮件联系和招聘；检查更新/自动更新/更新日志/反馈指向本仓库；移除匿名错误报告与数据采集。 |
 
 ## 数据与迁移
 
