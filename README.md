@@ -1,6 +1,6 @@
-# Cherry Studio 1.9 个人分支
+# Pear Studio 1.9 个人分支
 
-基于上游 **Cherry Studio v1.9.13**（V1 最后一个版本）的个人构建，仅支持 Apple Silicon macOS。这个分支的目标是**还原成纯聊天客户端**：保留聊天、助手、话题、知识库、MCP、联网搜索、记忆、笔记和文档处理，删除所有 Agent（智能体）相关能力，不再跟随上游 2.0 的大改。
+基于上游 **Cherry Studio v1.9.13**（V1 最后一个版本）的个人构建，现更名为 **Pear Studio**，仅支持 Apple Silicon macOS。这个分支的目标是**还原成纯聊天客户端**：保留聊天、助手、话题、知识库、MCP、联网搜索、记忆、笔记和文档处理，删除所有 Agent（智能体）相关能力，不再跟随上游 2.0 的大改。
 
 上游仓库：[CherryHQ/cherry-studio](https://github.com/CherryHQ/cherry-studio)
 
@@ -12,12 +12,12 @@
 
 ## 下载与安装
 
-- 最新版本：[github.com/elonwoo/cherry-studio/releases/latest](https://github.com/elonwoo/cherry-studio/releases/latest)
-- 产物：`Cherry-Studio-<版本>-arm64.zip`（仅 Apple Silicon）
+- 最新版本：[github.com/elonwoo/pear-studio/releases/latest](https://github.com/elonwoo/pear-studio/releases/latest)
+- 产物：`Pear-Studio-<版本>-arm64.zip`（仅 Apple Silicon）
 - 已用 Developer ID 签名，未做公证。首次打开被 Gatekeeper 拦截时，右键选择「打开」，或执行：
 
 ```bash
-xattr -dr com.apple.quarantine "/Applications/Cherry Studio.app"
+xattr -dr com.apple.quarantine "/Applications/Pear Studio.app"
 ```
 
 arm64 zip 从 1.9.14 的 **220 MB** 降到 1.9.20 的 **156 MB**；解包后的应用从 665 MB 降到 432 MB。
@@ -51,13 +51,14 @@ arm64 zip 从 1.9.14 的 **220 MB** 降到 1.9.20 的 **156 MB**；解包后的�
 
 | 版本 | 精简与变更 |
 |---|---|
-| [1.9.14](https://github.com/elonwoo/cherry-studio/releases/tag/v1.9.14) | 修复 OpenCode Go/Zen 的 `x-opencode-session`；macOS 只产出 arm64 zip。 |
-| [1.9.15](https://github.com/elonwoo/cherry-studio/releases/tag/v1.9.15) | 移除智能体子系统（渠道机器人、定时任务、CherryClaw、技能）、OpenClaw、小程序；移除内置 Claude Code 二进制；加入 Dracula × shadcn/ui 主题。 |
-| [1.9.16](https://github.com/elonwoo/cherry-studio/releases/tag/v1.9.16) | 移除代码工具、API 服务器、划词助手、快捷助手（含 `selection-hook` 和迷你窗口）。 |
-| [1.9.17](https://github.com/elonwoo/cherry-studio/releases/tag/v1.9.17) | 内置模型从 350 个裁到 11 个服务商的 96 个；移除 CherryAI 的 Qwen 条目。 |
-| [1.9.18](https://github.com/elonwoo/cherry-studio/releases/tag/v1.9.18) | 服务商预设从 63 个裁到 15 个。 |
-| [1.9.19](https://github.com/elonwoo/cherry-studio/releases/tag/v1.9.19) | 快捷键：`⌘S` 左侧栏、`⌘L` 右侧栏、`⌘⇧L` 清空消息；README 重写。 |
-| [1.9.20](https://github.com/elonwoo/cherry-studio/releases/tag/v1.9.20) | About 页移除测试计划、官网、企业版、邮件联系和招聘；检查更新/自动更新/更新日志/反馈指向本仓库；移除匿名错误报告与数据采集。 |
+| [1.9.14](https://github.com/elonwoo/pear-studio/releases/tag/v1.9.14) | 修复 OpenCode Go/Zen 的 `x-opencode-session`；macOS 只产出 arm64 zip。 |
+| [1.9.15](https://github.com/elonwoo/pear-studio/releases/tag/v1.9.15) | 移除智能体子系统（渠道机器人、定时任务、CherryClaw、技能）、OpenClaw、小程序；移除内置 Claude Code 二进制；加入 Dracula × shadcn/ui 主题。 |
+| [1.9.16](https://github.com/elonwoo/pear-studio/releases/tag/v1.9.16) | 移除代码工具、API 服务器、划词助手、快捷助手（含 `selection-hook` 和迷你窗口）。 |
+| [1.9.17](https://github.com/elonwoo/pear-studio/releases/tag/v1.9.17) | 内置模型从 350 个裁到 11 个服务商的 96 个；移除 CherryAI 的 Qwen 条目。 |
+| [1.9.18](https://github.com/elonwoo/pear-studio/releases/tag/v1.9.18) | 服务商预设从 63 个裁到 15 个。 |
+| [1.9.19](https://github.com/elonwoo/pear-studio/releases/tag/v1.9.19) | 快捷键：`⌘S` 左侧栏、`⌘L` 右侧栏、`⌘⇧L` 清空消息；README 重写。 |
+| [1.9.20](https://github.com/elonwoo/pear-studio/releases/tag/v1.9.20) | About 页移除测试计划、官网、企业版、邮件联系和招聘；检查更新/自动更新/更新日志/反馈指向本仓库；移除匿名错误报告与数据采集。 |
+| [1.9.21](https://github.com/elonwoo/pear-studio/releases/tag/v1.9.21) | 全面更名为 Pear Studio：应用身份、图标、托盘、界面文案与仓库地址；数据目录改为 `~/Library/Application Support/Pear Studio`，旧数据不自动迁移。 |
 
 ## 数据与迁移
 
@@ -77,7 +78,7 @@ pnpm install
 pnpm build:mac:arm64
 ```
 
-产物：`dist/Cherry-Studio-<版本>-arm64.zip`。
+产物：`dist/Pear-Studio-<版本>-arm64.zip`。
 
 常用检查：
 

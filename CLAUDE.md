@@ -122,7 +122,7 @@ Node.js backend services. Key services:
 | `OvmsManager` | OpenVINO model server management |
 | `NodeTraceService` | OpenTelemetry trace export |
 
-Agents subsystem (`src/main/services/agents/`):
+Agents subsystem (`src/main/services/agents/`) — **removed in this fork**; the paths below are kept for reference:
 - Drizzle ORM + LibSQL (SQLite) schema at `database/schema/index.ts`
 - Migrations in `resources/database/drizzle/`
 - **Currently undergoing v2 refactor** — only critical bug fixes accepted
@@ -172,8 +172,8 @@ Slices (redux-persist enabled):
   - Schema versioned with upgrade functions (`upgradeToV5`, `upgradeToV7`, `upgradeToV8`)
   - **BLOCKED**: Do not modify schema until v2.0.0.
 - **SQLite** (Drizzle ORM + LibSQL): `src/main/services/agents/`
-  - Used for the agents subsystem
-  - DB path: `{userData}/Data/agents.db` (e.g., on macOS: `~/Library/Application Support/CherryStudioDev/Data/agents.db` in dev, `~/Library/Application Support/CherryStudio/Data/agents.db` in prod)
+  - Used for the agents subsystem (removed in this fork)
+  - DB path: `{userData}/Data/agents.db` (e.g., on macOS: `~/Library/Application Support/Pear Studio/Data/agents.db`)
 
 ### IPC Communication
 
