@@ -144,24 +144,14 @@ releaseInfo:
     <!--LANG:en-->
     Pear Studio 1.9.21 - Personal arm64 build
 
-    🧹 About & Updates
-    - Removed the test plan, official website, enterprise, contact and careers entries.
-    - Check for updates, auto update, changelog and feedback now point at this fork.
+    🎨 Rebrand
+    - Cherry Studio is now Pear Studio: new app identity, Neon pear icon, menu bar glyph and UI wording.
+    - From this version data lives in ~/Library/Application Support/Pear Studio; earlier data is not migrated automatically.
+    - Check for updates, changelog, feedback and security advisories now point at elonwoo/pear-studio.
 
-    🔒 Privacy
-    - Removed anonymous error reporting and data collection, including the privacy toggle.
-
-    🐛 Bug Fixes
-    - [OpenCode] Stable per-conversation `x-opencode-session` header retained.
-
-    🧩 Models & Providers
-    - 96 built-in models across 15 selected providers.
-
-    ⌨️ Shortcuts
-    - Cmd+S left sidebar, Cmd+L right sidebar, Cmd+Shift+L clear messages.
-
-    🎨 Theme
-    - Dracula × shadcn/ui by default.
+    🔒 Unchanged
+    - The cherrystudio URL scheme, CherryIN/CherryAI providers, OAuth logins and provider identifiers are untouched.
+    - Restore still accepts backups created by Cherry Studio.
 
     📦 Packaging
     - macOS: arm64 zip only; Developer ID signed, not notarized.
@@ -169,25 +159,15 @@ releaseInfo:
     <!--LANG:zh-CN-->
     Pear Studio 1.9.21 - 个人 arm64 构建
 
-    🧹 关于与更新
-    - 移除测试计划、官方网站、企业版、邮件联系和加入我们。
-    - 检查更新、自动更新、更新日志和意见反馈改为指向本仓库。
+    🎨 更名
+    - Cherry Studio 正式更名为 Pear Studio：新的应用身份、Neon 黄梨图标、菜单栏图标与界面文案。
+    - 从此版本起数据保存在 ~/Library/Application Support/Pear Studio，旧版本数据不会自动迁移。
+    - 检查更新、更新日志、意见反馈与安全公告均指向 elonwoo/pear-studio。
 
-    🔒 隐私
-    - 移除匿名错误报告和数据统计，以及对应的隐私开关。
-
-    🐛 问题修复
-    - 保留 OpenCode 每会话稳定的 `x-opencode-session` 请求头。
-
-    🧩 模型与服务商
-    - 15 个服务商共 96 个内置模型。
-
-    ⌨️ 快捷键
-    - Cmd+S 左侧栏、Cmd+L 右侧栏、Cmd+Shift+L 清空消息。
-
-    🎨 主题
-    - 默认 Dracula × shadcn/ui。
+    🔒 保持不变
+    - cherrystudio 深链协议、CherryIN/CherryAI 服务商、OAuth 登录与服务商标识均未改动。
+    - 仍可恢复 Cherry Studio 时期创建的备份。
 
     📦 打包
-    - macOS 仅产出 arm64 zip；Developer ID 签名，未公证。
+    - macOS 仅产出 arm64 zip；Developer ID 签名，未做公证。
     <!--LANG:END-->
