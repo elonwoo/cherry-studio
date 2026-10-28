@@ -2729,28 +2729,17 @@
   },
   "settings": {
     "about": {
-      "careers": {
-        "button": "Vista",
-        "title": "Carreras"
-      },
       "checkUpdate": {
         "available": "Actualizar ahora",
         "label": "Comprobar actualizaciones"
       },
       "checkingUpdate": "Verificando actualizaciones...",
-      "contact": {
-        "button": "Correo electrónico",
-        "title": "Contacto por correo electrónico"
-      },
       "debug": {
         "open": "Abrir",
         "title": "Panel de depuración"
       },
       "description": "Una asistente de IA creada para los creadores",
       "downloading": "Descargando actualización...",
-      "enterprise": {
-        "title": "Empresa"
-      },
       "feedback": {
         "button": "Enviar feedback",
         "title": "Enviar comentarios"
@@ -2766,11 +2755,7 @@
       "title": "Acerca de nosotros",
       "updateAvailable": "Versión nueva disponible {{version}}",
       "updateError": "Error de actualización",
-      "updateNotAvailable": "Tu software ya está actualizado",
-      "website": {
-        "button": "Ver",
-        "title": "Sitio web oficial"
-      }
+      "updateNotAvailable": "Tu software ya está actualizado"
     },
     "advanced": {
       "auto_switch_to_topics": "Cambiar automáticamente a temas",
@@ -3502,16 +3487,6 @@
         "label": "Verificación ortográfica",
         "languages": "Idiomas de verificación ortográfica"
       },
-      "test_plan": {
-        "beta_version": "Versión beta",
-        "beta_version_tooltip": "Las funciones pueden cambiar en cualquier momento, hay más errores y las actualizaciones son más frecuentes",
-        "rc_version": "Versión preliminar (RC)",
-        "rc_version_tooltip": "Cerca de la versión final, funciones básicamente estables, pocos errores",
-        "title": "Plan de pruebas",
-        "tooltip": "Al participar en el plan de pruebas, podrá experimentar funciones más recientes más rápidamente, pero también conlleva mayores riesgos; asegúrese de hacer una copia de seguridad previamente",
-        "version_channel_not_match": "El cambio entre versión preliminar y versión beta tendrá efecto en el próximo lanzamiento oficial",
-        "version_options": "Selección de versión"
-      },
       "title": "Configuración general",
       "user_name": {
         "label": "Nombre de usuario",
@@ -4003,10 +3978,6 @@
         "tip": "Controlar el nivel de detalle de la salida del modelo",
         "title": "nivel de detalle"
       }
-    },
-    "privacy": {
-      "enable_privacy_mode": "Enviar informes de errores y estadísticas de forma anónima",
-      "title": "Configuración de privacidad"
     },
     "provider": {
       "add": {

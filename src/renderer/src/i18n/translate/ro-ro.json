@@ -2729,28 +2729,17 @@
   },
   "settings": {
     "about": {
-      "careers": {
-        "button": "Vedere",
-        "title": "Carieră"
-      },
       "checkUpdate": {
         "available": "Actualizare",
         "label": "Verifică actualizări"
       },
       "checkingUpdate": "Se verifică actualizările...",
-      "contact": {
-        "button": "E-mail",
-        "title": "Contact"
-      },
       "debug": {
         "open": "Deschide",
         "title": "Depanare"
       },
       "description": "Un asistent AI puternic pentru producători",
       "downloading": "Se descarcă...",
-      "enterprise": {
-        "title": "Enterprise"
-      },
       "feedback": {
         "button": "Feedback",
         "title": "Feedback"
@@ -2766,11 +2755,7 @@
       "title": "Despre",
       "updateAvailable": "S-a găsit o nouă versiune {{version}}",
       "updateError": "Eroare actualizare",
-      "updateNotAvailable": "Utilizezi cea mai recentă versiune",
-      "website": {
-        "button": "Site web",
-        "title": "Site oficial"
-      }
+      "updateNotAvailable": "Utilizezi cea mai recentă versiune"
     },
     "advanced": {
       "auto_switch_to_topics": "Comutare automată la subiect",
@@ -3502,16 +3487,6 @@
         "label": "Verificare ortografică",
         "languages": "Folosește verificarea ortografică pentru"
       },
-      "test_plan": {
-        "beta_version": "Versiune Beta",
-        "beta_version_tooltip": "Funcțiile se pot schimba oricând, mai multe bug-uri, actualizare rapidă",
-        "rc_version": "Versiune Previzualizare (RC)",
-        "rc_version_tooltip": "Aproape de versiunea stabilă, funcțiile sunt în principiu stabile, puține bug-uri",
-        "title": "Plan de testare",
-        "tooltip": "Participă la planul de testare pentru a experimenta mai rapid cele mai recente funcții, dar aduce și mai multe riscuri; te rugăm să faci backup datelor în avans",
-        "version_channel_not_match": "Comutarea versiunii de previzualizare și test va intra în vigoare după lansarea următoarei versiuni stabile",
-        "version_options": "Opțiuni versiune"
-      },
       "title": "Setări generale",
       "user_name": {
         "label": "Nume utilizator",
@@ -4003,10 +3978,6 @@
         "tip": "Controlează nivelul de detaliu în ieșirea modelului",
         "title": "Verbozitate"
       }
-    },
-    "privacy": {
-      "enable_privacy_mode": "Raportare anonimă a erorilor și statisticilor",
-      "title": "Setări confidențialitate"
     },
     "provider": {
       "add": {

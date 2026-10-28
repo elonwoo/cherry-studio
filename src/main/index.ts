@@ -15,7 +15,6 @@ import { isDev, isLinux, isWin } from './constant'
 import process from 'node:process'
 
 import { registerIpc } from './ipc'
-import { analyticsService } from './services/AnalyticsService'
 import { appMenuService } from './services/AppMenuService'
 import { configManager } from './services/ConfigManager'
 import { lanTransferClientService } from './services/lanTransfer'
@@ -155,7 +154,6 @@ if (!app.requestSingleInstanceLock()) {
 
     nodeTraceService.init()
     powerMonitorService.init()
-    analyticsService.init()
 
     // Extract bundled rtk binary to ~/.cherrystudio/bin/ on first run
     extractRtkBinaries().catch((error) => {
@@ -239,7 +237,6 @@ if (!app.requestSingleInstanceLock()) {
     }
 
     try {
-      await analyticsService.destroy()
       await mcpService.cleanup()
     } catch (error) {
       logger.warn('Error cleaning up services:', error as Error)

@@ -16,8 +16,6 @@ export enum IpcChannel {
   App_SetTrayOnClose = 'app:set-tray-on-close',
   App_SetTheme = 'app:set-theme',
   App_SetAutoUpdate = 'app:set-auto-update',
-  App_SetTestPlan = 'app:set-test-plan',
-  App_SetTestChannel = 'app:set-test-channel',
   App_HandleZoomFactor = 'app:handle-zoom-factor',
   App_Select = 'app:select',
   App_HasWritePermission = 'app:has-write-permission',
@@ -341,8 +339,5 @@ export enum IpcChannel {
   LocalTransfer_Disconnect = 'local-transfer:disconnect',
   LocalTransfer_ClientEvent = 'local-transfer:client-event',
   LocalTransfer_SendFile = 'local-transfer:send-file',
-  LocalTransfer_CancelTransfer = 'local-transfer:cancel-transfer',
-
-  // Analytics
-  Analytics_TrackTokenUsage = 'analytics:track-token-usage'
+  LocalTransfer_CancelTransfer = 'local-transfer:cancel-transfer'
 }

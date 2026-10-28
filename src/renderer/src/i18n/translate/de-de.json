@@ -2729,28 +2729,17 @@
   },
   "settings": {
     "about": {
-      "careers": {
-        "button": "Ansicht",
-        "title": "Karriere"
-      },
       "checkUpdate": {
         "available": "Jetzt aktualisieren",
         "label": "Auf Updates prüfen"
       },
       "checkingUpdate": "Sucht nach Updates...",
-      "contact": {
-        "button": "E-Mail",
-        "title": "E-Mail-Kontakt"
-      },
       "debug": {
         "open": "Öffnen",
         "title": "Debug-Panel"
       },
       "description": "Ein KI-Assistent für Kreative",
       "downloading": "Update wird heruntergeladen...",
-      "enterprise": {
-        "title": "Unternehmen"
-      },
       "feedback": {
         "button": "Feedback",
         "title": "Feedback"
@@ -2766,11 +2755,7 @@
       "title": "Über uns",
       "updateAvailable": "Neue Version {{version}} gefunden",
       "updateError": "Aktualisierungsfehler",
-      "updateNotAvailable": "Ihre Software ist bereits auf dem neuesten Stand",
-      "website": {
-        "button": "Anzeigen",
-        "title": "Offizielle Website"
-      }
+      "updateNotAvailable": "Ihre Software ist bereits auf dem neuesten Stand"
     },
     "advanced": {
       "auto_switch_to_topics": "Automatisch zu Themenansicht wechseln",
@@ -3502,16 +3487,6 @@
         "label": "Rechtschreibprüfung",
         "languages": "Rechtschreibprüfungssprache"
       },
-      "test_plan": {
-        "beta_version": "Beta-Version",
-        "beta_version_tooltip": "Funktionen können sich jederzeit ändern, Fehler sind häufig, Updates sind schnell",
-        "rc_version": "Vorschauversion (RC)",
-        "rc_version_tooltip": "Näher an der stabilen Version, Funktionen sind grundsätzlich stabil, Fehler sind selten",
-        "title": "Testprogramm",
-        "tooltip": "Am Testprogramm teilnehmen für frühen Zugriff auf neue Funktionen, aber mit mehr Risiken. Backup empfohlen.",
-        "version_channel_not_match": "Die Wechsel zwischen Vorschau- und Testversionen wird mit dem nächsten stabilen Release wirksam",
-        "version_options": "Versionsauswahl"
-      },
       "title": "Allgemeine Einstellungen",
       "user_name": {
         "label": "Benutzername",
@@ -4003,10 +3978,6 @@
         "tip": "Detailgrad der Modellausgabe kontrollieren",
         "title": "Detailgrad"
       }
-    },
-    "privacy": {
-      "enable_privacy_mode": "Fehlerberichte und Statistiken anonym senden",
-      "title": "Datenschutzeinstellungen"
     },
     "provider": {
       "add": {

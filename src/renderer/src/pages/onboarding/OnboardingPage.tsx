@@ -1,10 +1,8 @@
 import PrivacyPopup from '@renderer/components/Popups/PrivacyPopup'
 import WindowControls from '@renderer/components/WindowControls'
-import { useAppDispatch } from '@renderer/store'
-import { setEnableDataCollection } from '@renderer/store/settings'
 import { Checkbox } from 'antd'
 import type { FC } from 'react'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import SelectModelPage from './components/SelectModelPage'
@@ -19,19 +17,9 @@ interface OnboardingPageProps {
 
 const OnboardingPage: FC<OnboardingPageProps> = ({ onComplete }) => {
   const { t } = useTranslation()
-  const dispatch = useAppDispatch()
   const [step, setStep] = useState<OnboardingStep>('welcome')
   const [cherryInLoggedIn, setCherryInLoggedIn] = useState(false)
   const [privacyAccepted, setPrivacyAccepted] = useState(true)
-
-  const updateDataCollection = useCallback(
-    (enabled: boolean) => {
-      setPrivacyAccepted(enabled)
-      dispatch(setEnableDataCollection(enabled))
-      void window.api.config.set('enableDataCollection', enabled)
-    },
-    [dispatch]
-  )
 
   const handleShowPrivacy = useCallback(async () => {
     const result = await PrivacyPopup.show({
@@ -41,17 +29,13 @@ const OnboardingPage: FC<OnboardingPageProps> = ({ onComplete }) => {
     })
 
     if (result?.accepted === true) {
-      updateDataCollection(true)
+      setPrivacyAccepted(true)
     }
 
     if (result?.accepted === false) {
-      updateDataCollection(false)
+      setPrivacyAccepted(false)
     }
-  }, [t, updateDataCollection])
-
-  useEffect(() => {
-    updateDataCollection(true)
-  }, [updateDataCollection])
+  }, [t])
 
   return (
     <div className="flex h-screen w-screen flex-col">
@@ -69,7 +53,7 @@ const OnboardingPage: FC<OnboardingPageProps> = ({ onComplete }) => {
             <Checkbox
               checked={privacyAccepted}
               className="max-w-5xl text-center"
-              onChange={(event) => updateDataCollection(event.target.checked)}>
+              onChange={(event) => setPrivacyAccepted(event.target.checked)}>
               <span className="text-(--color-text-3) text-xs leading-relaxed">
                 {t('onboarding.privacy.notice')}
                 <button

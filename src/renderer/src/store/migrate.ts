@@ -3488,6 +3488,20 @@ const migrateConfig = {
       logger.error('migrate 216 error', error as Error)
       return state
     }
+  },
+  '217': (state: RootState) => {
+    try {
+      const settings = state.settings as Partial<RootState['settings']>
+      delete settings.testPlan
+      delete settings.testChannel
+      delete settings.enableDataCollection
+
+      logger.info('migrate 217 success')
+      return state
+    } catch (error) {
+      logger.error('migrate 217 error', error as Error)
+      return state
+    }
   }
 }
 

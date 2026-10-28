@@ -2729,28 +2729,17 @@
   },
   "settings": {
     "about": {
-      "careers": {
-        "button": "表示",
-        "title": "キャリア"
-      },
       "checkUpdate": {
         "available": "今すぐ更新",
         "label": "更新を確認"
       },
       "checkingUpdate": "更新を確認中...",
-      "contact": {
-        "button": "メール",
-        "title": "連絡先"
-      },
       "debug": {
         "open": "開く",
         "title": "デバッグ"
       },
       "description": "クリエイターのための強力なAIアシスタント",
       "downloading": "ダウンロード中...",
-      "enterprise": {
-        "title": "エンタープライズ"
-      },
       "feedback": {
         "button": "フィードバック",
         "title": "フィードバック"
@@ -2766,11 +2755,7 @@
       "title": "について",
       "updateAvailable": "新しいバージョン {{version}} が見つかりました",
       "updateError": "更新エラー",
-      "updateNotAvailable": "最新バージョンを使用しています",
-      "website": {
-        "button": "ウェブサイト",
-        "title": "公式ウェブサイト"
-      }
+      "updateNotAvailable": "最新バージョンを使用しています"
     },
     "advanced": {
       "auto_switch_to_topics": "トピックに自動的に切り替える",
@@ -3502,16 +3487,6 @@
         "label": "スペルチェック",
         "languages": "スペルチェック言語"
       },
-      "test_plan": {
-        "beta_version": "ベータ版(Beta)",
-        "beta_version_tooltip": "機能が変更される可能性があります。バグが多く、迅速にアップグレードされます。",
-        "rc_version": "プレビュー版(RC)",
-        "rc_version_tooltip": "安定版に近い機能ですが、バグが少なく、迅速にアップグレードされます。",
-        "title": "テストプラン",
-        "tooltip": "テストプランに参加すると、最新の機能をより早く体験できますが、同時により多くのリスクが伴います。データを事前にバックアップしてください。",
-        "version_channel_not_match": "プレビュー版とテスト版の切り替えは、次の正式版リリース時に有効になります。",
-        "version_options": "バージョンオプション"
-      },
       "title": "一般設定",
       "user_name": {
         "label": "ユーザー名",
@@ -4003,10 +3978,6 @@
         "tip": "制御モデル出力の詳細さ",
         "title": "詳細度"
       }
-    },
-    "privacy": {
-      "enable_privacy_mode": "匿名エラーレポートとデータ統計の送信",
-      "title": "プライバシー設定"
     },
     "provider": {
       "add": {

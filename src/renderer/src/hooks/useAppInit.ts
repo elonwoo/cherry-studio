@@ -34,7 +34,6 @@ export function useAppInit() {
     autoCheckUpdate,
     proxyMode,
     customCss,
-    enableDataCollection,
     privacyPolicyVersion
   } = useSettings()
   const { setDefaultModel, setQuickModel, setTranslateModel } = useDefaultModel()
@@ -167,10 +166,6 @@ export function useAppInit() {
       document.head.appendChild(customCssElement)
     }
   }, [customCss])
-
-  useEffect(() => {
-    void window.api.config.set('enableDataCollection', enableDataCollection)
-  }, [enableDataCollection])
 
   // Update memory service configuration when it changes
   useEffect(() => {

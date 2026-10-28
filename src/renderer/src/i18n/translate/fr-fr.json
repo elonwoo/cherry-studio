@@ -2729,28 +2729,17 @@
   },
   "settings": {
     "about": {
-      "careers": {
-        "button": "Vue",
-        "title": "Carrières"
-      },
       "checkUpdate": {
         "available": "Mettre à jour maintenant",
         "label": "Vérifier les mises à jour"
       },
       "checkingUpdate": "Vérification des mises à jour en cours...",
-      "contact": {
-        "button": "Courriel",
-        "title": "Contactez-nous par courriel"
-      },
       "debug": {
         "open": "Ouvrir",
         "title": "Panneau de débogage"
       },
       "description": "Un assistant IA conçu pour les créateurs",
       "downloading": "Téléchargement de la mise à jour en cours...",
-      "enterprise": {
-        "title": "Entreprise"
-      },
       "feedback": {
         "button": "Faire un retour",
         "title": "Retour d'information"
@@ -2766,11 +2755,7 @@
       "title": "À propos de nous",
       "updateAvailable": "Nouvelle version disponible {{version}}",
       "updateError": "Erreur lors de la mise à jour",
-      "updateNotAvailable": "Votre logiciel est déjà à jour",
-      "website": {
-        "button": "Visiter le site web",
-        "title": "Site web officiel"
-      }
+      "updateNotAvailable": "Votre logiciel est déjà à jour"
     },
     "advanced": {
       "auto_switch_to_topics": "Basculer automatiquement vers les sujets",
@@ -3502,16 +3487,6 @@
         "label": "Vérification orthographique",
         "languages": "Langues de vérification orthographique"
       },
-      "test_plan": {
-        "beta_version": "Version Bêta (Beta)",
-        "beta_version_tooltip": "Les fonctionnalités peuvent changer à tout moment, davantage de bogues, mises à jour fréquentes",
-        "rc_version": "Version de prévisualisation (RC)",
-        "rc_version_tooltip": "Proche de la version finale, fonctionnalités globalement stables, peu de bogues",
-        "title": "Plan de test",
-        "tooltip": "Participer au plan de test vous permet d'accéder plus rapidement aux dernières fonctionnalités, mais comporte également davantage de risques. Assurez-vous de sauvegarder vos données au préalable.",
-        "version_channel_not_match": "Le changement entre version de prévisualisation et version de test prendra effet lors de la prochaine publication de la version officielle",
-        "version_options": "Choix de version"
-      },
       "title": "Paramètres généraux",
       "user_name": {
         "label": "Nom d'utilisateur",
@@ -4003,10 +3978,6 @@
         "tip": "Contrôler le niveau de détail de la sortie du modèle",
         "title": "niveau de détail"
       }
-    },
-    "privacy": {
-      "enable_privacy_mode": "Отправлять анонимные сообщения об ошибках и статистику",
-      "title": "Настройки конфиденциальности"
     },
     "provider": {
       "add": {

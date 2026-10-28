@@ -14,10 +14,7 @@ vi.mock('@logger', () => ({
 vi.mock('../ConfigManager', () => ({
   configManager: {
     getLanguage: vi.fn(),
-    getAutoUpdate: vi.fn(() => false),
-    getTestPlan: vi.fn(() => false),
-    getTestChannel: vi.fn(),
-    getClientId: vi.fn(() => 'test-client-id')
+    getAutoUpdate: vi.fn(() => false)
   }
 }))
 
@@ -31,19 +28,11 @@ vi.mock('@main/constant', () => ({
   isWin: false
 }))
 
-vi.mock('@main/utils/ipService', () => ({
-  getIpCountry: vi.fn(async () => 'US')
-}))
-
 vi.mock('@main/utils/locales', () => ({
   locales: {
     en: { translation: { update: {} } },
     'zh-CN': { translation: { update: {} } }
   }
-}))
-
-vi.mock('@main/utils/systemInfo', () => ({
-  generateUserAgent: vi.fn(() => 'test-user-agent')
 }))
 
 vi.mock('electron', () => ({
@@ -82,8 +71,6 @@ vi.mock('electron-updater', () => ({
   AppUpdater: vi.fn()
 }))
 
-import { getIpCountry } from '@main/utils/ipService'
-import { UpgradeChannel } from '@shared/config/constant'
 import { app } from 'electron'
 import { autoUpdater } from 'electron-updater'
 
@@ -97,90 +84,56 @@ describe('AppUpdater', () => {
     vi.clearAllMocks()
     vi.mocked(app.getVersion).mockReturnValue('1.0.0')
     vi.mocked(configManager.getAutoUpdate).mockReturnValue(false)
-    vi.mocked(configManager.getTestPlan).mockReturnValue(false)
-    vi.mocked(configManager.getTestChannel).mockReturnValue(UpgradeChannel.LATEST)
-    vi.mocked(configManager.getClientId).mockReturnValue('test-client-id')
-    vi.mocked(getIpCountry).mockResolvedValue('US')
     autoUpdater.requestHeaders = {}
     autoUpdater.channel = ''
-    autoUpdater.allowDowngrade = false
-    autoUpdater.disableDifferentialDownload = false
+    autoUpdater.autoDownload = false
     appUpdater = new AppUpdater()
   })
 
-  describe('managed update feed', () => {
-    it('uses the managed release service and global mirror for users outside China', async () => {
-      await (appUpdater as any)._configureUpdaterForCheck()
+  describe('updater configuration', () => {
+    it('uses the configured auto download setting and never auto installs on quit', () => {
+      expect(autoUpdater.autoDownload).toBe(false)
+      expect(autoUpdater.autoInstallOnAppQuit).toBe(false)
+      expect(autoUpdater.forceDevUpdateConfig).toBe(false)
+    })
+  })
 
-      expect(autoUpdater.channel).toBe(UpgradeChannel.LATEST)
-      expect(autoUpdater.requestHeaders).toMatchObject({
-        'User-Agent': 'test-user-agent',
-        'Cache-Control': 'no-cache',
-        'Client-Id': 'test-client-id',
-        'App-Version': 'v1.0.0',
-        OS: process.platform,
-        'X-Region': 'global'
-      })
-      expect(autoUpdater.requestHeaders).not.toHaveProperty('X-Release-Channel')
+  describe('checkForUpdates', () => {
+    it('checks the configured feed and returns the current version when up to date', async () => {
+      vi.mocked(autoUpdater.checkForUpdates).mockResolvedValue({
+        isUpdateAvailable: false,
+        updateInfo: null
+      } as any)
+
+      const result = await appUpdater.checkForUpdates()
+
+      expect(autoUpdater.checkForUpdates).toHaveBeenCalledOnce()
+      expect(result).toEqual({ currentVersion: '1.0.0', updateInfo: null })
     })
 
-    it('selects the GitCode region for users in China', async () => {
-      vi.mocked(getIpCountry).mockResolvedValue('CN')
+    it('triggers a manual download when auto download is disabled and an update is available', async () => {
+      const updateInfo = { version: '1.0.1' }
+      vi.mocked(autoUpdater.checkForUpdates).mockResolvedValue({
+        isUpdateAvailable: true,
+        updateInfo
+      } as any)
 
-      await (appUpdater as any)._configureUpdaterForCheck()
+      const result = await appUpdater.checkForUpdates()
 
-      expect(autoUpdater.requestHeaders).toMatchObject({
-        'X-Region': 'cn'
-      })
-      expect(autoUpdater.requestHeaders).not.toHaveProperty('X-Release-Channel')
+      expect(autoUpdater.downloadUpdate).toHaveBeenCalledOnce()
+      expect(result.updateInfo).toEqual(updateInfo)
     })
 
-    it('keeps existing updater request headers', async () => {
-      autoUpdater.requestHeaders = { Authorization: 'existing-header' }
-
-      await (appUpdater as any)._configureUpdaterForCheck()
-
-      expect(autoUpdater.requestHeaders).toMatchObject({
-        Authorization: 'existing-header',
-        'X-Region': 'global'
-      })
-    })
-
-    it.each([
-      ['RC', UpgradeChannel.RC],
-      ['Beta', UpgradeChannel.BETA]
-    ])('requests the %s manifest when that test channel is enabled', async (_label, channel) => {
-      vi.mocked(configManager.getTestPlan).mockReturnValue(true)
-      vi.mocked(configManager.getTestChannel).mockReturnValue(channel)
-
-      await (appUpdater as any)._configureUpdaterForCheck()
-
-      expect(autoUpdater.channel).toBe(channel)
-    })
-
-    it('uses the explicitly selected test track even when the installed prerelease came from another track', async () => {
-      vi.mocked(app.getVersion).mockReturnValue('2.0.0-rc.1')
-      vi.mocked(configManager.getTestPlan).mockReturnValue(true)
-      vi.mocked(configManager.getTestChannel).mockReturnValue(UpgradeChannel.BETA)
-
-      await (appUpdater as any)._configureUpdaterForCheck()
-
-      expect(autoUpdater.channel).toBe(UpgradeChannel.BETA)
-    })
-
-    it('applies the channel and request headers before checking for updates', async () => {
-      vi.mocked(autoUpdater.checkForUpdates).mockImplementation(async () => {
-        expect(autoUpdater.channel).toBe(UpgradeChannel.LATEST)
-        expect(autoUpdater.requestHeaders).toMatchObject({
-          'App-Version': 'v1.0.0',
-          'X-Region': 'global'
-        })
-        return null
-      })
+    it('does not trigger a manual download when auto download is enabled', async () => {
+      autoUpdater.autoDownload = true
+      vi.mocked(autoUpdater.checkForUpdates).mockResolvedValue({
+        isUpdateAvailable: true,
+        updateInfo: { version: '1.0.1' }
+      } as any)
 
       await appUpdater.checkForUpdates()
 
-      expect(autoUpdater.checkForUpdates).toHaveBeenCalledOnce()
+      expect(autoUpdater.downloadUpdate).not.toHaveBeenCalled()
     })
   })
 

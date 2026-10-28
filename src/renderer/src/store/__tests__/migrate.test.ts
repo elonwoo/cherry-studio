@@ -204,4 +204,22 @@ describe('store migrations', () => {
       expect(migrated.shortcuts.shortcuts[0].shortcut).toEqual(['CommandOrControl', 'Shift', ']'])
     })
   })
+
+  describe('migration 217: drop analytics and test-plan settings', () => {
+    it('removes persisted analytics, test-plan and test-channel settings', async () => {
+      const state = {
+        settings: {
+          autoCheckUpdate: true,
+          testPlan: true,
+          testChannel: 'rc',
+          enableDataCollection: false
+        },
+        _persist: { version: 216, rehydrated: false }
+      }
+
+      const migrated: any = await migrate(state as any, 217)
+
+      expect(migrated.settings).toEqual({ autoCheckUpdate: true })
+    })
+  })
 })

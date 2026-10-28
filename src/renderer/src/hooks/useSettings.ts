@@ -28,8 +28,6 @@ import {
   setSendMessageShortcut as _setSendMessageShortcut,
   setSidebarIcons,
   setTargetLanguage,
-  setTestChannel as _setTestChannel,
-  setTestPlan as _setTestPlan,
   setTheme,
   setTopicPosition,
   setTray as _setTray,
@@ -38,7 +36,6 @@ import {
   setWindowStyle
 } from '@renderer/store/settings'
 import type { SidebarIcon, ThemeMode, TranslateLanguageCode } from '@renderer/types'
-import type { UpgradeChannel } from '@shared/config/constant'
 
 export function useSettings() {
   const settings = useAppSelector((state) => state.settings)
@@ -76,16 +73,6 @@ export function useSettings() {
     setAutoCheckUpdate(isAutoUpdate: boolean) {
       dispatch(_setAutoCheckUpdate(isAutoUpdate))
       void window.api.setAutoUpdate(isAutoUpdate)
-    },
-
-    setTestPlan(isTestPlan: boolean) {
-      dispatch(_setTestPlan(isTestPlan))
-      void window.api.setTestPlan(isTestPlan)
-    },
-
-    setTestChannel(channel: UpgradeChannel) {
-      dispatch(_setTestChannel(channel))
-      void window.api.setTestChannel(channel)
     },
 
     setTheme(theme: ThemeMode) {

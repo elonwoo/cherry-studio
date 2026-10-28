@@ -2658,28 +2658,17 @@
   },
   "settings": {
     "about": {
-      "careers": {
-        "button": "View",
-        "title": "Careers"
-      },
       "checkUpdate": {
         "available": "Update",
         "label": "Check Update"
       },
       "checkingUpdate": "Checking for updates...",
-      "contact": {
-        "button": "Email",
-        "title": "Contact"
-      },
       "debug": {
         "open": "Open",
         "title": "Debug"
       },
       "description": "A powerful AI assistant for producer",
       "downloading": "Downloading...",
-      "enterprise": {
-        "title": "Enterprise"
-      },
       "feedback": {
         "button": "Feedback",
         "title": "Feedback"
@@ -2695,11 +2684,7 @@
       "title": "About",
       "updateAvailable": "Found new version {{version}}",
       "updateError": "Update error",
-      "updateNotAvailable": "You are using the latest version",
-      "website": {
-        "button": "Website",
-        "title": "Official Website"
-      }
+      "updateNotAvailable": "You are using the latest version"
     },
     "advanced": {
       "auto_switch_to_topics": "Auto switch to topic",
@@ -3431,16 +3416,6 @@
         "label": "Spell Check",
         "languages": "Use spell check for"
       },
-      "test_plan": {
-        "beta_version": "Beta Version (Beta)",
-        "beta_version_tooltip": "Features may change at any time, bugs are more, upgrade quickly",
-        "rc_version": "Preview Version (RC)",
-        "rc_version_tooltip": "Close to stable version, features are basically stable, bugs are few",
-        "title": "Test Plan",
-        "tooltip": "Participate in the test plan to experience the latest features faster, but also brings more risks, please backup your data in advance",
-        "version_channel_not_match": "Preview and test version switching will take effect after the next stable version is released",
-        "version_options": "Version Options"
-      },
       "title": "General Settings",
       "user_name": {
         "label": "User Name",
@@ -3932,10 +3907,6 @@
         "tip": "Control the level of detail in the model's output",
         "title": "Verbosity"
       }
-    },
-    "privacy": {
-      "enable_privacy_mode": "Anonymous reporting of errors and statistics",
-      "title": "Privacy Settings"
     },
     "provider": {
       "add": {

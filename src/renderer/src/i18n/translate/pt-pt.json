@@ -2729,28 +2729,17 @@
   },
   "settings": {
     "about": {
-      "careers": {
-        "button": "Visualizar",
-        "title": "Carreiras"
-      },
       "checkUpdate": {
         "available": "Atualizar agora",
         "label": "Verificar atualizações"
       },
       "checkingUpdate": "Verificando atualizações...",
-      "contact": {
-        "button": "E-mail",
-        "title": "Contato por e-mail"
-      },
       "debug": {
         "open": "Abrir",
         "title": "Painel de Depuração"
       },
       "description": "Um assistente de IA criado para criadores",
       "downloading": "Baixando atualizações...",
-      "enterprise": {
-        "title": "Empresa"
-      },
       "feedback": {
         "button": "Feedback",
         "title": "Enviar feedback"
@@ -2766,11 +2755,7 @@
       "title": "Sobre nós",
       "updateAvailable": "Nova versão disponível {{version}}",
       "updateError": "Erro ao atualizar",
-      "updateNotAvailable": "Seu software já está atualizado",
-      "website": {
-        "button": "Ver",
-        "title": "Site oficial"
-      }
+      "updateNotAvailable": "Seu software já está atualizado"
     },
     "advanced": {
       "auto_switch_to_topics": "Alternar automaticamente para tópicos",
@@ -3502,16 +3487,6 @@
         "label": "Verificação Ortográfica",
         "languages": "Idiomas da Verificação Ortográfica"
       },
-      "test_plan": {
-        "beta_version": "Versão Beta",
-        "beta_version_tooltip": "Funcionalidades podem mudar a qualquer momento, mais bugs, atualizações frequentes",
-        "rc_version": "Versão de Pré-visualização (RC)",
-        "rc_version_tooltip": "Próxima da versão final, funcionalidades basicamente estáveis, poucos bugs",
-        "title": "Plano de Testes",
-        "tooltip": "Participar do plano de testes permite experimentar recursos mais recentes mais cedo, mas também traz mais riscos; certifique-se de fazer backup com antecedência",
-        "version_channel_not_match": "A troca entre versão de pré-visualização e versão de teste entrará em vigor na próxima versão estável",
-        "version_options": "Seleção de Versão"
-      },
       "title": "Configurações gerais",
       "user_name": {
         "label": "Nome de usuário",
@@ -4003,10 +3978,6 @@
         "tip": "Controlar o nível de detalhe da saída do modelo",
         "title": "nível de detalhe"
       }
-    },
-    "privacy": {
-      "enable_privacy_mode": "Enviar relatórios de erro e estatísticas de forma anônima",
-      "title": "Configurações de Privacidade"
     },
     "provider": {
       "add": {

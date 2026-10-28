@@ -2,7 +2,7 @@ import PrivacyPopup from '@renderer/components/Popups/PrivacyPopup'
 import { TopView } from '@renderer/components/TopView'
 import { LATEST_PRIVACY_POLICY_VERSION } from '@renderer/config/constant'
 import { useAppDispatch } from '@renderer/store'
-import { setEnableDataCollection, setPrivacyPolicyVersion } from '@renderer/store/settings'
+import { setPrivacyPolicyVersion } from '@renderer/store/settings'
 import { Button, Modal } from 'antd'
 import type { FC } from 'react'
 import { useCallback, useState } from 'react'
@@ -19,12 +19,6 @@ const PopupContainer: FC<Props> = ({ resolve }) => {
 
   const acknowledgeLatestPrivacyPolicy = useCallback(() => {
     dispatch(setPrivacyPolicyVersion(LATEST_PRIVACY_POLICY_VERSION))
-    // Special Note (Regarding This Policy Update): Due to adjustments in our data collection architecture associated with this update, all related toggles under [Settings] - [General Settings] - [Privacy Settings] will be reset to their default ON state upon activation of the new version.
-    // If you wish to maintain your previous OFF settings, please revisit the privacy settings page to make the necessary adjustments after upgrading. We apologize for any inconvenience this may cause and appreciate your understanding.
-    if (String(LATEST_PRIVACY_POLICY_VERSION) === '20260531') {
-      dispatch(setEnableDataCollection(true))
-      void window.api.config.set('enableDataCollection', true)
-    }
   }, [dispatch])
 
   const handleShowPrivacyPolicy = useCallback(() => {

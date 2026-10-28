@@ -2729,28 +2729,17 @@
   },
   "settings": {
     "about": {
-      "careers": {
-        "button": "Xem",
-        "title": "Sự nghiệp"
-      },
       "checkUpdate": {
         "available": "Cập nhật",
         "label": "Kiểm tra cập nhật"
       },
       "checkingUpdate": "Đang kiểm tra cập nhật...",
-      "contact": {
-        "button": "Email",
-        "title": "Liên hệ"
-      },
       "debug": {
         "open": "Mở",
         "title": "Gỡ lỗi"
       },
       "description": "Một trợ lý AI mạnh mẽ cho nhà sản xuất",
       "downloading": "Đang tải xuống...",
-      "enterprise": {
-        "title": "Doanh nghiệp"
-      },
       "feedback": {
         "button": "Phản hồi",
         "title": "Phản hồi"
@@ -2766,11 +2755,7 @@
       "title": "Về",
       "updateAvailable": "Đã tìm thấy phiên bản mới {{version}}",
       "updateError": "Lỗi cập nhật",
-      "updateNotAvailable": "Bạn đang sử dụng phiên bản mới nhất",
-      "website": {
-        "button": "Trang web",
-        "title": "Trang web chính thức"
-      }
+      "updateNotAvailable": "Bạn đang sử dụng phiên bản mới nhất"
     },
     "advanced": {
       "auto_switch_to_topics": "Tự động chuyển sang chủ đề",
@@ -3502,16 +3487,6 @@
         "label": "Kiểm tra chính tả",
         "languages": "Sử dụng kiểm tra chính tả cho"
       },
-      "test_plan": {
-        "beta_version": "Phiên bản Beta (Beta)",
-        "beta_version_tooltip": "Các tính năng có thể thay đổi bất cứ lúc nào, lỗi nhiều hơn, hãy nâng cấp nhanh chóng",
-        "rc_version": "Phiên bản Xem trước (RC)",
-        "rc_version_tooltip": "Gần với phiên bản ổn định, các tính năng cơ bản đã ổn định, lỗi ít",
-        "title": "Kế hoạch Kiểm thử",
-        "tooltip": "Tham gia kế hoạch thử nghiệm để trải nghiệm các tính năng mới nhanh hơn, nhưng cũng mang lại nhiều rủi ro hơn, vui lòng sao lưu dữ liệu của bạn trước.",
-        "version_channel_not_match": "Việc chuyển đổi phiên bản xem trước và thử nghiệm sẽ có hiệu lực sau khi phiên bản ổn định tiếp theo được phát hành",
-        "version_options": "Tùy chọn phiên bản"
-      },
       "title": "Cài đặt chung",
       "user_name": {
         "label": "Tên người dùng",
@@ -4003,10 +3978,6 @@
         "tip": "Kiểm soát mức độ chi tiết trong đầu ra của mô hình",
         "title": "Tính dài dòng"
       }
-    },
-    "privacy": {
-      "enable_privacy_mode": "Báo cáo lỗi và thống kê ẩn danh",
-      "title": "Cài đặt quyền riêng tư"
     },
     "provider": {
       "add": {

@@ -523,12 +523,6 @@ const settingsSlice = createSlice({
     setAutoCheckUpdate: (state, action: PayloadAction<boolean>) => {
       state.autoCheckUpdate = action.payload
     },
-    setTestPlan: (state, action: PayloadAction<boolean>) => {
-      state.testPlan = action.payload
-    },
-    setTestChannel: (state, action: PayloadAction<UpgradeChannel>) => {
-      state.testChannel = action.payload
-    },
     setRenderInputMessageAsMarkdown: (state, action: PayloadAction<boolean>) => {
       state.renderInputMessageAsMarkdown = action.payload
     },
@@ -758,9 +752,6 @@ const settingsSlice = createSlice({
     setAgentssubscribeUrl: (state, action: PayloadAction<string>) => {
       state.agentssubscribeUrl = action.payload
     },
-    setEnableDataCollection: (state, action: PayloadAction<boolean>) => {
-      state.enableDataCollection = action.payload
-    },
     setPrivacyPolicyVersion: (state, action: PayloadAction<string>) => {
       state.privacyPolicyVersion = action.payload
     },
@@ -873,8 +864,6 @@ export const {
   setAssistantIconType,
   setPasteLongTextAsFile,
   setAutoCheckUpdate,
-  setTestPlan,
-  setTestChannel,
   setRenderInputMessageAsMarkdown,
   setClickAssistantToShowTopic,
   setSkipBackupFile,
@@ -935,7 +924,6 @@ export const {
   setSiyuanBoxId,
   setAgentssubscribeUrl,
   setSiyuanRootPath,
-  setEnableDataCollection,
   setPrivacyPolicyVersion,
   setEnableSpellCheck,
   setSpellCheckLanguages,

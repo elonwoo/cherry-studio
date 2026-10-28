@@ -2658,28 +2658,17 @@
   },
   "settings": {
     "about": {
-      "careers": {
-        "button": "查看",
-        "title": "加入我們"
-      },
       "checkUpdate": {
         "available": "立即更新",
         "label": "檢查更新"
       },
       "checkingUpdate": "正在檢查更新...",
-      "contact": {
-        "button": "電子郵件",
-        "title": "聯絡方式"
-      },
       "debug": {
         "open": "開啟",
         "title": "除錯面板"
       },
       "description": "一款為創作者而生的強大 AI 助手",
       "downloading": "正在下載...",
-      "enterprise": {
-        "title": "企業版"
-      },
       "feedback": {
         "button": "回饋",
         "title": "回饋"
@@ -2695,11 +2684,7 @@
       "title": "關於我們",
       "updateAvailable": "發現新版本 {{version}}",
       "updateError": "更新錯誤",
-      "updateNotAvailable": "您正在使用最新版本",
-      "website": {
-        "button": "網站",
-        "title": "官方網站"
-      }
+      "updateNotAvailable": "您正在使用最新版本"
     },
     "advanced": {
       "auto_switch_to_topics": "自動切換到話題",
@@ -3431,16 +3416,6 @@
         "label": "拼寫檢查",
         "languages": "拼寫檢查語言"
       },
-      "test_plan": {
-        "beta_version": "測試版本 (Beta)",
-        "beta_version_tooltip": "功能可能會隨時變化，錯誤較多，升級較快",
-        "rc_version": "預覽版本 (RC)",
-        "rc_version_tooltip": "相對穩定，請務必提前備份資料",
-        "title": "測試計畫",
-        "tooltip": "參與測試計畫，體驗最新功能，但同時也帶來更多風險，請務必提前備份資料",
-        "version_channel_not_match": "預覽版和測試版的切換將在下一個正式版發布時生效",
-        "version_options": "版本選項"
-      },
       "title": "一般設定",
       "user_name": {
         "label": "使用者名稱",
@@ -3932,10 +3907,6 @@
         "tip": "控制模型輸出的詳細程度",
         "title": "詳細程度"
       }
-    },
-    "privacy": {
-      "enable_privacy_mode": "匿名傳送錯誤報告和資料統計",
-      "title": "隱私設定"
     },
     "provider": {
       "add": {
