@@ -1,0 +1,605 @@
+/* =================================
+   Sci-Fi Tech Theme (Based on Green Theme)
+================================= */
+
+/* Define New Tech Color Palette */
+:root {
+  /* Using similar variable names for easier replacement, but with tech values */
+  --theme-color: #00A9FF;            /* Electric Blue - Primary */
+  --theme-color-hover: #3ABEFF;       /* Lighter Blue - Hover */
+  --theme-color-active: #0077B6;      /* Darker Blue - Active */
+  --theme-color-accent: #00F6FF;      /* Cyan - Accent / Glow */
+  --theme-color-accent-soft: #70FFFF; /* Soft Cyan */
+  --theme-color-outline: rgba(0, 246, 255, 0.2); /* Cyan glow outline */
+
+  /* Backgrounds & Text */
+  --tech-bg-dark: #0A101A;       /* Very Dark Blue/Almost Black */
+  --tech-bg-medium: #141E2D;      /* Dark Desaturated Blue */
+  --tech-bg-light: #2A3B50;       /* Lighter Interface Elements */
+  --tech-text-primary: #E0F2F7;   /* Light Cyan/White */
+  --tech-text-secondary: #B0C4DE;  /* Lighter Steel Blue */
+  --tech-border-color: rgba(0, 169, 255, 0.3); /* Subtle blue border */
+  --tech-glow: 0 0 8px rgba(0, 246, 255, 0.6); /* Cyan Glow Effect */
+
+  /* Danger Colors (Keep vibrant red for clarity, or use a techy purple/orange) */
+  --danger-color: #FF4747;           /* Vibrant Red */
+  --danger-color-hover: #FF6B6B;     /* Lighter Red */
+  --danger-color-bg: rgba(255, 71, 71, 0.1);
+
+  /* Ant Design Variable Aliases (Point to new tech colors) */
+  --ant-primary-color: var(--theme-color) !important;
+  --ant-primary-color-hover: var(--theme-color-hover) !important;
+  --ant-primary-color-active: var(--theme-color-active) !important;
+  --ant-primary-color-outline: var(--theme-color-outline) !important;
+  --ant-color-primary: var(--theme-color) !important;
+  --ant-color-primary-hover: var(--theme-color-hover) !important;
+  --ant-color-primary-active: var(--theme-color-active) !important;
+  --ant-color-error: var(--danger-color) !important;
+  --ant-color-error-hover: var(--danger-color-hover) !important;
+
+  /* Application-level Variable Aliases */
+  --color-primary: var(--theme-color) !important;
+  --color-primary-soft: var(--theme-color-hover) !important;
+  --color-primary-mute: var(--theme-color-active) !important; /* Using active for mute */
+  --chat-background-user: var(--theme-color-active) !important; /* Darker blue for user bubble */
+}
+
+
+/* ========================
+   Dark Mode Body & Background
+======================== */
+
+body[theme-mode='dark'] { /* Changed from light to dark */
+  /* Option 1: Gradient Background */
+  background: linear-gradient(145deg, var(--tech-bg-dark) 0%, var(--tech-bg-medium) 100%);
+  /* Option 2: Tech Image Background (replace URL) */
+  /* background-image: url('YOUR_TECH_GRID_OR_CIRCUIT_URL'); */
+  /* background-color: rgba(10, 16, 26, 0.9); */ /* Dark overlay if using image */
+  background-size: cover;
+  background-attachment: fixed;
+  color: var(--tech-text-primary) !important; /* Base text color */
+
+  /* Override base color variables for dark mode context */
+  --color-border: var(--tech-border-color);
+  --color-white: var(--tech-text-primary) !important;
+  --color-white-soft: rgba(224, 242, 247, 0.85) !important;
+  --color-white-mute: rgba(224, 242, 247, 0.7) !important;
+  --color-background: var(--tech-bg-dark) !important;
+  --color-background-soft: var(--tech-bg-medium) !important;
+  --color-background-mute: var(--tech-bg-light) !important;
+  --color-text: var(--tech-text-primary) !important;
+  --color-text-1: var(--tech-text-primary) !important;
+  --color-text-2: var(--tech-text-secondary) !important;
+  --color-text-3: rgba(176, 196, 222, 0.5) !important;
+  --chat-background: var(--tech-bg-dark) !important;
+  --chat-background-assistant: var(--tech-bg-medium) !important;
+  --chat-text-user: var(--tech-text-primary) !important; /* Ensure user text is readable */
+}
+
+/* Transparent Backgrounds (Keep or adjust as needed) */
+.NavbarContainer-cnIVnN, /* Assuming specific class */
+body[theme-mode='dark'] #root > div,
+body[theme-mode='dark'] > div {
+  background: transparent !important;
+}
+
+/* Chat Area Backgrounds */
+body[theme-mode='dark'] #messages,
+body[theme-mode='dark'] #chat-main,
+body[theme-mode='dark'] #chat {
+  background-color: rgba(10, 16, 26, 0.5) !important; /* Semi-transparent dark */
+  border-radius: 8px;
+  border: 1px solid var(--tech-border-color);
+  backdrop-filter: blur(5px); /* Optional: slight blur */
+}
+
+/* Modal Window Styling */
+body[theme-mode='dark'] .ant-modal-content {
+  background-color: rgba(20, 30, 45, 0.95) !important; /* Darker, less transparent */
+  border: 1px solid var(--theme-color-accent) !important; /* Accent border */
+  box-shadow: 0 0 15px var(--theme-color-outline), 0 4px 30px rgba(0, 0, 0, 0.6) !important; /* Glow + Shadow */
+  border-radius: 6px !important;
+  color: var(--tech-text-primary) !important;
+}
+body[theme-mode='dark'] .ant-modal-header {
+  background-color: rgba(20, 30, 45, 0.9) !important; /* Match content */
+  border-bottom: 1px solid var(--theme-color-outline) !important; /* Accent separator */
+  border-radius: 6px 6px 0 0 !important;
+}
+body[theme-mode='dark'] .ant-modal-title {
+   color: var(--theme-color-accent) !important; /* Accent color for title */
+   text-shadow: var(--tech-glow);
+}
+body[theme-mode='dark'] .ant-modal-close:hover {
+    color: var(--theme-color-accent) !important;
+    background-color: rgba(0, 246, 255, 0.1) !important;
+}
+
+
+/* ========================
+   Ant Design Component Theming (Tech Version)
+======================== */
+
+/* Universal selector for Ant components (adjust hash if necessary) */
+/* :where(.css-r9lahv) ... */ /* Keep the original selector if it works */
+/* Or use a more general approach if hash changes often */
+:where(.ant-btn, .ant-input, .ant-select, .ant-slider, .ant-switch, .ant-checkbox, .ant-radio, .ant-tabs, .ant-menu, .ant-pagination, .ant-progress, .ant-badge, .ant-tree, .ant-tag, .ant-collapse, .ant-steps, .ant-upload, .ant-message, .ant-notification, .ant-divider, .ant-table, .ant-segmented) {
+  /* Apply base tech variables - This might be redundant if :root overrides work well */
+}
+
+/* --- Buttons --- */
+.ant-btn {
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1); /* Default AntD transition */
+    border-radius: 4px; /* Slightly sharper */
+}
+
+.ant-btn-primary {
+  background-color: var(--ant-primary-color) !important;
+  border-color: var(--ant-primary-color) !important;
+  color: var(--tech-bg-dark) !important; /* Dark text on bright button */
+  box-shadow: 0 2px 5px rgba(0, 169, 255, 0.3);
+}
+.ant-btn-primary:hover,
+.ant-btn-primary:focus {
+  background-color: var(--ant-primary-color-hover) !important;
+  border-color: var(--ant-primary-color-hover) !important;
+  color: var(--tech-bg-dark) !important;
+  box-shadow: var(--tech-glow), 0 3px 8px rgba(0, 246, 255, 0.4); /* Add glow on hover */
+}
+
+.ant-btn-default {
+    background-color: var(--tech-bg-light) !important;
+    border-color: var(--tech-border-color) !important;
+    color: var(--tech-text-secondary) !important;
+}
+.ant-btn-default:hover,
+.ant-btn-default:focus {
+  color: var(--theme-color-accent) !important;
+  border-color: var(--theme-color-accent) !important;
+  background-color: rgba(0, 246, 255, 0.1) !important;
+  box-shadow: var(--tech-glow);
+}
+
+/* Outlined buttons (Use default styles, maybe?) */
+.ant-btn-variant-outlined { /* This class might differ based on AntD version */
+  color: var(--ant-primary-color) !important;
+  border-color: var(--ant-primary-color) !important;
+  background-color: transparent !important;
+}
+.ant-btn-variant-outlined:hover,
+.ant-btn-variant-outlined:focus {
+  color: var(--ant-primary-color-hover) !important;
+  border-color: var(--ant-primary-color-hover) !important;
+  background-color: var(--theme-color-outline) !important; /* Use outline color as faint bg */
+  box-shadow: var(--tech-glow);
+}
+
+.ant-btn-text {
+    color: var(--tech-text-secondary) !important;
+}
+.ant-btn-text:hover,
+.ant-btn-text:focus {
+  color: var(--theme-color-accent) !important;
+  background-color: var(--theme-color-outline) !important;
+}
+
+/* Danger Button (Using defined danger colors) */
+.ant-btn-dangerous {
+  color: var(--danger-color) !important;
+  border-color: var(--danger-color) !important;
+  background-color: transparent !important;
+}
+.ant-btn-dangerous:hover,
+.ant-btn-dangerous:focus {
+  color: var(--danger-color-hover) !important;
+  border-color: var(--danger-color-hover) !important;
+  background-color: var(--danger-color-bg) !important;
+  box-shadow: 0 0 8px rgba(255, 71, 71, 0.5); /* Red glow */
+}
+.ant-btn-dangerous.ant-btn-primary {
+  background-color: var(--danger-color) !important;
+  border-color: var(--danger-color) !important;
+  color: #fff !important; /* White text on danger bg */
+  box-shadow: 0 2px 5px rgba(255, 71, 71, 0.4);
+}
+.ant-btn-dangerous.ant-btn-primary:hover,
+.ant-btn-dangerous.ant-btn-primary:focus {
+  background-color: var(--danger-color-hover) !important;
+  border-color: var(--danger-color-hover) !important;
+  color: #fff !important;
+  box-shadow: 0 0 8px rgba(255, 71, 71, 0.6), 0 3px 8px rgba(255, 107, 107, 0.5);
+}
+
+
+/* --- Form Controls --- */
+
+/* Switch */
+.ant-switch {
+    background-image: none !important; /* Remove default gradient */
+    background-color: var(--tech-bg-light) !important;
+}
+.ant-switch.ant-switch-checked {
+  background: var(--ant-primary-color) !important;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.4);
+}
+.ant-switch.ant-switch-checked:hover {
+  background: var(--ant-primary-color-hover) !important;
+}
+
+/* Checkbox & Radio */
+.ant-checkbox-inner, .ant-radio-inner {
+    background-color: var(--tech-bg-medium) !important;
+    border-color: var(--tech-border-color) !important;
+    transition: all 0.3s ease;
+}
+.ant-checkbox-checked .ant-checkbox-inner,
+.ant-radio-checked .ant-radio-inner {
+    background-color: var(--ant-primary-color) !important;
+    border-color: var(--ant-primary-color) !important;
+    box-shadow: inset 0 0 4px rgba(0,0,0,0.3);
+}
+.ant-checkbox-wrapper:hover .ant-checkbox-inner,
+.ant-radio-wrapper:hover .ant-radio-inner {
+  border-color: var(--ant-primary-color-hover) !important;
+}
+.ant-radio-checked .ant-radio-inner::after {
+    background-color: var(--tech-bg-dark) !important; /* Dark center dot */
+}
+.ant-checkbox-checked .ant-checkbox-inner::after {
+     border-color: var(--tech-bg-dark) !important; /* Dark checkmark */
+}
+
+/* Inputs (Text, Number, Picker, Select, Mentions) */
+.ant-input,
+.ant-input-affix-wrapper,
+.ant-input-number,
+.ant-picker,
+.ant-select .ant-select-selector,
+.ant-mentions {
+  background: var(--tech-bg-medium) !important;
+  border-color: var(--tech-border-color) !important;
+  color: var(--tech-text-primary) !important;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: var(--ant-primary-color-hover) !important;
+    background: var(--tech-bg-light) !important;
+  }
+
+  &:focus,
+  &.ant-input-focused,
+  &.ant-input-affix-wrapper-focused,
+  &.ant-select-focused .ant-select-selector, /* Add specific focus classes */
+  &.ant-picker-focused,
+  &.ant-input-number-focused,
+  &.ant-mentions-focused {
+    border-color: var(--theme-color-accent) !important;
+    box-shadow: 0 0 0 2px var(--theme-color-outline), var(--tech-glow) !important; /* Combine outline and glow */
+    background: var(--tech-bg-medium) !important;
+  }
+}
+/* Placeholder text */
+.ant-input::placeholder,
+.ant-input-number::placeholder,
+.ant-picker::placeholder,
+.ant-mentions::placeholder {
+    color: var(--tech-text-secondary) !important;
+    opacity: 0.6;
+}
+/* Input addon/prefix/suffix */
+.ant-input-group-addon,
+.ant-input-prefix,
+.ant-input-suffix {
+    color: var(--tech-text-secondary) !important;
+}
+.ant-input-affix-wrapper .ant-input-prefix,
+.ant-input-affix-wrapper .ant-input-suffix {
+    color: var(--tech-text-secondary) !important;
+}
+.ant-input-affix-wrapper:focus-within .ant-input-prefix,
+.ant-input-affix-wrapper:focus-within .ant-input-suffix {
+    color: var(--theme-color-accent) !important;
+}
+
+/* Input Number handlers */
+.ant-input-number-handler-wrap {
+    background-color: var(--tech-bg-light) !important;
+    border-left: 1px solid var(--tech-border-color) !important;
+}
+.ant-input-number-handler:hover .ant-input-number-handler-up-inner,
+.ant-input-number-handler:hover .ant-input-number-handler-down-inner {
+    color: var(--theme-color-accent) !important;
+}
+
+/* Select Dropdown */
+.ant-select-dropdown {
+    background-color: var(--tech-bg-medium) !important;
+    border: 1px solid var(--theme-color-outline) !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5), var(--tech-glow) !important; /* Glow on dropdown */
+    border-radius: 4px;
+}
+.ant-select-item {
+    color: var(--tech-text-secondary) !important;
+}
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background-color: rgba(0, 169, 255, 0.2) !important;
+  color: var(--theme-color-accent-soft) !important;
+}
+.ant-select-item-option-active:not(.ant-select-item-option-disabled) {
+  background-color: var(--theme-color-outline) !important; /* Use outline color for hover */
+  color: var(--theme-color-accent) !important;
+}
+
+/* Slider */
+/* :where(.css-r9lahv).ant-slider { */ /* Keep original selector if needed */
+.ant-slider {
+  .ant-slider-track {
+    background-color: var(--ant-primary-color) !important;
+  }
+  .ant-slider-rail {
+    background-color: var(--tech-bg-light) !important;
+  }
+  .ant-slider-handle::after {
+    box-shadow: 0 0 0 2px var(--ant-primary-color) !important;
+    background-color: var(--tech-bg-medium) !important; /* Dark handle center */
+  }
+  &:hover {
+    .ant-slider-track {
+      background-color: var(--ant-primary-color-hover) !important;
+    }
+    .ant-slider-handle::after {
+      box-shadow: 0 0 0 4px var(--ant-primary-color-hover) !important;
+    }
+  }
+  .ant-slider-handle:active::after,
+  .ant-slider-handle:focus::after {
+     box-shadow: 0 0 0 5px var(--theme-color-outline), var(--tech-glow) !important; /* Glow on interaction */
+  }
+  .ant-slider-dot {
+      background-color: var(--tech-bg-light);
+      border-color: var(--tech-border-color);
+  }
+   .ant-slider-dot-active {
+      border-color: var(--ant-primary-color) !important;
+  }
+}
+
+/* --- Navigation & Menus --- */
+
+/* Tabs */
+.ant-tabs {
+    color: var(--tech-text-secondary);
+}
+.ant-tabs-tab {
+    transition: color 0.3s ease;
+}
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: var(--theme-color-accent) !important;
+  text-shadow: var(--tech-glow);
+}
+.ant-tabs-ink-bar {
+  background: var(--theme-color-accent) !important; /* Use accent for ink bar */
+  box-shadow: var(--tech-glow);
+}
+.ant-tabs-tab:hover {
+  color: var(--ant-primary-color-hover) !important;
+}
+.ant-tabs-nav {
+    border-bottom: 1px solid var(--tech-border-color);
+}
+
+/* Menu */
+.ant-menu {
+    background: transparent !important; /* Make menus transparent if desired */
+    color: var(--tech-text-secondary) !important;
+    border: none !important;
+}
+.ant-menu-item, .ant-menu-submenu-title {
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+.ant-menu-item-selected {
+  color: var(--theme-color-accent) !important;
+  background-color: var(--theme-color-outline) !important; /* Highlight background */
+}
+.ant-menu-item:hover,
+.ant-menu-submenu-title:hover {
+  color: var(--theme-color-accent) !important;
+}
+/* Adjust horizontal/vertical indicators if needed */
+.ant-menu-item-selected::after,
+.ant-menu-horizontal .ant-menu-item-selected::after,
+.ant-menu-horizontal > .ant-menu-item:hover::after {
+    border-color: var(--theme-color-accent) !important;
+}
+.ant-menu-submenu-popup .ant-menu { /* Submenu popup background */
+    background: var(--tech-bg-medium) !important;
+    border: 1px solid var(--theme-color-outline) !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5), var(--tech-glow);
+}
+
+
+/* Segmented Control */
+/* :where(.css-r9lahv).ant-segmented { */ /* Keep original selector if needed */
+.ant-segmented {
+    background-color: var(--tech-bg-light);
+    padding: 2px;
+    border-radius: 6px;
+}
+.ant-segmented-item {
+    color: var(--tech-text-secondary);
+    border-radius: 4px !important;
+}
+.ant-segmented-item-selected {
+    background: var(--theme-color) !important;
+    box-shadow: 0 1px 4px rgba(0, 169, 255, 0.4);
+    border-radius: 4px !important;
+    .ant-segmented-item-label {
+      color: var(--tech-bg-dark) !important; /* Dark text on selected */
+      .anticon, .iconfont { color: var(--tech-bg-dark) !important; }
+    }
+}
+.ant-segmented-thumb { /* Hide default thumb, selection is handled by item bg */
+    display: none;
+}
+.ant-segmented-item:hover:not(.ant-segmented-item-selected) {
+    color: var(--theme-color-hover) !important;
+    background-color: rgba(0, 169, 255, 0.05);
+}
+.ant-segmented-item-selected:hover {
+    background: var(--theme-color-hover) !important;
+}
+
+/* --- Other Components --- */
+
+/* Pagination */
+.ant-pagination-item,
+.ant-pagination-prev .ant-pagination-item-link,
+.ant-pagination-next .ant-pagination-item-link {
+    background-color: var(--tech-bg-light) !important;
+    border-color: var(--tech-border-color) !important;
+    color: var(--tech-text-secondary) !important;
+    border-radius: 4px;
+}
+.ant-pagination-item a {
+    color: var(--tech-text-secondary) !important;
+}
+.ant-pagination-item-active {
+  border-color: var(--ant-primary-color) !important;
+  background-color: var(--ant-primary-color) !important;
+  a { color: var(--tech-bg-dark) !important; }
+}
+.ant-pagination-item:hover,
+.ant-pagination-prev:hover .ant-pagination-item-link,
+.ant-pagination-next:hover .ant-pagination-item-link {
+  border-color: var(--ant-primary-color-hover) !important;
+  color: var(--ant-primary-color-hover) !important;
+  a { color: var(--ant-primary-color-hover) !important; }
+}
+.ant-pagination-item-active:hover {
+    border-color: var(--ant-primary-color-hover) !important;
+    background-color: var(--ant-primary-color-hover) !important;
+    a { color: var(--tech-bg-dark) !important; }
+}
+.ant-pagination-disabled .ant-pagination-item-link {
+    color: rgba(176, 196, 222, 0.4) !important; /* Muted text */
+    background-color: var(--tech-bg-medium) !important;
+    border-color: rgba(42, 59, 80, 0.5) !important;
+}
+
+/* Progress Bar */
+.ant-progress-inner {
+    background-color: var(--tech-bg-light);
+}
+.ant-progress-bg {
+  background: linear-gradient(90deg, var(--ant-primary-color) 0%, var(--theme-color-accent) 100%) !important; /* Gradient progress */
+  box-shadow: var(--tech-glow);
+}
+.ant-progress-text {
+    color: var(--tech-text-secondary) !important;
+}
+
+/* Badge */
+.ant-badge-status-dot {
+    background-color: var(--ant-primary-color) !important; /* Use primary for default dot */
+}
+.ant-badge-status-processing {
+  background-color: var(--theme-color-accent) !important; /* Use accent for processing */
+  box-shadow: var(--tech-glow);
+}
+.ant-badge-status-processing::after {
+  border-color: var(--theme-color-accent) !important;
+}
+.ant-badge-count {
+    background-color: var(--danger-color); /* Use danger for count */
+    color: #fff;
+    box-shadow: 0 0 5px rgba(255, 71, 71, 0.7);
+}
+
+/* Tree */
+.ant-tree {
+    background: transparent;
+    color: var(--tech-text-secondary);
+}
+.ant-tree .ant-tree-node-content-wrapper:hover {
+    background-color: var(--theme-color-outline) !important;
+}
+.ant-tree .ant-tree-node-content-wrapper.ant-tree-node-selected {
+  background-color: rgba(0, 169, 255, 0.25) !important;
+  color: var(--theme-color-accent-soft);
+}
+.ant-tree-checkbox-checked .ant-tree-checkbox-inner {
+  background-color: var(--ant-primary-color) !important;
+  border-color: var(--ant-primary-color) !important;
+}
+.ant-tree-switcher .anticon {
+    color: var(--tech-text-secondary);
+}
+
+/* Tags */
+.ant-tag {
+    background-color: var(--tech-bg-light) !important;
+    border-color: var(--tech-border-color) !important;
+    color: var(--tech-text-secondary) !important;
+    border-radius: 4px;
+}
+.ant-tag-checkable:hover {
+    background-color: var(--theme-color-outline) !important;
+    color: var(--theme-color-accent) !important;
+}
+.ant-tag-checkable-checked {
+  background-color: var(--ant-primary-color) !important;
+  border-color: var(--ant-primary-color) !important;
+  color: var(--tech-bg-dark) !important;
+}
+.ant-tag-close-icon:hover {
+    color: var(--danger-color) !important;
+    background-color: var(--danger-color-bg) !important;
+}
+
+/* --- Global Enhancements --- */
+
+/* Scrollbar Styling */
+body[theme-mode='dark'] ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+body[theme-mode='dark'] ::-webkit-scrollbar-track {
+  background: rgba(20, 30, 45, 0.5) !important;
+  border-radius: 5px;
+}
+body[theme-mode='dark'] ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--ant-primary-color) 0%, var(--theme-color-accent) 100%) !important;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 246, 255, 0.2);
+}
+body[theme-mode='dark'] ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--ant-primary-color-hover) 0%, var(--theme-color-accent-soft) 100%) !important;
+  box-shadow: var(--tech-glow);
+}
+
+/* General Text & Links */
+body[theme-mode='dark'] h1,
+body[theme-mode='dark'] h2,
+body[theme-mode='dark'] h3,
+body[theme-mode='dark'] h4,
+body[theme-mode='dark'] h5,
+body[theme-mode='dark'] h6 {
+  color: var(--theme-color-accent-soft) !important;
+  text-shadow: 0 0 6px rgba(0, 246, 255, 0.4); /* Subtle glow */
+}
+body[theme-mode='dark'] a {
+  color: var(--theme-color-accent) !important;
+  text-decoration: none;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+body[theme-mode='dark'] a:hover {
+  color: var(--theme-color-accent-soft) !important;
+  text-shadow: var(--tech-glow);
+}
+
+/* Add smooth transitions globally for non-AntD elements */
+body[theme-mode='dark'] *:not(.ant-*) {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+

@@ -1,0 +1,458 @@
+/* ===========================
+   🌌 Aurora Theme for Cherry Studio
+   =========================== */
+
+:root {
+  /* Base values */
+  --aurora-radius: 16px;
+  --aurora-spacing: 18px;
+  --aurora-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Aurora gradient colors */
+  --aurora-gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --aurora-gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --aurora-gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --aurora-gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  
+  /* Animation curves */
+  --aurora-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --aurora-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Light Mode Colors */
+body[theme-mode="light"] {
+  /* Primary colors */
+  --color-background: #f8faff;
+  --color-background-soft: rgba(255, 255, 255, 0.85);
+  --color-background-mute: rgba(246, 248, 255, 0.7);
+  
+  /* Component backgrounds */
+  --navbar-background: rgba(255, 255, 255, 0.9);
+  --sidebar-background: rgba(251, 252, 255, 0.95);
+  --chat-background: rgba(255, 255, 255, 0.8);
+  --chat-background-user: rgba(102, 126, 234, 0.1);
+  --chat-background-assistant: rgba(118, 75, 162, 0.05);
+  
+  /* Text colors */
+  --text-primary: #2d3748;
+  --text-secondary: #4a5568;
+  --text-muted: #718096;
+  
+  /* Accent colors */
+  --accent-primary: #667eea;
+  --accent-secondary: #764ba2;
+  --accent-hover: #5a67d8;
+  
+  /* Borders and shadows */
+  --border-color: rgba(203, 213, 225, 0.5);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+  
+  /* Input styling */
+  --input-background: rgba(255, 255, 255, 0.9);
+  --input-border: rgba(203, 213, 225, 0.4);
+  --input-focus-border: #667eea;
+  --input-focus-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  
+  /* Code blocks */
+  --code-background: rgba(245, 247, 255, 0.8);
+  --code-border: rgba(203, 213, 225, 0.3);
+  --code-text: #553c9a;
+}
+
+/* Dark Mode Colors */
+body[theme-mode="dark"] {
+  /* Primary colors */
+  --color-background: #0f0f1e;
+  --color-background-soft: rgba(20, 20, 38, 0.9);
+  --color-background-mute: rgba(25, 25, 45, 0.7);
+  
+  /* Component backgrounds */
+  --navbar-background: rgba(15, 15, 30, 0.95);
+  --sidebar-background: rgba(18, 18, 35, 0.95);
+  --chat-background: rgba(20, 20, 38, 0.8);
+  --chat-background-user: rgba(102, 126, 234, 0.15);
+  --chat-background-assistant: rgba(118, 75, 162, 0.1);
+  
+  /* Text colors */
+  --text-primary: #e2e8f0;
+  --text-secondary: #a0aec0;
+  --text-muted: #718096;
+  
+  /* Accent colors */
+  --accent-primary: #9f7aea;
+  --accent-secondary: #667eea;
+  --accent-hover: #b794f4;
+  
+  /* Borders and shadows */
+  --border-color: rgba(74, 85, 104, 0.3);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.4);
+  
+  /* Input styling */
+  --input-background: rgba(26, 32, 44, 0.8);
+  --input-border: rgba(74, 85, 104, 0.4);
+  --input-focus-border: #9f7aea;
+  --input-focus-shadow: 0 0 0 3px rgba(159, 122, 234, 0.2);
+  
+  /* Code blocks */
+  --code-background: rgba(26, 32, 44, 0.6);
+  --code-border: rgba(74, 85, 104, 0.3);
+  --code-text: #e9d8fd;
+}
+
+/* Global Styles */
+* {
+  transition: background-color var(--aurora-transition),
+              border-color var(--aurora-transition),
+              color var(--aurora-transition),
+              transform var(--aurora-transition),
+              box-shadow var(--aurora-transition);
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--text-primary);
+}
+
+/* Aurora background effect */
+#content-container {
+  position: relative;
+  background-color: var(--color-background) !important;
+  overflow: hidden;
+}
+
+#content-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: var(--aurora-gradient-1);
+  opacity: 0.03;
+  animation: aurora-shift 20s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes aurora-shift {
+  0%, 100% { transform: rotate(0deg) scale(1); opacity: 0.03; }
+  25% { transform: rotate(90deg) scale(1.1); opacity: 0.05; }
+  50% { transform: rotate(180deg) scale(1); opacity: 0.03; }
+  75% { transform: rotate(270deg) scale(0.9); opacity: 0.04; }
+}
+
+/* Message bubbles */
+.message-content-container {
+  background: var(--color-background-soft) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--aurora-radius) !important;
+  padding: 16px 20px !important;
+  margin: 12px 8px !important;
+  box-shadow: var(--shadow-sm) !important;
+  position: relative;
+  overflow: hidden;
+  animation: message-slide-in 0.4s var(--aurora-ease) forwards;
+}
+
+@keyframes message-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message-content-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: var(--aurora-gradient-3);
+  animation: aurora-scan 3s var(--aurora-ease) infinite;
+}
+
+@keyframes aurora-scan {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: 100%; }
+}
+
+.message-user.message-content-container {
+  background: var(--chat-background-user) !important;
+  border-color: var(--accent-primary) !important;
+  border-width: 1px !important;
+}
+
+.message-user.message-content-container::before {
+  background: var(--aurora-gradient-1);
+}
+
+.message-assistant.message-content-container {
+  background: var(--chat-background-assistant) !important;
+}
+
+.message-content-container:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md) !important;
+}
+
+/* Input area */
+#inputbar-container {
+  background: transparent !important;
+  padding: 12px !important;
+  position: relative;
+}
+
+#inputbar {
+  background: var(--input-background) !important;
+  border: 1px solid var(--input-border) !important;
+  border-radius: var(--aurora-radius) !important;
+  padding: 12px 16px !important;
+  box-shadow: var(--shadow-sm) !important;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+#inputbar::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: var(--aurora-gradient-2);
+  border-radius: var(--aurora-radius);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity var(--aurora-transition);
+}
+
+#inputbar:focus-within {
+  border-color: var(--input-focus-border) !important;
+  box-shadow: var(--input-focus-shadow) !important;
+}
+
+#inputbar:focus-within::before {
+  opacity: 0.3;
+  animation: aurora-pulse 2s var(--aurora-ease) infinite;
+}
+
+@keyframes aurora-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.5; }
+}
+
+/* Sidebar styling */
+#app-sidebar {
+  background: var(--sidebar-background) !important;
+  border-right: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+}
+
+.sidebar-item {
+  padding: 10px 16px;
+  margin: 4px 8px;
+  border-radius: calc(var(--aurora-radius) - 4px);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--aurora-transition);
+}
+
+.sidebar-item::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: var(--aurora-gradient-4);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.5s var(--aurora-ease);
+  opacity: 0.1;
+}
+
+.sidebar-item:hover {
+  background: rgba(102, 126, 234, 0.1);
+  transform: translateX(4px);
+}
+
+.sidebar-item:hover::before {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--aurora-radius);
+}
+
+.sidebar-item.active {
+  background: var(--accent-primary);
+  color: white;
+  font-weight: 500;
+  box-shadow: var(--shadow-md);
+}
+
+/* Code blocks */
+pre {
+  background: var(--code-background) !important;
+  border: 1px solid var(--code-border) !important;
+  border-radius: calc(var(--aurora-radius) - 4px) !important;
+  padding: 16px !important;
+  overflow-x: auto !important;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+code {
+  color: var(--code-text) !important;
+  background: var(--code-background) !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  font-size: 0.9em !important;
+}
+
+pre code {
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 5px;
+  transition: background var(--aurora-transition);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
+
+/* Selection */
+::selection {
+  background: var(--accent-primary);
+  color: white;
+}
+
+/* Links */
+a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  position: relative;
+  transition: color var(--aurora-transition);
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--aurora-gradient-1);
+  transition: width var(--aurora-transition);
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+/* Buttons */
+button {
+  background: var(--accent-primary);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: calc(var(--aurora-radius) - 8px);
+  cursor: pointer;
+  transition: all var(--aurora-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.6s var(--aurora-ease);
+}
+
+button:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+button:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Special aurora glow effect for important elements */
+.aurora-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.aurora-glow::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    transparent,
+    var(--accent-primary),
+    transparent,
+    var(--accent-secondary),
+    transparent
+  );
+  animation: aurora-rotate 10s linear infinite;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+@keyframes aurora-rotate {
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  :root {
+    --aurora-radius: 12px;
+    --aurora-spacing: 12px;
+  }
+  
+  .message-content-container {
+    margin: 8px 4px !important;
+    padding: 12px 16px !important;
+  }
+}

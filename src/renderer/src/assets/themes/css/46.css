@@ -1,0 +1,164 @@
+/*==============================================================================
+ * * 主题名称：绒绒奶糖 (Fluffy Toffee)
+ * 作    者：Tde Tao
+ * 版    本：1.0
+ * * ------------------------------------------------------------------------------
+ * * 设计理念：
+ * 本主题灵感源于“毛球怪”的可爱形象，旨在营造被柔软毛线包裹的温暖、治愈感。
+ * 通过融合玻璃拟物（Glassmorphism）与柔和的背景图像，在保证界面清晰可读
+ * 的前提下，创造出一个通透、轻盈且富有层次感的视觉空间。
+ * * ==============================================================================*/
+
+
+/* ========================= 全局变量 (Root Variables) ========================= */
+/* 此处定义了跨亮色/暗色模式共享的基础颜色、主色调及动画参数。*/
+:root {
+  /* -- 基础色板 -- */
+  --color-white-soft: #FAF6F0; /* 柔和奶油白 - 用作暗色模式下的主要文字颜色 */
+  --color-black-soft: #6B5B5B; /* 深奶咖色 - 用作亮色模式下的主要文字颜色 */
+  
+  /* -- 主色调 (Accent Color) -- */
+  /* 主题的点缀色，源自“毛球怪”的温柔腮红，用于链接、图标激活等强调状态。 */
+  --color-primary: #E8A07D; 
+  --color-primary-soft: rgba(232, 160, 125, 0.6);
+  --color-primary-mute: rgba(232, 160, 125, 0.2);
+}
+
+
+/* ====================== 全局背景设置 (Global Background) ===================== */
+/* 这是实现主题视觉核心的规则，为整个应用设置背景图片。*/
+body {
+  background-image: url('https://i.111666.best/image/BWrl2oJ7S7oA8AWHWxGssj.jpg');
+  background-size: cover;          /* 确保图片填满屏幕，保持比例 */
+  background-position: center center;/* 图片居中显示 */
+  background-attachment: fixed;    /* 背景图固定，滚动时不移动 */
+}
+
+/* -- 确保核心容器透明，以使背景图可见 -- */
+#root > div,
+body > div, 
+#content-container {
+  background: transparent !important;
+}
+
+/* -- [关键] 全局文本阴影优化 -- */
+/* 为主要内容区域的文本增加一层细微阴影，能有效将其从复杂的背景中“托”起，极大提升可读性。*/
+#content-container {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+body[theme-mode="dark"] #content-container {
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+
+/* ==================== DARK MODE | 暗色模式 (平衡版) ==================== */
+body[theme-mode="dark"] {
+  /* -- 背景颜色 (半透明) -- */
+  /* 通过rgba设置带有透明度的背景色，是实现玻璃质感的基础。*/
+  --color-background: rgba(60, 45, 40, 0.55);      /* 深焦糖色 - 侧边栏等区域背景 */
+  --color-background-mute: rgba(75, 60, 55, 0.5);   /* 暖咖色 - 输入框等区域背景 */
+  --color-background-soft: rgba(85, 70, 65, 0.45);  /* 暖咖色 - 弹窗等组件背景 */
+
+  /* -- 聊天界面颜色 -- */
+  --navbar-background-mac: rgba(60, 45, 40, 0.65);
+  --navbar-background: rgba(60, 45, 40, 0.5);
+  --chat-background: transparent; 
+  --chat-background-user: rgba(90, 70, 65, 0.55);    /* 用户消息气泡背景 */
+  --chat-background-assistant: rgba(70, 55, 50, 0.6); /* 助手消息气泡背景 */
+  
+  /* -- 文本颜色 -- */
+  --color-text: #F5EFE7;       /* 默认文字颜色 */
+  --chat-text-user: #FAF6F0;  /* 用户消息文字颜色 */
+
+  /* -- 交互状态颜色 -- */
+  --color-hover: rgba(110, 90, 85, 0.5);   /* 悬停状态 */
+  --color-active: rgba(125, 105, 100, 0.55);/* 激活/点击状态 */
+
+  /* -- 边框颜色 -- */
+  --color-border: rgba(245, 239, 231, 0.2);
+  --color-border-soft: rgba(245, 239, 231, 0.15); /* 用于玻璃卡片的柔和边框 */
+  
+  /* -- [关键] 毛玻璃效果 -- */
+  /* backdrop-filter是玻璃质感的核心。较大的模糊半径能有效平滑背景，确保文本清晰。*/
+  --content-backdrop-filter: blur(12px);
+}
+
+
+/* =================== LIGHT MODE | 亮色模式 (平衡版) =================== */
+body[theme-mode="light"] {
+  /* -- 背景颜色 (半透明) -- */
+  --color-background: rgba(253, 248, 240, 0.55);
+  --color-background-mute: rgba(245, 235, 220, 0.6);
+  --color-background-soft: rgba(250, 240, 228, 0.65);
+
+  /* -- 聊天界面颜色 -- */
+  --navbar-background-mac: rgba(253, 248, 240, 0.65);
+  --navbar-background: rgba(253, 248, 240, 0.5);
+  --chat-background: transparent; 
+  --chat-background-user: rgba(255, 243, 224, 0.7);
+  --chat-background-assistant: rgba(252, 247, 238, 0.75);
+
+  /* -- 文本颜色 -- */
+  /* 为保证可读性，在亮色模式下选用对比度更高的深色文字。*/
+  --color-text: #6B5B5B;
+  
+  /* -- 交互状态颜色 -- */
+  --color-hover: rgba(240, 228, 210, 0.55);
+  --color-active: rgba(235, 220, 200, 0.6);
+
+  /* -- 边框颜色 -- */
+  --color-border: rgba(125, 90, 90, 0.15);
+  --color-border-soft: rgba(125, 90, 90, 0.08);
+
+  /* -- 白色变量 -- */
+  --color-white: rgba(255, 255, 255, 0.5);
+  
+  /* -- [关键] 毛玻璃效果 -- */
+  /* 亮色模式下通常需要更大的模糊半径，以压制明亮背景带来的视觉干扰。*/
+  --content-backdrop-filter: blur(16px);
+}
+
+
+/* ===================== 玻璃效果统一样式应用 ===================== */
+/* 此处将玻璃质感应用到应用内的主要UI组件上，以保证视觉风格的统一性。*/
+.message-user .bubble-content-container,
+.message-assistant .bubble-content-container,
+#app-sidebar,
+.prompt-input-container,
+.ant-popover-inner,
+.ant-modal-content {
+  background: var(--color-background-soft) !important;
+  -webkit-backdrop-filter: var(--content-backdrop-filter); /* 兼容Safari */
+  backdrop-filter: var(--content-backdrop-filter);
+  border: 1px solid var(--color-border-soft) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* 模拟环境光照产生的柔和阴影 */
+}
+
+/* -- 为不同组件应用特定的背景色变量 -- */
+.message-user .bubble-content-container {
+    background: var(--chat-background-user) !important;
+}
+.message-assistant .bubble-content-container {
+    background: var(--chat-background-assistant) !important;
+}
+#app-sidebar {
+  background: var(--color-background) !important;
+}
+.prompt-input-container {
+  background: var(--color-background-mute) !important;
+}
+
+
+/* ========================= 标准兼容性修复 ========================= */
+/* 解决一些特定场景下的样式问题，确保主题在各种情况下都能完美显示。*/
+.bubble .message-user .message-action-button:hover {
+    background-color: var(--color-background-mute);
+}
+body[theme-mode="dark"]{
+    --color-list-item: var(--color-background-soft) !important;
+    --color-list-item-hover: var(--color-background-soft) !important;
+}
+body[theme-mode="light"]{
+    --color-list-item: var(--color-background-soft) !important;
+    --color-list-item-hover: var(--color-background-soft) !important;
+}

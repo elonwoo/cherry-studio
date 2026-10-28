@@ -1,0 +1,248 @@
+/* Cherry Studio Tactical/Sci-Fi Theme */
+
+/* --- Base Color Palette --- */
+:root {
+  /* Dark Mode Palette (Default) */
+  --tactical-dark-bg: #0A0F14;       /* Very dark desaturated blue/black */
+  --tactical-mid-bg: #181F2A;        /* Mid-dark blue/grey */
+  --tactical-light-bg: #2A3447;      /* Lighter element background */
+  --tactical-text: #E0E5EC;          /* Light grey/cyan text */
+  --tactical-text-muted: #8A99A8;    /* Muted grey text */
+  --tactical-accent-primary: #00FFDD; /* Bright Cyan/Teal */
+  --tactical-accent-secondary: #FF8C00; /* Vivid Orange */
+  --tactical-border: rgba(0, 255, 221, 0.3); /* Subtle cyan border */
+  --tactical-error: #FF4136;         /* Bright Red for errors */
+
+  /* --- Variable Mapping (Dark Mode) --- */
+  --fill-1: var(--tactical-light-bg); /* Was subtle grey, now lighter bg element */
+  --fill-2: var(--tactical-mid-bg);   /* Was subtle grey, now mid bg element */
+  --fill-3: var(--tactical-dark-bg);  /* Was subtle grey, now main dark bg */
+
+  /* Override semantic colors for dark mode */
+  --color-black: var(--tactical-dark-bg);
+  --color-black-soft: var(--tactical-mid-bg);
+  --color-black-mute: var(--tactical-light-bg); /* Inverted logic slightly for better contrast */
+
+  --color-white: var(--tactical-text);           /* Use light text color as 'white' */
+  --color-white-soft: var(--tactical-text-muted);/* Use muted text as 'white-soft' */
+  --color-white-mute: #55667A;                   /* Even darker muted color */
+
+  --color-background: var(--color-black);
+  --color-background-soft: var(--color-black-soft);
+  --color-background-mute: var(--color-black-mute);
+  --color-text: var(--color-white);
+  --color-text-soft: var(--color-white-soft);
+  --color-text-mute: var(--color-white-mute);
+
+  --chat-text-user: var(--tactical-text); /* Ensure user text is light */
+}
+
+/* --- Light Mode Palette & Overrides --- */
+body[theme-mode=light] {
+  /* Light Mode Palette */
+  --tactical-light-l-bg: #D5D8DE;       /* Light grey base */
+  --tactical-mid-l-bg: #EAECEF;        /* Lighter element bg */
+  --tactical-dark-l-bg: #F5F7FA;       /* Very light panel bg */
+  --tactical-text-l: #181F2A;          /* Dark text */
+  --tactical-text-muted-l: #55667A;    /* Muted dark text */
+  /* Accents remain the same for contrast */
+  --tactical-accent-primary-l: var(--tactical-accent-primary);
+  --tactical-accent-secondary-l: var(--tactical-accent-secondary);
+  --tactical-border-l: rgba(0, 0, 0, 0.2); /* Darker border */
+  --tactical-error-l: var(--tactical-error);
+
+  /* --- Variable Mapping (Light Mode) --- */
+  --fill-1: var(--tactical-mid-l-bg);
+  --fill-2: var(--tactical-dark-l-bg);
+  --fill-3: #C8CCD1; /* Slightly darker grey for variation */
+
+  /* Override semantic colors for light mode */
+  --color-white: var(--tactical-dark-l-bg); /* Use light panel bg as 'white' */
+  --color-white-soft: var(--tactical-mid-l-bg);
+  --color-white-mute: var(--tactical-light-l-bg); /* Use light base bg as 'white-mute' */
+
+  --color-black: var(--tactical-text-l);         /* Use dark text as 'black' */
+  --color-black-soft: var(--tactical-text-muted-l);/* Use muted dark text */
+  --color-black-mute: #8A99A8;                  /* Lighter muted grey */
+
+  --color-background: var(--tactical-light-l-bg); /* Main background is light grey */
+  --color-background-soft: var(--color-white-soft);
+  --color-background-mute: var(--color-white-mute);
+  --color-text: var(--color-black);
+  --color-text-soft: var(--color-black-soft);
+  --color-text-mute: var(--color-black-mute);
+
+  --chat-text-user: var(--tactical-text-l); /* Ensure user text is dark */
+}
+
+/* --- Remove OS-level background mixing --- */
+/* We want the theme-mode to fully control the look */
+/*
+@media (prefers-color-scheme: dark) {
+  body[theme-mode=light] {
+      background: rgba(255 255 255 / 0.3); // Remove
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  body[theme-mode=dark] {
+      background: rgba(0 0 0 / 0.2); // Remove
+  }
+}
+*/
+
+/* --- Apply Base Backgrounds --- */
+body {
+  background-color: var(--color-background); /* Use the core background */
+  color: var(--color-text);
+}
+
+/* --- Content Area Backgrounds --- */
+/* Apply slightly different bg for main content areas */
+#content-container,
+.minapp-drawer .ant-drawer-body {
+  background-color: var(--color-background-soft);
+  border: 1px solid var(--tactical-border, transparent); /* Optional: Add subtle border */
+}
+
+/* Make specific sections distinct or transparent */
+.home-tabs,
+[class^=ProgramSection],
+[class^=IconSection],
+#messages {
+  background-color: transparent; /* Keep transparent to show container bg */
+  /* Or give them a border: border-bottom: 1px solid var(--tactical-border, #333); */
+}
+
+/* Ensure menus fit the theme */
+[class^=TopicListItem] .menu {
+  background-color: var(--color-background-mute) !important; /* Use a distinct background */
+  border: 1px solid var(--tactical-border, #444);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
+}
+
+/* --- Input & System Prompt Styling --- */
+#inputbar,
+.system-prompt {
+  background-color: var(--fill-1); /* Use the mapped fill color */
+  border: 1px solid var(--tactical-border, transparent);
+  border-top: 1px solid var(--tactical-accent-primary, transparent); /* Accent top border */
+  color: var(--color-text); /* Ensure text color contrasts */
+}
+#inputbar:focus-within,
+.system-prompt:focus-within {
+    border-color: var(--tactical-accent-primary); /* Highlight focus with accent */
+    box-shadow: 0 0 0 2px rgba(0, 255, 221, 0.2); /* Glow effect */
+}
+
+/* --- Chat & Main Area Styling --- */
+#chat,
+[class^=SettingGroup],
+[class^=MainContainer],
+[class^=MainContent] {
+  background-color: var(--color-background); /* Use main background for these areas */
+  /* Or use a slightly different shade if needed: var(--color-background-mute); */
+  /* Remove the previous hsla transparency */
+}
+
+/* --- Modal Styling --- */
+/* Let modals inherit the main theme colors by default */
+/* Remove specific overrides unless necessary */
+/*
+[theme-mode=light] [class^=ant-modal],
+[theme-mode=light] #root[style*="background: var(--color-white)"] {
+  --color-white: #ffffff; // Removed - use theme variables
+  --color-white-soft: #f2f2f2; // Removed
+  --color-white-mute: #eee; // Removed
+  // ... background redefinitions removed ...
+}
+
+[theme-mode=dark] [class^=ant-modal] {
+  --color-black: #1b1b1f; // Removed - use theme variables
+  --color-black-soft: #262626; // Removed
+  --color-black-mute: #363636; // Removed
+  // ... background redefinitions removed ...
+}
+*/
+
+/* Style modals to fit the tactical theme */
+[class^=ant-modal] .ant-modal-content {
+    background-color: var(--color-background-soft);
+    border: 1px solid var(--tactical-accent-primary, #555);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    color: var(--color-text);
+}
+[class^=ant-modal] .ant-modal-header {
+    background-color: var(--color-background-mute);
+    color: var(--tactical-accent-primary); /* Accent color for title */
+    border-bottom: 1px solid var(--tactical-border, #444);
+}
+[class^=ant-modal] .ant-modal-title {
+     color: var(--tactical-accent-primary); /* Ensure title uses accent */
+}
+[class^=ant-modal] .ant-modal-close-x {
+    color: var(--color-text-soft);
+}
+[class^=ant-modal] .ant-modal-footer {
+    background-color: var(--color-background-mute);
+    border-top: 1px solid var(--tactical-border, #444);
+}
+
+/* --- General Component & Text Styling --- */
+/* Reset bubble/ant component colors to ensure they use the theme */
+.bubble .message-user,
+[class^=ant] {
+  /* Resetting these might not be necessary if modals inherit correctly */
+  /* Let them inherit from :root or body[theme-mode=light] */
+  color: var(--color-text); /* Ensure default text color is applied */
+}
+
+/* Specifically style user message bubble if needed */
+.bubble .message-user {
+  background-color: var(--tactical-accent-primary); /* User messages get primary accent bg */
+  color: #000; /* High contrast text on accent bg */
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+/* Style assistant messages */
+.bubble .message-assistant {
+  background-color: var(--color-background-mute); /* Assistant messages use muted bg */
+  color: var(--color-text);
+  border: 1px solid var(--tactical-border, transparent);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+/* --- Further Tactical Enhancements (Optional) --- */
+/* Add subtle borders to elements for definition */
+/*
+[class^=SettingGroup],
+[class^=MainContainer] > *,
+.ant-card { // Example selector
+  border: 1px solid var(--tactical-border, #333);
+}
+*/
+
+/* Style buttons */
+.ant-btn-primary {
+    background-color: var(--tactical-accent-primary);
+    border-color: var(--tactical-accent-primary);
+    color: #000 !important; /* Ensure high contrast */
+}
+.ant-btn-primary:hover,
+.ant-btn-primary:focus {
+    background-color: color-mix(in srgb, var(--tactical-accent-primary) 85%, black);
+    border-color: color-mix(in srgb, var(--tactical-accent-primary) 85%, black);
+}
+.ant-btn {
+    color: var(--color-text);
+    background-color: var(--color-background-mute);
+    border-color: var(--tactical-border);
+}
+.ant-btn:hover,
+.ant-btn:focus {
+     color: var(--tactical-accent-primary);
+     border-color: var(--tactical-accent-primary);
+     background-color: var(--color-background-soft);
+}

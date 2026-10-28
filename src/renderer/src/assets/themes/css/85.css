@@ -1,0 +1,134 @@
+/* 
+  Only works on and above Windows 11 22H2 with newest Cherry Studio Build
+  仅支持Windows 11 22H2及以上版本，需使用最新版Cherry Studio。
+
+  Mica effect is provided by Windows on System level. 
+  This theme simply changes some UI components to transparent.
+  Mica效果由Windows在系统层面提供，该主题仅用于将部分UI组件调整透明。
+*/
+
+body[theme-mode='light'] {
+  --navbar-background: rgba(244, 244, 244, 0);
+  --navbar-background-mac: rgba(244, 244, 244, 0);
+
+  --mica-surface-1: rgba(255, 255, 255, 0.42);
+  --mica-surface-2: rgba(255, 255, 255, 0.56);
+  --mica-surface-3: rgba(232, 232, 232, 0.68);
+  --mica-border: rgba(255, 255, 255, 0.22);
+}
+
+body[theme-mode='dark'] {
+  --navbar-background: rgba(22, 22, 22, 0);
+  --navbar-background-mac: rgba(22, 22, 22, 0);
+
+  --mica-surface-1: rgba(24, 24, 24, 0.42);
+  --mica-surface-2: rgba(24, 24, 24, 0.56);
+  --mica-surface-3: rgba(24, 24, 24, 0.68);
+  --mica-border: rgba(255, 255, 255, 0.08);
+}
+
+/* Root transparency */
+html,
+body,
+#root,
+#root[style] {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* Titlebar and window chrome: fully transparent, no mask */
+#app-sidebar,
+#app-sidebar[style],
+.home-navbar,
+.home-navbar[style],
+[class*='NavbarContainer'],
+[class*='NavbarMainContainer'],
+[class*='NavbarHeaderContent'],
+[class*='TabsBar'],
+[class*='WindowControlsContainer'] {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: none !important;
+}
+
+/* Remove the top-left titlebar mask feeling in left-navbar layout */
+[navbar-position='left'] #content-container {
+  border-top: none !important;
+  border-left: none !important;
+}
+
+/* Main content shell: add stronger translucent mask */
+#content-container,
+#content-container[style],
+[class*='TabContent'],
+.home-tabs,
+[class*='SettingContainer'],
+[class*='MainContainer'],
+[class*='ProgramSection'],
+[class*='IconSection'] {
+  background: var(--mica-surface-1) !important;
+  background-color: var(--mica-surface-1) !important;
+  box-shadow: none !important;
+}
+
+/* Slightly stronger mask for cards / groups / major panels */
+[theme-mode='light'] #chat,
+[theme-mode='light'] [class*='SettingGroup'],
+[theme-mode='light'] [class*='AgentCardContainer'] {
+  background: var(--mica-surface-2) !important;
+  background-color: var(--mica-surface-2) !important;
+  border: 1px solid var(--mica-border) !important;
+}
+
+[theme-mode='dark'] #chat,
+[theme-mode='dark'] [class*='SettingGroup'],
+[theme-mode='dark'] [class*='AgentCardContainer'] {
+  background: var(--mica-surface-2) !important;
+  background-color: var(--mica-surface-2) !important;
+  border: 1px solid var(--mica-border) !important;
+}
+
+/* Input / editor area: a bit more solid for readability */
+#inputbar,
+.system-prompt,
+[class*='CardContent'] {
+  background: var(--mica-surface-3) !important;
+  background-color: var(--mica-surface-3) !important;
+  border: 1px solid var(--mica-border) !important;
+}
+
+/* Quick Pannel */
+body[theme-mode='dark'] #inputbar [data-testid='quick-panel'] > div,
+body[theme-mode='dark'] [data-testid='quick-panel'] > div {
+  background: rgba(24, 24, 24) !important;
+}
+
+body[theme-mode='light'] #inputbar [data-testid='quick-panel'] > div,
+body[theme-mode='light'] [data-testid='quick-panel'] > div {
+  background: rgba(255, 255, 255) !important;
+}
+
+/* Mini App */
+body[theme-mode='light'] .minapp-drawer .ant-drawer-header,
+body[theme-mode='light'] .minapp-drawer .ant-drawer-header .ant-drawer-title,
+body[theme-mode='light'] .minapp-drawer .ant-drawer-header .ant-drawer-title > div {
+  background: rgb(255, 255, 255) !important;
+  background-color: rgb(255, 255, 255) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+body[theme-mode='dark'] .minapp-drawer .ant-drawer-header,
+body[theme-mode='dark'] .minapp-drawer .ant-drawer-header .ant-drawer-title,
+body[theme-mode='dark'] .minapp-drawer .ant-drawer-header .ant-drawer-title > div {
+  background: rgb(24, 24, 24) !important;
+  background-color: rgb(24, 24, 24) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+

@@ -1,0 +1,223 @@
+/*
+ * Solarized Theme - Based on Ethan Schoonover's Solarized Color Scheme
+ * Original: https://ethanschoonover.com/solarized/ (MIT License)
+ */
+
+body[theme-mode="light"] {
+    --solarized-base03: #002b36;
+    --solarized-base02: #073642;
+    --solarized-base01: #586e75;
+    --solarized-base00: #657b83;
+    --solarized-base0: #839496;
+    --solarized-base1: #93a1a1;
+    --solarized-base2: #eee8d5;
+    --solarized-base3: #fdf6e3;
+    
+    --solarized-red: #dc322f;
+    --solarized-green: #859900;
+    --solarized-yellow: #b58900;
+    --solarized-blue: #268bd2;
+    --solarized-magenta: #d33682;
+    --solarized-cyan: #2aa198;
+    --solarized-orange: #cb4b16;
+    --solarized-violet: #6c71c4;
+
+    --color-white: var(--solarized-base3);
+    --color-white-soft: var(--solarized-base2);
+    --color-background: var(--solarized-base2);
+    --color-background-soft: var(--solarized-base2);
+    --color-background-mute: #f7f1e8;
+    --color-border-soft: var(--solarized-base1);
+    --color-text-primary: var(--solarized-base00);
+    --color-text-secondary: var(--solarized-base01);
+    --color-code-background-inline: var(--solarized-base2);
+    --color-code-text-inline: var(--solarized-magenta);
+    --color-code-background-block: var(--solarized-base2);
+
+    --navbar-background: var(--solarized-base3);
+    --chat-background: var(--solarized-base3);
+    --chat-background-user: var(--solarized-base2);
+    --chat-background-assistant: var(--solarized-base3);
+
+    color: var(--color-text-primary);
+    transition: color 0.3s ease, background-color 0.3s ease;
+
+    #content-container {
+        background-color: var(--color-background) !important;
+        transition: background-color 0.25s ease-out;
+    }
+
+    #content-container #messages,
+    #content-container #chat {
+        background-image: none !important;
+        background-color: var(--chat-background);
+        transition: background-color 0.25s ease-out;
+    }
+
+    .inputbar-container {
+        background-color: var(--solarized-base3);
+        border: 1px solid var(--color-border-soft);
+        border-radius: 8px;
+        transition: all 0.25s ease-out;
+    }
+
+    .message-user .message-bubble {
+        background-color: var(--chat-background-user);
+        border: 1px solid var(--solarized-base1);
+        transition: all 0.25s ease-out;
+    }
+
+    .message-assistant .message-bubble {
+        background-color: var(--chat-background-assistant);
+        transition: all 0.25s ease-out;
+    }
+
+    .markdown {
+        pre .shiki {
+            border: none !important;
+            background-color: var(--color-background-mute) !important;
+            transition: background-color 0.25s ease-out;
+        }
+
+        pre {
+            padding: 0 !important;
+            border-radius: 12px !important;
+            background: none !important;
+            box-shadow: none !important;
+        }
+
+        pre [class^="CodeBlockWrapper-"] {
+            border-radius: 12px !important;
+            overflow: hidden;
+        }
+
+        pre [class^="CodeHeader-"] {
+            border-radius: 12px 12px 0 0 !important;
+            background-color: var(--solarized-base2) !important;
+            border-bottom: none !important;
+            margin-bottom: 0 !important;
+            transition: background-color 0.25s ease-out;
+        }
+
+        pre [class^="CodeContent-"] {
+            background-color: var(--color-background-mute) !important;
+            border-radius: 0 0 12px 12px !important;
+            border-top: none !important;
+            margin-top: 0 !important;
+            transition: background-color 0.25s ease-out;
+        }
+    }
+
+    .ant-collapse-content,
+    .ant-collapse-content-box {
+        background-color: var(--color-background-mute) !important;
+        border-radius: 0 0 8px 8px;
+        transition: background-color 0.25s ease-out;
+    }
+}
+
+body[theme-mode="dark"] {
+    --solarized-base3: #002b36;
+    --solarized-base2: #073642;
+    --solarized-base1: #586e75;
+    --solarized-base0: #657b83;
+    --solarized-base00: #839496;
+    --solarized-base01: #93a1a1;
+    --solarized-base02: #eee8d5;
+    --solarized-base03: #fdf6e3;
+    
+    --solarized-red: #dc322f;
+    --solarized-green: #859900;
+    --solarized-yellow: #b58900;
+    --solarized-blue: #268bd2;
+    --solarized-magenta: #d33682;
+    --solarized-cyan: #2aa198;
+    --solarized-orange: #cb4b16;
+    --solarized-violet: #6c71c4;
+
+    --color-background: var(--solarized-base3);
+    --color-background-soft: var(--solarized-base2);
+    --color-background-mute: #0a3641;
+    --color-text-primary: var(--solarized-base00);
+    --color-text-secondary: var(--solarized-base01);
+
+    --navbar-background: var(--solarized-base3);
+    --chat-background: var(--solarized-base3);
+    --chat-background-user: var(--solarized-base2);
+    --chat-background-assistant: var(--solarized-base3);
+
+    color: var(--color-text-primary);
+    transition: color 0.3s ease, background-color 0.3s ease;
+
+    #content-container {
+        background-color: var(--color-background) !important;
+        transition: background-color 0.25s ease-out;
+    }
+
+    #content-container #messages,
+    #content-container #chat {
+        background-image: none !important;
+        background-color: var(--chat-background);
+        transition: background-color 0.25s ease-out;
+    }
+
+    .inputbar-container {
+        background-color: var(--solarized-base2);
+        border: 1px solid var(--solarized-base1);
+        border-radius: 8px;
+        transition: all 0.25s ease-out;
+    }
+
+    .message-user .message-bubble {
+        background-color: var(--chat-background-user);
+        transition: all 0.25s ease-out;
+    }
+
+    .message-assistant .message-bubble {
+        background-color: var(--chat-background-assistant);
+        transition: all 0.25s ease-out;
+    }
+
+    .markdown {
+        pre .shiki {
+            border: none !important;
+            background-color: var(--color-background-mute) !important;
+            transition: background-color 0.25s ease-out;
+        }
+
+        pre {
+            padding: 0 !important;
+            border-radius: 12px !important;
+            background: none !important;
+            box-shadow: none !important;
+        }
+
+        pre [class^="CodeBlockWrapper-"] {
+            border-radius: 12px !important;
+            overflow: hidden;
+        }
+
+        pre [class^="CodeHeader-"] {
+            border-radius: 12px 12px 0 0 !important;
+            background-color: var(--solarized-base2) !important;
+            border-bottom: none !important;
+            margin-bottom: 0 !important;
+            transition: background-color 0.25s ease-out;
+        }
+
+        pre [class^="CodeContent-"] {
+            background-color: var(--color-background-mute) !important;
+            border-radius: 0 0 12px 12px !important;
+            border-top: none !important;
+            margin-top: 0 !important;
+            transition: background-color 0.25s ease-out;
+        }
+    }
+
+    .ant-collapse-content,
+    .ant-collapse-content-box {
+        background-color: var(--color-background-mute) !important;
+        border-radius: 0 0 8px 8px;
+        transition: background-color 0.25s ease-out;
+    }
+}

@@ -1,0 +1,720 @@
+/*
+
+================================================================================
+
+  主题: 流光
+
+  版本: Final (v2.0 - 彩雾版)
+
+  作者: 尉迟持槊吾持弓
+
+  日期: 2025-08-18
+
+
+
+  简介:
+
+  - 本主题旨在提供一个现代、精致且高度一致的前端UI体验。
+
+  - 特点是统一的交互动效、精致的排版细节、现代化的代码组织与柔和的背景氛围。
+
+  - 所有核心参数均通过CSS变量定义，方便快速调整与定制。
+
+  - 代码结构清晰，遵循DRY原则，具有良好的可维护性和扩展性。
+
+================================================================================
+
+*/
+
+
+
+
+
+/*
+
+================================================================================
+
+  [Part 0] 全局设计系统 (Global Design System)
+
+  - 此处定义了整个主题的基石：颜色、尺寸、动效等核心参数。
+
+  - 未来若需全局调整，优先修改这里的CSS变量。
+
+================================================================================
+
+*/
+
+:root {
+
+  /* -- 基础调色板 (Base Color Palette) -- */
+
+  --color-white-soft: #EFF5F7; /* 一个柔和的、不刺眼的白色，用于亮色模式的文字或深色模式的点缀 */
+
+  --color-black-soft: #283339; /* 一个柔和的、不沉闷的黑色，用于深色模式的文字或亮色模式的点缀 */
+
+
+
+  /* -- 主题强调色 (Primary Accent Color) -- */
+
+  --color-primary: #6E99A4; /* 主色调，如链接、焦点环、滚动条等 */
+
+  --color-primary-soft: rgba(110, 153, 164, 0.6); /* 主色的半透明版本，用于柔和的辉光或背景 */
+
+  --color-primary-mute: rgba(110, 153, 164, 0.2); /* 主色的低饱和度/透明版本，用于更细微的提示 */
+
+
+
+  /* -- 统一交互参数 (Universal Interaction Parameters) -- */
+
+  --ld-radius: 14px; /* (Lumen Drift) 主要组件的圆角大小 */
+
+  --ld-transition: .22s ease; /* 标准过渡动画时长与缓动函数 */
+
+  --ld-shadow: 0 6px 18px rgba(0, 0, 0, 0.10); /* 统一的组件悬浮阴影效果 */
+
+  --ld-ring: 0 0 0 3px var(--color-primary-mute); /* 输入框等元素获取焦点时的外发光轮廓 */
+
+
+
+  /* -- 滚动条参数 (Scrollbar Parameters) -- */
+
+  --ld-scrollbar-size: 12px; /* 滚动条的宽度 */
+
+
+
+  /* -- 统一变换效果 (Universal Transform Effects) -- */
+
+  --universal-hover-transform: translateY(-2px) scale(1.05); /* 元素悬停时，向上微移并轻微放大 */
+
+  --universal-active-transform: scale(0.98); /* 元素被点击(激活)时，轻微缩小，模拟按下效果 */
+
+
+
+  /* -- 虹霓光晕效果 (Rainbow Mist Glow Effect) -- */
+
+  /* 一个由三种颜色叠加而成的复杂光晕，用于按钮等交互元素的悬停效果，营造层次感 */
+
+  --rainbow-mist-glow:
+
+    0 0 16px 4px var(--color-primary-mute),      /* 底层，主色调的柔和扩散光 */
+
+    0 0 8px 2px rgba(135, 206, 235, 0.7), /* 中层，天空蓝的明亮光晕 */
+
+    0 0 3px 1px var(--color-white-soft);       /* 顶层，白色高光，增加通透感 */
+
+}
+
+
+
+
+
+/*
+
+================================================================================
+
+  [Part 1] 主题模式 & 背景 (Theme Modes & Background)
+
+  - 分别为深色(dark)和亮色(light)模式定义详细的颜色变量。
+
+  - 新增了 --ld-bg-gradient 变量来创建柔和的背景氛围。
+
+================================================================================
+
+*/
+
+/* --- 深色模式 (Dark Mode) --- */
+
+body[theme-mode="dark"] {
+
+  /* -- 基础颜色定义 -- */
+
+  --color-background: #27323A;
+
+  --color-background-mute: #2E3B45;
+
+  --color-background-soft: #445664;
+
+  --navbar-background: #27323A;
+
+  --chat-background: #27323A;
+
+  --chat-background-user: #2F3B45;
+
+  --chat-background-assistant: #364455;
+
+  --color-text: #EFF5F7;
+
+  --color-hover: #394A54;
+
+  --color-active: #455863;
+
+  --color-border: rgba(239, 245, 247, 0.12);
+
+  --color-border-soft: rgba(239, 245, 247, 0.06);
+
+
+
+  /* -- 柔和蓝绿紫雾光背景 (深色模式) -- */
+
+  --ld-bg-gradient:
+
+    radial-gradient(60% 80% at 10% 12%, rgba(94, 140, 168, .28) 0%, rgba(94, 140, 168, 0) 60%),
+
+    radial-gradient(55% 70% at 90% 82%, rgba(88, 190, 175, .20) 0%, rgba(88, 190, 175, 0) 55%),
+
+    radial-gradient(45% 55% at 80% 18%, rgba(128, 99, 196, .16) 0%, rgba(128, 99, 196, 0) 50%);
+
+}
+
+
+
+/* --- 亮色模式 (Light Mode) --- */
+
+body[theme-mode="light"] {
+
+  /* -- 基础颜色定义 -- */
+
+  --color-background: #E6EFF2;
+
+  --color-background-mute: #D4E2E7;
+
+  --color-background-soft: #DCE8EC;
+
+  --navbar-background: #E7F0F3;
+
+  --chat-background: #EEF5F7;
+
+  --chat-background-user: #E8F0F3;
+
+  --chat-background-assistant: #DCE7EB;
+
+  --color-text: #2D3E45;
+
+  --color-hover: #DEE9ED;
+
+  --color-active: #D4E3E8;
+
+  --color-border: rgba(45, 62, 69, .12);
+
+  --color-border-soft: rgba(45, 62, 69, .06);
+
+  --color-white: #EDF4F6;
+
+
+
+  /* -- 柔和蓝绿紫雾光背景 (亮色模式) -- */
+
+  --ld-bg-gradient:
+
+    radial-gradient(60% 80% at 8% 10%, rgba(151, 201, 214, .35) 0%, rgba(151, 201, 214, 0) 62%),
+
+    radial-gradient(55% 70% at 92% 86%, rgba(129, 208, 191, .26) 0%, rgba(129, 208, 191, 0) 58%),
+
+    radial-gradient(45% 55% at 82% 18%, rgba(178, 153, 232, .22) 0%, rgba(178, 153, 232, 0) 50%);
+
+}
+
+
+
+/* --- 背景应用 --- */
+
+body, #content-container {
+
+  background-color: var(--color-background) !important;
+
+  background-image: var(--ld-bg-gradient) !important;
+
+  background-attachment: fixed;
+
+  background-size: cover;
+
+  background-repeat: no-repeat;
+
+}
+
+
+
+
+
+/*
+
+================================================================================
+
+  [Part 2] 特定容器与组件 (Specific Containers & Components)
+
+================================================================================
+
+*/
+
+body[theme-mode="dark"] .ant-collapse { background-color: #566873; }
+
+body[theme-mode="dark"] .ant-collapse-content { background-color: #465761; }
+
+body[theme-mode="light"] .ant-collapse { background-color: #B7C8CE; }
+
+body[theme-mode="light"] .ant-collapse-content { background-color: #C9D9DE; }
+
+
+
+
+
+/*
+
+================================================================================
+
+  [Part 3] 输入区 (Input Area)
+
+================================================================================
+
+*/
+
+.inputbar-container {
+
+  background: var(--color-background-mute) !important;
+
+  border: 1px solid var(--color-border) !important;
+
+  border-radius: var(--ld-radius) !important;
+
+  box-shadow: var(--ld-shadow) !important;
+
+  padding: 10px 14px 12px !important;
+
+  overflow: visible !important;
+
+  transition: border-color var(--ld-transition), box-shadow var(--ld-transition), background-color var(--ld-transition);
+
+}
+
+
+
+.inputbar-container:focus-within {
+
+  border-color: var(--color-primary-soft) !important;
+
+  box-shadow: var(--ld-ring), var(--ld-shadow) !important;
+
+}
+
+
+
+.inputbar-container .ant-input {
+
+  background: transparent !important;
+
+  border: none !important;
+
+  box-shadow: none !important;
+
+  color: var(--color-text) !important;
+
+  padding: 0 !important;
+
+}
+
+
+
+.inputbar-container .ant-input::placeholder {
+
+  color: color-mix(in srgb, var(--color-text) 55%, transparent) !important;
+
+}
+
+
+
+.inputbar-container [class*="ActionButton"],
+
+.inputbar-container .ant-switch {
+
+  background: transparent !important;
+
+  border: none !important;
+
+  border-radius: 50%;
+
+  position: relative;
+
+  z-index: 1;
+
+  transition: transform var(--ld-transition), box-shadow var(--ld-transition), background-color var(--ld-transition);
+
+}
+
+.inputbar-container [class*="ActionButton"]:hover,
+
+.inputbar-container .ant-switch:hover {
+
+  transform: scale(1.06);
+
+  background-color: var(--color-primary-mute) !important;
+
+  box-shadow: 0 0 0 6px var(--color-primary-mute);
+
+}
+
+
+
+
+
+/*
+
+================================================================================
+
+  [Part 4] 全局交互动效 (Universal Interaction Effects)
+
+================================================================================
+
+*/
+
+[class*="Navbar"], [class*="NavbarContainer"],
+
+[class*="Menus-"], [class*="SettingMenus"],
+
+.LayoutContainer-jitnui.prcXo {
+
+  overflow: visible !important;
+
+}
+
+
+
+.message-action-button,
+
+[class*="MainMenu"] [class*="Icon"],
+
+[class*="NavbarIcon"], [class*="NarrowIcon"],
+
+.assistants-tab :is(button, a, [role="button"], .ant-card, .ant-card-hoverable,
+
+                    .ant-list-item, [class*="Card"], [class*="Item"],
+
+                    [class*="Agent"], [class*="Icon"]),
+
+.ant-btn, .ant-switch, .ant-segmented-item,
+
+[class*="ListItemContainer"], [class*="TopicListItem"],
+
+.ant-dropdown-menu-item,
+
+.inputbar-container [class*="ActionButton"],
+
+[class*="Menus-"] :is([class*="Icon"], button, a, [role="button"]),
+
+[class*="SettingMenus"] :is(a, [class*="MenuItemLink"]),
+
+[class*="MenuItemLink"],
+
+.LayoutContainer-jitnui.prcXo :is(button, a, [role="button"], [class*="Button"]) {
+
+  border-radius: 10px !important;
+
+  transition: transform var(--ld-transition), box-shadow var(--ld-transition), background-color var(--ld-transition) !important;
+
+}
+
+
+
+.message-action-button:hover,
+
+[class*="MainMenu"] [class*="Icon"]:hover,
+
+[class*="NavbarIcon"]:hover, [class*="NarrowIcon"]:hover,
+
+.assistants-tab :is(button, a, [role="button"], .ant-card, .ant-card-hoverable,
+
+                    .ant-list-item, [class*="Card"], [class*="Item"],
+
+                    [class*="Agent"], [class*="Icon"]):hover,
+
+.ant-btn:hover, .ant-switch:hover, .ant-segmented-item:hover,
+
+[class*="ListItemContainer"]:hover, [class*="TopicListItem"]:hover,
+
+.ant-dropdown-menu-item:hover,
+
+.inputbar-container [class*="ActionButton"]:hover,
+
+[class*="Menus-"] :is([class*="Icon"], button, a, [role="button"]):hover,
+
+[class*="SettingMenus"] :is(a, [class*="MenuItemLink"]):hover,
+
+[class*="MenuItemLink"]:hover,
+
+.LayoutContainer-jitnui.prcXo :is(button, a, [role="button"], [class*="Button"]):hover {
+
+  transform: var(--universal-hover-transform) !important;
+
+  box-shadow: var(--rainbow-mist-glow) !important;
+
+  z-index: 10;
+
+}
+
+
+
+.message-action-button:active,
+
+[class*="MainMenu"] [class*="Icon"]:active,
+
+[class*="NavbarIcon"]:active, [class*="NarrowIcon"]:active,
+
+.assistants-tab :is(button, a, [role="button"], .ant-card, .ant-card-hoverable,
+
+                    .ant-list-item, [class*="Card"], [class*="Item"],
+
+                    [class*="Agent"], [class*="Icon"]):active,
+
+.ant-btn:active, .ant-switch:active, .ant-segmented-item:active,
+
+[class*="ListItemContainer"]:active, [class*="TopicListItem"]:active,
+
+.ant-dropdown-menu-item:active,
+
+.inputbar-container [class*="ActionButton"]:active,
+
+[class*="Menus-"] :is([class*="Icon"], button, a, [role="button"]):active,
+
+[class*="SettingMenus"] :is(a, [class*="MenuItemLink"]):active,
+
+[class*="MenuItemLink"]:active,
+
+.LayoutContainer-jitnui.prcXo :is(button, a, [role="button"], [class*="Button"]):active {
+
+  transform: var(--universal-active-transform) !important;
+
+  transition-duration: .1s !important;
+
+}
+
+
+
+
+
+/*
+
+================================================================================
+
+  [Part 5] 滚动条 (Scrollbar)
+
+================================================================================
+
+*/
+
+* {
+
+  scrollbar-width: thin;
+
+  scrollbar-color: var(--color-primary) transparent;
+
+}
+
+*::-webkit-scrollbar {
+
+  width: var(--ld-scrollbar-size);
+
+  height: var(--ld-scrollbar-size);
+
+}
+
+*::-webkit-scrollbar-track {
+
+  background: transparent;
+
+}
+
+*::-webkit-scrollbar-thumb {
+
+  background-image: linear-gradient(180deg, var(--color-primary-soft), var(--color-primary));
+
+  border-radius: 999px;
+
+  border: 3px solid transparent;
+
+  background-clip: padding-box;
+
+  transition: background-color var(--ld-transition), border-width var(--ld-transition);
+
+}
+
+*::-webkit-scrollbar-thumb:hover {
+
+  border-width: 2px;
+
+}
+
+
+
+
+
+/*
+
+================================================================================
+
+  [Part 6] 排版细节 (Typography Details)
+
+================================================================================
+
+*/
+
+pre {
+
+  background: var(--color-background-mute) !important;
+
+  border: 1px solid var(--color-border) !important;
+
+  border-radius: 10px !important;
+
+  box-shadow: var(--ld-shadow);
+
+  padding: 12px !important;
+
+  overflow: auto;
+
+}
+
+pre code {
+
+  color: var(--color-text) !important;
+
+  background: transparent !important;
+
+}
+
+
+
+code {
+
+  background: color-mix(in srgb, var(--color-background-soft) 70%, var(--color-white-soft)) !important;
+
+  border: 1px solid var(--color-border) !important;
+
+  border-radius: 6px;
+
+  padding: 2px 6px;
+
+}
+
+
+
+a {
+
+  color: var(--color-primary) !important;
+
+  text-decoration: none;
+
+  transition: color var(--ld-transition), text-shadow var(--ld-transition);
+
+}
+
+a:hover {
+
+  color: color-mix(in srgb, var(--color-primary) 85%, var(--color-white-soft)) !important;
+
+  text-shadow: 0 0 6px var(--color-primary-mute);
+
+}
+
+
+
+blockquote {
+
+  border-left: 3px solid var(--color-primary) !important;
+
+  background: color-mix(in srgb, var(--color-background-soft) 80%, var(--color-white-soft)) !important;
+
+  color: color-mix(in srgb, var(--color-text) 85%, var(--color-white-soft)) !important;
+
+  padding: 10px 12px;
+
+  margin: 10px 0 10px 6px;
+
+  border-radius: 0 8px 8px 0;
+
+}
+
+
+
+
+
+/*
+
+================================================================================
+
+  [Part 7] 聊天气泡 (Chat Bubbles)
+
+================================================================================
+
+*/
+
+.chat-message-bubble {
+
+  border: 1px solid var(--color-border) !important;
+
+  border-radius: var(--ld-radius) !important;
+
+  box-shadow: var(--ld-shadow);
+
+}
+
+.message-user .chat-message-bubble {
+
+  background: var(--chat-background-user) !important;
+
+}
+
+.message-assistant .chat-message-bubble {
+
+  background: var(--chat-background-assistant) !important;
+
+}
+
+
+
+
+
+/*
+
+================================================================================
+
+  [Part 8] 可选：兼容性兜底修复 (Optional: Compatibility Fallback)
+
+================================================================================
+
+*/
+
+/*
+
+.message-user .chat-message-bubble code,
+
+.message-user .chat-message-bubble pre,
+
+.message-user .chat-message-bubble pre code,
+
+.message-user .chat-message-bubble code span,
+
+.message-user .chat-message-bubble pre code span {
+
+  color: var(--color-text) !important;
+
+  -webkit-text-fill-color: var(--color-text) !important;
+
+  opacity: 1 !important;
+
+  visibility: visible !important;
+
+  filter: none !important;
+
+  text-shadow: none !important;
+
+  mix-blend-mode: normal !important;
+
+  background-image: none !important;
+
+  -webkit-background-clip: initial !important;
+
+}
+
+*/```
+
+
+

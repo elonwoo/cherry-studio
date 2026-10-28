@@ -1,0 +1,438 @@
+/* ==============================================================================
+ * 主题名称：CherryStudio - 霓虹黑紫 x BlurBerry 毛玻璃融合版（v2 适配版）
+ * 适配说明：基于 Cherry Studio v2（Tailwind v4 + shadcn 设计令牌 + data-ui 语义选择器）
+ *   1. 深浅色分别写在 :root / .dark（旧的 body[theme-mode=...] 已失效）
+ *   2. 旧 Arco/antd 变量全部替换为 v2 语义变量（--background/--card/--popover/
+ *      --sidebar/--primary/--chat-user/--code-block 等）
+ *   3. 组件级 hack 改用官方稳定 [data-ui~=...] 选择器（token 匹配语法）
+ *   4. 全程不使用 !important（v2 自定义 CSS 未分层注入，天然压过内置样式）
+ *   5. 自定义玻璃参数变量加 --glass- 前缀，避免与官方变量冲突
+ * ============================================================================== */
+
+@import url("https://fontsapi.zeoseven.com/479/main/result.css");
+@import url("https://fontsapi.zeoseven.com/3/main/result.css");
+@import url("https://cdn.bootcdn.net/ajax/libs/github-markdown-css/5.8.1/github-markdown-dark.css");
+
+/* ==========================================
+   全局关键帧动画库（纯装饰，与 v1 相同）
+   ========================================== */
+/* 输入框霓虹呼吸 */
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes blinking {
+  0% { filter: drop-shadow(rgba(94, 0, 153, 0.8) 0px 0px 4px); }
+  25% { filter: drop-shadow(rgba(184, 41, 255, 0.9) 0px 0px 8px); }
+  50% { filter: drop-shadow(rgba(184, 41, 255, 1) 0px 0px 15px); }
+  75% { filter: drop-shadow(rgba(184, 41, 255, 0.9) 0px 0px 8px); }
+  100% { filter: drop-shadow(rgba(94, 0, 153, 0.8) 0px 0px 4px); }
+}
+/* 消息气泡代码块按钮赛博故障抖动 */
+@keyframes glitch {
+  0% { transform: translate(0) }
+  20% { transform: translate(-2px, 1px) }
+  40% { transform: translate(-1px, -1px) }
+  60% { transform: translate(2px, 1px) }
+  80% { transform: translate(1px, -1px) }
+  100% { transform: translate(0) }
+}
+
+/* ==========================================
+   浅色主题（:root）
+   —— v1 的 body[theme-mode="light"] 块整体迁移到此处
+   ========================================== */
+:root {
+  /* —— 玻璃与特效自定义参数（原 --content-bgcolor 系列，自命名防冲突）—— */
+  --neon-purple: #b829ff;
+  --neon-green: #00C957;
+  --blur: blur(5px);                          /* 核心高斯模糊参数（由40px降半，背景图更透出） */
+  --box-shadow: 0 2px 8px rgba(33, 33, 33, 0.1);
+  --glass: rgba(255, 255, 255, 0.6);           /* 原 --content-bgcolor-hard */
+  --glass-soft: rgba(255, 255, 255, 0.4);      /* 原 --content-bgcolor-soft */
+  --glass-softer: rgba(255, 255, 255, 0.2);    /* 原 --content-bgcolor-soft-soft */
+
+  /* —— v2 官方语义变量（公开 API，成对覆盖表面/前景）—— */
+  --background: transparent;                   /* 原 --color-background: transparent */
+  --background-subtle: var(--glass-soft);      /* 原 --color-background-soft */
+  --foreground: #000000;                       /* 原 --color-text */
+  --card: var(--glass);                        /* 卡片玻璃化 */
+  --card-foreground: #000000;
+  --popover: rgba(255, 255, 255, 0.72);        /* 原 --modal-background 浮层玻璃化 */
+  --popover-foreground: #000000;
+  --secondary: var(--glass-soft);              /* 次级按钮玻璃化 */
+  --secondary-foreground: #000000;
+  --muted: var(--glass-softer);                /* 原 --color-background-mute */
+  --muted-foreground: rgba(0, 0, 0, 0.55);
+  --accent: var(--glass);
+  --accent-foreground: #000000;
+  --border: rgba(255, 255, 255, 0.35);         /* 原 --color-border */
+  --input: rgba(255, 255, 255, 0.5);
+  --sidebar: rgba(255, 255, 255, 0.35);        /* 原 --navbar-background: unset */
+  --sidebar-foreground: #000000;
+  --sidebar-border: rgba(255, 255, 255, 0.25);
+  --primary: rgb(59, 130, 246);                /* 原 --theme-color（浅色蓝） */
+  --primary-foreground: #ffffff;
+  --destructive: rgb(255, 77, 110);            /* 原 --danger-color */
+  --destructive-foreground: #ffffff;
+  --error: rgb(255, 77, 110);
+  --chat-user: var(--glass-soft);              /* 用户气泡玻璃化（原 --message-bgcolor 思路） */
+  --code-block: rgba(255, 255, 255, 0.25);     /* 代码块玻璃化 */
+  --font-family: "TsangerYuMo W03", sans-serif;
+  --radius: 12px;                              /* 全局圆角基准，其余圆角自动派生 */
+}
+
+/* ==========================================
+   深色主题（.dark）
+   —— v1 的 body[theme-mode="dark"] 块整体迁移到此处
+   —— v2 中根元素切换 .dark 类，不再用属性选择器
+   ========================================== */
+.dark {
+  --glass: rgba(33, 33, 33, 0.6);              /* 原 --content-bgcolor-hard */
+  --glass-soft: rgba(33, 33, 33, 0.3);         /* 原 --content-bgcolor-soft */
+  --glass-softer: rgba(33, 33, 33, 0.2);
+
+  --background: transparent;
+  --background-subtle: var(--glass-soft);
+  --foreground: #F0F5F0;                       /* 原 --color-text: #F0F5F0 */
+  --card: var(--glass);
+  --card-foreground: #F0F5F0;
+  --popover: rgba(33, 33, 33, 0.8);
+  --popover-foreground: #F0F5F0;
+  --secondary: var(--glass-soft);
+  --secondary-foreground: #F0F5F0;
+  --muted: var(--glass-softer);
+  --muted-foreground: rgba(240, 245, 240, 0.55);
+  --accent: var(--glass);
+  --accent-foreground: #F0F5F0;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.12);
+  --sidebar: rgba(33, 33, 33, 0.45);
+  --sidebar-foreground: #F0F5F0;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  /* 原 v1 深蓝 rgb(7,52,242) 在深色玻璃上对比度不足，提亮一档；如需原味可改回 */
+  --primary: rgb(90, 141, 255);
+  --primary-foreground: #ffffff;
+  --destructive: rgb(255, 77, 110);
+  --destructive-foreground: #ffffff;
+  --error: rgb(255, 77, 110);
+  --chat-user: rgba(255, 255, 255, 0.08);
+  --code-block: rgba(20, 20, 20, 0.55);
+}
+
+/* ==========================================
+   全局背景（本地背景图 + 明暗混合模式）
+   ========================================== */
+body {
+  font-family: "TsangerYuMo W03", sans-serif;
+  font-weight: normal;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  background-image: url('https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEZygFqjOqACTBDzTgm4qKQGr3gewehiQACgScAAg-uaVQYyokkyJiMPT0E.jpg');
+  background-color: rgba(255, 255, 255, 0.5);
+  background-blend-mode: lighten;
+  transition: background-color 0.3s linear;
+}
+.dark body {
+  background-color: rgba(0, 0, 0, 0.65);
+  background-blend-mode: darken;
+}
+
+/* 核心容器透明以显示背景（配合 --background: transparent 双保险） */
+#root,
+#root > div,
+#content-container,
+[data-ui~='app.content'],
+[data-ui~='chat.view'],
+[data-ui~='chat.message-list'] {
+  background: transparent;
+}
+
+/* ==========================================
+   全局文本选中高亮（Matrix Selection）
+   —— 原浅色/深色两套 theme-mode 选择器改为 ::selection / .dark ::selection
+   ========================================== */
+::selection {
+  background: rgba(0, 201, 87, 0.3);          /* 浅色模式：赛博绿 */
+  color: #000;
+  text-shadow: 0 0 2px rgba(0, 201, 87, 0.5);
+}
+.dark ::selection {
+  background: rgba(184, 41, 255, 0.4);        /* 深色模式：霓虹紫 */
+  color: #fff;
+  text-shadow: 0 0 5px rgba(184, 41, 255, 0.8);
+}
+
+/* ==========================================
+   特效3：光纤滚动条（全局隐形，悬浮点亮）
+   ========================================== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background: transparent;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(150, 150, 150, 0.2);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-green);              /* 浅色模式霓虹绿 */
+  box-shadow: 0 0 10px var(--neon-green);
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-purple);             /* 暗色模式霓虹紫（后置覆盖浅色规则） */
+  box-shadow: 0 0 10px var(--neon-purple);
+}
+
+/* ==========================================
+   全局毛玻璃表面：对官方稳定区域 token 施加高斯模糊
+   —— 替代 v1 中对 .ant-* / 内部 class 逐个加 backdrop-filter 的做法
+   —— 半透明底色已由上面 --card/--popover/--sidebar 等变量提供
+   ========================================== */
+[data-ui~='app.sidebar'],
+[data-ui~='app.tab-bar'],
+[data-ui~='chat.composer'],
+[data-ui~='chat.topic-list'],
+[data-ui~='settings.navigation'],
+[data-ui~='settings.content'],
+[data-ui~='knowledge.navigation'],
+[data-ui~='knowledge.content'],
+[data-ui~='files.navigation'],
+[data-ui~='translate.input'],
+[data-ui~='translate.output'],
+[data-ui~='agent.view'] {
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+}
+
+/* 主内容区各面板圆角化 + 柔和阴影（对应 v1 Tab 页面覆盖的观感） */
+[data-ui~='settings.navigation'],
+[data-ui~='knowledge.navigation'],
+[data-ui~='files.navigation'],
+[data-ui~='chat.topic-list'] {
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+}
+
+/* ==========================================
+   输入框黑紫霓虹 + 毛玻璃融合
+   —— 原 #inputbar 改为官方 composer token
+   ========================================== */
+[data-ui~='chat.composer'] {
+  position: relative;
+  z-index: 1;
+  margin: 0 15px 15px 15px;
+  border-radius: 15px;
+  background-color: var(--glass);
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+  box-shadow: var(--box-shadow);
+  transition: box-shadow 0.3s ease;
+}
+/* 霓虹流转边框（渐变描边，悬浮聚焦时点亮） */
+[data-ui~='chat.composer']::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  /* 连续紫绿渐变，避免浅色模式下暗部断层 */
+  background: linear-gradient(90deg, #5e0099, #b829ff, #00C957, #b829ff, #5e0099);
+  background-size: 200% 200%;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: gradientFlow 3s linear infinite;
+  opacity: 0;
+  transition: all 0.4s ease-in-out;
+  pointer-events: none;
+}
+[data-ui~='chat.composer']:focus-within {
+  animation: blinking 3s linear infinite;
+}
+[data-ui~='chat.composer']:focus-within::before {
+  opacity: 1;
+}
+/* 深色模式下增强输入框发光强度（关键修复保留） */
+.dark [data-ui~='chat.composer']:focus-within {
+  box-shadow: 0 0 20px rgba(184, 41, 255, 0.4), 0 0 8px rgba(0, 201, 87, 0.2);
+}
+.dark [data-ui~='chat.composer']:focus-within::before {
+  opacity: 1;
+  filter: brightness(1.4);                    /* 强制提亮霓虹边框 1.4 倍 */
+}
+
+/* ==========================================
+   方案 A：用户消息也变成卡片（与 AI 消息风格统一）
+   —— 思路：给 .message.message-user 加与 .message.message-assistant 相同的
+      玻璃卡片外壳（半透明底色 + 模糊 + 圆角 + 细边框 + 内边距），
+      并把内部 .message-content-container 的 bg-muted 药丸底色覆盖为透明，
+      让卡片底色直接透出，不再形成独立的紧凑药丸
+   ========================================== */
+
+/* AI 消息：整张卡片化（与基础版一致） */
+.message.message-assistant {
+  background-color: var(--glass);
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  padding: 16px 20px 12px 20px;
+  margin: 6px 0;
+  transition: box-shadow 0.3s ease;
+}
+.message.message-assistant:hover {
+  box-shadow: var(--box-shadow);
+}
+
+/* 用户消息：同样卡片化（新增） */
+.message.message-user {
+  background-color: var(--glass);
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  padding: 16px 20px 12px 20px;
+  margin: 6px 0;
+  transition: box-shadow 0.3s ease;
+}
+.message.message-user:hover {
+  box-shadow: var(--box-shadow);
+}
+
+/* 用户消息内部容器：底色覆盖为透明，不再形成独立药丸 */
+.message.message-user .message-content-container,
+.message.message-user [data-ui~='part:message-content'] {
+  background-color: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+}
+
+/* AI 消息内部容器：完全透明，消除内白框（关键修复）
+   —— 之前这里加了 backdrop-filter，结果在卡片内部又叠了一层模糊，
+      视觉上形成一个白底矩形框，看起来像"消息的外部边框有毛玻璃，内部是白底"
+   —— 正确做法：让内层完全透明，外层卡片的玻璃效果直接透出 */
+.message.message-assistant .message-content-container,
+.message.message-assistant [data-ui~='part:message-content'] {
+  background-color: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+}
+
+/* 深度思考/推理区域玻璃化弱化（对应 v1 system-prompt 处理） */
+[data-ui~='part:message-reasoning'] {
+  border-radius: 12px;
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+  background-color: var(--glass-softer);
+}
+
+/* ==========================================
+   特效5：代码块极客觉醒
+   —— 原 .markdown pre + [class^="CodeHeader"] 改为官方 part:code-block token
+   —— 底色由 --code-block 变量控制；交通灯伪元素依赖 v1 内部结构，无法迁移，
+      改为圆角玻璃 + 悬浮发光 + 复制按钮故障抖动的等效风格
+   ========================================== */
+[data-ui~='part:code-block'] {
+  border-radius: 16px;
+  box-shadow: var(--box-shadow);
+  transition: box-shadow 0.3s ease;
+  overflow: hidden;
+}
+[data-ui~='part:code-block'] pre {
+  border-radius: 16px;
+  background-color: var(--code-block);
+}
+[data-ui~='part:code-block'] pre .shiki,
+[data-ui~='part:code-block'] pre code {
+  background-color: transparent;
+}
+/* 觉醒状态：鼠标移入代码块 */
+[data-ui~='part:code-block']:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+/* 按钮默认半隐，移入显现 */
+[data-ui~='part:code-block'] button {
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+[data-ui~='part:code-block']:hover button {
+  opacity: 1;
+}
+/* 复制按钮赛博故障悬停：抖动 + 黑客绿 */
+[data-ui~='part:code-block'] button:hover {
+  animation: glitch 0.2s linear infinite;
+  color: var(--neon-green);
+}
+
+/* ==========================================
+   侧边栏（已移除霓虹光剑/跑马灯特效，仅保留毛玻璃 + 悬浮反馈）
+   ========================================== */
+[data-ui~='app.sidebar'] {
+  position: relative;
+}
+/* 侧边栏交互项悬浮玻璃化 */
+[data-ui~='app.sidebar'] button:hover {
+  background-color: var(--glass-soft);
+  box-shadow: var(--box-shadow);
+}
+/* 激活项轻微阴影提示（移除绿色光剑指示条） */
+[data-ui~='app.sidebar'] :is([data-state='active'], [aria-current='page']) {
+  position: relative;
+  box-shadow: var(--box-shadow);
+}
+
+/* ==========================================
+   浮层玻璃化（antd 遗留组件最佳匹配）
+   —— v2 已迁往 shadcn 的组件由 --popover/--card 变量自动玻璃化；
+      仍残留 antd 的弹窗/抽屉/下拉在此兜底（无 !important，未分层注入天然覆盖）
+   ========================================== */
+.ant-modal .ant-modal-content {
+  background-color: var(--popover);
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+}
+.ant-modal .ant-modal-mask {
+  background-color: transparent;
+}
+.ant-drawer .ant-drawer-content {
+  background-color: var(--popover);
+  border-top-left-radius: 15px;
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+}
+.ant-dropdown .ant-dropdown-menu,
+.ant-dropdown-menu-submenu .ant-dropdown-menu {
+  background-color: var(--popover);
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+}
+.ant-tooltip .ant-tooltip-inner {
+  background-color: rgba(33, 33, 33, 0.75);
+}
+
+/* ==========================================
+   备注（v1 → v2 取舍清单）
+   1. 已删除：v1 对 .ant-btn/.ant-input/.ant-tabs/.ant-segmented/.ant-slider 等
+      组件级覆盖 —— v2 中这些控件改由 shadcn 渲染，颜色统一走
+      --primary/--secondary/--muted/--accent/--input/--border 语义变量，已在上文覆盖
+   2. 已删除：SettingContainer/ProviderList/AgentsGroupList/KnowledgeSideNav 等
+      内部 class hack —— 改用 settings.*/agent.*/knowledge.*/files.* 稳定 token
+   3. 已删除：代码块交通灯伪元素 —— 依赖 v1 CodeHeader 内部结构，v2 无对应契约
+   4. 已删除：所有 !important —— v2 未分层注入天然最高优先级，加 !important 反而失效
+   5. github-markdown-dark 全局导入沿袭 v1 行为：浅色模式下 Markdown 也呈暗色，
+      如需浅色模式使用亮色 Markdown，将该 @import 替换为 github-markdown.css
+   ========================================== */

@@ -1,0 +1,335 @@
+:root {
+  --base-radius: 12px;
+  --base-spacing: 16px;
+  --font-sans: 'MISAN VF', sans-serif;
+  --font-mono: 'Maple Mono NF CN', monospace;
+  --transition-base: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+  --transition-jelly: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  --transition-linear: all 0.4s linear;
+
+  --light-bg: #FDFCFA;
+  --light-text: #1A1C23;
+  --light-muted: #8A94A6;
+  --light-border: #D8E0EB;
+  --dark-bg: #121218;
+  --dark-text: #F0F4FF;
+  --dark-muted: #7C8594;
+  --dark-border: #3A3A4D;
+  --accent-fallback: #5E81F4;
+  --dark-accent-fallback: #7B91FF;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: var(--current-bg);
+  color: var(--current-text);
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: var(--transition-base);
+}
+
+body[theme-mode='light'] {
+  --current-bg: var(--light-bg);
+  --current-text: var(--light-text);
+  --current-muted: var(--light-muted);
+  --current-border: var(--light-border);
+  --current-accent: var(--color-primary, var(--primary, var(--heroui-primary), var(--accent-fallback)));
+  --msg-system: color-mix(in srgb, var(--current-accent) 5%, #EBEEF2);
+  --msg-user: color-mix(in srgb, var(--current-accent) 12%, #EBEEF2);
+  --msg-shadow: 0 2px 6px color-mix(in srgb, var(--current-accent) 5%, transparent);
+  --msg-user-shadow: 0 2px 6px color-mix(in srgb, var(--current-accent) 12%, transparent);
+  --input-shade: rgba(248, 250, 252, 0.9);
+}
+
+body[theme-mode='dark'] {
+  --current-bg: var(--dark-bg);
+  --current-text: var(--dark-text);
+  --current-muted: var(--dark-muted);
+  --current-border: var(--dark-border);
+  --current-accent: var(--color-primary, var(--primary, var(--heroui-primary), var(--dark-accent-fallback)));
+  --msg-system: color-mix(in srgb, var(--current-accent) 8%, #2A2A38);
+  --msg-user: color-mix(in srgb, var(--current-accent) 18%, #2A2A38);
+  --msg-shadow: 0 2px 6px color-mix(in srgb, var(--current-accent) 10%, transparent);
+  --msg-user-shadow: 0 2px 6px color-mix(in srgb, var(--current-accent) 20%, transparent);
+  --input-shade: rgba(25, 25, 40, 0.7);
+  color-scheme: dark;
+}
+
+@keyframes jelly {
+  0% { transform: scale(1); }
+  30% { transform: scale(0.95); }
+  70% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+@keyframes popUp {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes linearLoad {
+  0% { width: 0; opacity: 0.6; }
+  100% { width: 100%; opacity: 1; }
+}
+
+@keyframes techBreath {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--current-accent) 20%, transparent); }
+  50% { box-shadow: 0 0 0 10px color-mix(in srgb, var(--current-accent) 0%, transparent); }
+  100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--current-accent) 0%, transparent); }
+}
+
+@keyframes fadeUpJelly {
+  0% { opacity: 0; transform: translateY(8px) scale(0.98); }
+  80% { transform: translateY(-1px) scale(1.01); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.button, .ant-btn {
+  border-radius: var(--base-radius);
+  transition: var(--transition-jelly);
+  font-weight: 500;
+  padding: 8px 16px;
+}
+
+.button:not(.ant-btn-neutral):not(.ant-btn-text):not(.ant-btn-link),
+.ant-btn:not(.ant-btn-neutral):not(.ant-btn-text):not(.ant-btn-link) {
+  background: var(--current-accent) !important;
+  color: white !important;
+  border: none !important;
+  box-shadow: 0 2px 6px color-mix(in srgb, var(--current-accent) 30%, transparent) !important;
+}
+
+.button:not(.ant-btn-neutral):not(.ant-btn-text):not(.ant-btn-link):hover,
+.ant-btn:not(.ant-btn-neutral):not(.ant-btn-text):not(.ant-btn-link):hover {
+  background: color-mix(in srgb, var(--current-accent) 90%, black) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px color-mix(in srgb, var(--current-accent) 30%, transparent) !important;
+}
+
+.button:not(.ant-btn-neutral):not(.ant-btn-text):not(.ant-btn-link):active,
+.ant-btn:not(.ant-btn-neutral):not(.ant-btn-text):not(.ant-btn-link):active,
+.ant-btn-neutral:active, .ant-btn-text:active, .ant-btn-link:active {
+  animation: jelly 0.3s ease forwards;
+}
+
+.ant-btn-neutral, .ant-btn-text, .ant-btn-link {
+  background: transparent !important;
+  color: var(--current-text) !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.ant-btn-neutral:hover, .ant-btn-text:hover, .ant-btn-link:hover {
+  background: color-mix(in srgb, var(--current-text) 5%, transparent) !important;
+  transform: translateY(-2px);
+}
+
+.button:disabled, .ant-btn:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+  box-shadow: none !important;
+  animation: none !important;
+}
+
+.input, .ant-input:not(.ant-input-borderless), .ant-select-selector,[class^="ant-space"][class*="message-editor"][class*="EditorContainer-"] {
+  background: var(--input-shade);
+  border: 1px solid var(--current-border);
+  border-radius: var(--base-radius);
+  padding: 10px 14px;
+  width: 100%;
+  color: var(--current-text);
+  transition: var(--transition-base);
+}
+
+.input:focus, .ant-input:not(.ant-input-borderless):focus, .ant-select-selector:focus-within,[class^="ant-space"][class*="message-editor"][class*="EditorContainer-"] {
+  border-color: var(--current-accent) !important;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--current-accent) 30%, transparent) !important;
+  outline: none;
+}
+
+.ant-input-borderless, [class^="Textarea-"],
+.ant-input-borderless:focus, [class^="Textarea-"]:focus {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  background: transparent !important;
+}
+
+.input::placeholder, .ant-input::placeholder {
+  color: var(--current-muted);
+}
+
+.message-content-container,
+[class^="ScrollBarContainer-"][class*="MessageContentContainer-"] {
+  margin: 8px 4px !important;
+  padding: 14px 18px !important;
+  border-radius: var(--base-radius) !important;
+  line-height: 1.6 !important;
+  border: none !important;
+  animation: fadeUpJelly 0.35s ease forwards;
+  transition: var(--transition-jelly);
+  box-sizing: border-box !important;
+}
+
+.message-content-container:not(.message-user),
+[class^="ScrollBarContainer-"][class*="MessageContentContainer-"]:not(.message-user) {
+  background: var(--msg-system) !important;
+  box-shadow: var(--msg-shadow) !important;
+}
+
+.message-content-container.message-user,
+[class^="ScrollBarContainer-"][class*="MessageContentContainer-"].message-user {
+  background: var(--msg-user) !important;
+  box-shadow: var(--msg-user-shadow) !important;
+}
+
+.message-content-container:hover,
+[class^="ScrollBarContainer-"][class*="MessageContentContainer-"]:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 6px 14px color-mix(in srgb, var(--current-accent) 15%, transparent) !important;
+}
+
+#inputbar-container, .input-container{
+  margin: 0;
+  padding: 8px;
+  background: linear-gradient(to top, var(--current-bg) 70%, transparent 100%);
+}
+
+#inputbar, .chat-input {
+  border: 1px solid var(--current-border);
+  border-radius: var(--base-radius);
+  padding: 8px;
+  background: var(--input-shade);
+  animation: techBreath 4s ease-in-out infinite;
+}
+
+#inputbar.ant-input-borderless, .chat-input.ant-input-borderless {
+  animation: none;
+}
+
+#inputbar:focus-within, .chat-input:focus-within {
+  animation: none;
+  border-color: var(--current-accent) !important;
+  box-shadow: 0 0 0 2px var(--current-accent) !important;
+}
+
+.card, .ant-card {
+  background: color-mix(in srgb, var(--current-bg) 80%, white);
+  border-radius: var(--base-radius);
+  padding: var(--base-spacing);
+  box-shadow: 0 1px 3px color-mix(in srgb, var(--current-border) 30%, transparent);
+  border: 1px solid var(--current-border);
+  transition: var(--transition-jelly);
+  animation: popUp 0.4s ease forwards;
+}
+
+.card:hover, .ant-card:hover {
+  box-shadow: 0 6px 12px color-mix(in srgb, var(--current-border) 50%, transparent);
+  transform: translateY(-3px) scale(1.01);
+}
+
+/* 6. 通用组件 - 模态框/列表/滚动条/链接/进度条 */
+.modal, .ant-modal-content, .ant-dropdown-menu {
+  animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important;
+}
+
+.topic-list-item, .chat-item {
+  transition: var(--transition-linear);
+}
+
+.topic-list-item.active, .chat-item.active {
+  background: color-mix(in srgb, var(--current-accent) 15%, var(--current-bg)) !important;
+  border-left: 3px solid var(--current-accent) !important;
+  animation: linearLoad 0.3s linear forwards;
+}
+
+.topic-list-item:hover, .chat-item:hover {
+  background: color-mix(in srgb, var(--current-accent) 10%, var(--current-bg)) !important;
+  transform: translateX(2px);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--current-border);
+  border-radius: 3px;
+  transition: var(--transition-linear);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--current-accent);
+  transform: scaleX(1.2);
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+a {
+  color: var(--current-accent);
+  text-decoration: none;
+  transition: var(--transition-linear);
+}
+
+a:hover {
+  color: color-mix(in srgb, var(--current-accent) 90%, black);
+  text-decoration: underline;
+  transform: translateX(2px);
+}
+
+.ant-progress-filled {
+  background: var(--current-accent) !important;
+  transition: var(--transition-linear);
+  animation: linearLoad 0.6s linear forwards;
+}
+
+@media (max-width: 768px) {
+  .message-content-container,
+  [class^="ScrollBarContainer-"][class*="MessageContentContainer-"] {
+    margin: 6px 2px !important;
+    padding: 12px 14px !important;
+  }
+  
+  #inputbar-container {
+    padding: 6px;
+  }
+  
+  .card {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .message-content-container,
+  [class^="ScrollBarContainer-"][class*="MessageContentContainer-"] {
+    border-radius: 8px !important;
+    margin: 4px 1px !important;
+    padding: 10px 12px !important;
+  }
+  
+  .button, .ant-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+  
+  .input {
+    padding: 8px 12px;
+  }
+}

@@ -1,0 +1,257 @@
+/* 吉卜力风格主题 - 优化版 */
+/* 原作者 - 小红书：letschips */
+/* 吉卜力风格修改（已移除点状物动态效果） */
+
+:root {
+  /* 公共变量 */
+  --border-radius: 12px;
+  --button-radius: 8px;
+  --transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+  --shadow-sm: 0 2px 8px;
+  --shadow-md: 0 5px 15px;
+  --shadow-lg: 0 10px 25px;
+  --font-stack: "Hiragino Maru Gothic ProN", "Meiryo", "SF Pro", "Segoe UI", sans-serif;
+}
+
+/* 全局设置 */
+body {
+  font-family: var(--font-stack);
+  transition: var(--transition);
+  color: var(--text-color);
+}
+
+/* 深色模式 - 夜空/龙猫夜晚风格 */
+body[theme-mode="dark"] {
+  --color-background: linear-gradient(135deg, #1e2d40 0%, #2d4059 50%, #3a506b 100%);
+  --color-background-soft: linear-gradient(135deg, #2d4059 0%, #3a506b 50%, #4b618d 100%);
+  --color-background-mute: rgba(45, 64, 89, 0.7);
+  --navbar-background: linear-gradient(90deg, #1e2d40 0%, #2d4059 100%);
+  --chat-background: linear-gradient(170deg, #1e2d40 0%, #2d4059 50%, #3a506b 100%);
+  --chat-background-user: linear-gradient(135deg, #334863 0%, #445c81 100%);
+  --chat-background-assistant: linear-gradient(135deg, #264653 0%, #38677a 100%);
+  --button-gradient: linear-gradient(135deg, #3a506b 0%, #4a618b 100%);
+  --hover-gradient: linear-gradient(135deg, #4a618b 0%, #5a72a0 100%);
+  --shadow-color: rgba(10, 15, 35, 0.4);
+  --text-color: #e0e7f1;
+  --text-color-soft: #b8c4d9;
+  --color-white: #1e2d40;
+  --highlight-color: #a4c3b2;
+  
+  /* 魔法粒子颜色（仅保留变量，无实际使用） */
+  --particle-color-1: #a4c3b2;
+  --particle-color-2: #445c81;
+  --particle-color-3: #5a72a0;
+}
+
+/* 浅色模式 - 天空/草原风格 */
+body[theme-mode="light"] {
+  --color-background: linear-gradient(135deg, #d8e2dc 0%, #e8f1f5 50%, #f0f7f4 100%);
+  --color-background-soft: linear-gradient(135deg, #cce3de 0%, #e0f0ea 50%, #eaf4f0 100%);
+  --color-background-mute: rgba(204, 227, 222, 0.6);
+  --navbar-background: linear-gradient(90deg, #d8e2dc 0%, #e8f1f5 100%);
+  --chat-background: linear-gradient(170deg, #e8f1f5 0%, #f0f7f4 50%, #ffffff 100%);
+  --chat-background-user: linear-gradient(135deg, #e0f0ea 0%, #f0f7f4 100%);
+  --chat-background-assistant: linear-gradient(135deg, #cce3de 0%, #e0f0ea 100%);
+  --button-gradient: linear-gradient(135deg, #a4c3b2 0%, #cce3de 100%);
+  --hover-gradient: linear-gradient(135deg, #cce3de 0%, #e0f0ea 100%);
+  --shadow-color: rgba(111, 105, 0.15);
+  --text-color: #2d4059;
+  --text-color-soft: #3a506b;
+  --color-white: #f0f7f4;
+  --highlight-color: #6b9080;
+  
+  /* 魔法粒子颜色（仅保留变量，无实际使用） */
+  --particle-color-1: #6b9080;
+  --particle-color-2: #a4c3b2;
+  --particle-color-3: #cce3de;
+}
+
+/* 内容容器 */
+#content-container {
+  background: var(--chat-background) !important;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg) var(--shadow-color);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Cherry Studio 消息容器适配 */
+#content-container #messages {
+  background: transparent !important;
+  position: relative;
+  z-index: 1;
+}
+
+/* 导航栏 */
+.navbar {
+  background: var(--navbar-background);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* 链接样式 - 统一处理 */
+a, 
+a:link, 
+a:visited, 
+a:hover, 
+a:active {
+  text-decoration: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  transition: var(--transition);
+}
+
+/* 侧边栏链接 */
+[class*="sidebar"] a,
+[class*="menu"] a,
+[class*="nav"] a,
+[id*="sidebar"] a,
+[id*="menu"] a,
+[id*="nav"] a {
+  &:hover {
+    opacity: 0.9;
+    background: var(--color-background-mute);
+    transform: translateX(3px);
+  }
+}
+
+/* 主内容区域链接 */
+.main-content a,
+.message-container a {
+  color: var(--highlight-color);
+  border-bottom: 1px solid var(--highlight-color) !important;
+  
+  &:hover {
+    color: var(--text-color);
+    border-bottom-color: var(--text-color) !important;
+  }
+}
+
+/* 聊天气泡 */
+.message-container {
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm) var(--shadow-color);
+  transition: var(--transition);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 1;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md) var(--shadow-color);
+  }
+}
+
+.user-message {
+  background: var(--chat-background-user);
+}
+
+.assistant-message {
+  background: var(--chat-background-assistant);
+}
+
+/* Cherry Studio 输入框容器适配 */
+.inputbar-container {
+  background: var(--color-background-soft) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: var(--border-radius) !important;
+}
+
+/* 按钮 */
+button {
+  background: var(--button-gradient);
+  border-radius: var(--button-radius);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-color);
+  font-weight: 500;
+  transition: var(--transition);
+  
+  &:hover {
+    background: var(--hover-gradient);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm) var(--shadow-color);
+  }
+}
+
+/* 表单元素 */
+input, 
+textarea {
+  background: var(--color-background-soft);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-color);
+  font-family: var(--font-stack);
+  padding: 10px 12px;
+}
+
+/* Cherry Studio 代码块适配 */
+body[theme-mode="dark"] code {
+  background-color: rgba(58, 80, 107, 0.3) !important;
+  color: var(--highlight-color) !important;
+}
+
+body[theme-mode="light"] code {
+  background-color: rgba(107, 144, 128, 0.2) !important;
+  color: #2d4059 !important;
+}
+
+body[theme-mode="dark"] pre code {
+  color: #b8c4d9 !important;
+}
+
+body[theme-mode="light"] pre code {
+  color: #2d4059 !important;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  
+  &-track {
+    background: var(--color-background-mute);
+    border-radius: 6px;
+  }
+  
+  &-thumb {
+    background: var(--color-background-soft);
+    border-radius: 6px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    
+    &:hover {
+      background: var(--button-gradient);
+    }
+  }
+}
+
+/* 卡片 */
+.card {
+  background: var(--color-background-soft);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md) var(--shadow-color);
+  transition: var(--transition);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg) var(--shadow-color);
+  }
+}
+
+/* 吉卜力特有元素 - 可选添加 */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+  opacity: 0.3;
+  z-index: 0;
+  border-radius: var(--border-radius);
+  pointer-events: none;
+}

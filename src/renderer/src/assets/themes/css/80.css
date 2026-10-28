@@ -1,0 +1,182 @@
+/**
+ * @file LuminaFlow.css (Synthwave '84 Edition)
+ * @date 2026.01.16
+ * @author RMSHE (Modified by Assistant)
+ *
+ * < LuminaFlow - Synthwave >
+ */
+
+:root {
+    /* Synthwave Palette Definition */
+    --sw-bg-dark: #241b2f;       /* Deep Midnight Purple */
+    --sw-bg-soft: #2a2139;       /* Soft Violet Gray */
+    --sw-bg-mute: #1f1627;       /* Muted Dark Purple */
+    --sw-neon-pink: #ff7edb;     /* Retro Pink */
+    --sw-neon-cyan: #36f9f6;     /* Cyan Glow */
+    --sw-neon-yellow: #fbd72b;   /* Sunset Yellow */
+    
+    /* Mapping to original variables */
+    --color-background: var(--sw-bg-dark);
+    --color-background-soft: var(--sw-bg-soft);
+    --color-background-mute: var(--sw-bg-mute);
+    
+    /* Glassmorphism tints */
+    --navbar-background: rgba(36, 27, 47, 0.6);
+    --modal-background: rgba(31, 22, 39, 0.85);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* 
+   Message Pop Animation 
+   Added a slight text-shadow bloom at 100% for that neon feel
+*/
+@keyframes messagePop {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px) rotateX(-16deg) scale(0.92);
+        filter: blur(12px) brightness(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg) scale(1);
+        filter: blur(0px) brightness(1.1);
+    }
+}
+
+.message-content-container {
+    will-change: transform, opacity, filter;
+    animation-fill-mode: forwards;
+    animation: messagePop 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    /* Subtle glow for text */
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.1); 
+}
+
+/* 
+   Input Bar 
+   Now features a gradient border or neon glow on focus
+*/
+.inputbar-container {
+    background-color: rgba(42, 33, 57, 0.4); /* Semi-transparent purple */
+    border: 1px solid rgba(54, 249, 246, 0.2); /* Faint Cyan border */
+    border-radius: 18px;
+    box-shadow: 0 5px 30px -12px rgba(0, 0, 0, 0.8);
+    transition: all 0.3s ease;
+}
+
+.inputbar-container:focus-within {
+    border-color: var(--sw-neon-pink); /* Pink border on focus */
+    background-color: var(--sw-bg-soft);
+    /* Neon Glow Effect */
+    box-shadow: 0 0 15px rgba(255, 126, 219, 0.3), 
+                0 5px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* 
+   Ant Design Overrides 
+   Dark purple backgrounds with Cyan accents
+*/
+.ant-input-outlined,
+.ant-input-number,
+.ant-picker,
+.ant-select .ant-select-selector,
+.ant-select-dropdown,
+.ant-mentions {
+    background-color: rgba(31, 22, 39, 0.6) !important;
+    border-color: rgba(54, 249, 246, 0.1) !important;
+    color: #e0e0e0 !important;
+    backdrop-filter: blur(32px);
+    transition: all 0.3s ease;
+}
+
+/* Hover states for inputs */
+.ant-input-outlined:hover,
+.ant-input-outlined:focus,
+.ant-select .ant-select-selector:hover {
+    border-color: var(--sw-neon-cyan) !important;
+    box-shadow: 0 0 8px rgba(54, 249, 246, 0.2);
+}
+
+.ant-btn-default {
+    background-color: rgba(255, 126, 219, 0.1); /* Faint pink tint */
+    border-color: rgba(255, 126, 219, 0.3);
+    color: var(--sw-neon-pink) !important;
+    transition: all 0.3s ease;
+}
+
+.ant-btn-default:hover,
+.ant-btn-default:focus {
+    background-color: rgba(255, 126, 219, 0.2) !important;
+    border-color: var(--sw-neon-pink);
+    box-shadow: 0 0 10px rgba(255, 126, 219, 0.4);
+    color: #fff !important;
+}
+
+.ant-collapse {
+    background-color: var(--color-background-soft) !important;
+    border: 1px solid rgba(54, 249, 246, 0.1);
+}
+
+#content-container {
+    background-color: var(--sw-bg-dark) !important;
+    background-image: linear-gradient(to bottom, #241b2f 0%, #1a1025 100%); /* Subtle gradient depth */
+}
+
+/* 
+   Code Blocks 
+   High contrast: Neon Cyan text on very dark violet
+*/
+code {
+    font-family: 'JetBrains Mono', 'Consolas', monospace !important;
+    color: var(--sw-neon-cyan); /* Cyan text */
+    background: #171120 !important; /* Very dark purple */
+    border: 1px solid rgba(54, 249, 246, 0.15);
+    border-radius: 6px !important;
+    padding: 2px 6px !important;
+    font-size: 0.85em !important;
+    text-shadow: 0 0 2px rgba(54, 249, 246, 0.3);
+}
+
+@keyframes modalPop {
+    0% {
+        opacity: 0;
+        transform: translateY(4px) rotateX(-60deg) scale(0.9);
+        filter: blur(32px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg) scale(1);
+        filter: blur(0px);
+    }
+}
+
+.ant-modal-root .ant-modal-mask {
+    background-color: rgba(10, 5, 15, 0.7); /* Darker mask */
+}
+
+/* 
+   Modal Window
+   The centerpiece of the aesthetic: Glassy, bordered, glowing
+*/
+.ant-modal .ant-modal-content {
+    border-radius: 18px;
+    /* Double border effect using box-shadow + border */
+    border: 1px solid rgba(54, 249, 246, 0.3); 
+    background-color: rgba(36, 27, 47, 0.75); /* Dark purple glass */
+    backdrop-filter: blur(45px) saturate(120%);
+    box-shadow: 0 0 30px rgba(36, 27, 47, 0.8), 
+                inset 0 0 20px rgba(54, 249, 246, 0.05); /* Inner cyan glow */
+    animation: modalPop 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.ant-modal .ant-modal-header {
+    background-color: unset;
+    border-bottom: 1px solid rgba(255, 126, 219, 0.1); /* Pink separator */
+}
+
+.ant-modal .ant-modal-title {
+    color: var(--sw-neon-pink) !important;
+    text-shadow: 0 0 5px rgba(255, 126, 219, 0.4);
+}

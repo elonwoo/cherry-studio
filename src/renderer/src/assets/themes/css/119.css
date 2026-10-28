@@ -1,0 +1,456 @@
+/*
+ * 改自 takuto 大佬的 Hatsune Miku 主题，大佬的主题真的非常好看！！可惜V2换了新的css语法，粘贴进去失效了，用鱼娘调整为了V2的新格式，希望能帮助大家。感谢大佬把主题开源！以此致敬
+*/
+/* ==============================================================================
+ * 主题名称：CherryStudio - 原「透明毛玻璃 · 浅/深双背景图」主题（v2 适配版）
+ * 适配说明：将 v1 版样式（body[theme-mode] + 内部 class hack + !important）
+ *           改写为 Cherry Studio v2（Tailwind v4 + shadcn 设计令牌 + data-ui 语义选择器）格式
+ *   1. 浅色写在 :root、深色写在 .dark（v2 中 body[theme-mode=...] 已失效）
+ *   2. v1 扁平变量全部映射为 v2 语义变量，映射见下表
+ *   3. 组件级 hack 改用官方稳定 [data-ui~=...] 选择器（token 词表匹配语法）
+ *   4. 全程不使用 !important（v2 自定义 CSS 未分层注入，天然压过内置样式）
+ *   5. 自定义玻璃/装饰参数统一加 --theme- 前缀，避免与官方变量冲突
+ *
+ *   —— v1 → v2 变量映射速查 ——
+ *   --color-background            → --background（本主题设透明，背景交给 body 图片）
+ *   --color-background-soft       → --background-subtle
+ *   --color-background-mute       → --muted
+ *   --navbar-background           → --sidebar
+ *   --text-color-primary          → --foreground
+ *   --text-color-secondary        → --muted-foreground
+ *   蓝色强调(--input-focus-*)     → --primary / --ring / --theme-accent
+ *   --modal-background            → --popover
+ *   --inputbar-background-color   → --input
+ *   --inputbar-border-color       → --input-border（自定义）
+ *   --chat-background-user/assist → --chat-user / --chat-assistant（自定义）
+ *   --code-block-bg               → --code-block
+ *   --common-border-radius        → --radius
+ *   --content-bgcolor-soft/hard   → --theme-hover-glass / --theme-active-glass（自定义）
+ *   --sidebar-glass-*             → --theme-sidebar-glass-*（自定义）
+ * ============================================================================== */
+
+/* ==========================================
+   浅色主题（:root）
+   —— 原 body[theme-mode="light"] 块整体迁移
+   ========================================== */
+:root {
+  /* —— 主题强调色（原浅色蓝 rgb 分量 60,130,220，供 rgba()/rgb() 派生）—— */
+  --theme-accent: 60, 130, 220;
+
+  /* —— 玻璃与特效自定义参数（原 --box-shadow / 过渡变量）—— */
+  --theme-blur: blur(5px);
+  --theme-box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  --theme-transition-duration: 0.5s;
+  --theme-transition-easing: ease-in-out;
+
+  /* 通用玻璃面（白色系，原 --color-white-soft 家族） */
+  --theme-glass: rgba(255, 255, 255, 0.6);        /* 原 --content-bgcolor-hard 思路 */
+  --theme-glass-soft: rgba(255, 255, 255, 0.4);   /* 原 --content-bgcolor-soft 思路 */
+  --theme-glass-softer: rgba(255, 255, 255, 0.2);
+
+  /* 侧栏玻璃渐变与描边（原 --sidebar-glass-*，自命名防冲突） */
+  --theme-sidebar-glass-start: rgba(255, 255, 255, 0.65);
+  --theme-sidebar-glass-end: rgba(255, 255, 255, 0.35);
+  --theme-sidebar-glass-tint: rgba(59, 130, 246, 0.18);
+  --theme-sidebar-border: rgba(255, 255, 255, 0.45);
+
+  /* —— v2 官方语义变量（成对覆盖表面/前景）—— */
+  --background: transparent;                        /* 原 --color-background：透明，背景交给 body */
+  --background-subtle: rgba(247, 253, 251, 0.75);   /* 原 --color-background-soft */
+  --foreground: rgba(40, 40, 40, 0.9);              /* 原 --text-color-primary */
+  --card: var(--theme-glass);                       /* 卡片玻璃化 */
+  --card-foreground: var(--foreground);
+  --popover: rgba(255, 255, 255, 0.72);             /* 原 --modal-background 浮层玻璃化 */
+  --popover-foreground: var(--foreground);
+  --secondary: var(--theme-glass-soft);             /* 次级按钮玻璃化 */
+  --secondary-foreground: var(--foreground);
+  --muted: rgba(213, 246, 231, 0.38);               /* 原 --color-background-mute */
+  --muted-foreground: rgba(80, 80, 80, 0.75);       /* 原 --text-color-secondary */
+  --accent: var(--theme-glass);
+  --accent-foreground: var(--foreground);
+  --border: rgba(200, 205, 210, 0.35);              /* 原输入栏边框泛化为通用边框 */
+  --input: rgba(250, 250, 250, 0.65);               /* 原 --inputbar-background-color */
+  --input-border: rgba(200, 205, 210, 0.6);         /* 原 --inputbar-border-color（自定义） */
+  --sidebar: rgba(245, 248, 250, 0.6);              /* 原 --sidebar-background */
+  --sidebar-foreground: var(--muted-foreground);    /* 原 --sidebar-text-color / --sidebar-icon-color */
+  --sidebar-border: rgba(0, 0, 0, 0.06);
+  --primary: rgb(var(--theme-accent));              /* 原蓝色强调色 */
+  --primary-foreground: #ffffff;
+  --destructive: rgb(224, 72, 72);                  /* 原 --danger-color */
+  --destructive-foreground: #ffffff;
+  --error: rgb(224, 72, 72);
+  --ring: rgb(var(--theme-accent));
+
+  /* 会话气泡（原 --chat-background-user / --chat-background-assistant） */
+  --chat-user: rgba(192, 255, 187, 0.8);
+  --chat-assistant: rgba(200, 200, 200, 0.5);
+  --chat-bubble-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.04);
+  --chat-bubble-accent: rgba(var(--theme-accent), 0.5);
+
+  /* 代码（原 --code-block-* / --code-*） */
+  --code-block: rgba(242, 245, 248, 0.7);
+  --code-block-border: rgba(0, 0, 0, 0.07);
+  --code-inline-bg: rgba(230, 230, 230, 0.5);
+  --code-inline-text: rgba(50, 50, 50, 0.85);
+  --code-pre-text: rgba(30, 30, 30, 0.9);
+
+  /* 交互反馈玻璃（原 --content-bgcolor-soft/hard，随强调色变化） */
+  --theme-hover-glass: rgba(var(--theme-accent), 0.08);
+  --theme-active-glass: rgba(var(--theme-accent), 0.15);
+
+  --radius: 8px;                                    /* 原 --common-border-radius */
+
+  /* 浅色背景图（v1 原图） */
+  --chat-background-image: url('https://pic1.imgdb.cn/item/67d544f988c538a9b5bec3c7.jpg');
+}
+
+/* ==========================================
+   深色主题（.dark）
+   —— 原 body[theme-mode="dark"] 块整体迁移
+   —— v2 中根元素切换 .dark 类，不再用属性选择器
+   ========================================== */
+.dark {
+  --theme-accent: 70, 150, 230;
+
+  --theme-glass: rgba(45, 48, 54, 0.6);
+  --theme-glass-soft: rgba(45, 48, 54, 0.35);
+  --theme-glass-softer: rgba(45, 48, 54, 0.2);
+
+  --theme-sidebar-glass-start: rgba(60, 64, 72, 0.6);
+  --theme-sidebar-glass-end: rgba(30, 34, 40, 0.35);
+  --theme-sidebar-glass-tint: rgba(70, 150, 230, 0.16);
+  --theme-sidebar-border: rgba(255, 255, 255, 0.12);
+
+  --background: transparent;
+  --background-subtle: rgba(48, 48, 48, 0.75);      /* 原 --color-background-soft */
+  --foreground: rgba(225, 230, 235, 0.9);           /* 原 --text-color-primary */
+  --card: var(--theme-glass);
+  --card-foreground: var(--foreground);
+  --popover: rgba(40, 44, 52, 0.8);
+  --popover-foreground: var(--foreground);
+  --secondary: var(--theme-glass-soft);
+  --secondary-foreground: var(--foreground);
+  --muted: rgba(40, 44, 52, 0.75);                  /* 原 --color-background-mute */
+  --muted-foreground: rgba(170, 175, 180, 0.75);    /* 原 --text-color-secondary */
+  --accent: var(--theme-glass);
+  --accent-foreground: var(--foreground);
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(45, 48, 54, 0.65);                  /* 原 --inputbar-background-color */
+  --input-border: rgba(70, 75, 82, 0.6);            /* 原 --inputbar-border-color */
+  --sidebar: rgba(35, 38, 43, 0.6);                 /* 原 --sidebar-background */
+  --sidebar-foreground: var(--muted-foreground);
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --primary: rgb(var(--theme-accent));
+  --primary-foreground: #ffffff;
+  --destructive: rgb(255, 90, 100);
+  --destructive-foreground: #ffffff;
+  --error: rgb(255, 90, 100);
+  --ring: rgb(var(--theme-accent));
+
+  --chat-user: rgba(65, 72, 85, 0.8);
+  --chat-assistant: rgba(48, 52, 60, 0.5);
+  --chat-bubble-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 2px 5px rgba(0, 0, 0, 0.18);
+  --chat-bubble-accent: rgba(var(--theme-accent), 0.5);
+
+  --code-block: rgba(40, 43, 50, 0.7);
+  --code-block-border: rgba(255, 255, 255, 0.1);
+  --code-inline-bg: rgba(60, 65, 75, 0.5);
+  --code-inline-text: rgba(185, 189, 195, 0.85);
+  --code-pre-text: rgba(200, 205, 210, 0.9);
+
+  --theme-hover-glass: rgba(var(--theme-accent), 0.1);
+  --theme-active-glass: rgba(var(--theme-accent), 0.2);
+
+  /* 深色背景图（v1 原图） */
+  --chat-background-image: url('https://pic1.imgdb.cn/item/67d55d0e88c538a9b5bec87f.png');
+}
+
+/* ==========================================
+   全局背景
+   —— 保留 v1 的浅/深两张背景图，按主题切换；
+      弃用 v1 在 #content-container 叠图的做法，改为 body 单层 + 内容容器透明
+   ========================================== */
+body {
+  background-image: var(--chat-background-image);
+  background-repeat: no-repeat;
+  background-position: center 30%;                  /* v1 原值 */
+  background-size: cover;
+  background-attachment: fixed;
+  background-color: transparent;
+  color: var(--foreground);
+  transition: background-color var(--theme-transition-duration) var(--theme-transition-easing),
+              color var(--theme-transition-duration) var(--theme-transition-easing);
+}
+
+/* 核心容器透明以露出 body 背景图 */
+#root,
+#root > div,
+#content-container,
+[data-ui~='app.content'],
+[data-ui~='chat.view'],
+[data-ui~='chat.message-list'] {
+  background: transparent;
+}
+
+/* ==========================================
+   全局毛玻璃面：对官方稳定区域 token 统一施加高斯模糊
+   —— 替代 v1 逐个元素加 backdrop-filter 的做法
+   ========================================== */
+[data-ui~='app.sidebar'],
+[data-ui~='app.tab-bar'],
+[data-ui~='chat.composer'],
+[data-ui~='chat.topic-list'],
+[data-ui~='settings.navigation'],
+[data-ui~='settings.content'],
+[data-ui~='knowledge.navigation'],
+[data-ui~='knowledge.content'],
+[data-ui~='files.navigation'],
+[data-ui~='translate.input'],
+[data-ui~='translate.output'],
+[data-ui~='agent.view'] {
+  -webkit-backdrop-filter: var(--theme-blur);
+  backdrop-filter: var(--theme-blur);
+}
+
+/* 侧栏类面板圆角化 + 柔和阴影（对应 v1 的观感） */
+[data-ui~='settings.navigation'],
+[data-ui~='knowledge.navigation'],
+[data-ui~='files.navigation'],
+[data-ui~='chat.topic-list'] {
+  border-radius: 10px;
+  box-shadow: var(--theme-box-shadow);
+}
+
+/* ==========================================
+   侧栏：保留 v1 的伪元素渐变玻璃
+   —— 原 #app-sidebar / #app-sidebar::before 迁移到 data-ui token
+   —— v2 无需 !important，直接 background: transparent 即可
+   ========================================== */
+[data-ui~='app.sidebar'] {
+  position: relative;
+  background: transparent;
+  overflow: hidden;         /* 裁伪元素 */
+  isolation: isolate;       /* 防止滤镜外溢 */
+}
+[data-ui~='app.sidebar']::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg,
+      var(--theme-sidebar-glass-start) 0%,
+      var(--theme-sidebar-glass-end) 100%),
+    radial-gradient(120% 100% at 50% 0%,
+      var(--theme-sidebar-glass-tint) 0%,
+      transparent 70%);
+  -webkit-backdrop-filter: blur(5px) saturate(1.2);
+  backdrop-filter: blur(5px) saturate(1.2);
+}
+[data-ui~='app.sidebar'] > * { position: relative; z-index: 1; }
+
+[data-ui~='app.sidebar'] button {
+  color: var(--sidebar-foreground);
+}
+[data-ui~='app.sidebar'] button:hover {
+  background-color: var(--theme-hover-glass);
+  box-shadow: var(--theme-box-shadow);
+  border-radius: 12px;
+}
+[data-ui~='app.sidebar'] :is([data-state='active'], [aria-current='page']) {
+  background-color: var(--theme-active-glass);
+  box-shadow: var(--theme-box-shadow);
+  border-radius: 12px;
+  outline: 1px solid var(--theme-sidebar-border);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  [data-ui~='app.sidebar']::before {
+    background: linear-gradient(180deg,
+      var(--theme-sidebar-glass-start),
+      var(--theme-sidebar-glass-end));
+  }
+}
+
+/* ==========================================
+   输入栏（原 .inputbar-container → chat.composer token）
+   ========================================== */
+[data-ui~='chat.composer'] {
+  position: relative;
+  z-index: 1;
+  margin: 0 15px 15px 15px;
+  background-color: var(--input);                  /* 原 --inputbar-background-color */
+  border: 1px solid var(--input-border);            /* 原 --inputbar-border-color */
+  border-radius: var(--radius);                     /* 原 8px */
+  padding: 6px 8px;
+  -webkit-backdrop-filter: var(--theme-blur);
+  backdrop-filter: var(--theme-blur);
+  transition: border-color var(--theme-transition-duration) var(--theme-transition-easing),
+              background-color var(--theme-transition-duration) var(--theme-transition-easing),
+              box-shadow var(--theme-transition-duration) var(--theme-transition-easing);
+}
+[data-ui~='chat.composer']:focus-within {
+  border-color: rgb(var(--theme-accent));
+  box-shadow: 0 0 0 3px rgba(var(--theme-accent), 0.15);   /* 原 --input-focus-shadow */
+}
+[data-ui~='chat.composer'] textarea {
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  color: var(--foreground);
+}
+[data-ui~='chat.composer'] textarea::placeholder {
+  color: var(--muted-foreground);
+  opacity: 1;
+}
+
+/* ==========================================
+   会话消息气泡
+   —— 原 .chat-message-bubble.user/.assistant → .message.message-user/assistant
+   —— 保留 v1 的用户绿 / 助手灰双色 + 装饰描边 + 右下装饰线
+   ========================================== */
+.message.message-user,
+.message.message-assistant {
+  position: relative;
+  padding: 10px 15px;
+  border-radius: var(--radius);
+  line-height: 1.5;
+  word-wrap: break-word;
+  box-shadow: var(--chat-bubble-shadow);
+  transition: background-color var(--theme-transition-duration) var(--theme-transition-easing),
+              box-shadow var(--theme-transition-duration) var(--theme-transition-easing);
+}
+.message.message-user { background-color: var(--chat-user); }
+.message.message-assistant { background-color: var(--chat-assistant); }
+
+/* 消息内部容器透明：避免玻璃外框内再叠一层白底/药丸（v2 关键修复点） */
+.message .message-content-container,
+.message [data-ui~='part:message-content'] {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+/* 装饰描边（原 ::before 细边框） */
+.message.message-user::before,
+.message.message-assistant::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid var(--chat-bubble-accent);
+  pointer-events: none;
+  opacity: 0.4;
+  transition: opacity var(--theme-transition-duration) var(--theme-transition-easing);
+}
+.message.message-user:hover::before,
+.message.message-assistant:hover::before { opacity: 0.7; }
+
+/* 右下角装饰线（原 ::after） */
+.message.message-user::after,
+.message.message-assistant::after {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  right: 12px;
+  width: clamp(20px, 15%, 35px);
+  height: 2.5px;
+  background-color: var(--chat-bubble-accent);
+  border-radius: 2px;
+  opacity: 0.6;
+  transition: background-color var(--theme-transition-duration) var(--theme-transition-easing),
+              opacity var(--theme-transition-duration) var(--theme-transition-easing);
+}
+.message.message-user:hover::after,
+.message.message-assistant:hover::after { opacity: 0.85; }
+
+/* 深度思考/推理区域玻璃化（对应 v1 对推理区的弱化处理） */
+[data-ui~='part:message-reasoning'] {
+  border-radius: var(--radius);
+  background-color: var(--theme-glass-softer);
+  -webkit-backdrop-filter: var(--theme-blur);
+  backdrop-filter: var(--theme-blur);
+}
+
+/* ==========================================
+   行内代码 + 代码块
+   —— 原 .markdown pre / code 迁移到 part:code-block token
+   ========================================== */
+code {
+  background-color: var(--code-inline-bg);
+  color: var(--code-inline-text);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+  transition: background-color var(--theme-transition-duration) var(--theme-transition-easing),
+              color var(--theme-transition-duration) var(--theme-transition-easing);
+}
+
+[data-ui~='part:code-block'] {
+  border: 1px solid var(--code-block-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  transition: border-color var(--theme-transition-duration) var(--theme-transition-easing),
+              background-color var(--theme-transition-duration) var(--theme-transition-easing);
+}
+[data-ui~='part:code-block'] pre {
+  background-color: var(--code-block);
+  padding: 1em;
+  margin: 1em 0;
+  overflow-x: auto;
+}
+[data-ui~='part:code-block'] pre .shiki,
+[data-ui~='part:code-block'] pre code {
+  background-color: transparent;
+  color: var(--code-pre-text);
+  padding: 0;
+  border-radius: 0;
+}
+
+/* ==========================================
+   浮层玻璃化（antd 遗留组件兜底，逻辑同 v2 模板）
+   ========================================== */
+.ant-modal .ant-modal-content {
+  background-color: var(--popover);
+  -webkit-backdrop-filter: var(--theme-blur);
+  backdrop-filter: var(--theme-blur);
+}
+.ant-modal .ant-modal-mask { background-color: transparent; }
+.ant-drawer .ant-drawer-content {
+  background-color: var(--popover);
+  border-top-left-radius: 15px;
+  -webkit-backdrop-filter: var(--theme-blur);
+  backdrop-filter: var(--theme-blur);
+}
+.ant-dropdown .ant-dropdown-menu,
+.ant-dropdown-menu-submenu .ant-dropdown-menu {
+  background-color: var(--popover);
+  -webkit-backdrop-filter: var(--theme-blur);
+  backdrop-filter: var(--theme-blur);
+}
+.ant-tooltip .ant-tooltip-inner { background-color: rgba(33, 33, 33, 0.75); }
+
+/* ==========================================
+   备注（v1 → v2 取舍清单）
+   1. 已删除：body[theme-mode] 属性选择器 → 改 :root / .dark
+   2. 已删除：#app-sidebar / .inputbar-container / .chat-message-bubble 内部
+      class hack → 改 data-ui token 词表选择器
+   3. 已删除：所有 !important（v2 自定义 CSS 未分层注入，天然压过内置样式）
+   4. 已保留：浅/深各一张背景图（--chat-background-image 按主题切换）
+   5. 已保留：蓝色强调色（浅 60,130,220 / 深 70,150,230）、用户绿/助手灰气泡、
+      装饰描边、右下装饰线、侧栏渐变玻璃、8px 圆角、0.5s 过渡
+   6. 观感归一：v2 消息按整宽卡片堆叠，v1 的 80% 对齐气泡已改为整宽玻璃卡。
+      若想还原 v1 的 80% 气泡，可自行尝试追加（受 v2 布局约束，可能无效）：
+        .message.message-user      { max-width: 80%; align-self: flex-end; }
+        .message.message-assistant { max-width: 80%; align-self: flex-start; }
+   7. 风险提示：.message 上的 ::before/::after 是纯装饰，若与官方组件
+      内部伪元素冲突，可整段删除，不影响主体功能
+   8. 未引入 v2 模板的霓虹/字体/动画/滚动条等——那是该模板自身的主题内容，
+      不属于本主题（第一份）的设计语言
+   ========================================== */

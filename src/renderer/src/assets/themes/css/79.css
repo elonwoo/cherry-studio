@@ -1,0 +1,89 @@
+/* 你的名字 - 黄昏之时主题 */
+
+/* 深色模式 - 魔法时刻 🌆 */
+body[theme-mode="dark"] {
+  --color-background: #2d1b3dee;
+  --color-background-soft: #4a3a5f;
+  --color-background-mute: #2d1b3d99;
+  --navbar-background: #3d2847;
+  --chat-background: #2d1b3d;
+  --chat-background-user: #ff8a80dd;
+  --chat-background-assistant: #667eeadd;
+  --color-accent: #ff9a8b;
+  --color-glow: #ffa07a;
+}
+
+body[theme-mode="dark"] #content-container {
+  background-color: #1e2a47 !important;
+}
+
+/* 深色模式 - 代码块样式 */
+body[theme-mode="dark"] code {
+  background-color: #4a3a5f;
+  color: #ffd1a9;
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
+body[theme-mode="dark"] pre {
+  background-color: #1e1e2e !important;
+  border: 1px solid #ff9a8b44;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(255, 154, 139, 0.1);
+}
+
+body[theme-mode="dark"] pre code {
+  background-color: transparent;
+  color: #e0def4;
+  padding: 0;
+}
+
+/* 浅色模式 - 晴空之下 ☀️ */
+body[theme-mode="light"] {
+  --color-background: #f5f9ff;
+  --color-background-soft: #e8f2ff;
+  --color-background-mute: #dbe8f7;
+  --navbar-background: #fff9f5;
+  --chat-background: #ffffff;
+  --chat-background-user: #fff3e9;
+  --chat-background-assistant: #edf6ff;
+  --color-white: #ffffff;
+  --color-accent: #ff9a76;
+  --color-sky: #87ceeb;
+}
+
+body[theme-mode="light"] #content-container {
+  background-color: #f5f9ff !important;
+}
+
+/* 浅色模式 - 代码块样式 */
+body[theme-mode="light"] code {
+  background-color: #ffecd2;
+  color: #9d4e33;
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
+body[theme-mode="light"] pre {
+  background-color: #fffaf5 !important;
+  border: 1px solid #fcb69f66;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(252, 182, 159, 0.15);
+}
+
+body[theme-mode="light"] pre code {
+  background-color: transparent;
+  color: #5c4a42;
+  padding: 0;
+}
+
+/* 共享样式 */
+:root {
+  --color-black-soft: #2d1b3d;
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 代码块过渡动画 */
+pre, code {
+  transition: all 0.3s ease;
+}

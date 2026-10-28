@@ -1,0 +1,422 @@
+/* 背景设置 */
+body[theme-mode='light'] {
+  /* 使用来自第二份代码的浅色背景 */
+  background-color: hsl(80, 20%, 96%) !important; /* Was: --custom-main-background */
+  /* 移除了原有的背景图片和混合模式 */
+  background-size: cover;
+
+  /* 亮色模式变量 - 调整以匹配橄榄绿主题 */
+  /* Tweak these mix values if needed based on the primary theme color */
+  --color-border: color-mix(in srgb, var(--theme-color-hover) 38%, transparent);
+  --color-white: hsl(80, 30%, 100%); /* Use light background shades */
+  --color-white-mute: hsl(80, 30%, 95%);
+  --color-background: hsl(80, 20%, 96%, 0.85); /* Slightly transparent main background */
+  --color-background-soft: hsl(80, 30%, 100%); /* Soft background like content1 */
+  --color-background-mute: hsl(80, 30%, 92%); /* Mute background like content2 */
+  --color-primary: color-mix(in srgb, var(--theme-color-hover) 98%, transparent);/* 发送按钮、小眼睛 */
+}
+
+/* 简化的透明背景设置 (Keep or remove based on actual need) */
+.NavbarContainer-cnIVnN {
+  background: transparent !important;
+}
+
+/* 亮色模式下的额外元素 */
+body[theme-mode='light'] #root > div,
+body[theme-mode='light'] > div {
+  background: transparent !important; /* Keep transparency for overlays */
+}
+
+/* 亮色模式下特定组件样式 */
+body[theme-mode='light'] .ant-modal-content {
+  /* Use a solid light background derived from the theme */
+  background-color: hsl(80, 30%, 100%) !important; /* --nextui-content1 equivalent */
+}
+
+body[theme-mode='light'] #messages,
+body[theme-mode='light'] #chat-main,
+body[theme-mode='light'] #chat {
+  /* Use a slightly less opaque version of the main background */
+   background-color: hsla(80, 20%, 96%, 0.6) !important;
+}
+/* ====== */
+/* 思考内容 颜色 字体修改 */
+
+
+/* ========================
+   全局主题变量定义 (Olive Green Theme - adapted from NextUI example)
+======================== */
+:root {
+  /* 主题基础色 (Olive Green - HSL: 90, 60%, 60%) */
+  --theme-color: hsl(90, 51%, 54%); /* Adjusted primary for better look */
+  --theme-color-hover: hsl(90, 60%, 65%); /* Lighter/more saturated hover */
+  --theme-color-active: hsl(90, 51%, 50%); /* Slightly darker active */
+  --theme-color-outline: hsla(90, 60%, 60%, 0.2); /* Outline based on primary */
+
+  /* 修改危险色变量为红色系 (Keeping original red from template for contrast) */
+  --danger-color: #ff4d4f; /* Standard Ant Design Danger */
+  --danger-color-hover: #ff7875;
+  --danger-color-bg: rgba(255, 77, 79, 0.1);
+
+  /* Ant Design 变量统一 */
+  --ant-primary-color: var(--theme-color) !important;
+  --ant-primary-color-hover: var(--theme-color-hover) !important;
+  --ant-primary-color-active: var(--theme-color-active) !important;
+  --ant-primary-color-outline: var(--theme-color-outline) !important;
+  --ant-color-primary: var(--theme-color) !important;
+  --ant-color-primary-hover: var(--theme-color-hover) !important;
+  --ant-color-primary-active: var(--theme-color-active) !important;
+
+  /* 应用级变量 */
+  --color-primary: var(--theme-color) !important;
+  --color-primary-soft: var(--theme-color-hover) !important;
+  --color-primary-mute: var(--theme-color-outline) !important;
+  --chat-background-user: var(--theme-color) !important;
+
+
+  /* Define foreground color based on second example's dark text */
+  --ant-foreground-color: hsl(80, 30%, 35%); /* --nextui-foreground equivalent */
+}
+
+/* Apply foreground color globally in light mode */
+body[theme-mode='light'] {
+    color: var(--ant-foreground-color);
+}
+
+/* ========================
+   Ant Design 组件主题设置 (Olive Green Theme)
+======================== */
+
+/* 通用主题样式 (Using template's :where selector) */
+:where(.css-r9lahv) {
+  --primary-color: var(--theme-color);
+  --primary-hover: var(--theme-color-hover);
+  --primary-active: var(--theme-color-active);
+  --primary-outline: var(--theme-color-outline);
+}
+
+/* 按钮相关样式 */
+.ant-btn-primary {
+  background-color: var(--ant-primary-color) !important;
+  border-color: var(--ant-primary-color) !important;
+  color: #fff !important; /* Ensure text is readable on olive */
+  }
+
+.ant-btn-primary:hover,
+  .ant-btn-primary:focus {
+    background-color: var(--ant-primary-color-hover) !important;
+    border-color: var(--ant-primary-color-hover) !important;
+    color: #fff !important;
+    }
+
+/* 默认按钮悬停状态 */
+.ant-btn-default:hover,
+.ant-btn-default:focus {
+  color: var(--ant-primary-color) !important;
+  border-color: var(--ant-primary-color) !important;
+}
+
+/* 描边按钮样式 */
+.ant-btn-variant-outlined {
+  color: var(--ant-primary-color) !important;
+  border-color: var(--ant-primary-color) !important; /* Explicitly set border color */
+}
+
+.ant-btn-variant-outlined:hover,
+.ant-btn-variant-outlined:focus {
+  color: var(--ant-primary-color-hover) !important;
+  border-color: var(--ant-primary-color-hover) !important;
+  }
+
+/* 文本按钮样式 */
+.ant-btn-text:hover,
+.ant-btn-text:focus {
+  color: var(--ant-primary-color) !important;
+  background-color: var(--ant-primary-color-outline) !important;
+}
+
+/* 危险按钮样式 (Using template's danger colors) */
+.ant-btn-dangerous {
+  color: var(--danger-color) !important;
+  border-color: var(--danger-color) !important;
+  background-color: transparent !important;
+}
+
+.ant-btn-dangerous:hover {
+  color: var(--danger-color-hover) !important;
+  border-color: var(--danger-color-hover) !important;
+  background-color: var(--danger-color-bg) !important;
+}
+
+.ant-btn-dangerous.ant-btn-primary {
+  background-color: var(--danger-color) !important;
+  border-color: var(--danger-color) !important;
+  color: #fff !important;
+}
+
+.ant-btn-dangerous.ant-btn-primary:hover {
+  background-color: var(--danger-color-hover) !important;
+  border-color: var(--danger-color-hover) !important;
+  color: #fff !important;
+}
+
+/* 表单控件样式 */
+/* 开关 */
+.ant-switch.ant-switch-checked {
+  background-color: var(--ant-primary-color) !important;
+  }
+
+  /* 复选框和单选框 */
+.ant-checkbox-checked .ant-checkbox-inner,
+.ant-radio-checked .ant-radio-inner {
+    background-color: var(--ant-primary-color) !important;
+    border-color: var(--ant-primary-color) !important;
+}
+
+.ant-checkbox-wrapper:hover .ant-checkbox-inner,
+.ant-radio-wrapper:hover .ant-radio-inner {
+  border-color: var(--ant-primary-color) !important;
+}
+
+/* 输入框样式统一 */
+.ant-input,
+.ant-input-affix-wrapper,
+.ant-input-number,
+.ant-picker,
+.ant-select .ant-select-selector,
+.ant-mentions {
+  &:hover,
+  &:focus {
+    border-color: var(--theme-color) !important;
+  }
+
+  &:focus,
+  &.ant-input-focused,
+  &.ant-input-affix-wrapper-focused {
+    border-color: var(--theme-color) !important;
+    /* Using outline color from theme */
+    box-shadow: 0 0 0 2px var(--theme-color-outline) !important;
+  }
+}
+
+/* 无边框输入框样式 */
+.ant-input-borderless,
+.ant-input-borderless:hover,
+.ant-input-borderless:focus,
+.ant-input-borderless-focused {
+  &,
+  &:hover,
+  &:focus,
+  &.ant-input-focused {
+    border-color: transparent !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+  }
+}
+
+/* 确保其他输入类组件的发光效果使用主题色 */
+.ant-select-focused .ant-select-selector,
+.ant-picker-focused,
+.ant-input-number-focused,
+.ant-mentions-focused {
+  border-color: var(--theme-color) !important;
+  box-shadow: 0 0 0 2px var(--theme-color-outline) !important;
+}
+
+/* 滑块组件样式 */
+:where(.css-r9lahv).ant-slider {
+  .ant-slider-track {
+    background-color: var(--primary-color) !important;
+  }
+
+  .ant-slider-handle::after {
+    box-shadow: 0 0 0 2px var(--primary-color) !important;
+      }
+
+  &:hover {
+    .ant-slider-track {
+      background-color: var(--primary-hover) !important;
+    }
+    .ant-slider-handle::after {
+      box-shadow: 0 0 0 2px var(--primary-hover) !important;
+    }
+    .ant-slider-dot-active {
+      border-color: var(--primary-hover) !important;
+    }
+  }
+
+  .ant-slider-handle {
+    &:hover::after,
+    &:active::after,
+    &:focus::after {
+      /* Adjusted focus shadow */
+      box-shadow: 0 0 0 2px var(--primary-color) !important;
+      outline: none; /* Remove default outline if needed */
+      /* Consider using theme-color-outline for focus ring if desired */
+      /* box-shadow: 0 0 0 4px var(--primary-outline) !important; */
+    }
+  }
+
+  .ant-slider-dot-active {
+    border-color: var(--primary-color) !important;
+  }
+}
+
+/* 导航和菜单样式 */
+/* 选项卡 */
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: var(--ant-primary-color) !important;
+}
+
+.ant-tabs-ink-bar {
+  background-color: var(--ant-primary-color) !important;
+}
+
+.ant-tabs-tab:hover {
+  color: var(--ant-primary-color-hover) !important;
+}
+
+/* 菜单 */
+.ant-menu-item-selected {
+  color: var(--ant-primary-color) !important;
+   /* Add background for better visibility if needed */
+  /* background-color: var(--ant-primary-color-outline) !important; */
+}
+
+.ant-menu-item:hover,
+.ant-menu-submenu-title:hover {
+  color: var(--ant-primary-color) !important; /* Use primary color for hover text */
+}
+
+/* Segmented 组件样式 (Olive Green Theme) */
+:where(.css-r9lahv).ant-segmented {
+  /* 选中项样式 */
+  .ant-segmented-item-selected {
+    background: var(--theme-color) !important;
+    z-index: 1 !important;
+
+    /* 确保选中项的文字和图标为白色 */
+    .ant-segmented-item-label {
+      color: #fff !important;
+      position: relative !important;
+      z-index: 2 !important;
+
+      .anticon,
+      .iconfont {
+        color: #fff !important;
+      }
+    }
+  }
+
+  /* 滑块样式 */
+  .ant-segmented-thumb {
+    background: var(--theme-color) !important;
+    z-index: 0 !important;
+  }
+
+  /* 未选中项悬停样式 */
+  .ant-segmented-item:hover:not(.ant-segmented-item-selected) {
+    color: var(--theme-color) !important;
+  }
+
+  /* 选中项悬停样式 */
+  .ant-segmented-item-selected:hover {
+    background: var(--theme-color-hover) !important;
+
+    .ant-segmented-item-label {
+      color: #fff !important;
+
+      .anticon,
+      .iconfont {
+        color: #fff !important;
+      }
+    }
+  }
+
+  /* 其他样式保持不变 */
+  .ant-segmented-group {
+     /* Adjust border if needed, maybe use a subtle theme color */
+    /* border-color: var(--theme-color) !important; */
+  }
+
+  .ant-segmented-item-disabled {
+    color: rgba(0, 0, 0, 0.25) !important; /* Keep standard disabled style */
+    cursor: not-allowed !important;
+  }
+}
+
+
+/* 其他组件样式 */
+/* 分页 */
+.ant-pagination-item-active {
+  border-color: var(--ant-primary-color) !important;
+}
+
+.ant-pagination-item-active a {
+  color: var(--ant-primary-color) !important;
+}
+
+/* 进度条 */
+.ant-progress-bg {
+  background-color: var(--ant-primary-color) !important;
+}
+
+/* 徽章 */
+.ant-badge-status-processing {
+  background-color: var(--ant-primary-color) !important;
+}
+
+.ant-badge-status-processing::after {
+  border-color: var(--ant-primary-color) !important;
+}
+
+/* 树形控件 */
+.ant-tree-checkbox-checked .ant-tree-checkbox-inner {
+  background-color: var(--ant-primary-color) !important;
+  border-color: var(--ant-primary-color) !important;
+}
+
+.ant-tree-node-selected {
+  background-color: var(--ant-primary-color-outline) !important;
+}
+
+/* -------------------图标设置------------------------- */
+/* (Keep icon settings from template if any, otherwise leave blank or add as needed) */
+
+
+/* -------------------主题设置 (Duplicated section - remove?)------------------------- */
+/* This section seems largely duplicated from above, ensure needed styles are kept and remove redundancy */
+
+
+/* -------------------主题设置 (Example: Overriding Link Color)------------------------- */
+/* Ant Design Olive Green Theme Adjustments */
+
+/* 链接颜色 */
+.ant-btn-link,
+.ant-typography a {
+  color: var(--ant-primary-color) !important;
+}
+
+.ant-btn-link:hover,
+.ant-typography a:hover {
+  color: var(--ant-primary-color-hover) !important;
+}
+
+/* (Include other component overrides as needed, following the structure) */
+/* e.g., Dropdown menu item selected */
+.ant-dropdown-menu-item-selected,
+.ant-dropdown-menu-submenu-title-selected {
+  color: var(--ant-primary-color) !important;
+  background-color: var(--ant-primary-color-outline) !important;
+}
+
+/* e.g., Date picker selected cell */
+.ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner {
+  background-color: var(--ant-primary-color) !important;
+  color: #fff !important; /* Ensure text is readable */
+}
+.ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner::before {
+   border-color: var(--ant-primary-color) !important;
+}
+
+/* (Add any other specific component styles from the first template here, ensuring they use the new theme variables) */

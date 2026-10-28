@@ -1,0 +1,67 @@
+/* 输入框RGB效果 */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes blinking {
+  0% {
+    filter: drop-shadow(rgba(33, 150, 243, 0.72) 0px 0px 3px);
+  }
+  25% {
+    filter: drop-shadow(rgba(33, 150, 243, 0.72) 0px 0px 5px);
+  }
+  50% {
+    filter: drop-shadow(rgba(255, 165, 0, 0.72) 0px 0px 10px);
+  }
+  75% {
+    filter: drop-shadow(rgba(33, 150, 243, 0.72) 0px 0px 5px);
+  }
+  100% {
+    filter: drop-shadow(rgba(33, 150, 243, 0.72) 0px 0px 3px);
+  }
+}
+
+[theme-mode='dark'] #inputbar:focus-within::before {
+  opacity: 0.5 !important;
+}
+
+#inputbar {
+  z-index: 1;
+  position: relative;
+  box-shadow: var(--box-shadow);
+  margin: 0 15px 15px 15px !important;
+}
+
+#inputbar::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(90deg, #d65f00, #ffb800, #8a2be2, #ffb800, #d45e00);
+  background-size: 200% 200%;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: gradientFlow 4s linear infinite;
+  opacity: 0;
+  transition: all 0.4s ease-in-out;
+  pointer-events: none;
+}
+
+#inputbar:focus-within {
+  animation: blinking 4s linear infinite;
+}
+
+#inputbar:focus-within::before {
+  opacity: 1;
+}
+
+/* 输入框RGB效果 */

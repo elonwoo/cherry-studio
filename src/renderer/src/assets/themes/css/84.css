@@ -1,0 +1,911 @@
+/*
+================================================================================
+🎨 Claude Theme for Cherry Studio
+================================================================================
+设计风格：Anthropic Claude (明亮 Paper / 深色 Dark)
+当前版本：2.2.0
+作者备注：本主题采用 CSS 变量系统，所有颜色均统一定义，便于维护
+
+📋 目录：
+  1. CSS 变量定义 (Tokens)
+     1.1 主题强调色
+     1.2 Markdown 标题配色
+     1.3 引用块配色
+     1.4 深色模式变量
+     1.5 明亮模式变量
+  2. 布局与组件
+  3. 话题列表
+  4. Markdown 渲染
+================================================================================
+*/
+
+/* ==============================================================================
+   1. CSS 变量定义 (Tokens)
+   ============================================================================== */
+
+:root {
+  /* ───────────────────────────────────────────────────────────────────────────
+     1.1 主题强调色 (Claude 经典的复古橙)
+     修改此处可全局更换主题色
+     ─────────────────────────────────────────────────────────────────────── */
+  --claude-accent: #d97757;
+
+  /* 主题强调色的透明度变体 */
+  --claude-accent-100: rgba(217, 119, 87, 1); /* 完全不透明 */
+  --claude-accent-80: rgba(217, 119, 87, 0.8); /* 高强调 */
+  --claude-accent-60: rgba(217, 119, 87, 0.6); /* 中等强调 */
+  --claude-accent-40: rgba(217, 119, 87, 0.4); /* 低强调 (悬浮背景) */
+  --claude-accent-20: rgba(217, 119, 87, 0.2); /* 淡色背景 */
+  --claude-accent-15: rgba(217, 119, 87, 0.15); /* 选中背景 */
+  --claude-accent-10: rgba(217, 119, 87, 0.1); /* 极淡背景 */
+  --claude-accent-8: rgba(217, 119, 87, 0.08); /* 极淡背景 */
+  --claude-accent-6: rgba(217, 119, 87, 0.06); /* 微淡背景 */
+  --claude-accent-5: rgba(217, 119, 87, 0.05); /* 最淡背景 */
+
+  /* 兼容性变量 (保留旧版接口) */
+  --color-primary: var(--claude-accent);
+  --color-primary-soft: var(--claude-accent-40);
+  --color-primary-mute: var(--claude-accent-10);
+  --color-danger: #ff4d4f;
+  --color-danger-bg: rgba(255, 77, 79, 0.1);
+
+  /* ───────────────────────────────────────────────────────────────────────────
+     1.2 Markdown 标题配色 (低饱和度彩色)
+     ─────────────────────────────────────────────────────────────────────── */
+  --heading-h1: #de8383;
+  --heading-h2: #dea16f;
+  --heading-h3: #ddb85b;
+  --heading-h4: #a1bb77;
+  --heading-h5: #7bbdd3;
+  --heading-h6: #bb8dc7;
+
+  /* ───────────────────────────────────────────────────────────────────────────
+     1.3 引用块 (Blockquote) 配色
+     ─────────────────────────────────────────────────────────────────────── */
+  --blockquote-border: #888888;
+  --blockquote-text: #888888;
+  --blockquote-bg: rgba(136, 136, 136, 0.12);
+}
+
+/* ==============================================================================
+   1.4 深色模式变量 (Claude Dark)
+   ============================================================================== */
+[theme-mode="dark"] {
+  /* 基础层级颜色 */
+  --bg-main: #171717;
+  --bg-sec: #212121;
+  --bg-bubble: #2f2f2f;
+  --text-main: #e3e3e3;
+  --border-main: #333333;
+
+  /* 交互状态颜色 */
+  --color-hover: #2a2a2a;
+  --color-active: #3a3a3a;
+
+  /* 边框透明度变体 */
+  --border-soft: rgba(255, 255, 255, 0.05);
+  --border-hover: rgba(217, 119, 87, 0.3);
+
+  /* 全局映射 */
+  --color-background: var(--bg-main);
+  --color-background-mute: var(--bg-sec);
+  --color-background-soft: var(--bg-bubble);
+  --color-text: var(--text-main);
+  --color-border: var(--border-main);
+  --color-border-soft: var(--border-soft);
+  --color-white: #ffffff;
+
+  /* 组件特定 */
+  --navbar-background-mac: rgba(23, 23, 23, 0.85);
+  --navbar-background: var(--bg-sec);
+  --chat-background: var(--bg-main);
+  --chat-background-user: var(--bg-sec);
+  --chat-background-assistant: var(--bg-main);
+  --chat-text-user: #ffffff;
+  --color-list-item: var(--bg-sec);
+  --color-list-item-hover: var(--color-hover);
+
+  /* 话题列表特定 */
+  --topic-active-bg: var(--claude-accent-10);
+  --topic-hover-bg: var(--claude-accent-5);
+  --topic-active-shadow: none;
+  --topic-hover-shadow: none;
+  --topic-border-active: var(--claude-accent-60);
+  --topic-border-hover: var(--claude-accent-20);
+
+  /* 侧边栏项特定 */
+  --item-active-bg: var(--claude-accent-20);
+  --item-hover-bg: var(--claude-accent-8);
+  --item-active-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --item-border-active: var(--claude-accent-60);
+  --item-border-hover: var(--claude-accent-20);
+}
+
+/* ==============================================================================
+   1.5 明亮模式变量 (Claude Paper)
+   ============================================================================== */
+[theme-mode="light"] {
+  /* 基础层级颜色 */
+  --bg-main: #f9f8f6;
+  --bg-sec: #f0ede5;
+  --bg-bubble: #ebe8e0;
+  --text-main: #1d1c16;
+  --border-main: #e6e3d9;
+  --border-darker: #757575;
+
+  /* 交互状态颜色 */
+  --color-hover: #efeddf;
+  --color-active: #e8e5db;
+
+  /* 边框透明度变体 */
+  --border-soft: rgba(0, 0, 0, 0.05);
+  --border-hover: rgba(217, 119, 87, 0.25);
+
+  /* 全局映射 */
+  --color-background: var(--bg-main);
+  --color-background-mute: var(--bg-sec);
+  --color-background-soft: var(--bg-bubble);
+  --color-text: var(--text-main);
+  --color-border: var(--border-main);
+  --color-border-soft: var(--border-soft);
+  --color-white: #ffffff;
+
+  /* 组件特定 */
+  --navbar-background: var(--bg-sec);
+  --chat-background: var(--bg-main);
+  --chat-background-user: var(--bg-sec);
+  --chat-background-assistant: var(--bg-main);
+  --chat-text-user: var(--text-main);
+  --color-list-item: var(--bg-sec);
+  --color-list-item-hover: var(--color-hover);
+
+  /* 话题列表特定 */
+  --topic-active-bg: var(--claude-accent-8);
+  --topic-hover-bg: var(--claude-accent-5);
+  --topic-active-shadow: none;
+  --topic-hover-shadow: none;
+  --topic-border-active: var(--claude-accent-60);
+  --topic-border-hover: var(--claude-accent-20);
+
+  /* 侧边栏项特定 */
+  --item-active-bg: var(--claude-accent-15);
+  --item-hover-bg: var(--claude-accent-6);
+  --item-active-shadow: 0 2px 8px var(--claude-accent-10);
+  --item-border-active: var(--claude-accent-60);
+  --item-border-hover: var(--claude-accent-20);
+}
+
+/* ==============================================================================
+   2. 布局与组件
+   ============================================================================== */
+
+/* 主容器及消息区域背景同步 */
+[theme-mode="dark"] #content-container,
+[theme-mode="dark"] #content-container #messages,
+[theme-mode="light"] #content-container,
+[theme-mode="light"] #content-container #messages {
+  background-color: var(--chat-background) !important;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   2.1 Ant Design 折叠面板
+   ─────────────────────────────────────────────────────────────────────── */
+.ant-collapse {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.ant-collapse:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+[theme-mode="dark"] .ant-collapse {
+  background-color: var(--bg-sec);
+}
+[theme-mode="dark"] .ant-collapse-content {
+  background-color: var(--bg-main);
+}
+[theme-mode="light"] .ant-collapse {
+  background-color: var(--bg-sec);
+}
+[theme-mode="light"] .ant-collapse-content {
+  background-color: var(--bg-main);
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   2.2 底部输入框区域
+   ─────────────────────────────────────────────────────────────────────── */
+[theme-mode="dark"] .inputbar-container,
+[theme-mode="dark"] .bubble #inputbar {
+  background-color: var(--bg-sec);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+}
+
+[theme-mode="light"] .inputbar-container,
+[theme-mode="light"] .bubble #inputbar {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   2.3 行内代码标记
+   ─────────────────────────────────────────────────────────────────────── */
+code {
+  border-radius: 4px;
+  padding: 0.2em 0.4em;
+  font-size: 0.9em;
+}
+
+[theme-mode="dark"] code {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--claude-accent);
+}
+
+[theme-mode="light"] code {
+  background-color: rgba(0, 0, 0, 0.04);
+  color: #b94700;
+}
+
+[theme-mode="dark"] pre code {
+  color: #d1d1d1;
+}
+[theme-mode="light"] pre code {
+  color: #24292e;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   2.4 交互按钮悬停效果
+   ─────────────────────────────────────────────────────────────────────── */
+.bubble .message-user .message-action-button:hover {
+  background-color: var(--color-background-mute);
+}
+
+/* ==============================================================================
+   3. 话题列表 (Topics List)
+   ==============================================================================
+   DOM 结构参考：
+   <div class="draggable-content">
+     <div class="sc-xxx ant-dropdown-trigger active" style="border-radius: 12px;">
+       <div><div title="话题名">话题名</div></div>
+       <div class="... time">时间</div>
+     </div>
+   </div>
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* 话题列表项基础样式 */
+.draggable-content > div[class*="ant-dropdown-trigger"] {
+  border-left: 2px solid transparent;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  display: flex !important;
+}
+
+/* 标题与时间基础样式 */
+.draggable-content > div[class*="ant-dropdown-trigger"] [title] {
+  transition: color 0.2s ease;
+}
+
+.draggable-content > div[class*="ant-dropdown-trigger"] .time {
+  opacity: 0.5;
+  transition: all 0.2s ease;
+}
+
+/* 选中效果 (通用) */
+.draggable-content > div[class*="ant-dropdown-trigger"].active {
+  background: var(--topic-active-bg) !important;
+  border-left-color: var(--topic-border-active) !important;
+  box-shadow: var(--topic-active-shadow) !important;
+}
+
+/* 选中话题的文字与时间高亮 */
+.draggable-content > div[class*="ant-dropdown-trigger"].active [title],
+.draggable-content > div[class*="ant-dropdown-trigger"].active .time {
+  color: var(--claude-accent) !important;
+  opacity: 1;
+}
+
+/* 悬浮效果 (非选中状态) */
+.draggable-content > div[class*="ant-dropdown-trigger"]:hover:not(.active) {
+  background: var(--topic-hover-bg) !important;
+  border-left-color: var(--topic-border-hover) !important;
+}
+
+/* 悬浮时话题名称与时间变色 */
+.draggable-content > div[class*="ant-dropdown-trigger"]:hover [title],
+.draggable-content > div[class*="ant-dropdown-trigger"]:hover .time {
+  color: var(--claude-accent) !important;
+  opacity: 1;
+}
+
+/* 右侧功能按钮 (如关闭图标) */
+.draggable-content > div[class*="ant-dropdown-trigger"] .menu {
+  opacity: 0;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+}
+
+.draggable-content > div[class*="ant-dropdown-trigger"]:hover .menu {
+  opacity: 0.4;
+}
+
+.draggable-content > div[class*="ant-dropdown-trigger"] .menu:hover {
+  opacity: 1;
+  background-color: var(--color-danger-bg);
+  color: var(--color-danger) !important;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   3.2 通用功能项 (模型列表 / 工作区等) - 适配 sc-caXNKQ 类
+   ─────────────────────────────────────────────────────────────────────── */
+
+/* 基础容器 */
+div.ant-dropdown-trigger:has(.truncate) {
+  border-left: 2px solid transparent !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative;
+}
+
+/* 选中效果 (Active) - 兼容内置 active 类与背景变量类 */
+div.ant-dropdown-trigger:has(.truncate).active,
+div.ant-dropdown-trigger:has(.truncate)[class*="bg-[var(--color-list-item)]"] {
+  background-color: var(--topic-active-bg) !important;
+  border-left-color: var(--topic-border-active) !important;
+  box-shadow: var(--topic-active-shadow) !important;
+}
+
+/* 悬浮效果 (Hover) */
+div.ant-dropdown-trigger:has(.truncate):hover:not(.active):not(
+    [class*="bg-[var(--color-list-item)]"]
+  ) {
+  background-color: var(--topic-hover-bg) !important;
+  border-left-color: var(--topic-border-hover) !important;
+}
+
+/* 联动文字高亮 (针对 span.truncate) */
+div.ant-dropdown-trigger:has(.truncate).active .truncate,
+div.ant-dropdown-trigger:has(.truncate)[class*="bg-[var(--color-list-item)]"]
+  .truncate,
+div.ant-dropdown-trigger:has(.truncate):hover .truncate {
+  color: var(--claude-accent) !important;
+  opacity: 1;
+}
+
+/* 右侧菜单按钮 (如关闭图标) 联动 */
+div.ant-dropdown-trigger:has(.truncate) .menu {
+  opacity: 0;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+}
+
+div.ant-dropdown-trigger:has(.truncate):hover .menu {
+  opacity: 0.4;
+}
+
+div.ant-dropdown-trigger:has(.truncate) .menu:hover {
+  opacity: 1;
+  background-color: var(--color-danger-bg);
+  color: var(--color-danger) !important;
+}
+
+/* ==============================================================================
+   4. Markdown 渲染主题
+   ============================================================================== */
+
+/* ───────────────────────────────────────────────────────────────────────────
+   4.1 文字排版 (标题与段落)
+   ─────────────────────────────────────────────────────────────────────── */
+
+/* 全局过渡规则 */
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6,
+.markdown p {
+  transition:
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.3s ease,
+    color 0.3s ease;
+}
+
+/* 标题悬停效果 */
+.markdown h1:hover,
+.markdown h2:hover,
+.markdown h3:hover,
+.markdown h4:hover,
+.markdown h5:hover,
+.markdown h6:hover {
+  transform: translateX(8px);
+}
+
+/* 段落悬停效果 */
+.markdown p:hover {
+  transform: translateX(4px);
+  opacity: 0.9;
+  color: var(--claude-accent);
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   4.2 六级标题配色与装饰符号
+   ─────────────────────────────────────────────────────────────────────── */
+
+/* H1: ● */
+.markdown h1,
+.bubble .message-content-container h1 {
+  color: var(--heading-h1);
+  padding-bottom: 0.3em;
+}
+.markdown h1::after,
+.bubble .message-content-container h1::after {
+  content: "●";
+  display: inline-block;
+  margin-left: 0.5em;
+  font-size: 0.2em;
+  vertical-align: bottom;
+  line-height: 1.1;
+  color: var(--heading-h1);
+}
+
+/* H2: ●● */
+.markdown h2,
+.bubble .message-content-container h2 {
+  color: var(--heading-h2);
+  padding-bottom: 0.25em;
+}
+.markdown h2::after,
+.bubble .message-content-container h2::after {
+  content: "●●";
+  display: inline-block;
+  margin-left: 0.5em;
+  font-size: 0.2em;
+  vertical-align: bottom;
+  line-height: 1.1;
+  color: var(--heading-h2);
+}
+
+/* H3: ●● / ● */
+.markdown h3,
+.bubble .message-content-container h3 {
+  color: var(--heading-h3);
+  padding-bottom: 0.2em;
+}
+.markdown h3::after,
+.bubble .message-content-container h3::after {
+  content: "●●\A●";
+  white-space: pre;
+  display: inline-block;
+  margin-left: 0.5em;
+  font-size: 0.2em;
+  vertical-align: bottom;
+  line-height: 1.1;
+  color: var(--heading-h3);
+}
+
+/* H4: ●● / ●● */
+.markdown h4,
+.bubble .message-content-container h4 {
+  color: var(--heading-h4);
+  padding-bottom: 0.15em;
+}
+.markdown h4::after,
+.bubble .message-content-container h4::after {
+  content: "●●\A●●";
+  white-space: pre;
+  display: inline-block;
+  margin-left: 0.5em;
+  font-size: 0.2em;
+  vertical-align: bottom;
+  line-height: 1.1;
+  color: var(--heading-h4);
+}
+
+/* H5: ●●● / ●● */
+.markdown h5,
+.bubble .message-content-container h5 {
+  color: var(--heading-h5);
+  padding-bottom: 0.1em;
+}
+.markdown h5::after,
+.bubble .message-content-container h5::after {
+  content: "●●●\A●●";
+  white-space: pre;
+  display: inline-block;
+  margin-left: 0.5em;
+  font-size: 0.2em;
+  vertical-align: bottom;
+  line-height: 1.1;
+  color: var(--heading-h5);
+}
+
+/* H6: ●●● / ●●● */
+.markdown h6,
+.bubble .message-content-container h6 {
+  color: var(--heading-h6);
+  padding-bottom: 0.1em;
+}
+.markdown h6::after,
+.bubble .message-content-container h6::after {
+  content: "●●●\A●●●";
+  white-space: pre;
+  display: inline-block;
+  margin-left: 0.5em;
+  font-size: 0.2em;
+  vertical-align: bottom;
+  line-height: 1.1;
+  color: var(--heading-h6);
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   4.3 块级元素 (引用、代码块、表格)
+   ─────────────────────────────────────────────────────────────────────── */
+
+/* 引用块 */
+.markdown blockquote,
+.bubble .message-content-container blockquote {
+  border-left: 4px solid var(--blockquote-border);
+  background-color: var(--blockquote-bg);
+  color: var(--blockquote-text);
+  padding: 6px 16px;
+  margin: 1em 0;
+  border-radius: 0 4px 4px 0;
+  transition: all 0.3s ease;
+}
+
+.markdown blockquote:hover,
+.bubble .message-content-container blockquote:hover {
+  border-left-width: 8px;
+  background-color: var(--claude-accent-10);
+  border-left-color: var(--claude-accent);
+}
+
+/* 代码块外框 */
+.markdown pre {
+  margin: 1.25em 0;
+  padding: 0;
+  background-color: var(--bg-main) !important;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.markdown pre:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.markdown pre code {
+  display: block;
+  padding: 1.25em;
+  overflow-x: auto;
+  font-size: 0.875em;
+  line-height: 1.6;
+  background-color: transparent !important;
+  color: inherit;
+  border: none;
+}
+
+/* 代码块头部 */
+.markdown pre [class^="CodeHeader-"] {
+  display: flex;
+  align-items: center;
+  padding: 0.6em 1em;
+  background-color: var(--bg-bubble);
+  border-bottom: 1px solid var(--color-border-soft);
+  font-size: 0.75em;
+  font-weight: 500;
+  color: var(--color-text);
+  opacity: 0.8;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   4.4 行内元素 (链接、行内代码、强调)
+   ─────────────────────────────────────────────────────────────────────── */
+
+/* 行内代码 */
+.markdown code:not(pre code) {
+  font-size: 0.9em;
+  padding: 0.2em 0.45em;
+  margin: 0 0.1em;
+  border-radius: 6px;
+  background-color: var(--bg-bubble) !important;
+  color: var(--claude-accent) !important;
+  font-weight: 500;
+  border: 1px solid var(--color-border-soft);
+  white-space: break-spaces;
+  transition: all 0.2s ease;
+}
+
+.markdown code:not(pre code):hover {
+  background-color: var(--claude-accent-40) !important;
+  color: var(--color-white) !important;
+  box-shadow: 0 2px 8px var(--claude-accent-10);
+}
+
+[theme-mode="light"] .markdown code:not(pre code) {
+  color: #b94700 !important;
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+/* 表格 */
+.markdown table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: var(--bg-main) !important;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin: 1.5em 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.markdown table:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.markdown table th {
+  background-color: var(--bg-sec) !important;
+  color: var(--color-text);
+  font-weight: 600;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+}
+
+.markdown table td {
+  background-color: var(--bg-main) !important;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--color-border-soft);
+  color: var(--color-text);
+}
+
+.markdown table tr:last-child td {
+  border-bottom: none;
+}
+
+/* 超链接 */
+.markdown a {
+  color: var(--claude-accent);
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.markdown a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--claude-accent);
+  transition: width 0.3s ease;
+}
+
+.markdown a:hover {
+  opacity: 0.8;
+}
+
+.markdown a:hover::after {
+  width: 100%;
+}
+
+/* 列表项 */
+.markdown li {
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+.markdown li:hover {
+  transform: translateX(4px);
+  color: var(--claude-accent);
+}
+
+.markdown ul li:hover::marker,
+.markdown ol li:hover::marker {
+  color: var(--claude-accent);
+}
+
+/* 图片 */
+.markdown img {
+  max-width: 100%;
+  border-radius: 8px;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.markdown img:hover {
+  transform: scale(1.01);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* 强调文字 */
+.markdown strong,
+.markdown em,
+.markdown del,
+.markdown mark {
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.markdown strong:hover {
+  color: var(--claude-accent);
+  transform: scale(1.05);
+}
+
+.markdown em:hover {
+  color: var(--claude-accent);
+  text-shadow: 0 0 8px var(--claude-accent-10);
+}
+
+.markdown del:hover {
+  opacity: 0.5;
+  color: var(--claude-accent);
+}
+
+.markdown mark:hover {
+  filter: brightness(1.1);
+  transform: scale(1.05);
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   4.5 扩展元素 (数学公式、分割线)
+   ─────────────────────────────────────────────────────────────────────── */
+
+/* 数学公式 */
+.markdown .katex-display,
+.markdown .math-block,
+.markdown .math {
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+}
+
+.markdown .katex-display:hover,
+.markdown .math-block:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  color: var(--claude-accent);
+}
+
+/* 水平分割线 */
+.markdown hr {
+  margin: 2em auto;
+  border: none;
+  height: 24px;
+  position: relative;
+  overflow: visible;
+  background: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 虚线基准线 */
+.markdown hr::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  transform: translateY(-50%);
+  background-image: linear-gradient(
+    to right,
+    var(--border-darker, var(--color-border)) 50%,
+    transparent 50%
+  );
+  background-size: 12px 2px;
+  background-repeat: repeat-x;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 25%,
+    black 75%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 25%,
+    black 75%,
+    transparent 100%
+  );
+  z-index: 1;
+}
+
+/* 星芒符号 */
+.markdown hr::before {
+  content: "✦";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: -1px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  background-color: var(--chat-background);
+  color: var(--claude-accent);
+  font-size: 1.25em;
+  font-family: serif;
+  z-index: 2;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.markdown hr:hover::before {
+  transform: translate(-50%, -50%) rotate(180deg) scale(1.3);
+}
+
+/* ==============================================================================
+   5. 侧边栏功能项 (Assistants / Models / Tools)
+   ============================================================================== */
+
+/* 5.1 基础容器样式 */
+.ant-dropdown-trigger:has(.name) {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border-left: 2px solid transparent !important;
+  position: relative;
+}
+
+/* 5.2 悬停效果 (Hover) */
+.ant-dropdown-trigger:has(.name):hover:not(
+    [class*="bg-[var(--color-list-item)]"]
+  ) {
+  background-color: var(--item-hover-bg) !important;
+  border-left-color: var(--item-border-hover) !important;
+}
+
+/* 5.3 选中效果 (Active) - 兼容 Tailwind 的选中背景类 */
+.ant-dropdown-trigger:has(.name)[class*="bg-[var(--color-list-item)]"],
+.ant-dropdown-trigger:has(.name).active {
+  background-color: var(--item-active-bg) !important;
+  border-left-color: var(--item-border-active) !important;
+  box-shadow: var(--item-active-shadow) !important;
+}
+
+/* 5.4 内部元素联动 */
+.ant-dropdown-trigger:has(.name):hover .name,
+.ant-dropdown-trigger:has(.name).active .name,
+.ant-dropdown-trigger:has(.name)[class*="bg-[var(--color-list-item)]"] .name {
+  color: var(--claude-accent) !important;
+}
+
+/* 图标微动效果 */
+.ant-dropdown-trigger:has(.name):hover .name > div:first-child,
+.ant-dropdown-trigger:has(.name)[class*="bg-[var(--color-list-item)]"]
+  .name
+  > div:first-child {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+/*
+================================================================================
+🎨 主题定制指南
+================================================================================
+
+1. 修改主题色：
+   在 :root 中的 "1.1 主题强调色" 部分修改 --claude-accent 的值
+
+2. 修改 Markdown 标题颜色：
+   在 :root 中的 "1.2 Markdown 标题配色" 部分修改
+
+3. 调整深色/明亮模式颜色：
+   在 1.4 和 1.5 节中修改对应的变量
+
+4. 调整话题列表选中效果：
+   在 1.4/1.5 节的 "话题列表特定" 部分修改相关变量
+================================================================================
+*/

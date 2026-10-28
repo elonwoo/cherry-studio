@@ -1,0 +1,821 @@
+/*
+ * @name: BlurBerry Theme
+ * @description: A custom theme with light and dark modes, featuring acrylic/glassmorphism effects.
+ * @author: Theowastaken
+ * @date: 2025-07-25
+ * @version: 1.1
+ */
+
+/* --- 根变量 --- */
+:root {
+  --danger-color: rgba(255, 77, 110, 1);
+  --danger-color-soft: rgba(255, 77, 110, .2);
+  --danger-color-hard: rgba(255, 77, 110, .4);
+  --navbar-background: unset;
+  --box-shadow: 0 2px 8px rgba(33, 33, 33, 0.1);
+  --blur: blur(40px);
+}
+
+/* --- 全局背景样式 --- */
+body[theme-mode] {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  transition: background-image 0.3s linear;
+}
+
+/* --- 亮色主题 --- */
+body[theme-mode="light"] {
+  --message-bgcolor: rgba(244, 244, 244, .5);
+  --content-bgcolor: rgba(255, 255, 255, 1);
+  --content-bgcolor-hard: rgba(255, 255, 255, .6);
+  --content-bgcolor-soft: rgba(255, 255, 255, .4);
+  --content-bgcolor-soft-soft: rgba(255, 255, 255, .2);
+  --content-color: rgba(33, 33, 33, .1);
+  --theme-color: rgb(59, 130, 246);
+  --theme-color-soft: rgba(59, 130, 246, .4);
+  --theme-color-hard: rgba(59, 130, 246, .7);
+
+  --modal-background: var(--content-bgcolor-soft);
+  --color-background-mute: var(--content-bgcolor-soft);
+  --color-border: var(--content-bgcolor-soft-soft);
+  --color-background: transparent;
+  --color-background-soft: var(--content-bgcolor-soft);
+  --navbar-background: unset;
+  background-image: url("https://w.wallhaven.cc/full/o5/wallhaven-o5p5rl.jpg");
+}
+
+/* --- 暗色主题 --- */
+body[theme-mode="dark"] {
+  --message-bgcolor: rgba(40, 44, 52, .7);
+  --content-bgcolor: rgba(33, 33, 33, 1);
+  --content-bgcolor-soft: rgba(33, 33, 33, .3);
+  --content-bgcolor-soft-soft: rgba(33, 33, 33, .2);
+  --content-bgcolor-hard: rgba(33, 33, 33, .6);
+  --theme-color: rgb(7, 52, 242);
+  --theme-color-soft: rgba(7, 52, 242, .4);
+  --theme-color-hard: rgba(7, 52, 242, .7);
+
+  --modal-background: var(--content-bgcolor-soft);
+  --color-background-mute: var(--content-bgcolor-soft);
+  --color-border: var(--content-bgcolor-soft-soft);
+  --color-background: transparent;
+  --color-background-soft: var(--content-bgcolor-soft);
+  --navbar-background: unset;
+  background-image: url("https://w.wallhaven.cc/full/o5/wallhaven-o5k319.jpg");
+}
+
+/* --- Ant Design 组件样式覆盖 --- */
+/* 参考自 吉伊卡哇 Ant Design 组件样式 */
+/* 主要按钮 */
+.ant-btn-primary {
+  background-color: var(--theme-color-hard) !important;
+  backdrop-filter: var(--blur);
+  border: none;
+}
+
+.ant-btn-primary:hover,
+.ant-btn-primary:focus {
+  background-color: var(--theme-color-soft) !important;
+}
+
+/* 默认按钮 */
+.ant-btn-default {
+  background-color: var(--content-bgcolor-soft);
+  backdrop-filter: var(--blur);
+  border: none;
+}
+
+.ant-btn-default:hover,
+.ant-btn-default:focus {
+  background-color: var(--content-bgcolor-hard) !important;
+}
+
+/* 文本按钮 */
+.ant-btn-text:hover,
+.ant-btn-text:focus {
+  background-color: var(--content-bgcolor-hard);
+}
+
+/* 危险按钮 */
+.ant-btn-dangerous {
+  border-color: var(--danger-color) !important;
+  background-color: var(--danger-color-soft) !important;
+  backdrop-filter: var(--blur);
+}
+
+.ant-btn-dangerous:hover {
+  border-color: var(--danger-color-soft) !important;
+  background-color: var(--danger-color-hard) !important;
+}
+
+.ant-btn-dangerous.ant-btn-primary {
+  background-color: var(--danger-color) !important;
+  border-color: var(--danger-color) !important;
+  color: #fff !important;
+}
+
+.ant-btn-dangerous.ant-btn-primary:hover {
+  background-color: var(--danger-color-hard) !important;
+  border-color: var(--danger-color-hard) !important;
+  color: #fff !important;
+}
+
+/* 输入框、选择器等 */
+.ant-input-outlined,
+.ant-input-affix-wrapper:not(.ant-input-textarea-affix-wrapper),
+.ant-input-number,
+.ant-picker,
+.ant-select .ant-select-selector,
+.ant-select-dropdown,
+.ant-mentions {
+  background-color: var(--content-bgcolor-soft) !important;
+  backdrop-filter: var(--blur);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ant-input-outlined:hover,
+.ant-input-outlined:focus,
+.ant-input-affix-wrapper:not(.ant-input-textarea-affix-wrapper):hover,
+.ant-input-affix-wrapper:not(.ant-input-textarea-affix-wrapper):focus,
+.ant-input-number:hover,
+.ant-input-number:focus,
+.ant-picker:hover,
+.ant-picker:focus,
+.ant-select .ant-select-selector:hover,
+.ant-select .ant-select-selector:focus,
+.ant-select-dropdown:hover,
+.ant-select-dropdown:focus,
+.ant-mentions:hover,
+.ant-mentions:focus {
+  border-color: var(--content-bgcolor);
+  background-color: var(--content-bgcolor-hard);
+  box-shadow: var(--box-shadow);
+}
+
+.ant-input-affix-wrapper>input.ant-input,
+.ant-input-affix-wrapper>textarea.ant-input {
+  background-color: transparent !important;
+}
+
+/* 无边框输入框 */
+.ant-input-borderless,
+.ant-input-borderless:hover,
+.ant-input-borderless:focus,
+.ant-input-borderless-focused {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* 移除其他输入组件的聚焦发光效果 */
+.ant-select-focused .ant-select-selector,
+.ant-picker-focused,
+.ant-input-number-focused,
+.ant-mentions-focused {
+  border-color: var(--content-bgcolor-hard) !important;
+  box-shadow: none !important;
+}
+
+/* 滑块 */
+:where(.css-r9lahv).ant-slider .ant-slider-track {
+  background-color: var(--content-bgcolor-soft) !important;
+}
+
+:where(.css-r9lahv).ant-slider .ant-slider-handle::after {
+  box-shadow: 0 0 0 2px var(--content-bgcolor-soft) !important;
+}
+
+:where(.css-r9lahv).ant-slider:hover .ant-slider-track {
+  background-color: var(--content-bgcolor-hard) !important;
+}
+
+:where(.css-r9lahv).ant-slider:hover .ant-slider-handle::after {
+  box-shadow: 0 0 0 2px var(--content-bgcolor-hard) !important;
+}
+
+:where(.css-r9lahv).ant-slider:hover .ant-slider-dot-active {
+  border-color: var(--content-bgcolor-hard) !important;
+}
+
+:where(.css-r9lahv).ant-slider .ant-slider-handle:hover::after,
+:where(.css-r9lahv).ant-slider .ant-slider-handle:active::after,
+:where(.css-r9lahv).ant-slider .ant-slider-handle:focus::after {
+  box-shadow: 0 0 0 2.5px var(--content-bgcolor-hard) !important;
+  outline: 6px solid var(--content-bgcolor-hard);
+}
+
+:where(.css-r9lahv).ant-slider .ant-slider-dot-active {
+  border-color: var(--content-bgcolor-hardr);
+}
+
+/* --- 导航和菜单 --- */
+
+/* 选项卡 */
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: var(--content-bgcolor-soft) !important;
+}
+
+.ant-tabs-ink-bar {
+  background-color: var(--content-bgcolor-soft) !important;
+}
+
+.ant-tabs-tab:hover {
+  color: var(--content-bgcolor-hard) !important;
+}
+
+/* 菜单 */
+.ant-menu-item-selected {
+  color: var(--content-bgcolor-hard) !important;
+}
+
+.ant-menu-item:hover,
+.ant-menu-submenu-title:hover {
+  color: var(--content-bgcolor-soft) !important;
+}
+
+/* 分段控制器 */
+.ant-segmented {
+  backdrop-filter: var(--blur);
+  background-color: var(--content-bgcolor-soft-soft);
+}
+
+.ant-segmented .ant-segmented-item-selected {
+  background: var(--content-bgcolor-soft) !important;
+  z-index: 1 !important;
+}
+
+.ant-segmented .ant-segmented-item-selected .ant-segmented-item-label {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+.ant-segmented .ant-segmented-thumb {
+  background: var(--content-bgcolor-hard) !important;
+  z-index: 0 !important;
+}
+
+.ant-segmented .ant-segmented-item-selected:hover {
+  background: var(--content-bgcolor-soft) !important;
+}
+
+.ant-segmented .ant-segmented-group {
+  border-color: var(--content-bgcolor-soft) !important;
+}
+
+.ant-segmented .ant-segmented-item-disabled {
+  color: rgba(0, 0, 0, 0.25) !important;
+  cursor: not-allowed !important;
+}
+
+/* --- 其他 Ant Design 组件 --- */
+
+/* 分页 */
+.ant-pagination-item-active {
+  border-color: var(--content-bgcolor-soft) !important;
+}
+
+.ant-pagination-item-active a {
+  color: var(--content-bgcolor-soft) !important;
+}
+
+/* 进度条 */
+.ant-progress-bg {
+  background-color: var(--content-bgcolor-soft) !important;
+}
+
+/* 徽章 */
+.ant-badge-status-processing {
+  background-color: var(--content-bgcolor-soft) !important;
+}
+
+.ant-badge-status-processing::after {
+  border-color: var(--content-bgcolor) !important;
+}
+
+/* 树形控件 */
+.ant-tree-checkbox-checked .ant-tree-checkbox-inner {
+  background-color: var(--content-bgcolor-soft) !important;
+  border-color: var(--content-bgcolor-soft) !important;
+}
+
+.ant-tree-node-selected {
+  background-color: var(--content-bgcolor-hard) !important;
+}
+
+/* 标签 */
+.ant-tag {
+  background-color: var(--content-bgcolor-soft);
+  backdrop-filter: var(--blur);
+}
+
+/* 上传 */
+.ant-upload {
+  backdrop-filter: var(--blur);
+}
+
+/* 提示工具 */
+.ant-tooltip {
+  --antd-arrow-background-color: rgba(33, 33, 33, .6) !important;
+}
+
+.ant-tooltip .ant-tooltip-inner {
+  background-color: rgba(33, 33, 33, .6);
+}
+
+/* 模态框 */
+.ant-modal-root .ant-modal-mask {
+  background-color: transparent;
+}
+
+.ant-modal .ant-modal-content {
+  background-color: var(--content-bgcolor-soft);
+  backdrop-filter: var(--blur);
+}
+
+.ant-modal .ant-modal-header {
+  background-color: unset;
+}
+
+/* 下拉菜单 */
+.ant-dropdown {
+  background-color: var(--content-bgcolor-soft-soft)
+}
+
+.ant-dropdown .ant-dropdown-menu,
+.ant-dropdown-menu-submenu .ant-dropdown-menu {
+  background-color: var(--content-bgcolor-soft-soft);
+  backdrop-filter: var(--blur);
+}
+
+.ant-dropdown-menu-submenu {
+  background-color: transparent;
+}
+
+/* --- 应用特定页面和组件 --- */
+
+/* 设置页面 */
+div[class^="SettingContainer"] {
+  background-color: transparent;
+  border: none;
+}
+
+div[class^="SettingContainer"] [class^="SettingGroup"] {
+  background-color: var(--content-bgcolor-soft);
+  backdrop-filter: var(--blur);
+  border: none;
+}
+
+[class^="SettingMenus"] {
+  backdrop-filter: var(--blur);
+  border: none;
+}
+
+div[class^="SettingContent"] [class^="ProviderListContainer"] {
+  backdrop-filter: var(--blur);
+}
+
+/* 模型服务商列表 */
+.ant-collapse {
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+  background-color: var(--content-bgcolor-soft) !important;
+}
+
+div[class^="ProviderList"] div[class^="ProviderListItem"] {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  background-image: linear-gradient(-60deg,
+      rgba(212, 212, 255, 0.1) 0%,
+      rgba(212, 212, 255, 0) 10%,
+      transparent 100%),
+    linear-gradient(-3deg,
+      rgba(212, 212, 255, 0.1) 0%,
+      rgba(212, 212, 255, 0) 15%,
+      transparent 100%);
+}
+
+div[class^="ProviderList"] div[class^="ProviderListItem"]:hover {
+  box-shadow: var(--box-shadow);
+  background-color: var(--content-bgcolor-soft);
+  transition: unset;
+}
+
+div[class^="ProviderList"] div[class^="ProviderListItem"].active {
+  background-color: var(--content-bgcolor-hard);
+  box-shadow: var(--box-shadow);
+}
+
+/* 设置菜单项 */
+ul[class^="SettingMenus"] li[class^="MenuItem"] {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  background-image: linear-gradient(-60deg,
+      rgba(212, 212, 255, 0.1) 0%,
+      rgba(212, 212, 255, 0) 10%,
+      transparent 100%),
+    linear-gradient(-3deg,
+      rgba(212, 212, 255, 0.1) 0%,
+      rgba(212, 212, 255, 0) 15%,
+      transparent 100%);
+}
+
+ul[class^="SettingMenus"] li[class^="MenuItem"]:hover {
+  box-shadow: var(--box-shadow);
+  background-color: var(--content-bgcolor-soft);
+  transition: unset;
+}
+
+ul[class^="SettingMenus"] li[class^="MenuItem"].active {
+  background-color: var(--content-bgcolor-hard);
+  box-shadow: var(--box-shadow);
+}
+
+/* MCP 设置卡片 */
+div[class^="ServerCard"],
+div[class^="ResourceCard"] {
+  background-color: var(--content-bgcolor-soft-soft);
+  backdrop-filter: var(--blur);
+}
+
+/* 工具设置列表 */
+div[class^="SettingContent"] div[class^="MenuList"] {
+  backdrop-filter: var(--blur);
+}
+
+div[class^="SettingContent"] div[class^="MenuList"] div[class^="ListItemContainer"] {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  background-image: linear-gradient(-60deg,
+      rgba(212, 212, 255, 0.1) 0%,
+      rgba(212, 212, 255, 0) 10%,
+      transparent 100%),
+    linear-gradient(-3deg,
+      rgba(212, 212, 255, 0.1) 0%,
+      rgba(212, 212, 255, 0) 15%,
+      transparent 100%);
+}
+
+div[class^="SettingContent"] div[class^="MenuList"] div[class^="ListItemContainer"]:hover {
+  box-shadow: var(--box-shadow);
+  background-color: var(--content-bgcolor-soft);
+  transition: unset;
+}
+
+div[class^="SettingContent"] div[class^="MenuList"] div[class^="ListItemContainer"].active {
+  background-color: var(--content-bgcolor-hard);
+  box-shadow: var(--box-shadow);
+}
+
+/* 快捷助手 */
+div[class^="AssistantContainer"] div[class^="Container"] {
+  background-color: var(--content-bgcolor-soft) !important;
+}
+
+/* --- 助手页面 --- */
+
+/* 消息气泡 */
+.message-assistant {
+  background-color: var(--content-bgcolor-hard);
+  backdrop-filter: var(--blur);
+  padding: 18px 20px 10px 20px !important;
+  border-radius: 15px;
+}
+
+.messages-container .system-prompt {
+  background-color: var(--content-bgcolor-soft);
+  backdrop-filter: var(--blur);
+}
+
+#inputbar {
+  background-color: var(--content-bgcolor-hard);
+  backdrop-filter: var(--blur);
+}
+
+.bubble:not(.multi-select-mode) .message-user .message-content-container {
+  background-color: var(--content-bgcolor-soft);
+  backdrop-filter: var(--blur);
+}
+
+/* Markdown & 代码块 */
+.markdown pre {
+  border-radius: 16px;
+  background-color: var(--content-bgcolor-soft-soft);
+  box-shadow: var(--box-shadow);
+}
+
+.markdown pre .shiki {
+  background-color: var(--content-bgcolor-soft-soft) !important;
+}
+
+.iztnTo:not(:has(+ [class*="Container"])) {
+  border-radius: 0 0 16px 16px;
+}
+
+.markdown pre [class^="CodeHeader"] {
+  justify-content: center;
+  position: relative;
+}
+
+/* 仿 MacOS 交通灯样式 */
+.markdown pre [class^="CodeHeader"]::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  box-shadow:
+    20px 0 0 0 #FFBD2E,
+    40px 0 0 0 #27C93F;
+  background-color: #FF5F56;
+  border: 0.5px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+/* --- 侧边栏 --- */
+#app-sidebar {
+  position: relative;
+}
+
+#app-sidebar::before {
+  content: "";
+  width: 103%;
+  height: 100%;
+  z-index: -1;
+  position: absolute;
+  backdrop-filter: var(--blur);
+}
+
+#app-sidebar div[class^="Icon"]:hover {
+  background-color: var(--content-bgcolor-soft);
+  box-shadow: var(--box-shadow);
+}
+
+#app-sidebar div[class^="Icon"].active {
+  background-color: var(--content-bgcolor-hard);
+  box-shadow: var(--box-shadow);
+}
+
+/* --- 主页选项卡 --- */
+.home-tabs {
+  backdrop-filter: var(--blur);
+}
+
+/* 助手选项卡 */
+.assistants-tab div[role="button"] .ant-dropdown-trigger {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  background-image: linear-gradient(-30deg,
+      rgba(212, 212, 255, 0.1) 0%,
+      rgba(212, 212, 255, 0) 12%,
+      transparent 100%),
+    linear-gradient(-1deg,
+      rgba(212, 212, 255, 0.1) 0%,
+      rgba(212, 212, 255, 0) 20%,
+      transparent 100%);
+}
+
+.assistants-tab div[role="button"] .ant-dropdown-trigger:hover {
+  background-color: var(--content-bgcolor-soft);
+  box-shadow: var(--box-shadow);
+  transition: unset;
+}
+
+.assistants-tab div[role="button"] .ant-dropdown-trigger.active {
+  background-color: var(--content-bgcolor-hard);
+  box-shadow: var(--box-shadow);
+}
+
+/* 添加助手/话题按钮 */
+div[class^="AssistantAddItem"],
+div[class^="AddTopicButton"] {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  background-image: linear-gradient(-30deg,
+      rgba(212, 212, 255, 0.1) 0%,
+      rgba(212, 212, 255, 0) 12%,
+      transparent 100%),
+    linear-gradient(-1deg,
+      rgba(212, 212, 255, 0.1) 0%,
+      rgba(212, 212, 255, 0) 20%,
+      transparent 100%);
+}
+
+div[class^="AssistantAddItem"]:hover,
+div[class^="AssistantAddItem"]:active,
+div[class^="AddTopicButton"]:hover,
+div[class^="AddTopicButton"]:active {
+  background-color: var(--content-bgcolor-soft);
+  box-shadow: var(--box-shadow);
+}
+
+/* 话题选项卡 */
+.topics-tab div[role="button"] .ant-dropdown-trigger {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  background-image: linear-gradient(-60deg,
+      rgba(212, 212, 255, 0.1) 0%,
+      rgba(212, 212, 255, 0) 10%,
+      transparent 100%),
+    linear-gradient(-3deg,
+      rgba(212, 212, 255, 0.1) 0%,
+      rgba(212, 212, 255, 0) 15%,
+      transparent 100%);
+}
+
+.topics-tab div[role="button"] .ant-dropdown-trigger:hover {
+  background-color: var(--content-bgcolor-soft);
+  box-shadow: var(--box-shadow);
+  transition: unset;
+}
+
+.topics-tab div[role="button"] .ant-dropdown-trigger.active {
+  background-color: var(--content-bgcolor-hard);
+  box-shadow: var(--box-shadow);
+}
+
+/* --- 智能体页面 --- */
+div[class*="AgentsGroupList"] {
+  backdrop-filter: var(--blur);
+
+  div[class^="ListItemContainer"] {
+    transition: background-color 0.3s ease;
+    background-image: linear-gradient(-60deg,
+        rgba(212, 212, 255, 0.1) 0%,
+        rgba(212, 212, 255, 0) 15%,
+        transparent 100%),
+      linear-gradient(-4deg,
+        rgba(212, 212, 255, 0.1) 0%,
+        rgba(212, 212, 255, 0) 20%,
+        transparent 100%);
+  }
+
+  div[class^="ListItemContainer"]:hover {
+    background-color: var(--content-bgcolor-soft);
+    box-shadow: var(--box-shadow);
+  }
+
+  div[class^="ListItemContainer"].active {
+    background-color: var(--content-bgcolor-hard);
+    box-shadow: var(--box-shadow);
+  }
+}
+
+div[class^="AgentCardContainer"] {
+  background-color: var(--content-bgcolor-soft-soft);
+  backdrop-filter: var(--blur);
+}
+
+/* --- 翻译页面 --- */
+div[class^="InputContainer"]:has(.ant-input-textarea-affix-wrapper) {
+  backdrop-filter: var(--blur);
+  background-color: var(--content-bgcolor-soft);
+}
+
+div[class^="OutputContainer"]:has([class^="OperationBar"]) {
+  backdrop-filter: var(--blur);
+}
+
+/* --- 绘图页面 --- */
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled),
+.ant-radio-button-wrapper {
+  background-color: var(--content-bgcolor-soft);
+  backdrop-filter: var(--blur);
+}
+
+div[class^="LoadingContainer"] div[class^="ImagePlaceholder"] {
+  backdrop-filter: var(--blur);
+  border-radius: 15px;
+}
+
+div[class^="InputContainer"] .ant-input-borderless:not(.ant-input-affix-wrapper, .ant-input-textarea-affix-wrapper) {
+  background-color: var(--content-bgcolor-soft);
+  backdrop-filter: var(--blur);
+  border-radius: 15px;
+}
+
+/* --- 小程序页面 --- */
+div[class^="AppsContainer"] [class^="Container"]:has([class^="AppTitle"]):hover {
+  background-color: var(--content-bgcolor-soft);
+  border-radius: 16px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: var(--box-shadow);
+}
+
+/* --- 知识库页面 --- */
+div[class^="KnowledgeSideNav"] {
+  backdrop-filter: var(--blur);
+
+  div[class^="ListItemContainer"],
+  div[class^="AddKnowledgeItem"] {
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    background-image: linear-gradient(-60deg,
+        rgba(212, 212, 255, 0.1) 0%,
+        rgba(212, 212, 255, 0) 10%,
+        transparent 100%),
+      linear-gradient(-3deg,
+        rgba(212, 212, 255, 0.1) 0%,
+        rgba(212, 212, 255, 0) 15%,
+        transparent 100%);
+  }
+
+  div[class^="ListItemContainer"]:hover,
+  div[class^="AddKnowledgeItem"]:hover {
+    background-color: var(--content-bgcolor-soft);
+    box-shadow: var(--box-shadow);
+  }
+
+  div[class^="ListItemContainer"].active,
+  div[class^="AddKnowledgeItem"].active {
+    background-color: var(--content-bgcolor-hard);
+    box-shadow: var(--box-shadow);
+  }
+}
+
+div[class^="FileItemCard"] {
+  backdrop-filter: var(--blur);
+  background-color: var(--content-bgcolor-soft-soft);
+}
+
+/* --- 顶部导航栏 --- */
+div[class^="TabsBar"] :is(div[class^="Tab-htodQk"], div[class^="AddTabButton"]):hover {
+  background-color: var(--content-bgcolor-soft);
+  box-shadow: var(--box-shadow);
+}
+
+div[class^="TabsBar"] :is(div[class^="Tab-htodQk"], div[class^="AddTabButton"]).active,
+.jvPWQP {
+  background-color: var(--content-bgcolor-hard);
+  box-shadow: var(--box-shadow);
+}
+
+div[class^="RightButtonsContainer"]>*:hover {
+  background-color: var(--content-bgcolor-soft);
+  box-shadow: var(--box-shadow);
+}
+
+div[class^="RightButtonsContainer"]>*.active,
+.jYjBXc {
+  background-color: var(--content-bgcolor-hard);
+  box-shadow: var(--box-shadow);
+}
+
+.ant-drawer .ant-drawer-content {
+  background-color: var(--content-bgcolor-hard) !important;
+  border-top-left-radius: 15px;
+}
+
+/* Tab页面覆盖 */
+div[class^="TabContent"] {
+
+  /* 首页样式 */
+  .home-tabs {
+    box-shadow: var(--box-shadow);
+    border-radius: 10px;
+    height: calc(100vh - var(--navbar-height) - 6px);
+  }
+  
+  .bubble .home-navbar div[class^="Box"] {
+    border-left: 2px solid var(--content-bgcolor-soft-soft);
+    padding-left: 5px;
+  }
+
+
+  /* 知识库页面样式 */
+  div[class^="KnowledgeSideNav"] {
+    box-shadow: var(--box-shadow);
+    border-radius: 10px;
+    margin-bottom: calc(var(--navbar-height) - 38px);
+  }
+
+  /* 智能体页面样式 */
+  div[class*="AgentsGroupList"] {
+    box-shadow: var(--box-shadow);
+    border-radius: 10px;
+    height: calc(100vh - var(--navbar-height) - 6px);
+  }
+
+  /* 设置页面样式 */
+  ul[class^="SettingMenus"] {
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    margin-bottom: calc(var(--navbar-height) - 38px);
+    height: calc(100vh - var(--navbar-height) - 6px);
+  }
+
+  div[class^="SettingContent"] {
+    margin-left: 10px;
+  }
+
+  div[class^="ProviderListContainer"] {
+    box-shadow: var(--box-shadow);
+    border-radius: 10px;
+    margin-bottom: 15px;
+    height: calc(100vh - var(--navbar-height) - 6px);
+  }
+
+  div[class^="SettingContent"] div[class^="MenuList"] {
+    box-shadow: var(--box-shadow);
+    border-radius: 10px;
+    margin-bottom: 15px;
+    height: calc(100vh - var(--navbar-height) - 6px);
+  }
+}

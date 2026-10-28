@@ -1,0 +1,555 @@
+root {
+  /* —— 护眼米黄色变量 —— */
+  --eyecare-bg: #F7F3E3;            /* 主背景 */
+  --eyecare-bg-soft: #EFE8D0;       /* 次级/侧栏背景 */
+  --eyecare-bg-hard: #FFFDF5;       /* 卡片/输入框 */
+  --eyecare-border: rgba(180, 160, 110, 0.25);
+  --eyecare-text: rgba(60, 50, 30, 0.92);
+  --eyecare-text-soft: rgba(90, 80, 55, 0.65);
+  /* —— 过渡变量（已补单位）—— */
+  --transition-duration: 0.4s;
+  --transition-easing: ease-in-out;
+  /* —— 动效变量 —— */
+  --button-border-radius: 12px;
+  --button-border-radius-hover: 8px;
+  --button-border-radius-active: 12px;
+  --animation: cubic-bezier(0.56, -0.37, 0.46, 1.58);
+  --short-timer: 0.2s;
+  --long-timer: 0.5s;
+  /* —— 特效暖色调 —— */
+  --fx-amber: #C9A227;      /* 暖金：悬停/能量流转 */
+  --fx-olive: #7A9A5B;      /* 橄榄绿：激活/选中 */
+  --fx-sheen: rgba(255, 248, 220, 0.7); /* 镭射扫光暖白 */
+  --box-shadow-soft: 0 2px 8px rgba(120, 100, 60, 0.12);
+}
+/* ============ 1. 护眼米黄底色 ============ */
+body {
+  background-color: var(--eyecare-bg) !important;
+  background: var(--eyecare-bg) !important;
+  color: var(--eyecare-text) !important;
+}
+body::before {
+  background-image: none !important;
+  background-color: var(--eyecare-bg) !important;
+  opacity: 1 !important;
+  filter: none !important;
+}
+body::after {
+  background: var(--eyecare-bg) !important;
+}
+.navbar,
+.sidebar,
+#sidebars,
+.home-side-bar,
+.home-sidebar {
+  background-color: var(--eyecare-bg-soft) !important;
+  background: var(--eyecare-bg-soft) !important;
+  color: var(--eyecare-text) !important;
+}
+#content-container,
+.home-page,
+.main-content,
+.content-container {
+  background-color: var(--eyecare-bg) !important;
+  background: var(--eyecare-bg) !important;
+}
+.message-assistant {
+  background-color: var(--eyecare-bg-hard) !important;
+  background: var(--eyecare-bg-hard) !important;
+  color: var(--eyecare-text) !important;
+  border: 1px solid var(--eyecare-border) !important;
+}
+.bubble:not(.multi-select-mode) .message-user .message-content-container {
+  background-color: var(--eyecare-bg-soft) !important;
+  background: var(--eyecare-bg-soft) !important;
+  color: var(--eyecare-text) !important;
+  border: 1px solid var(--eyecare-border) !important;
+}
+.inputbar-container,
+#inputbar,
+.home-inputbar,
+.home-input-container,
+.home-page-inputbar {
+  background-color: var(--eyecare-bg-hard) !important;
+  background: var(--eyecare-bg-hard) !important;
+  border: 1px solid var(--eyecare-border) !important;
+}
+.inputbar-container textarea,
+.inputbar-container input,
+#inputbar textarea,
+#inputbar input,
+.home-inputbar textarea,
+.home-input-container textarea {
+  background-color: transparent !important;
+  color: var(--eyecare-text) !important;
+  caret-color: var(--eyecare-text) !important;
+}
+.inputbar-container textarea::placeholder,
+#inputbar textarea::placeholder,
+.home-inputbar textarea::placeholder,
+.home-input-container textarea::placeholder {
+  color: var(--eyecare-text-soft) !important;
+}
+.ant-card,
+.ant-collapse,
+.ant-modal .ant-modal-content,
+.ant-popover .ant-popover-inner,
+.ant-dropdown .ant-dropdown-menu,
+.ant-dropdown-menu-submenu .ant-dropdown-menu {
+  background-color: var(--eyecare-bg-hard) !important;
+  background: var(--eyecare-bg-hard) !important;
+  color: var(--eyecare-text) !important;
+  border: 1px solid var(--eyecare-border) !important;
+}
+pre {
+  background-color: #FBF7E8 !important;
+  background: #FBF7E8 !important;
+  border: 1px solid var(--eyecare-border) !important;
+  color: var(--eyecare-text) !important;
+}
+code {
+  background-color: rgba(180, 160, 110, 0.12) !important;
+  color: var(--eyecare-text) !important;
+}
+.ant-input-outlined,
+.ant-input-number,
+.ant-picker,
+.ant-select .ant-select-selector,
+.ant-select-dropdown,
+.ant-mentions {
+  background-color: var(--eyecare-bg-hard) !important;
+  background: var(--eyecare-bg-hard) !important;
+  color: var(--eyecare-text) !important;
+  border-color: var(--eyecare-border) !important;
+}
+.ant-btn-default {
+  background-color: var(--eyecare-bg-hard) !important;
+  background: var(--eyecare-bg-hard) !important;
+  color: var(--eyecare-text) !important;
+  border-color: var(--eyecare-border) !important;
+}
+.ant-tag {
+  background-color: rgba(180, 160, 110, 0.12) !important;
+  color: var(--eyecare-text) !important;
+  border-color: var(--eyecare-border) !important;
+}
+.ant-segmented {
+  background-color: var(--eyecare-bg-soft) !important;
+  background: var(--eyecare-bg-soft) !important;
+}
+#content-container #messages {
+  background-color: transparent !important;
+}
+.markdown,
+.markdown p,
+.markdown li,
+.markdown span,
+.markdown td,
+.markdown th {
+  color: var(--eyecare-text) !important;
+}
+/* ============ 2. 动效合集 ============ */
+/* --- 2.1 组件过渡 --- */
+.message-assistant,
+.message-user,
+.inputbar-container,
+.ant-input-outlined,
+.ant-input-number,
+.ant-picker,
+.ant-select .ant-select-selector,
+.ant-select-dropdown,
+.ant-mentions,
+.ant-btn-default,
+.ant-collapse,
+.ant-dropdown .ant-dropdown-menu,
+.ant-dropdown-menu-submenu .ant-dropdown-menu,
+.ant-tag,
+.ant-segmented,
+pre,
+code,
+.ant-modal .ant-modal-content {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition: background var(--transition-duration) var(--transition-easing),
+              border-color var(--transition-duration) var(--transition-easing),
+              box-shadow var(--transition-duration) var(--transition-easing);
+}
+body {
+  transition: background-color var(--transition-duration) var(--transition-easing),
+              color var(--transition-duration) var(--transition-easing);
+}
+/* --- 2.2 消息弹出动画 --- */
+@keyframes messagePop {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.message-content-container {
+  animation: messagePop 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  transform: translateZ(0);
+}
+/* --- 2.3 输入框流光边框 + AI 状态效果 --- */
+@keyframes ai-running-gradient {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+@keyframes ai-thinking-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+@keyframes ai-data-flow {
+  0% { transform: translateX(-100%); opacity: 0; }
+  50% { opacity: 0.8; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+#inputbar {
+  position: relative;
+  border-radius: 12px;
+}
+#inputbar::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(90deg, #ff6a01, #8a2be2, #00d4ff, #ff6a01);
+  background-size: 200% 100%;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: ai-running-gradient 5s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+#inputbar:focus-within::before,
+#inputbar.ai-active::before,
+#inputbar[data-ai-status="running"]::before {
+  opacity: 1;
+}
+#inputbar.ai-thinking {
+  animation: ai-thinking-pulse 3s ease-in-out infinite;
+}
+#inputbar.ai-thinking::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.08), transparent);
+  animation: ai-data-flow 2.5s ease-in-out infinite;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+}
+#inputbar input,
+#inputbar textarea {
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+.ai-status-dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #8a2be2;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 3;
+}
+#inputbar.ai-thinking .ai-status-dot,
+#inputbar[data-ai-status="running"] .ai-status-dot {
+  opacity: 1;
+  animation: ai-thinking-pulse 2s ease-in-out infinite;
+}
+.ai-mode-active #inputbar::before {
+  opacity: 1 !important;
+}
+.ai-mode-disabled #inputbar::before,
+.ai-mode-disabled #inputbar::after {
+  opacity: 0 !important;
+  animation: none !important;
+}
+/* --- 2.4 点击缩放 + 页面弹入 --- */
+@keyframes clickAnimation {
+  0% { transform: scale(1); }
+  30% { transform: scale(0.9); }
+  60% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+@keyframes page-popup-right {
+  from { transform: translateX(-2em); opacity: 0%; }
+  to { transform: translateX(0); opacity: 100%; }
+}
+@keyframes page-popup-left {
+  from { transform: translateX(2em); opacity: 0%; }
+  to { transform: translateX(0); opacity: 100%; }
+}
+[class^="Menus"] [class^="Icon"]:active {
+  border-radius: var(--button-border-radius-active) !important;
+  transition: border-radius var(--short-timer) var(--animation);
+  animation: clickAnimation var(--long-timer) var(--animation);
+}
+[class^="MainMenuItem"]:active,
+.rc-virtual-list-holder-inner .ant-dropdown-trigger:active,
+[class^="ListItemContainer"]:active,
+[class^="AgentCardContainer"]:active {
+  border-radius: var(--button-border-radius-active) !important;
+  transition: border-radius var(--short-timer) var(--animation);
+  animation: clickAnimation var(--long-timer) var(--animation);
+}
+[class^="Tab-"]:active,
+[class^="AddTabButton"]:active,
+[class^="ThemeButton"]:active,
+[class^="SettingsButton"]:active {
+  border-radius: var(--button-border-radius-active);
+  animation: clickAnimation var(--long-timer) var(--animation);
+}
+[class^="MessageLineContainer"] {
+  border-radius: var(--button-border-radius);
+}
+[class^="MessageLineContainer"] [class^="MessageItem"]:active {
+  animation: clickAnimation var(--long-timer) var(--animation);
+}
+[class^="ant"]:hover,
+[class^="ActionButton"]:hover,
+[class^="TopicListItem"]:hover,
+[class^="IconItem"]:hover,
+[class^="ProviderListItem"]:hover,
+[class^="MenuItem"]:hover,
+[class^="MenuButton"]:hover,
+[class^="EmojiBackground"]:hover {
+  border-radius: var(--button-border-radius-hover) !important;
+  transition: border-radius var(--short-timer) var(--animation);
+}
+[class^="ant-avatar"]:active,
+[class^="ant-btn"]:active,
+[class^="ant-segmented-item"]:active,
+[class^="anticon"]:active,
+[class^="ant-upload"]:active,
+[class^="ant-divider"]:active,
+[class^="ant-tooltip"]:active,
+[class^="ant-message"]:active,
+[class^="ActionButton"]:active,
+[class^="TopicListItem"]:active,
+[class^="IconItem"]:active,
+[class^="ProviderListItem"]:active,
+[class^="MenuItem"]:active,
+[class^="MenuButton"]:active,
+[class^="EmojiBackground"]:active,
+[class~="ant-dropdown-menu-item"]:active,
+[class~="ant-dropdown-menu-submenu-title"]:active,
+[class~="ant-select-selector"]:active,
+[class~="ant-select-item"]:active {
+  border-radius: var(--button-border-radius-active) !important;
+  transition: border-radius var(--short-timer) var(--animation);
+  animation: clickAnimation var(--long-timer) var(--animation);
+}
+[class$="-tabs-content"],
+[class$="-tab"],
+[id^="content-container"],
+[class^="MessageContainer"],
+[class^="SettingContent"],
+[class^="SettingContainer"],
+[class^="SettingGroup"],
+[class^="MenuList"],
+[class^="ProviderList"],
+[class^="AgentsListContainer"],
+[class^="ProviderListContainer"],
+[class^="SideNav"],
+[class^="MainContainer-"],
+[class^="Main"],
+[class~="message-assistant"] {
+  animation: page-popup-right var(--short-timer) var(--animation);
+}
+[class~="message-user"] {
+  animation: page-popup-left var(--short-timer) var(--animation);
+}
+[class^="Icon"],
+[class^="ant"],
+[class^="ActionButton"],
+[class^="TopicListItem"],
+[class^="ProviderListItem"],
+[class^="Main"],
+[class^="MenuItem"],
+[class^="MenuButton"],
+[class^="EmojiBackground"],
+[class^="MainMenusContainer"],
+[class^="ContentContainer"],
+[class^="SettingContainer"],
+[class^="ProviderListContainer"],
+#chat,
+.home-tabs {
+  border-radius: var(--button-border-radius) !important;
+}
+button.ant-btn:hover {
+  border-radius: var(--button-border-radius) !important;
+}
+[class^="ant-switch"] {
+  border-radius: 100px !important;
+}
+/* --- 2.5 按钮悬停光晕 + 选区高亮辉光 --- */
+button:hover,
+.ant-btn:hover {
+  box-shadow: 0 0 8px rgba(201, 162, 39, 0.4), 0 0 12px rgba(201, 162, 39, 0.2) !important;
+  transition: box-shadow 0.3s ease;
+}
+::selection {
+  background-color: rgba(201, 162, 39, 0.28) !important;
+  color: inherit;
+  text-shadow: 0 0 2px rgba(201, 162, 39, 0.4);
+}
+/* ============ 3. 霓虹主题特效（已适配米黄暖色调） ============ */
+/* --- 3.1 AI 气泡能量流转边框（悬停扫描）--- */
+@keyframes aiEnergyFlow {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.message-assistant {
+  position: relative;
+}
+.message-assistant::after {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--fx-amber), var(--fx-olive), transparent);
+  background-size: 200% 100%;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.message-assistant:hover::after {
+  opacity: 1;
+  animation: aiEnergyFlow 2.5s linear infinite;
+}
+/* --- 3.2 用户气泡镭射扫光（悬停扫过）--- */
+@keyframes holoFoil {
+  0% { left: -100%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: 200%; opacity: 0; }
+}
+.bubble:not(.multi-select-mode) .message-user .message-content-container {
+  position: relative;
+  overflow: hidden;
+}
+.bubble:not(.multi-select-mode) .message-user .message-content-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, var(--fx-sheen), transparent);
+  transform: skewX(-25deg);
+  pointer-events: none;
+}
+.bubble:not(.multi-select-mode) .message-user .message-content-container:hover::after {
+  animation: holoFoil 0.7s ease-out;
+}
+/* --- 3.3 代码块觉醒（交通灯 + 复制按钮故障抖动）--- */
+@keyframes glitch {
+  0%   { transform: translate(0, 0); filter: none; clip-path: none; }
+  15%  { transform: translate(-1px, 1px); filter: hue-rotate(15deg); }
+  30%  { transform: translate(1px, -1px); clip-path: inset(15% 0 35% 0); }
+  45%  { transform: translate(-1px, 0); filter: hue-rotate(-10deg); }
+  60%  { transform: translate(1px, 1px); clip-path: inset(40% 0 10% 0); }
+  75%  { transform: translate(0, -1px); filter: none; }
+  100% { transform: translate(0, 0); clip-path: none; filter: none; }
+}
+/* 代码块头部：暖色交通灯（暖金 / 暖橙 / 橄榄绿）
+   注：此处挂在 pre 上；若你的代码块有独立 header 条，
+   可把 ::before 改挂到 header 元素、并去掉 padding-top。 */
+pre {
+  position: relative !important;
+  padding-top: 2.4em !important;
+}
+pre::before {
+  content: "";
+  position: absolute;
+  top: 0.7em;
+  left: 0.9em;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--fx-amber);
+  box-shadow: 1.6em 0 0 #C97A4E, 3.2em 0 0 var(--fx-olive);
+  opacity: 0.85;
+  pointer-events: none;
+}
+/* 复制按钮：点击触发故障抖动 */
+[class*="CodeBlock" i] [class*="Copy" i]:active,
+[class*="code-block" i] [class*="copy" i]:active,
+[class*="CodeBlock" i] button:active {
+  animation: glitch 0.45s steps(2) 1 !important;
+}
+/* 代码块悬停暖光 */
+pre:hover {
+  border-color: rgba(201, 162, 39, 0.5) !important;
+  box-shadow: var(--box-shadow-soft) !important;
+}
+/* ============ 4. 滚动条与杂项暖色化 ============ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(180, 160, 110, 0.35);
+  border-radius: 100px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(201, 162, 39, 0.55);
+}
+* {
+  scrollbar-color: rgba(180, 160, 110, 0.35) transparent;
+}
+a {
+  color: var(--fx-amber) !important;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: var(--fx-olive) !important;
+}
+/* ============ 5. 暗色模式（暖色暗底，跟随系统/应用暗色） ============ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --eyecare-bg: #211D17;
+    --eyecare-bg-soft: #1A1712;
+    --eyecare-bg-hard: #2B2620;
+    --eyecare-border: rgba(200, 175, 120, 0.22);
+    --eyecare-text: rgba(236, 226, 200, 0.92);
+    --eyecare-text-soft: rgba(201, 188, 158, 0.62);
+    --fx-sheen: rgba(255, 248, 220, 0.18);
+    --box-shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.35);
+  }
+  pre {
+    background-color: #241F19 !important;
+    background: #241F19 !important;
+  }
+  code {
+    background-color: rgba(201, 162, 39, 0.14) !important;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(200, 175, 120, 0.3);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(201, 162, 39, 0.5);
+  }
+}

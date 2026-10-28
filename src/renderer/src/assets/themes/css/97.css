@@ -1,0 +1,224 @@
+/* ========================
+   VSCode Dracula-Unified Theme
+   设计：极致护眼 / 1:1 复刻 VSCode 配色 / 消光星尘字
+======================== */
+
+/* 1. 基础色板定义 - 精准提取 VSCode 像素色值 */
+:root {
+  /* VSCode 主背景与辅背景 */
+  --vscode-bg-editor: #1e202a;       /* 截图中的主编辑器暗底 */
+  --vscode-bg-sidebar: #181a23;      /* 侧边栏及极深底色 */
+  --vscode-bg-active: #262936;       /* 选中行/活跃项底色 */
+  
+  /* VSCode Dracula 经典语法色 */
+  --dracula-purple: #bd93f9;         /* 关键字/函数类型 */
+  --dracula-pink: #ff79c6;           /* 控制流关键字 */
+  --dracula-green: #50fa7b;          /* 函数定义 */
+  --dracula-cyan: #8be9fd;           /* 变量/内置方法 */
+  --dracula-yellow: #f1fa8c;         /* 字符串 */
+  --dracula-comment: #6272a4;        /* 注释（经典的消光蓝灰） */
+
+  /* 护眼优化文本色 (消光星尘灰) */
+  --text-100: #c5cbd3;               /* 相比原版 #f8f8f2 降低了 20% 的亮度，极度舒适 */
+  --text-200: #8690a6;               /* 次要文字 */
+  
+  /* 警告色 */
+  --danger-color: #ff5555;
+  --danger-color-hover: #ff6e6e;
+  --danger-color-bg: rgba(255, 85, 85, 0.1);
+}
+
+/* 2. 系统核心变量映射 */
+body[theme-mode="dark"] {
+  background: var(--vscode-bg-editor) !important;
+
+  /* 界面系统变量映射 */
+  --color-white: var(--text-100) !important;
+  --color-white-soft: rgba(197, 203, 211, 0.8) !important;
+  --color-white-mute: rgba(197, 203, 211, 0.5) !important;
+  --color-black: transparent !important;
+  --color-black-soft: var(--vscode-bg-sidebar) !important;
+  --color-black-mute: var(--vscode-bg-active) !important;
+  --color-gray-1: var(--vscode-bg-active) !important;
+  --color-gray-2: var(--vscode-bg-sidebar) !important;
+  --color-gray-3: var(--dracula-comment) !important;
+  --color-text-1: var(--text-100) !important;
+  --color-text-2: var(--text-200) !important;
+  --color-text-3: rgba(98, 114, 164, 0.5) !important;
+  --color-background: var(--vscode-bg-editor) !important;
+  --color-background-soft: var(--vscode-bg-sidebar) !important;
+  --color-background-mute: var(--vscode-bg-active) !important;
+  --color-background-opacity: rgba(30, 32, 42, 0.95) !important;
+  --color-primary: var(--dracula-purple) !important;
+  --color-primary-soft: var(--dracula-comment) !important;
+  --color-primary-mute: var(--vscode-bg-active) !important;
+  --color-text: var(--text-100) !important;
+  
+  /* 聊天区域 */
+  --chat-background: var(--vscode-bg-editor) !important;
+  --chat-background-user: var(--vscode-bg-active) !important;
+  --chat-background-assistant: var(--vscode-bg-sidebar) !important;
+  --chat-text-user: var(--text-100) !important;
+  --color-list-item: var(--vscode-bg-active) !important;
+  --color-list-item-hover: rgba(38, 41, 54, 0.6) !important;
+
+  color: var(--text-100) !important;
+}
+
+/* 3. 彻底清除背景图生成器 */
+body[theme-mode="dark"]::before {
+  display: none !important;
+}
+
+/* 4. 透明化层级，消除视觉噪点 */
+body[theme-mode='dark'] #root>div,
+body[theme-mode='dark']>div,
+body[theme-mode="dark"] .bubble #chat-main,
+body[theme-mode="dark"] .bubble #messages,
+body[theme-mode="dark"] .kzYlnT,
+body[theme-mode="dark"] .gQxBxw, 
+body[theme-mode="dark"] .laTFtx, 
+body[theme-mode="dark"] .cm-editor,
+body[theme-mode="dark"] .ͼpb .cm-gutters {
+  background: transparent !important;
+}
+
+/* 5. 核心内容容器 - 实现 VSCode 般的无缝分栏设计 */
+body[theme-mode="dark"] #content-container,
+body[theme-mode="dark"] .minapp-drawer .ant-drawer-body,
+body[theme-mode="dark"] .home-tabs {
+  background-color: var(--vscode-bg-editor) !important;
+  border: 1px solid rgba(98, 114, 164, 0.2) !important;
+  box-shadow: none !important;
+  border-radius: 0px; /* 统一为 VSCode 式的硬核直角 */
+}
+
+/* 6. 聊天气泡设计 - 完美贴合 VSCode 的编辑器风格 */
+body[theme-mode="dark"] .MessageItem-kbJBgD {
+  background-color: var(--vscode-bg-sidebar) !important;
+  border: 1px solid rgba(98, 114, 164, 0.15) !important;
+  border-radius: 6px;
+}
+
+/* 用户消息气泡 */
+body[theme-mode="dark"] .MessageItem-kbJBgD.user {
+  background-color: var(--vscode-bg-active) !important;
+  border: 1px solid rgba(189, 147, 249, 0.3) !important; /* 柔和紫色边界 */
+}
+
+/* 输入框 */
+body[theme-mode="dark"] .ChatInputContainer-eOgJpD {
+  background-color: var(--vscode-bg-sidebar) !important;
+  border: 1px solid rgba(98, 114, 164, 0.3) !important;
+  border-radius: 6px;
+}
+
+/* 7. Markdown 代码块 1:1 VSCode 复刻（核心改进） */
+body[theme-mode="dark"] pre {
+  background-color: #181a23 !important; /* 经典黑洞级无反射背景 */
+  border: 1px solid rgba(98, 114, 164, 0.25) !important;
+  border-radius: 4px;
+  padding: 12px;
+}
+
+/* 以下选择器用于强行纠正 CherryStudio 内 Markdown 的代码高亮色，使其与你的截图完全一致 */
+body[theme-mode="dark"] pre code {
+  color: var(--text-100) !important;
+}
+
+/* 关键字 (def, class, if, return, import) */
+body[theme-mode="dark"] .hljs-keyword,
+body[theme-mode="dark"] .token.keyword {
+  color: var(--dracula-pink) !important;
+  font-weight: 500;
+}
+
+/* 函数与类定义 */
+body[theme-mode="dark"] .hljs-title,
+body[theme-mode="dark"] .hljs-title.function_,
+body[theme-mode="dark"] .token.function {
+  color: var(--dracula-green) !important;
+}
+
+/* 字符串 */
+body[theme-mode="dark"] .hljs-string,
+body[theme-mode="dark"] .token.string {
+  color: var(--dracula-yellow) !important;
+}
+
+/* 注释 */
+body[theme-mode="dark"] .hljs-comment,
+body[theme-mode="dark"] .token.comment {
+  color: var(--dracula-comment) !important;
+  font-style: italic;
+}
+
+/* 数字与特殊常量 */
+body[theme-mode="dark"] .hljs-number,
+body[theme-mode="dark"] .hljs-literal,
+body[theme-mode="dark"] .token.number {
+  color: var(--dracula-purple) !important;
+}
+
+/* 变量及参数 */
+body[theme-mode="dark"] .hljs-variable,
+body[theme-mode="dark"] .token.variable,
+body[theme-mode="dark"] .token.parameter {
+  color: var(--dracula-cyan) !important;
+}
+
+/* 8. 滚动条美化 (VSCode 无边框极简风格) */
+body[theme-mode="dark"] ::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+body[theme-mode="dark"] ::-webkit-scrollbar-thumb {
+  background: rgba(98, 114, 164, 0.3) !important;
+  border-radius: 3px;
+}
+
+body[theme-mode="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(189, 147, 249, 0.5) !important;
+}
+
+/* 9. UI 控件与辅助件适配 */
+body[theme-mode="dark"] h1,
+body[theme-mode="dark"] h2,
+body[theme-mode="dark"] h3,
+body[theme-mode="dark"] h4,
+body[theme-mode="dark"] h5,
+body[theme-mode="dark"] h6 {
+  color: var(--dracula-purple) !important;
+}
+
+body[theme-mode="dark"] a {
+  color: var(--dracula-cyan) !important;
+}
+
+/* 弹窗 */
+body[theme-mode="dark"] .ant-modal-content {
+  background-color: var(--vscode-bg-sidebar) !important;
+  border: 1px solid rgba(189, 147, 249, 0.2) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* 按钮及输入框反馈 */
+body[theme-mode="dark"] :where(.css-1qxn1pp).ant-btn-variant-solid {
+  background: var(--dracula-purple) !important;
+  color: var(--vscode-bg-sidebar) !important; /* 暗色文字保证可读性 */
+  font-weight: bold;
+}
+
+body[theme-mode="dark"] :where(.css-1qxn1pp).ant-btn-variant-solid:hover {
+  filter: brightness(1.1) !important;
+}
+
+body[theme-mode="dark"] :where(.css-1qxn1pp).ant-input-outlined:focus,
+body[theme-mode="dark"] :where(.css-1qxn1pp).ant-input-outlined:focus-within {
+  border-color: var(--dracula-purple) !important;
+}
+
+/* 气泡模式修正 */
+.bubble .message-content-container {
+  width: 100%;
+}

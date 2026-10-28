@@ -1,0 +1,1561 @@
+[
+  {
+    "id": 123,
+    "name": "Nijigen-Glass",
+    "author": "Lanye",
+    "tags": [
+      "自定义背景图片",
+      "动效",
+      "自定义主题色",
+      "亮色",
+      "暗色",
+      "跑马灯输入框"
+    ],
+    "date": "2026-10-09",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": true,
+      "animation": true,
+      "needsNetwork": true
+    },
+    "shots": {
+      "light": "123-light.webp",
+      "dark": "123-dark.webp"
+    }
+  },
+  {
+    "id": 120,
+    "name": "Denia Theme",
+    "author": "Lanye",
+    "tags": [
+      "自定义背景图片",
+      "动效",
+      "亮色",
+      "暗色",
+      "跑马灯输入框"
+    ],
+    "date": "2026-09-15",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": true,
+      "animation": true,
+      "needsNetwork": true
+    },
+    "shots": {
+      "light": "120-light.webp",
+      "dark": "120-dark.webp"
+    }
+  },
+  {
+    "id": 119,
+    "name": "Hatsune Miku V1转V2 作者：takuto",
+    "author": "岳飒",
+    "tags": [
+      "Miku",
+      "毛玻璃",
+      "浅蓝色"
+    ],
+    "date": "2026-09-15",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": true,
+      "animation": true,
+      "needsNetwork": true
+    },
+    "shots": {
+      "light": "119-light.webp",
+      "dark": "119-dark.webp"
+    }
+  },
+  {
+    "id": 118,
+    "name": "丹霞-迁移自V1 cherrycss.com 中的丹霞主题(应该比之前更完善)",
+    "author": "CandyMuj",
+    "tags": [
+      "粉色",
+      "丹霞",
+      "V1迁移"
+    ],
+    "date": "2026-09-15",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": false,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "118-light.webp",
+      "dark": "118-dark.webp"
+    }
+  },
+  {
+    "id": 115,
+    "name": "霓虹黑紫 x BlurBerry 毛玻璃融合版（v2 适配版）",
+    "author": "小树苗",
+    "tags": [
+      "毛玻璃",
+      "高斯模糊",
+      "输入框"
+    ],
+    "date": "2026-09-01",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": true,
+      "animation": true,
+      "needsNetwork": true
+    },
+    "shots": {
+      "light": "115-light.webp"
+    }
+  },
+  {
+    "id": 114,
+    "name": "Claude Flavor 适配V2版本",
+    "author": "NaCl",
+    "tags": [
+      "Claude",
+      "动效",
+      "亮色",
+      "暗色"
+    ],
+    "date": "2026-09-01",
+    "primaryLight": "#D97757",
+    "primaryDark": "#D97757",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "114-light.webp"
+    }
+  },
+  {
+    "id": 113,
+    "name": "护眼米黄·暖光动效",
+    "author": "Alfie",
+    "tags": [],
+    "date": "2026-09-01",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": false,
+      "bgImage": false,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {}
+  },
+  {
+    "id": 111,
+    "name": "Swiss",
+    "author": "thriller1982",
+    "tags": [
+      "Swiss",
+      "极简",
+      "网格",
+      "Light",
+      "Dark",
+      "纸感"
+    ],
+    "date": "2026-08-21",
+    "primaryLight": "#80372B",
+    "primaryDark": "#C98B79",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": true,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "111-light.webp",
+      "dark": "111-dark.webp"
+    }
+  },
+  {
+    "id": 110,
+    "name": "Cherry2.0.5的自定义背景主题",
+    "author": "Yui",
+    "tags": [
+      "跑马灯输入框",
+      "自定义背景图片"
+    ],
+    "date": "2026-08-21",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": true,
+      "needsNetwork": true
+    },
+    "shots": {
+      "light": "110-light.webp",
+      "dark": "110-dark.webp"
+    }
+  },
+  {
+    "id": 106,
+    "name": "咒术回战",
+    "author": "GX_",
+    "tags": [],
+    "date": "2026-08-21",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": false,
+      "dark": true,
+      "bgImage": true,
+      "animation": false,
+      "needsNetwork": true
+    },
+    "shots": {
+      "dark": "106-dark.webp"
+    }
+  },
+  {
+    "id": 105,
+    "name": "marathon",
+    "author": "上海唯一资本家",
+    "tags": [
+      "marathon",
+      "荧光"
+    ],
+    "date": "2026-08-21",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": false,
+      "bgImage": false,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "105-light.webp"
+    }
+  },
+  {
+    "id": 104,
+    "name": "牛油果护眼版",
+    "author": "灰皮可爱鼠",
+    "tags": [],
+    "date": "2026-08-21",
+    "primaryLight": "#6C71C4",
+    "primaryDark": "#6C71C4",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": false,
+      "needsNetwork": false
+    },
+    "shots": {
+      "dark": "104-dark.webp"
+    }
+  },
+  {
+    "id": 103,
+    "name": "Misty Street Drift",
+    "author": "Empty",
+    "tags": [
+      "衬线体",
+      "动态边框",
+      "低饱和",
+      "沉浸"
+    ],
+    "date": "2026-08-21",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": true,
+      "animation": true,
+      "needsNetwork": true
+    },
+    "shots": {
+      "light": "103-light.webp",
+      "dark": "103-dark.webp"
+    }
+  },
+  {
+    "id": 101,
+    "name": "学术·护眼",
+    "author": "罗修默",
+    "tags": [
+      "学术",
+      "护眼"
+    ],
+    "date": "2026-08-21",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "101-light.webp",
+      "dark": "101-dark.webp"
+    }
+  },
+  {
+    "id": 99,
+    "name": "VSCode 终极暖调消光护眼版",
+    "author": "灰皮鼠",
+    "tags": [],
+    "date": "2026-08-21",
+    "primaryLight": "#AD9FC4",
+    "primaryDark": "#AD9FC4",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": false,
+      "needsNetwork": false
+    },
+    "shots": {}
+  },
+  {
+    "id": 98,
+    "name": "Claude Desktop ",
+    "author": "Saw",
+    "tags": [
+      "Claude",
+      "claudecode",
+      "Claudedesktop"
+    ],
+    "date": "2026-06-07",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": true,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "98-light.webp",
+      "dark": "98-dark.webp"
+    }
+  },
+  {
+    "id": 97,
+    "name": "vscode风格【超级护眼】",
+    "author": "灰皮鼠",
+    "tags": [],
+    "date": "2026-06-07",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": false,
+      "needsNetwork": false
+    },
+    "shots": {}
+  },
+  {
+    "id": 96,
+    "name": "seele theme",
+    "author": "Lanye",
+    "tags": [
+      "自定义背景图片",
+      "动效",
+      "模糊",
+      "全局衬线字体",
+      "动画",
+      "跑马灯输入框"
+    ],
+    "date": "2026-06-07",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": true,
+      "animation": true,
+      "needsNetwork": true
+    },
+    "shots": {
+      "light": "96-light.webp",
+      "dark": "96-dark.webp"
+    }
+  },
+  {
+    "id": 95,
+    "name": "Dracula-soft",
+    "author": "Unus",
+    "tags": [
+      "紫色",
+      "柔和",
+      "德古拉"
+    ],
+    "date": "2026-06-07",
+    "primaryLight": "#BF9EEE",
+    "primaryDark": "#BF9EEE",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": false,
+      "needsNetwork": false
+    },
+    "shots": {
+      "dark": "95-dark.webp"
+    }
+  },
+  {
+    "id": 94,
+    "name": "高贵黄+动态效果",
+    "author": "杰声动漫",
+    "tags": [
+      "护眼",
+      "框架结构明显",
+      "动态效果"
+    ],
+    "date": "2026-06-07",
+    "primaryLight": "#FFDE30",
+    "primaryDark": "#FFDE30",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "94-light.webp",
+      "dark": "94-dark.webp"
+    }
+  },
+  {
+    "id": 93,
+    "name": "极简黑白",
+    "author": "八角",
+    "tags": [],
+    "date": "2026-06-07",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "93-light.webp",
+      "dark": "93-dark.webp"
+    }
+  },
+  {
+    "id": 91,
+    "name": "赛博飞升·霓虹毛玻璃满配版",
+    "author": "小飞",
+    "tags": [],
+    "date": "2026-04-20",
+    "primaryLight": "#00C957",
+    "primaryDark": "#00C957",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": true,
+      "animation": true,
+      "needsNetwork": true
+    },
+    "shots": {
+      "light": "91-light.webp",
+      "dark": "91-dark.webp"
+    }
+  },
+  {
+    "id": 90,
+    "name": "克劳德风格",
+    "author": "tungloong",
+    "tags": [],
+    "date": "2026-04-15",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": true,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "90-light.webp",
+      "dark": "90-dark.webp"
+    }
+  },
+  {
+    "id": 89,
+    "name": "极简 ChatGPT 风格",
+    "author": "Xiaowugd",
+    "tags": [
+      "极简",
+      "ChatGPT",
+      "现代UI",
+      "高可读性",
+      "流畅",
+      "Minimal",
+      "Clean",
+      "优雅"
+    ],
+    "date": "2026-03-29",
+    "primaryLight": "#10A37F",
+    "primaryDark": "#10A37F",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "89-light.webp",
+      "dark": "89-dark.webp"
+    }
+  },
+  {
+    "id": 88,
+    "name": "奶油国风Mac代码块",
+    "author": "上玄",
+    "tags": [
+      "奶油",
+      "MacOS",
+      "国风",
+      "代码",
+      "护眼",
+      "暖色",
+      "古风"
+    ],
+    "date": "2026-03-25",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": false,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "88-light.webp",
+      "dark": "88-dark.webp"
+    }
+  },
+  {
+    "id": 87,
+    "name": "暗黑",
+    "author": "Lanye",
+    "tags": [
+      "自定义背景图片",
+      "动效",
+      "跑马灯",
+      "动画",
+      "模糊",
+      "衬线字体"
+    ],
+    "date": "2026-03-23",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": false,
+      "bgImage": true,
+      "animation": true,
+      "needsNetwork": true
+    },
+    "shots": {
+      "dark": "87-dark.webp"
+    }
+  },
+  {
+    "id": 86,
+    "name": "Miku-more",
+    "author": "beautifulremi",
+    "tags": [
+      "玻璃",
+      "透明"
+    ],
+    "date": "2026-03-23",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": true,
+      "animation": true,
+      "needsNetwork": true
+    },
+    "shots": {
+      "dark": "86-dark.webp"
+    }
+  },
+  {
+    "id": 85,
+    "name": "Mica for Windows 11",
+    "author": "Yaron",
+    "tags": [
+      "极简",
+      "简约",
+      "Simple",
+      "Mica",
+      "Windows11"
+    ],
+    "date": "2026-03-15",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": false,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "85-light.webp",
+      "dark": "85-dark.webp"
+    }
+  },
+  {
+    "id": 84,
+    "name": "Claude",
+    "author": "xxjnb",
+    "tags": [],
+    "date": "2026-02-28",
+    "primaryLight": "#D97757",
+    "primaryDark": "#D97757",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "84-light.webp",
+      "dark": "84-dark.webp"
+    }
+  },
+  {
+    "id": 82,
+    "name": "粉紫色",
+    "author": "无²",
+    "tags": [
+      "粉紫色"
+    ],
+    "date": "2026-02-04",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": false,
+      "bgImage": false,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "82-light.webp"
+    }
+  },
+  {
+    "id": 81,
+    "name": "宇宙",
+    "author": "deadmau5v",
+    "tags": [
+      "简约",
+      "暗色",
+      "科幻"
+    ],
+    "date": "2026-01-30",
+    "primaryLight": "#ACC2EF",
+    "primaryDark": "#ACC2EF",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": true,
+      "animation": false,
+      "needsNetwork": true
+    },
+    "shots": {
+      "dark": "81-dark.webp"
+    }
+  },
+  {
+    "id": 80,
+    "name": "LuminaFlow: Synthwave 84",
+    "author": "Formalized Realist",
+    "tags": [
+      "synthwave",
+      "动效",
+      "光流",
+      "复古未来"
+    ],
+    "date": "2026-01-15",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": false,
+      "bgImage": false,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "dark": "80-dark.webp"
+    }
+  },
+  {
+    "id": 79,
+    "name": "「时空·微蓝」",
+    "author": "啊友",
+    "tags": [],
+    "date": "2026-01-12",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "79-light.webp",
+      "dark": "79-dark.webp"
+    }
+  },
+  {
+    "id": 78,
+    "name": "吉卜力风格 (无点状动态效果)",
+    "author": "bitcat",
+    "tags": [],
+    "date": "2026-01-09",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": true,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "78-light.webp",
+      "dark": "78-dark.webp"
+    }
+  },
+  {
+    "id": 77,
+    "name": "Modern Workspace",
+    "author": "NeonSpectre",
+    "tags": [
+      "modern",
+      "dark",
+      "glow",
+      "breathing"
+    ],
+    "date": "2025-11-23",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": true,
+      "needsNetwork": true
+    },
+    "shots": {
+      "dark": "77-dark.webp"
+    }
+  },
+  {
+    "id": 76,
+    "name": "原色",
+    "author": "Enc",
+    "tags": [
+      "主题色",
+      "简约",
+      "动效"
+    ],
+    "date": "2025-11-07",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "76-light.webp",
+      "dark": "76-dark.webp"
+    }
+  },
+  {
+    "id": 75,
+    "name": "One Dark Pro",
+    "author": "MrSibe",
+    "tags": [
+      "暗色",
+      "简约",
+      "编程",
+      "护眼",
+      "光流",
+      "极客",
+      "黑客"
+    ],
+    "date": "2025-10-31",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": false,
+      "bgImage": false,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "dark": "75-dark.webp"
+    }
+  },
+  {
+    "id": 74,
+    "name": "Cyberpunk Neon Theme",
+    "author": "OuroChival",
+    "tags": [
+      "赛博朋克"
+    ],
+    "date": "2025-09-21",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "dark": "74-dark.webp"
+    }
+  },
+  {
+    "id": 55,
+    "name": "Hatsune Miku",
+    "author": "takuto",
+    "tags": [
+      "玻璃",
+      "透明",
+      "浅蓝色",
+      "Miku"
+    ],
+    "date": "2025-09-06",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": true,
+      "animation": true,
+      "needsNetwork": true
+    },
+    "shots": {
+      "light": "55-light.webp",
+      "dark": "55-dark.webp"
+    }
+  },
+  {
+    "id": 54,
+    "name": "LuminaFlow",
+    "author": "RMSHE",
+    "tags": [
+      "模糊",
+      "动画",
+      "流动",
+      "暗色",
+      "透明",
+      "玻璃",
+      "光流",
+      "动效"
+    ],
+    "date": "2025-09-06",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": false,
+      "bgImage": false,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "dark": "54-dark.webp"
+    }
+  },
+  {
+    "id": 53,
+    "name": "简约灰白黑",
+    "author": "Errui",
+    "tags": [
+      "简约"
+    ],
+    "date": "2025-09-06",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "53-light.webp",
+      "dark": "53-dark.webp"
+    }
+  },
+  {
+    "id": 52,
+    "name": "霓虹动感",
+    "author": "JH",
+    "tags": [],
+    "date": "2025-09-06",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": false,
+      "bgImage": true,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "52-light.webp",
+      "dark": "52-dark.webp"
+    }
+  },
+  {
+    "id": 51,
+    "name": "吉卜力风格主题",
+    "author": "letschips",
+    "tags": [
+      "吉卜力",
+      "护眼",
+      "动态"
+    ],
+    "date": "2025-09-06",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": true,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "51-light.webp",
+      "dark": "51-dark.webp"
+    }
+  },
+  {
+    "id": 50,
+    "name": "护眼绿",
+    "author": "宝玉",
+    "tags": [],
+    "date": "2025-09-06",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": false,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "50-light.webp"
+    }
+  },
+  {
+    "id": 49,
+    "name": "流光",
+    "author": "尉迟持槊吾持弓",
+    "tags": [
+      "动效",
+      "配色"
+    ],
+    "date": "2025-09-06",
+    "primaryLight": "#6E99A4",
+    "primaryDark": "#6E99A4",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "49-light.webp"
+    }
+  },
+  {
+    "id": 48,
+    "name": "羊皮卷",
+    "author": "paidax",
+    "tags": [
+      "舒适",
+      "阅读",
+      "温暖",
+      "简约"
+    ],
+    "date": "2025-08-17",
+    "primaryLight": "#C96442",
+    "primaryDark": "#C96442",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "48-light.webp",
+      "dark": "48-dark.webp"
+    }
+  },
+  {
+    "id": 47,
+    "name": "CherryStudio-by-bilibili",
+    "author": "木木",
+    "tags": [
+      "哔哩哔哩",
+      "霓虹绿",
+      "玻璃态",
+      "森系暗",
+      "春薄荷"
+    ],
+    "date": "2025-08-17",
+    "primaryLight": "#00C957",
+    "primaryDark": "#00C957",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": true,
+      "animation": true,
+      "needsNetwork": true
+    },
+    "shots": {
+      "light": "47-light.webp",
+      "dark": "47-dark.webp"
+    }
+  },
+  {
+    "id": 46,
+    "name": "绒绒奶糖",
+    "author": "Tde Tao",
+    "tags": [
+      "玻璃",
+      "透明",
+      "温暖"
+    ],
+    "date": "2025-07-30",
+    "primaryLight": "#E8A07D",
+    "primaryDark": "#E8A07D",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": true,
+      "animation": false,
+      "needsNetwork": true
+    },
+    "shots": {
+      "light": "46-light.webp",
+      "dark": "46-dark.webp"
+    }
+  },
+  {
+    "id": 45,
+    "name": "Blurberry",
+    "author": "Theowastaken",
+    "tags": [
+      "透明",
+      "玻璃",
+      "自定义背景图片"
+    ],
+    "date": "2025-07-30",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": true,
+      "animation": true,
+      "needsNetwork": true
+    },
+    "shots": {
+      "light": "45-light.webp",
+      "dark": "45-dark.webp"
+    }
+  },
+  {
+    "id": 41,
+    "name": "Catppuccin",
+    "author": "Au",
+    "tags": [
+      "Catppuccin",
+      "简约"
+    ],
+    "date": "2025-07-17",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "41-light.webp",
+      "dark": "41-dark.webp"
+    }
+  },
+  {
+    "id": 40,
+    "name": "Solarized",
+    "author": "Au",
+    "tags": [
+      "Solarized",
+      "简约"
+    ],
+    "date": "2025-07-17",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "40-light.webp",
+      "dark": "40-dark.webp"
+    }
+  },
+  {
+    "id": 38,
+    "name": "极光织梦",
+    "author": "孙闹",
+    "tags": [
+      "动效"
+    ],
+    "date": "2025-07-11",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "38-light.webp",
+      "dark": "38-dark.webp"
+    }
+  },
+  {
+    "id": 37,
+    "name": "天空之境",
+    "author": "wilderkid",
+    "tags": [
+      "玻璃",
+      "亮色"
+    ],
+    "date": "2025-06-28",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": true,
+      "animation": true,
+      "needsNetwork": true
+    },
+    "shots": {
+      "light": "37-light.webp"
+    }
+  },
+  {
+    "id": 36,
+    "name": "变色玻璃",
+    "author": "ALI",
+    "tags": [],
+    "date": "2025-06-24",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": false,
+      "dark": true,
+      "bgImage": false,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "36-light.webp"
+    }
+  },
+  {
+    "id": 35,
+    "name": "山东大学",
+    "author": "jzs",
+    "tags": [],
+    "date": "2025-06-14",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": true,
+      "animation": true,
+      "needsNetwork": true
+    },
+    "shots": {
+      "light": "35-light.webp"
+    }
+  },
+  {
+    "id": 34,
+    "name": "极简星阶",
+    "author": "Enc",
+    "tags": [
+      "简约",
+      "轻度动效"
+    ],
+    "date": "2025-06-14",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "34-light.webp",
+      "dark": "34-dark.webp"
+    }
+  },
+  {
+    "id": 31,
+    "name": "CherryYou",
+    "author": "mariahlamb",
+    "tags": [
+      "MaterialYou",
+      "透明",
+      "玻璃",
+      "Nord"
+    ],
+    "date": "2025-05-01",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": true,
+      "animation": true,
+      "needsNetwork": true
+    },
+    "shots": {
+      "light": "31-light.webp",
+      "dark": "31-dark.webp"
+    }
+  },
+  {
+    "id": 30,
+    "name": "Holo Glass",
+    "author": "Protomyst",
+    "tags": [
+      "磨砂",
+      "玻璃",
+      "MAC",
+      "蓝紫"
+    ],
+    "date": "2025-04-27",
+    "primaryLight": "#0078D4",
+    "primaryDark": "#0078D4",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": true,
+      "animation": true,
+      "needsNetwork": true
+    },
+    "shots": {
+      "light": "30-light.webp",
+      "dark": "30-dark.webp"
+    }
+  },
+  {
+    "id": 29,
+    "name": "草莓甜心MacOS (无动态特效)",
+    "author": "Ge0metry",
+    "tags": [],
+    "date": "2025-04-25",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": false,
+      "needsNetwork": true
+    },
+    "shots": {
+      "dark": "29-dark.webp"
+    }
+  },
+  {
+    "id": 28,
+    "name": "Cyberpunk",
+    "author": "aBER",
+    "tags": [],
+    "date": "2025-04-24",
+    "primaryLight": "#FF2A6D",
+    "primaryDark": "#FF2A6D",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "dark": "28-dark.webp"
+    }
+  },
+  {
+    "id": 27,
+    "name": "Grid-Line 网格线",
+    "author": "stfghly",
+    "tags": [
+      "透明",
+      "简约"
+    ],
+    "date": "2025-04-24",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": false,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "27-light.webp",
+      "dark": "27-dark.webp"
+    }
+  },
+  {
+    "id": 26,
+    "name": "cherry-studio-mid",
+    "author": "xyz349925756",
+    "tags": [
+      "cherrystudiomid"
+    ],
+    "date": "2025-04-17",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": false,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "26-light.webp",
+      "dark": "26-dark.webp"
+    }
+  },
+  {
+    "id": 24,
+    "name": "科幻",
+    "author": "Yuechen Lou",
+    "tags": [],
+    "date": "2025-04-01",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": false,
+      "bgImage": false,
+      "animation": false,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "24-light.webp",
+      "dark": "24-dark.webp"
+    }
+  },
+  {
+    "id": 23,
+    "name": "橄榄绿",
+    "author": "Ryolena",
+    "tags": [
+      "橄榄绿",
+      "小清新"
+    ],
+    "date": "2025-03-29",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": false,
+      "bgImage": false,
+      "animation": false,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "23-light.webp"
+    }
+  },
+  {
+    "id": 22,
+    "name": "亮瞎眼主弹",
+    "author": "乌拉拉",
+    "tags": [],
+    "date": "2025-03-29",
+    "primaryLight": "#00A9FF",
+    "primaryDark": "#00A9FF",
+    "flags": {
+      "light": true,
+      "dark": true,
+      "bgImage": true,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "22-light.webp"
+    }
+  },
+  {
+    "id": 21,
+    "name": "输入框RGB效果",
+    "author": "Teo",
+    "tags": [
+      "RGB",
+      "Neon",
+      "霓虹"
+    ],
+    "date": "2025-03-29",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": false,
+      "dark": true,
+      "bgImage": false,
+      "animation": true,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "21-light.webp",
+      "dark": "21-dark.webp"
+    }
+  },
+  {
+    "id": 20,
+    "name": "杏仁拿铁",
+    "author": "Kett",
+    "tags": [],
+    "date": "2025-03-29",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": false,
+      "bgImage": false,
+      "animation": false,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "20-light.webp"
+    }
+  },
+  {
+    "id": 19,
+    "name": "CherryStudio-Aero",
+    "author": "Hakadao",
+    "tags": [],
+    "date": "2025-03-28",
+    "primaryLight": "#BD93F9",
+    "primaryDark": "#BD93F9",
+    "flags": {
+      "light": true,
+      "dark": false,
+      "bgImage": false,
+      "animation": false,
+      "needsNetwork": false
+    },
+    "shots": {
+      "light": "19-light.webp",
+      "dark": "19-dark.webp"
+    }
+  },
+  {
+    "id": 17,
+    "name": "吉伊卡哇",
+    "author": "CherryStudio",
+    "tags": [
+      "绿色系"
+    ],
+    "date": "2025-03-24",
+    "primaryLight": "#46A563",
+    "primaryDark": "#46A563",
+    "flags": {
+      "light": true,
+      "dark": false,
+      "bgImage": true,
+      "animation": false,
+      "needsNetwork": true
+    },
+    "shots": {
+      "light": "17-light.webp",
+      "dark": "17-dark.webp"
+    }
+  }
+]

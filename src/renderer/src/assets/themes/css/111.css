@@ -1,0 +1,1388 @@
+/* =========================================================
+   CherryStudio Custom CSS — Swiss Theme
+   =========================================================
+
+   将 Typora「Swiss / 国际主义平面风格」主题移植到 Cherry Studio。
+
+   HOW TO USE:
+   1. 打开 Cherry Studio: 设置 -> 外观设置 -> 自定义 CSS
+   2. 将本文件全部内容粘贴进文本框，保存即可。
+   3. 推荐布局（可选，主题对大多数布局都可用）:
+      - 设置 -> 外观设置 -> 导航栏位置: 顶部
+      - 设置 -> 外观设置 -> 话题位置: 左侧
+      - 聊天页右上角设置图标 -> 消息样式: 气泡 (Bubble)
+   4. 深色/浅色模式随系统自动切换，无需手动改 CSS。
+
+   设计语言（对应 Typora 版 swiss.css）:
+   - 暖白纸感背景 + 白卡片 = 信息单元层次
+   - 深红棕 #80372b 强调色，只用于建立结构不制造情绪
+   - h2/h3 右侧 2px 延伸线、列表左侧粗红线、段落白底红框粘连卡片
+   - 直角、细线、无重阴影：秩序、理性、克制
+
+   ========================================================= */
+
+
+/* =========================
+   1. Swiss 调色板（浅色）
+   ========================= */
+:root {
+  --sw-bg: #fcf9f4;          /* 暖白纸感背景 */
+  --sw-accent: #80372b;      /* 深红棕强调色 */
+  --sw-accent-hover: #9a5240;/* 强调色 hover 亮化 */
+  --sw-text: #111111;        /* 正文 */
+  --sw-card: #ffffff;        /* 白卡片 */
+  --sw-line: #e8ddd2;        /* 细线 */
+  --sw-soft: #faf5ef;        /* 柔和底（表头/悬停） */
+  --sw-soft-2: #f4ede3;      /* 更深的柔和底 */
+  --sw-tag-bg: #fffaf6;      /* mark 标签底 */
+  --sw-muted: #80372b;       /* 弱化文字（同强调色） */
+
+  /* Tailwind / shadcn 新变量（Cherry Studio 新版主界面用） */
+  --background: #fcf9f4;
+  --foreground: #111111;
+  --card: #ffffff;
+  --card-foreground: #111111;
+  --popover: #ffffff;
+  --popover-foreground: #111111;
+  --primary: #80372b;
+  --primary-foreground: #ffffff;
+  --secondary: #faf5ef;
+  --secondary-foreground: #111111;
+  --muted: #f4ede3;
+  --muted-foreground: #7a4a3b;
+  --accent: #fffaf6;
+  --accent-foreground: #111111;
+  --destructive: #80372b;
+  --destructive-foreground: #ffffff;
+  --border: #e8ddd2;
+  --input: #e8ddd2;
+  --ring: #80372b;
+  --chart-1: #80372b;
+  --chart-2: #a66a4a;
+  --chart-3: #e8ddd2;
+  --chart-4: #c9a88a;
+  --chart-5: #5a2a1f;
+  --sidebar: #fdfbf7;
+  --sidebar-foreground: #111111;
+  --sidebar-primary: #80372b;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #faf5ef;
+  --sidebar-accent-foreground: #7a4a3b;
+  --sidebar-border: #e8ddd2;
+  --sidebar-ring: #80372b;
+
+  --font-family: "Helvetica Neue", Helvetica, Arial, "Noto Sans SC",
+    "Microsoft YaHei", "PingFang SC", sans-serif;
+  --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", monospace;
+}
+
+
+/* =========================
+   2. Swiss 调色板（深色｜暖棕黑调）
+   ========================= */
+body[theme-mode="dark"],
+body.dark {
+  --sw-bg: #1c1916;          /* 暖黑背景，保留纸感 */
+  --sw-accent: #c98b79;      /* 亮化的红棕强调色 */
+  --sw-accent-hover: #daa48f;
+  --sw-text: #e8e2da;
+  --sw-card: #24211c;        /* 深色卡片 */
+  --sw-line: #3b352e;
+  --sw-soft: #2b2722;
+  --sw-soft-2: #332e28;
+  --sw-tag-bg: #2e2923;
+  --sw-muted: #c98b79;
+
+  /* Tailwind / shadcn 新变量（深色） */
+  --background: #1c1916;
+  --foreground: #e8e2da;
+  --card: #24211c;
+  --card-foreground: #e8e2da;
+  --popover: #24211c;
+  --popover-foreground: #e8e2da;
+  --primary: #c98b79;
+  --primary-foreground: #1c1916;
+  --secondary: #2b2722;
+  --secondary-foreground: #e8e2da;
+  --muted: #332e28;
+  --muted-foreground: #b89a8d;
+  --accent: #2e2923;
+  --accent-foreground: #e8e2da;
+  --destructive: #c98b79;
+  --destructive-foreground: #1c1916;
+  --border: #3b352e;
+  --input: #3b352e;
+  --ring: #c98b79;
+  --chart-1: #c98b79;
+  --chart-2: #e0b0a0;
+  --chart-3: #3b352e;
+  --chart-4: #8a6a5e;
+  --chart-5: #5a3a2f;
+  --sidebar: #161310;
+  --sidebar-foreground: #e8e2da;
+  --sidebar-primary: #c98b79;
+  --sidebar-primary-foreground: #1c1916;
+  --sidebar-accent: #2b2722;
+  --sidebar-accent-foreground: #e8e2da;
+  --sidebar-border: #3b352e;
+  --sidebar-ring: #c98b79;
+
+  /* 兼容旧版 --color-* 变量（深色显式覆盖） */
+  --color-background: #1c1916 !important;
+  --color-background-soft: #2b2722 !important;
+  --color-background-mute: #332e28 !important;
+  --chat-background: #1c1916 !important;
+  --chat-background-user: #24211c !important;
+  --chat-background-assistant: #1c1916 !important;
+  --navbar-background: #161310 !important;
+  --color-text: #e8e2da !important;
+  --markdown-color: #e8e2da !important;
+}
+
+/* 浅色显式覆盖（兼容旧版遗留，避免被内置浅色覆盖） */
+body[theme-mode="light"],
+body.light {
+  --color-background: #fcf9f4 !important;
+  --color-background-soft: #faf5ef !important;
+  --color-background-mute: #f4ede3 !important;
+  --chat-background: #fcf9f4 !important;
+  --chat-background-user: #ffffff !important;
+  --chat-background-assistant: #fcf9f4 !important;
+  --navbar-background: #fdfbf7 !important;
+  --color-text: #111111 !important;
+  --markdown-color: #111111 !important;
+}
+
+
+/* =========================
+   3. Cherry Studio 变量映射
+   ========================= */
+body[theme-mode] {
+  /* 内容区域 */
+  --content-color: var(--sw-text);
+  --content-bgcolor: var(--sw-bg);
+  --content-bgcolor-ai: var(--sw-card);
+  --content-bgcolor-soft: var(--sw-soft);
+  --content-bgcolor-soft-soft: var(--sw-soft-2);
+  --content-bgcolor-hard: var(--sw-card);
+
+  /* 消息与输入 */
+  --message-bgcolor: var(--sw-bg);
+  --input-bgcolor: var(--sw-card);
+  --chat-background: var(--sw-bg);
+  --chat-background-user: var(--sw-card);
+  --chat-background-assistant: var(--sw-bg);
+  --color-text: var(--sw-text);
+  --markdown-color: var(--sw-text);
+
+  /* 思考块 */
+  --content-bgcolor-thinking: var(--sw-soft);
+  --content-bgcolor-thinking-border: var(--sw-line);
+  --thinking-block-bgcolor: var(--sw-soft);
+
+  /* 边框与背景 */
+  --border-color: var(--sw-line);
+  --color-background: var(--sw-bg);
+  --color-background-soft: var(--sw-soft);
+  --color-background-mute: var(--sw-soft-2);
+  --modal-background: var(--sw-card);
+
+  /* 导航栏 */
+  --navbar-background: var(--sw-bg);
+  --navbar-background-mac: var(--sw-bg);
+  --color-list-item: var(--sw-soft);
+
+  /* 主色 */
+  --color-primary: var(--sw-accent);
+  --color-primary-soft: var(--sw-accent);
+  --color-primary-mute: var(--sw-accent);
+}
+
+
+/* =========================
+   4. Ant Design 变量映射
+   ========================= */
+:root, body[theme-mode] {
+  --ant-color-primary: var(--sw-accent);
+  --ant-color-link: var(--sw-accent);
+  --ant-color-text: var(--sw-text);
+  --ant-color-text-secondary: var(--sw-muted);
+  --ant-color-border: var(--sw-line);
+  --ant-color-split: var(--sw-line);
+  --ant-color-bg-layout: var(--sw-bg);
+  --ant-color-bg-container: var(--sw-card);
+  --ant-color-bg-elevated: var(--sw-card);
+  --ant-color-fill: var(--sw-soft);
+  --ant-color-fill-secondary: var(--sw-soft-2);
+}
+
+
+/* =========================
+   4b. 布局容器显式背景（确保 Tailwind 变量生效）
+   ========================= */
+body, #root {
+  background: var(--background) !important;
+  color: var(--foreground) !important;
+}
+
+html {
+  background: var(--background);
+}
+
+.ant-layout, .ant-layout-has-sider, #root > .ant-layout {
+  background: transparent !important;
+}
+
+#content-container,
+#content-container #messages,
+#content-container #chat,
+#messages {
+  background: var(--background) !important;
+}
+
+/* 侧边栏用 --sidebar */
+.ant-layout-sider,
+.ant-layout-sider-children,
+#app-sidebar,
+div[class*="Sider-"] {
+  background: var(--sidebar) !important;
+}
+
+/* 聊天气泡背景显式指定，避免继承错误 */
+.message-assistant .bubble,
+div[class*="message-assistant"] .bubble,
+.message-assistant .message-content-container,
+div[class*="message-assistant"] .message-content-container {
+  background: var(--background) !important;
+  border-color: var(--border) !important;
+}
+
+.message-user .bubble,
+div[class*="message-user"] .bubble,
+.message-user .message-content-container,
+div[class*="message-user"] .message-content-container {
+  background: var(--chat-background-user) !important;
+  color: var(--sw-text) !important;
+  border-color: var(--sw-accent) !important;
+}
+
+
+/* =========================
+   5. 全局字体与渲染
+   ========================= */
+body {
+  font-family: var(--font-family) !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+.markdown,
+.markdown-body {
+  font-family: var(--font-family);
+  line-height: 1.6;
+}
+
+.ant-btn-primary {
+  background-color: var(--sw-accent) !important;
+  border-color: var(--sw-accent) !important;
+}
+.ant-btn-primary:not(:disabled):hover {
+  background-color: var(--sw-accent-hover) !important;
+  border-color: var(--sw-accent-hover) !important;
+}
+
+/* =========================================================
+   6. Markdown 渲染 · 瑞士版式（AI 消息内）
+   =========================================================
+   完整还原 Typora swiss.css 的版式：
+   - 段落 = 白底红框卡片，连续段落自动粘连
+   - h2/h3 标题右侧 2px 红棕延伸线
+   - 列表 = 左侧 4px 粗红线卡片
+   - 引用 / 表格 / 代码 = 细线白卡，直角，无重阴影
+   ========================================================= */
+
+.message-assistant .markdown,
+.message-assistant .markdown-body,
+div[class*="message-assistant"] .markdown,
+div[class*="message-assistant"] .markdown-body,
+.ant-collapse-content-box .markdown,
+.ant-collapse-content-box .markdown-body {
+  color: var(--sw-text);
+  font-family: var(--font-family);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ---- 标记文字与行内样式 ---- */
+.message-assistant .markdown strong,
+div[class*="message-assistant"] .markdown strong {
+  font-weight: 700;
+  color: var(--sw-text);
+}
+
+.message-assistant .markdown em,
+div[class*="message-assistant"] .markdown em {
+  color: var(--sw-muted);
+  font-style: normal;
+}
+
+.message-assistant .markdown mark,
+div[class*="message-assistant"] .markdown mark {
+  background: var(--sw-tag-bg);
+  color: var(--sw-accent);
+  border: 1px solid var(--sw-line);
+  padding: 0.05em 0.35em;
+}
+
+.message-assistant .markdown a,
+div[class*="message-assistant"] .markdown a {
+  color: var(--sw-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.message-assistant .markdown hr,
+div[class*="message-assistant"] .markdown hr {
+  border: 0;
+  border-top: 1px solid var(--sw-line);
+  margin: 1.2em 0;
+}
+
+/* ---- 标题层级：结构入口，不是装饰 ---- */
+.message-assistant .markdown h1,
+.message-assistant .markdown h2,
+.message-assistant .markdown h3,
+.message-assistant .markdown h4,
+.message-assistant .markdown h5,
+.message-assistant .markdown h6,
+div[class*="message-assistant"] .markdown h1,
+div[class*="message-assistant"] .markdown h2,
+div[class*="message-assistant"] .markdown h3,
+div[class*="message-assistant"] .markdown h4,
+div[class*="message-assistant"] .markdown h5,
+div[class*="message-assistant"] .markdown h6,
+.ant-collapse-content-box .markdown h1,
+.ant-collapse-content-box .markdown h2,
+.ant-collapse-content-box .markdown h3,
+.ant-collapse-content-box .markdown h4,
+.ant-collapse-content-box .markdown h5,
+.ant-collapse-content-box .markdown h6 {
+  color: var(--sw-text);
+  font-weight: 700;
+  line-height: 1.25;
+  margin-top: 1.1em;
+  margin-bottom: 0.5em;
+}
+
+.message-assistant .markdown h1,
+div[class*="message-assistant"] .markdown h1,
+.ant-collapse-content-box .markdown h1 {
+  font-size: 1.7em;
+  letter-spacing: -0.03em;
+  padding: 10px 14px 8px;
+  background: var(--sw-card);
+  border-left: 5px solid var(--sw-accent);
+  border-bottom: 1px solid var(--sw-line);
+  margin-top: 0.4em;
+  margin-bottom: 0.75em;
+}
+
+.message-assistant .markdown h2,
+.message-assistant .markdown h3,
+.message-assistant .markdown h4,
+.message-assistant .markdown h5,
+.message-assistant .markdown h6,
+div[class*="message-assistant"] .markdown h2,
+div[class*="message-assistant"] .markdown h3,
+div[class*="message-assistant"] .markdown h4,
+div[class*="message-assistant"] .markdown h5,
+div[class*="message-assistant"] .markdown h6,
+.ant-collapse-content-box .markdown h2,
+.ant-collapse-content-box .markdown h3,
+.ant-collapse-content-box .markdown h4,
+.ant-collapse-content-box .markdown h5,
+.ant-collapse-content-box .markdown h6 {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.message-assistant .markdown h2,
+div[class*="message-assistant"] .markdown h2,
+.ant-collapse-content-box .markdown h2 {
+  font-size: 1.45em;
+  gap: 16px;
+}
+
+.message-assistant .markdown h3,
+div[class*="message-assistant"] .markdown h3,
+.ant-collapse-content-box .markdown h3 {
+  font-size: 1.22em;
+}
+
+.message-assistant .markdown h4,
+.message-assistant .markdown h5,
+.message-assistant .markdown h6,
+div[class*="message-assistant"] .markdown h4,
+div[class*="message-assistant"] .markdown h5,
+div[class*="message-assistant"] .markdown h6,
+.ant-collapse-content-box .markdown h4,
+.ant-collapse-content-box .markdown h5,
+.ant-collapse-content-box .markdown h6 {
+  font-size: 1.05em;
+}
+
+/* 标题右侧延伸线（瑞士风格的关键符号） */
+.message-assistant .markdown h2::after,
+.message-assistant .markdown h3::after,
+.message-assistant .markdown h4::after,
+.message-assistant .markdown h5::after,
+.message-assistant .markdown h6::after,
+div[class*="message-assistant"] .markdown h2::after,
+div[class*="message-assistant"] .markdown h3::after,
+div[class*="message-assistant"] .markdown h4::after,
+div[class*="message-assistant"] .markdown h5::after,
+div[class*="message-assistant"] .markdown h6::after,
+.ant-collapse-content-box .markdown h2::after,
+.ant-collapse-content-box .markdown h3::after,
+.ant-collapse-content-box .markdown h4::after,
+.ant-collapse-content-box .markdown h5::after,
+.ant-collapse-content-box .markdown h6::after {
+  content: "";
+  flex: 1 1 auto;
+  background: var(--sw-accent);
+  opacity: 0.8;
+}
+
+.message-assistant .markdown h2::after,
+div[class*="message-assistant"] .markdown h2::after,
+.ant-collapse-content-box .markdown h2::after {
+  height: 2px;
+}
+
+.message-assistant .markdown h3::after,
+.message-assistant .markdown h4::after,
+.message-assistant .markdown h5::after,
+.message-assistant .markdown h6::after,
+div[class*="message-assistant"] .markdown h3::after,
+div[class*="message-assistant"] .markdown h4::after,
+div[class*="message-assistant"] .markdown h5::after,
+div[class*="message-assistant"] .markdown h6::after,
+.ant-collapse-content-box .markdown h3::after,
+.ant-collapse-content-box .markdown h4::after,
+.ant-collapse-content-box .markdown h5::after,
+.ant-collapse-content-box .markdown h6::after {
+  height: 1.5px;
+}
+
+/* ---- 正文段落：白底红框卡片，连续段落自动粘连 ---- */
+.message-assistant .markdown > p,
+div[class*="message-assistant"] .markdown > p,
+.ant-collapse-content-box .markdown > p {
+  background: var(--sw-card);
+  border: 1px solid var(--sw-accent);
+  padding: 10px 14px;
+  margin-top: 0.6em;
+  margin-bottom: 0;
+}
+
+.message-assistant .markdown > p + p,
+div[class*="message-assistant"] .markdown > p + p,
+.ant-collapse-content-box .markdown > p + p {
+  border-top: 0;
+  padding-top: 4px;
+  padding-bottom: 10px;
+  margin-top: -1px;
+}
+
+/* 引用内的段落不套卡片 */
+.message-assistant .markdown blockquote p,
+div[class*="message-assistant"] .markdown blockquote p,
+.ant-collapse-content-box .markdown blockquote p {
+  background: transparent;
+  border: 0;
+  margin: 0 0 0.4em;
+  padding: 0;
+}
+
+/* ---- 列表：比正文更强的「条目感」 ---- */
+.message-assistant .markdown ul,
+.message-assistant .markdown ol,
+.message-assistant .markdown > ul,
+.message-assistant .markdown > ol,
+div[class*="message-assistant"] .markdown ul,
+div[class*="message-assistant"] .markdown ol,
+.ant-collapse-content-box .markdown ul,
+.ant-collapse-content-box .markdown ol {
+  background: var(--sw-card);
+  border: 1px solid var(--sw-accent);
+  border-left: 4px solid var(--sw-accent);
+  padding: 10px 14px 8px 26px;
+  margin: 0.6em 0 0.9em;
+  line-height: 1.55;
+}
+
+.message-assistant .markdown li,
+div[class*="message-assistant"] .markdown li,
+.ant-collapse-content-box .markdown li {
+  padding-left: 0.15em;
+}
+
+.message-assistant .markdown li + li,
+div[class*="message-assistant"] .markdown li + li,
+.ant-collapse-content-box .markdown li + li {
+  margin-top: 0.28em;
+}
+
+.message-assistant .markdown li p,
+div[class*="message-assistant"] .markdown li p,
+.ant-collapse-content-box .markdown li p {
+  margin: 0;
+}
+
+/* 嵌套列表：去掉卡片，只留细线 */
+.message-assistant .markdown li > ul,
+.message-assistant .markdown li > ol,
+div[class*="message-assistant"] .markdown li > ul,
+div[class*="message-assistant"] .markdown li > ol,
+.ant-collapse-content-box .markdown li > ul,
+.ant-collapse-content-box .markdown li > ol {
+  background: transparent;
+  border: 0;
+  border-left: 2px solid var(--sw-line);
+  margin: 0.25em 0;
+  padding: 0 0 0 1em;
+}
+
+/* ---- 引用块 ---- */
+.message-assistant .markdown blockquote,
+div[class*="message-assistant"] .markdown blockquote,
+.ant-collapse-content-box .markdown blockquote {
+  background: var(--sw-card);
+  border: 1px solid var(--sw-accent);
+  border-left: 4px solid var(--sw-accent);
+  margin: 0.8em 0 1em;
+  padding: 10px 14px;
+  color: var(--sw-muted);
+}
+
+/* ---- 表格：网格感 ---- */
+.message-assistant .markdown table,
+div[class*="message-assistant"] .markdown table,
+.ant-collapse-content-box .markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.8em 0 1.1em;
+  background: var(--sw-card);
+  border: 1px solid var(--sw-accent);
+}
+
+.message-assistant .markdown th,
+.message-assistant .markdown td,
+div[class*="message-assistant"] .markdown th,
+div[class*="message-assistant"] .markdown td,
+.ant-collapse-content-box .markdown th,
+.ant-collapse-content-box .markdown td {
+  border: 1px solid var(--sw-line);
+  padding: 7px 11px;
+  background: var(--sw-card);
+  vertical-align: top;
+}
+
+.message-assistant .markdown th,
+div[class*="message-assistant"] .markdown th,
+.ant-collapse-content-box .markdown th {
+  font-weight: 700;
+  background: var(--sw-soft);
+  text-align: left;
+  color: var(--sw-accent);
+}
+
+/* ---- 代码：白底细线直角，延续克制原则 ---- */
+.message-assistant .markdown > pre,
+.message-assistant .markdown pre,
+div[class*="message-assistant"] .markdown > pre,
+div[class*="message-assistant"] .markdown pre,
+.ant-collapse-content-box .markdown > pre,
+.ant-collapse-content-box .markdown pre {
+  border: 1px solid var(--sw-line);
+  background: var(--sw-card);
+  border-radius: 0;
+  padding: 12px 14px;
+  margin: 0.8em 0 1em;
+  line-height: 1.5;
+  box-shadow: none;
+}
+
+.message-assistant .markdown pre code,
+div[class*="message-assistant"] .markdown pre code,
+.ant-collapse-content-box .markdown pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  font-size: 0.92em;
+}
+
+.message-assistant .markdown code,
+div[class*="message-assistant"] .markdown code,
+.ant-collapse-content-box .markdown code {
+  font-family: var(--font-family-mono);
+  font-size: 0.9em;
+  background: var(--sw-card);
+  border: 1px solid var(--sw-line);
+  border-radius: 0;
+  padding: 1px 4px;
+  color: var(--sw-text);
+}
+
+/* ---- 图片 ---- */
+.message-assistant .markdown img,
+div[class*="message-assistant"] .markdown img,
+.ant-collapse-content-box .markdown img {
+  max-width: 100%;
+}
+
+
+/* ---- 语法高亮（浅色 · GitHub 风格，沿用 swiss.css） ---- */
+.message-assistant .markdown .hljs,
+div[class*="message-assistant"] .markdown .hljs {
+  color: #24292f;
+  background: transparent;
+}
+.message-assistant .markdown .hljs-comment,
+.message-assistant .markdown .hljs-quote {
+  color: #6e7781;
+  font-style: italic;
+}
+.message-assistant .markdown .hljs-keyword,
+.message-assistant .markdown .hljs-selector-tag,
+.message-assistant .markdown .hljs-literal {
+  color: #cf222e;
+}
+.message-assistant .markdown .hljs-string,
+.message-assistant .markdown .hljs-doctag,
+.message-assistant .markdown .hljs-regexp {
+  color: #0a3069;
+}
+.message-assistant .markdown .hljs-title,
+.message-assistant .markdown .hljs-section,
+.message-assistant .markdown .hljs-name {
+  color: #8250df;
+}
+.message-assistant .markdown .hljs-number,
+.message-assistant .markdown .hljs-built_in,
+.message-assistant .markdown .hljs-type {
+  color: #0550ae;
+}
+.message-assistant .markdown .hljs-variable,
+.message-assistant .markdown .hljs-template-variable {
+  color: #953800;
+}
+.message-assistant .markdown .hljs-attr {
+  color: #24292f;
+}
+
+
+/* ---- 语法高亮（深色 · GitHub Dark 风格） ---- */
+body[theme-mode="dark"] .message-assistant .markdown .hljs,
+body[theme-mode="dark"] div[class*="message-assistant"] .markdown .hljs {
+  color: #e8e2da;
+}
+body[theme-mode="dark"] .message-assistant .markdown .hljs-comment,
+body[theme-mode="dark"] .message-assistant .markdown .hljs-quote {
+  color: #8b949e;
+  font-style: italic;
+}
+body[theme-mode="dark"] .message-assistant .markdown .hljs-keyword,
+body[theme-mode="dark"] .message-assistant .markdown .hljs-selector-tag,
+body[theme-mode="dark"] .message-assistant .markdown .hljs-literal {
+  color: #ff7b72;
+}
+body[theme-mode="dark"] .message-assistant .markdown .hljs-string,
+body[theme-mode="dark"] .message-assistant .markdown .hljs-doctag,
+body[theme-mode="dark"] .message-assistant .markdown .hljs-regexp {
+  color: #a5d6ff;
+}
+body[theme-mode="dark"] .message-assistant .markdown .hljs-title,
+body[theme-mode="dark"] .message-assistant .markdown .hljs-section,
+body[theme-mode="dark"] .message-assistant .markdown .hljs-name {
+  color: #d2a8ff;
+}
+body[theme-mode="dark"] .message-assistant .markdown .hljs-number,
+body[theme-mode="dark"] .message-assistant .markdown .hljs-built_in,
+body[theme-mode="dark"] .message-assistant .markdown .hljs-type {
+  color: #79c0ff;
+}
+body[theme-mode="dark"] .message-assistant .markdown .hljs-variable,
+body[theme-mode="dark"] .message-assistant .markdown .hljs-template-variable {
+  color: #ffa657;
+}
+body[theme-mode="dark"] .message-assistant .markdown .hljs-attr {
+  color: #e8e2da;
+}
+
+
+/* =========================================================
+   7. 用户消息（瑞士卡片 · 白底/深底 + 左侧粗红线）
+   =========================================================
+   之前为实心红棕铺满（#80372b），与瑞士“克制”相悖，现改为与
+   Typora 一致的卡片语言：气泡本身即卡片（白底红框 / 深底红框），
+   文字用 --sw-text，深浅自动跟随。
+   ========================================================= */
+.message-user .markdown,
+.message-user .markdown-body,
+div[class*="message-user"] .markdown,
+div[class*="message-user"] .markdown-body {
+  color: var(--sw-text);
+  font-family: var(--font-family);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.message-user .markdown > p,
+div[class*="message-user"] .markdown > p {
+  background: transparent;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  color: var(--sw-text);
+}
+
+.message-user .markdown ul,
+.message-user .markdown ol,
+.message-user .markdown > ul,
+.message-user .markdown > ol,
+div[class*="message-user"] .markdown ul,
+div[class*="message-user"] .markdown ol {
+  background: var(--sw-card);
+  border: 1px solid var(--sw-accent);
+  border-left: 4px solid var(--sw-accent);
+  padding: 10px 14px 8px 26px;
+  margin: 0.6em 0;
+  line-height: 1.55;
+  color: var(--sw-text);
+}
+
+.message-user .markdown li,
+div[class*="message-user"] .markdown li {
+  padding-left: 0.15em;
+}
+
+.message-user .markdown li + li,
+div[class*="message-user"] .markdown li + li {
+  margin-top: 0.28em;
+}
+
+.message-user .markdown li p,
+div[class*="message-user"] .markdown li p {
+  margin: 0;
+}
+
+.message-user .markdown li > ul,
+.message-user .markdown li > ol,
+div[class*="message-user"] .markdown li > ul,
+div[class*="message-user"] .markdown li > ol {
+  background: transparent;
+  border: 0;
+  border-left: 2px solid var(--sw-line);
+  margin: 0.25em 0;
+  padding: 0 0 0 1em;
+}
+
+.message-user .markdown blockquote,
+div[class*="message-user"] .markdown blockquote {
+  background: var(--sw-card);
+  border: 1px solid var(--sw-accent);
+  border-left: 4px solid var(--sw-accent);
+  padding: 10px 14px;
+  margin: 0.6em 0;
+  color: var(--sw-muted);
+}
+
+.message-user .markdown blockquote p,
+div[class*="message-user"] .markdown blockquote p {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0 0 0.3em;
+}
+
+.message-user .markdown h1,
+.message-user .markdown h2,
+.message-user .markdown h3,
+.message-user .markdown h4,
+.message-user .markdown h5,
+.message-user .markdown h6,
+div[class*="message-user"] .markdown h1,
+div[class*="message-user"] .markdown h2,
+div[class*="message-user"] .markdown h3,
+div[class*="message-user"] .markdown h4,
+div[class*="message-user"] .markdown h5,
+div[class*="message-user"] .markdown h6 {
+  color: var(--sw-text);
+  background: transparent;
+  border: 0;
+  line-height: 1.25;
+  margin: 0.8em 0 0.4em;
+}
+
+.message-user .markdown h1,
+div[class*="message-user"] .markdown h1 {
+  font-size: 1.55em;
+  letter-spacing: -0.03em;
+  padding: 6px 12px 6px;
+  background: var(--sw-card);
+  border-left: 5px solid var(--sw-accent);
+  border-bottom: 1px solid var(--sw-line);
+}
+
+.message-user .markdown h2,
+.message-user .markdown h3,
+.message-user .markdown h4,
+.message-user .markdown h5,
+.message-user .markdown h6,
+div[class*="message-user"] .markdown h2,
+div[class*="message-user"] .markdown h3,
+div[class*="message-user"] .markdown h4,
+div[class*="message-user"] .markdown h5,
+div[class*="message-user"] .markdown h6 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.message-user .markdown h2,
+div[class*="message-user"] .markdown h2 {
+  font-size: 1.35em;
+}
+
+.message-user .markdown h3,
+div[class*="message-user"] .markdown h3 {
+  font-size: 1.18em;
+}
+
+.message-user .markdown h2::after,
+.message-user .markdown h3::after,
+.message-user .markdown h4::after,
+.message-user .markdown h5::after,
+.message-user .markdown h6::after,
+div[class*="message-user"] .markdown h2::after,
+div[class*="message-user"] .markdown h3::after,
+div[class*="message-user"] .markdown h4::after,
+div[class*="message-user"] .markdown h5::after,
+div[class*="message-user"] .markdown h6::after {
+  content: "";
+  flex: 1 1 auto;
+  height: 1.5px;
+  background: var(--sw-accent);
+  opacity: 0.8;
+}
+
+.message-user .markdown strong,
+div[class*="message-user"] .markdown strong {
+  color: var(--sw-text);
+  font-weight: 700;
+}
+
+.message-user .markdown em,
+div[class*="message-user"] .markdown em {
+  color: var(--sw-muted);
+  font-style: normal;
+}
+
+.message-user .markdown mark,
+div[class*="message-user"] .markdown mark {
+  background: var(--sw-tag-bg);
+  color: var(--sw-accent);
+  border: 1px solid var(--sw-line);
+  padding: 0.05em 0.35em;
+}
+
+.message-user .markdown a,
+div[class*="message-user"] .markdown a {
+  color: var(--sw-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.message-user .markdown hr,
+div[class*="message-user"] .markdown hr {
+  border: 0;
+  border-top: 1px solid var(--sw-line);
+  margin: 1em 0;
+}
+
+.message-user .markdown code,
+div[class*="message-user"] .markdown code {
+  font-family: var(--font-family-mono);
+  font-size: 0.9em;
+  background: var(--sw-card);
+  border: 1px solid var(--sw-line);
+  border-radius: 0;
+  padding: 1px 4px;
+  color: var(--sw-text);
+}
+
+.message-user .markdown pre,
+.message-user .markdown > pre,
+div[class*="message-user"] .markdown pre,
+div[class*="message-user"] .markdown > pre {
+  background: var(--sw-card);
+  border: 1px solid var(--sw-line);
+  border-radius: 0;
+  padding: 12px 14px;
+  margin: 0.6em 0;
+}
+
+.message-user .markdown pre code,
+div[class*="message-user"] .markdown pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: inherit;
+}
+
+.message-user .markdown table,
+div[class*="message-user"] .markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.6em 0;
+  background: var(--sw-card);
+  border: 1px solid var(--sw-accent);
+}
+
+.message-user .markdown th,
+.message-user .markdown td,
+div[class*="message-user"] .markdown th,
+div[class*="message-user"] .markdown td {
+  border: 1px solid var(--sw-line);
+  padding: 7px 11px;
+  background: var(--sw-card);
+  vertical-align: top;
+  color: var(--sw-text);
+}
+
+.message-user .markdown th,
+div[class*="message-user"] .markdown th {
+  background: var(--sw-soft);
+  color: var(--sw-accent);
+  font-weight: 700;
+  text-align: left;
+}
+
+.message-user .markdown .hljs,
+div[class*="message-user"] .markdown .hljs {
+  color: #24292f;
+  background: transparent;
+}
+
+body[theme-mode="dark"] .message-user .markdown .hljs,
+body[theme-mode="dark"] div[class*="message-user"] .markdown .hljs {
+  color: #e8e2da;
+}
+
+
+/* =========================
+   8. 聊天气泡（直角 + 左边界线）
+   ========================= */
+
+/* 取消圆角，保留瑞士的直角特征 */
+.bubble {
+  border-radius: unset !important;
+}
+
+/* AI 消息容器左侧细线，呼应版面的网格感 */
+.message-assistant .bubble,
+div[class*="message-assistant"] .bubble {
+  border-left: 1px solid var(--sw-line) !important;
+}
+
+/* 用户消息：瑞士卡片（白底红框 + 左侧 4px 粗线），克制而非实心铺色 */
+.message-user .bubble,
+div[class*="message-user"] .bubble {
+  border: 1px solid var(--sw-accent) !important;
+  border-left: 4px solid var(--sw-accent) !important;
+}
+
+.message-user .message-content-container {
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+/* 消息列表底部留白 */
+#messages {
+  padding-bottom: 50px !important;
+}
+
+
+/* =========================
+   9. 侧边栏话题列表（去装饰，留结构）
+   ========================= */
+
+/* 隐藏时间 */
+.topics-tab .time,
+.draggable-content .time {
+  display: none !important;
+}
+
+/* 去掉边框/分割线 */
+.ant-dropdown-trigger.active {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 列表项内边距与间距 */
+.ant-dropdown-trigger.active,
+.ant-dropdown-trigger {
+  padding: 6px 8px !important;
+  margin-bottom: 0px !important;
+  margin-top: 0px !important;
+}
+
+.draggable-content,
+div[data-rfd-draggable-context-id] {
+  padding-bottom: 1px !important;
+}
+
+/* 字体大小 */
+.draggable-content * {
+  font-size: 14px;
+}
+
+/* 选中态与 hover 态：柔和底、直角 */
+.topics-tab .ant-dropdown-trigger.active,
+.topics-tab .ant-dropdown-trigger:hover {
+  background-color: var(--sw-soft) !important;
+  border-radius: 4px !important;
+}
+
+
+/* =========================
+   10. 顶部 Tab 栏
+   ========================= */
+
+/* 整个 Tab 列表的内边距 */
+.tabs-sortable {
+  padding: 4px !important;
+}
+
+/* Tab 文本的字体与字号 */
+.tabs-sortable span {
+  font-family: var(--font-family);
+  font-size: 14px;
+}
+
+/* Tab 中的 SVG 图标尺寸 */
+.tabs-sortable svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* 可交互的按钮区域 */
+.tabs-sortable div[role="button"] {
+  border-radius: 4px !important;
+  padding: 2px !important;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.tabs-sortable div[role="button"]:hover {
+  background-color: var(--sw-soft) !important;
+}
+
+/* 按钮内部的文本/内容容器 */
+.tabs-sortable div[role="button"] > div {
+  padding: 4px 6px 4px 8px !important;
+  min-width: 0 !important;
+}
+
+/* 关闭按钮：默认隐藏，hover 显示 */
+.tabs-sortable .close-button {
+  opacity: 0 !important;
+  width: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden;
+  transition: opacity 0.2s ease, width 0.5s ease, padding 0.2s ease;
+}
+
+.tabs-sortable div[role="button"]:hover .close-button {
+  opacity: 1 !important;
+  width: 14px !important;
+  padding: 0 2px !important;
+}
+
+/* 未选中的 Tab：隐藏文字，仅保留图标 */
+/*
+   注意：下面的动态哈希类名 .dSUkUk 可能在软件更新后失效，
+   失效时仅影响「未选中标签折叠成图标」这一条体验，不影响主题整体。
+*/
+.tabs-sortable .dSUkUk span.sc-efcRga {
+  opacity: 0 !important;
+  max-width: 0 !important;
+  transition: opacity 0.2s ease, max-width 0.8s ease;
+}
+
+.tabs-sortable .dSUkUk:hover span.sc-efcRga {
+  opacity: 1 !important;
+  max-width: 80px !important;
+  transition: opacity 0.2s ease, max-width 0.8s ease;
+}
+
+/* + 号按钮对齐 */
+.tab-scroll-container > div > div:has(.anticon-plus) {
+  margin-top: 6px !important;
+}
+
+/* Tab 区域底部边框线 */
+div:has(.tab-scroll-container) {
+  border-bottom-width: 1px;
+  border-color: var(--sw-line);
+}
+
+
+/* =========================
+   11. 输入框（白底 · 细线 · 焦点红棕）
+   ========================= */
+
+/* 输入框容器样式 */
+.inputbar {
+  border-radius: 10px !important;
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+  margin-bottom: 10px !important;
+}
+
+/* 输入框文本样式 */
+#inputbar textarea {
+  font-size: 15px !important;
+  font-family: var(--font-family) !important;
+  padding: 12px 24px 0px !important;
+}
+
+/* 输入框：无重阴影，细线 + 白底（浅色） */
+#inputbar {
+  background: var(--sw-card) !important;
+  border: 1px solid var(--sw-line) !important;
+  box-shadow: none !important;
+}
+
+#inputbar:focus-within {
+  border-color: var(--sw-accent) !important;
+}
+
+/* 输入框（深色） */
+body[theme-mode='dark'] #inputbar {
+  background: var(--sw-card) !important;
+  border: 1px solid var(--sw-line) !important;
+  box-shadow: none !important;
+}
+
+body[theme-mode='dark'] #inputbar:focus-within {
+  border-color: var(--sw-accent) !important;
+}
+
+
+/* =========================
+   12. 工具栏（+ 号展开）
+   ========================= */
+
+/* 默认收起 */
+.inputbar-container .ant-dropdown-trigger {
+  max-width: 36px !important;
+  overflow: hidden !important;
+  transition: max-width 0.3s ease !important;
+}
+
+/* + 号图标 */
+.inputbar-container .ant-dropdown-trigger::before {
+  content: '+' !important;
+  font-size: 28px !important;
+  font-family: var(--font-family) !important;
+  font-weight: 300 !important;
+  color: var(--sw-accent) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 30px !important;
+  height: 30px !important;
+  flex-shrink: 0 !important;
+  cursor: pointer !important;
+  padding: 0px 10px 8px 0px !important;
+  margin-left: 6px !important;
+}
+
+/* 工具按钮默认隐藏 */
+.inputbar-container .ant-dropdown-trigger div[data-rfd-droppable-id] {
+  opacity: 0 !important;
+  transition: opacity 0.2s ease !important;
+}
+
+/* hover 展开 */
+.inputbar-container .ant-dropdown-trigger:hover {
+  max-width: 1000px !important;
+}
+
+.inputbar-container .ant-dropdown-trigger:hover div[data-rfd-droppable-id] {
+  opacity: 1 !important;
+}
+
+
+/* =========================
+   13. 发送按钮与翻译按钮
+   ========================= */
+
+/* 发送按钮容器 */
+.inputbar-container div:has(.icon-ic_send) {
+  margin-right: 2px;
+  margin-bottom: 6px;
+}
+
+/* 发送按钮：强调色红棕 */
+i.icon-ic_send {
+  background-color: var(--sw-accent) !important;
+  color: #FFFFFF !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 6px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 0 !important;
+  transition: background-color 0.2s ease !important;
+  cursor: pointer !important;
+}
+
+i.icon-ic_send:hover {
+  background-color: var(--sw-accent-hover) !important;
+}
+
+/* 发送按钮箭头图标 */
+i.icon-ic_send::before {
+  content: '' !important;
+  display: block !important;
+  width: 18px !important;
+  height: 18px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256' fill='white'%3E%3Cpath d='M208.49,120.49a12,12,0,0,1-17,0L140,69V216a12,12,0,0,1-24,0V69L64.49,120.49a12,12,0,0,1-17-17l72-72a12,12,0,0,1,17,0l72,72A12,12,0,0,1,208.49,120.49Z'/%3E%3C/svg%3E") !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+
+/* 翻译按钮：默认隐藏，hover 父容器时显示 */
+.inputbar-container button:has(.lucide-languages) {
+  opacity: 0 !important;
+  transition: opacity 0.2s ease;
+}
+
+.inputbar-container div:has(.icon-ic_send):hover > button:has(.lucide-languages) {
+  opacity: 1 !important;
+}
+
+/* 打断/停止按钮 */
+button:has(.lucide-circle-pause) {
+  background-color: transparent !important;
+  color: var(--sw-text) !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 6px !important;
+  border: 1px solid var(--sw-line) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 0 !important;
+  transition: background-color 0.2s ease !important;
+  cursor: pointer !important;
+  animation: swissFadeIn 2s ease-out;
+}
+
+@keyframes swissFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+button:has(.lucide-circle-pause) svg {
+  display: none !important;
+}
+
+button:has(.lucide-circle-pause):hover {
+  background-color: var(--sw-soft) !important;
+}
+
+/* 浅色：深色打断图标 */
+button:has(.lucide-circle-pause)::before {
+  content: '' !important;
+  display: block !important;
+  width: 18px !important;
+  height: 18px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256' fill='%2380372B'%3E%3Cpath d='M128,20A108,108,0,1,0,236,128,108.12,108.12,0,0,0,128,20Zm0,192a84,84,0,1,1,84-84A84.09,84.09,0,0,1,128,212Zm40-112v56a12,12,0,0,1-12,12H100a12,12,0,0,1-12-12V100a12,12,0,0,1,12-12h56A12,12,0,0,1,168,100Z'/%3E%3C/svg%3E") !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+
+/* 深色：浅色打断图标 */
+body[theme-mode='dark'] button:has(.lucide-circle-pause)::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256' fill='%23E8E2DA'%3E%3Cpath d='M128,20A108,108,0,1,0,236,128,108.12,108.12,0,0,0,128,20Zm0,192a84,84,0,1,1,84-84A84.09,84.09,0,0,1,128,212Zm40-112v56a12,12,0,0,1-12,12H100a12,12,0,0,1-12-12V100a12,12,0,0,1,12-12h56A12,12,0,0,1,168,100Z'/%3E%3C/svg%3E") !important;
+}
+
+
+/* =========================
+   14. 模型列表栏渐变遮罩
+   ========================= */
+
+.home-navbar,
+.agent-navbar {
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+.home-navbar::after,
+.agent-navbar::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: -40px !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 40px !important;
+  background: linear-gradient(to bottom,
+    var(--sw-bg) 0%,
+    color-mix(in srgb, var(--sw-bg) 70%, transparent) 30%,
+    color-mix(in srgb, var(--sw-bg) 30%, transparent) 60%,
+    transparent 100%
+  ) !important;
+  pointer-events: none !important;
+  z-index: 10 !important;
+}
+
+
+/* =========================
+   15. 滚动条与细节
+   ========================= */
+
+/* 细线风格滚动条 */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--sw-line);
+  border: 2px solid var(--sw-bg);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sw-accent);
+  opacity: 0.7;
+}
+
+/* 占位文字用弱化色 */
+#inputbar textarea::placeholder {
+  color: var(--sw-muted) !important;
+  opacity: 0.6;
+}

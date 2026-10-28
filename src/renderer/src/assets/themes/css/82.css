@@ -1,0 +1,24 @@
+:root {
+  --color-black-soft: #FFF2D4;
+}
+
+body[theme-mode="light"] {
+  --color-background: linear-gradient(150deg, #fffbe0 10%, #ffc9db 60%, #d8c4ff 90%);
+  --color-background-soft: linear-gradient(150deg, #FFF6DC 10%, #FFE6F0 60%, #F5F0FF 90%);
+  --color-background-mute: linear-gradient(150deg, #FFF6DCaa 10%, #FFE6F0aa 60%, #F0E6FFaa 90%);
+  --navbar-background: linear-gradient(150deg, #FFF8E6 10%, #FFF0F5 60%, #F5F0FF 90%);
+  --chat-background: linear-gradient(150deg, #FFF8E6ee 10%, #FFF0F5ee 60%, #F5F0FFee 90%);
+  --color-white: #FFFFFF;
+}
+body[theme-mode="light"] #content-container {
+  background: linear-gradient(150deg, #FFF8E6 20%, #FFF0F5 60%, #c5a8ff 90%) !important;
+}
+
+[class*="chat-background"] {
+  transition: background 0.3s ease;
+}
+
+body {
+  background: linear-gradient(150deg, #FFF0C4 20%, #FFD6E7 60%, #E8D6FF 90%);
+  min-height: 100vh;
+}

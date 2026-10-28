@@ -1,0 +1,480 @@
+/* Cyberpunk Neon Theme — Dark Only (v1.0) */
+
+/* Core neon palette */
+:root {
+  --neon-primary: #00eaff;
+  --neon-secondary: #ff00ff;
+  --neon-accent: #00ff9f;
+  --neon-warning: #ffea00;
+  --neon-danger: #ff3b6b;
+
+  --neon-primary-glow: rgba(0, 234, 255, 0.45);
+  --neon-secondary-glow: rgba(255, 0, 255, 0.4);
+  --neon-accent-glow: rgba(0, 255, 159, 0.35);
+
+  --navbar-background: unset;
+  transition: background-color 0.3s linear, background-image 0.3s linear;
+}
+
+/* Theme base */
+body[theme-mode] {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  transition: background-image 0.3s linear, background-color 0.3s linear;
+}
+
+/* Dark theme */
+body[theme-mode="dark"] {
+  --message-bgcolor: rgba(10, 14, 23, 0.85);
+  --content-bgcolor: rgba(8, 12, 20, 0.9);
+  --content-bgcolor-soft: rgba(13, 18, 30, 0.76);
+  --content-bgcolor-soft-soft: rgba(16, 22, 36, 0.74);
+  --content-bgcolor-hard: rgba(32, 48, 72, 0.66);
+  --content-bgcolor-ai: rgba(13, 18, 30, 0.88);
+  --content-bgcolor-thinking: rgba(12, 17, 32, 0.62);
+
+  --content-color: #daf6ff;
+  --border-color: rgba(255, 0, 255, 0.32);
+  --thinking-block-bgcolor: rgba(13, 18, 30, 0.7);
+
+  --modal-background: var(--content-bgcolor-soft);
+  --color-background-mute: var(--content-bgcolor-soft);
+  --color-background: transparent;
+  --color-background-soft: var(--content-bgcolor-soft);
+  --navbar-background: unset;
+
+  /* Added so inputs/bars render correctly */
+  --input-bgcolor: rgba(13, 18, 30, 0.85);
+
+  background-image:
+    radial-gradient(1200px 700px at 20% 15%, rgba(255, 0, 255, 0.10), transparent 60%),
+    radial-gradient(1000px 700px at 80% 85%, rgba(0, 234, 255, 0.12), transparent 65%),
+    linear-gradient(140deg, rgba(0, 234, 255, 0.05), rgba(255, 0, 255, 0.05)),
+    repeating-linear-gradient(0deg, rgba(255, 0, 255, 0.06), rgba(255, 0, 255, 0.06) 1px, transparent 1px, transparent 24px);
+  background-color: #070b13;
+}
+
+/* Ant Design overrides */
+.draggable-item { transform: translateY(); }
+
+.ant-input-outlined,
+.ant-input-number-outlined,
+.ant-input-filled:focus,
+.ant-input-filled:focus-within {
+  background: var(--input-bgcolor);
+  border: 1.5px solid var(--border-color);
+  box-shadow:
+    0 0 0 1px var(--border-color),
+    0 0 14px var(--neon-primary-glow);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.ant-input-number-outlined:focus,
+.ant-input-number-outlined:focus-within,
+.ant-input-number-outlined:hover,
+.ant-input-number .ant-input-number-handler,
+.ant-steps-item-process .ant-steps-item-icon,
+.ant-btn-variant-outlined:not(:disabled):not(.ant-btn-disabled):hover,
+.ant-btn-variant-dashed:not(:disabled):not(.ant-btn-disabled):hover {
+  background-color: var(--content-bgcolor-hard);
+  box-shadow: 0 0 10px var(--neon-secondary-glow);
+}
+
+.ant-btn-variant-outlined,
+.ant-btn-variant-dashed {
+  border-color: var(--border-color);
+  background: linear-gradient(180deg, rgba(0,0,0,0), rgba(255,255,255,0.02)) padding-box,
+              linear-gradient(90deg, var(--neon-primary), var(--neon-secondary)) border-box;
+  border: 1.5px solid transparent;
+  color: var(--content-color);
+  text-shadow: 0 0 6px rgba(255,255,255,0.15);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.25s ease, transform 0.08s ease;
+}
+.ant-btn-variant-outlined:hover,
+.ant-btn-variant-dashed:hover {
+  box-shadow: 0 0 18px var(--neon-primary-glow);
+  transform: translateY(-1px);
+}
+
+.ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
+  border: var(--ant-line-width) var(--ant-line-type) var(--ant-color-border);
+  background: var(--content-bgcolor-soft);
+  box-shadow: inset 0 0 0 1px var(--border-color), 0 0 12px var(--neon-accent-glow);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.25s ease;
+}
+
+.ant-segmented { transition: 2s ease-in-out; }
+.ant-segmented .ant-segmented-item-selected,
+.ant-segmented .ant-segmented-thumb {
+  background-color: var(--content-bgcolor-hard);
+  box-shadow: 0 0 14px var(--neon-secondary-glow);
+}
+
+.ant-alert-success {
+  background-color: var(--content-bgcolor-soft);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 0 10px var(--neon-accent-glow);
+}
+
+.ant-btn-dangerous {
+  color: var(--neon-danger);
+  border-color: var(--neon-danger);
+  text-shadow: 0 0 8px rgba(255, 59, 107, 0.35);
+}
+.ant-btn-dangerous:hover {
+  color: #ff527e;
+  border-color: #ff527e;
+  box-shadow: 0 0 16px rgba(255, 59, 107, 0.35);
+}
+.ant-btn-dangerous.ant-btn-primary {
+  background-color: rgba(255, 59, 107, 0.12);
+  border-image: linear-gradient(90deg, var(--neon-danger), #ff95b0) 1;
+  border-width: 1.5px;
+}
+.ant-btn-dangerous.ant-btn-primary:hover {
+  background-color: rgba(255, 59, 107, 0.18);
+  box-shadow: 0 0 18px rgba(255, 59, 107, 0.4);
+}
+
+.ant-modal-root .ant-modal-mask {
+  background-color: rgba(5, 8, 13, 0.7);
+  backdrop-filter: blur(2px);
+}
+.ant-modal .ant-modal-content,
+div[class^="AgentCardContainer"] {
+  background-color: var(--content-bgcolor-soft);
+  box-shadow:
+    0 0 0 1px var(--border-color),
+    0 12px 40px rgba(0,0,0,0.4),
+    0 0 18px var(--neon-secondary-glow);
+}
+.ant-select-dropdown {
+  background-color: var(--content-bgcolor-soft);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 16px 44px rgba(0,0,0,0.45), 0 0 18px var(--neon-primary-glow);
+}
+
+/* Markdown & code */
+.markdown pre {
+  background-color: var(--content-bgcolor-soft);
+  border: 1.5px solid var(--border-color);
+  border-radius: 10px;
+  padding: 16px;
+  overflow: auto;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02), 0 0 18px var(--neon-primary-glow);
+}
+.markdown pre .shiki { background-color: var(--content-bgcolor-soft-soft) !important; }
+
+.iztnTo:not(:has(+ [class*="Container"])) { border-radius: 0 0 10px 10px; }
+
+.markdown pre [class^="CodeHeader"] {
+  justify-content: center;
+  position: relative;
+  color: var(--content-color);
+  text-shadow: 0 0 8px rgba(255,255,255,0.2);
+}
+.markdown pre [class^="CodeHeader"]::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  box-shadow:
+    20px 0 0 0 var(--neon-warning),
+    40px 0 0 0 var(--neon-accent);
+  background-color: var(--neon-secondary);
+  border: 0.5px solid rgba(255, 255, 255, 0.15);
+  box-sizing: border-box;
+}
+
+.markdown th { background-color: var(--content-bgcolor-hard); }
+
+.markdown p code, .markdown li code {
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  border-radius: 4px;
+  padding: 0.2em 0.5em;
+  font-size: 85%;
+  color: var(--content-color);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 0 10px var(--neon-secondary-glow);
+}
+
+.markdown blockquote {
+  margin: 0;
+  padding: 0.5em 1em;
+  color: var(--content-color);
+  border-left: 0.25em solid;
+  border-image: linear-gradient(180deg, var(--neon-primary), var(--neon-secondary)) 1;
+  background-color: var(--content-bgcolor-soft);
+  border-radius: 8px;
+  box-shadow: inset 0 0 18px rgba(0, 234, 255, 0.06);
+}
+
+/* Custom components */
+.kMcPid.active, .bBIuDF.active, .iIQSsF.active, .kifmQt.active {
+  background-color: var(--content-bgcolor-hard);
+  box-shadow: 0 0 14px var(--neon-accent-glow);
+}
+.kMcPid:hover, .bBIuDF:hover, .iIQSsF:hover, .kifmQt:hover {
+  background-color: var(--content-bgcolor-soft);
+  transition: unset;
+  box-shadow: 0 0 12px var(--neon-primary-glow);
+}
+.bBIuDF, .iIQSsF, .kifmQt { transition: background-color 0.3s ease, box-shadow 0.25s ease; }
+.kMcPid { transition: background-color 0.3s ease, box-shadow 0.25s ease; }
+
+.lfecvJ .ant-segmented-item, .fnBPAQ { transition: background-color 0.3s ease; }
+
+.jrOjPS { background-color: var(--content-bgcolor-hard); box-shadow: 0 0 10px var(--neon-secondary-glow); }
+
+div[class^="InputContainer"],
+div[class^="OutputContainer"],
+div[class^="ImagePlaceholder"],
+div[class^="SettingGroup"] {
+  background-color: var(--content-bgcolor-soft);
+  border-radius: 10px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 0 1px var(--border-color), 0 10px 30px rgba(0,0,0,0.35);
+}
+
+#app-sidebar,
+.home-tabs,
+ul[class^="SettingMenus"],
+div[class^="ProviderListContainer"],
+div[class^="CardContent"],
+div[class^="KnowledgeSideNav"],
+div[class^="ServerCard"],
+[class^="LeftContainer-"],
+div[class^="MenuList"],
+div[class^="SideNav"],
+.AgentsGroupList-cCGLE,
+.ant-upload-wrapper .ant-upload-drag,
+.ejMDpr,
+.dWJYjX,
+.jjBPON,
+.ggGGTJ,
+.iZnnzJ {
+  background-color: var(--content-bgcolor-soft);
+  border-radius: 10px;
+  box-shadow: 0 0 0 1px var(--border-color), 0 8px 24px rgba(0,0,0,0.35);
+}
+
+div[class^="SettingContainer"] { background: transparent; }
+
+.hLFumB {
+  background-color: var(--content-bgcolor-soft);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 0 0 0 1px var(--border-color), 0 6px 18px rgba(0,0,0,0.3);
+}
+.hLFumB div { margin: 0; }
+.hLFumB:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 10px 24px rgba(33,33,33,.35), 0 0 16px var(--neon-accent-glow);
+}
+
+/* Chat & messages */
+.inputbar-container {
+  background-color: var(--input-bgcolor);
+  border: 1.5px solid var(--border-color);
+  border-radius: 10px;
+  transform: none;
+  box-shadow:
+    0 0 0 1px var(--border-color),
+    0 0 18px var(--neon-primary-glow),
+    inset 0 0 18px rgba(255, 0, 255, 0.08);
+}
+
+.bubble:not(.multi-select-mode) .message-user .message-content-container {
+  background-color: var(--message-bgcolor);
+  border: 1.5px solid var(--border-color);
+  border-radius: 10px;
+  margin-top: 14px;
+  box-shadow: 0 0 14px var(--neon-secondary-glow);
+}
+
+.system-prompt > div { color: var(--color-text); }
+
+.message-user { will-change: unset; transform: none; }
+
+.message-assistant {
+  background-color: var(--content-bgcolor-ai);
+  border: 1.5px solid var(--border-color);
+  border-radius: 10px;
+  padding: 18px 20px 10px 20px !important;
+  will-change: unset;
+  transform: none;
+  margin-top: 14px;
+  box-shadow: 0 0 16px var(--neon-primary-glow);
+}
+
+[class^="Main"] { transform: none; }
+
+.bubble .message-assistant .markdown {
+  color: var(--content-color);
+  line-height: 1.65;
+  font-size: 14px;
+  text-shadow: 0 0 6px rgba(255,255,255,0.08);
+}
+
+.bubble .message-assistant .markdown h1,
+.bubble .message-assistant .markdown h2,
+.bubble .message-assistant .markdown h3,
+.bubble .message-assistant .markdown h4,
+.bubble .message-assistant .markdown h5,
+.bubble .message-assistant .markdown h6 {
+  color: var(--content-color);
+  border-bottom: 1.5px solid var(--content-bgcolor-hard);
+  margin-top: 1.4em;
+  margin-bottom: 0.9em;
+  padding-bottom: 0.3em;
+  text-shadow: 0 0 10px rgba(0, 234, 255, 0.2);
+}
+
+.bubble .message-assistant .markdown a {
+  color: var(--neon-primary);
+  text-decoration: none;
+  text-shadow: 0 0 8px var(--neon-primary-glow);
+}
+.bubble .message-assistant .markdown a:hover {
+  text-decoration: underline;
+  color: #9eeeff;
+}
+
+.bubble .message-assistant .markdown table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+}
+.bubble .message-assistant .markdown table th,
+.bubble .message-assistant .markdown table td {
+  padding: 6px 13px;
+  border: 1.5px solid var(--content-bgcolor-hard);
+}
+.bubble .message-assistant .markdown table tr:nth-child(2n) {
+  background-color: var(--content-bgcolor-soft);
+}
+
+.bubble .message-assistant .markdown pre {
+  background-color: var(--content-bgcolor-soft-soft);
+  border: 1.5px solid var(--border-color);
+  border-radius: 10px;
+  padding: 16px;
+  overflow: auto;
+  margin: 1em 0;
+  box-shadow: inset 0 0 18px rgba(255, 0, 255, 0.08), 0 0 16px var(--neon-secondary-glow);
+}
+
+.bubble .message-assistant .markdown code {
+  background-color: rgba(255,255,255,0.04);
+  border-radius: 4px;
+  padding: 0.2em 0.4em;
+  font-size: 85%;
+  color: var(--content-color);
+  border: 1px solid var(--border-color);
+}
+.bubble .message-assistant .markdown pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+  border: none;
+}
+
+.bubble .message-assistant .markdown blockquote {
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  color: var(--content-color);
+  border-left: 0.25em solid transparent;
+  border-image: linear-gradient(180deg, var(--neon-secondary), var(--neon-primary)) 1;
+  background-color: var(--content-bgcolor-soft);
+  border-radius: 8px;
+  box-shadow: 0 0 16px var(--neon-primary-glow);
+}
+
+.bubble .message-assistant .markdown ul,
+.bubble .message-assistant .markdown ol {
+  padding-left: 2em;
+  margin: 1em 0;
+}
+.bubble .message-assistant .markdown ul { list-style-type: disc; }
+.bubble .message-assistant .markdown ol { list-style-type: decimal; }
+
+.bubble .message-assistant .markdown li { margin-bottom: 0.5em; }
+.bubble .message-assistant .markdown li > p { margin: 0; }
+
+.bubble .message-assistant .markdown img {
+  max-width: 100%;
+  box-sizing: content-box;
+  background-color: var(--content-bgcolor);
+  margin: 1em 0;
+  border-radius: 8px;
+  box-shadow: 0 0 16px rgba(0,0,0,0.4);
+}
+
+.bubble .message-assistant .markdown hr {
+  height: 0.25em;
+  padding: 0;
+  margin: 24px 0;
+  background: linear-gradient(90deg, var(--neon-secondary), var(--neon-primary));
+  border: 0;
+  box-shadow: 0 0 14px var(--neon-secondary-glow);
+}
+
+/* Task list */
+.bubble .message-assistant .markdown input[type="checkbox"] {
+  margin-right: 0.5em;
+  vertical-align: middle;
+  accent-color: var(--neon-accent);
+  box-shadow: 0 0 8px var(--neon-accent-glow);
+}
+.bubble .message-assistant .markdown ul.task-list {
+  list-style-type: none;
+  padding-left: 1.5em;
+}
+.bubble .message-assistant .markdown ul.task-list li {
+  position: relative;
+}
+.bubble .message-assistant .markdown ul.task-list li input[type="checkbox"] {
+  position: absolute;
+  left: -1.5em;
+}
+
+/* AI thinking/error/MCP blocks */
+.bubble .message-assistant .markdown .thinking-block,
+.bubble .message-assistant .markdown .error-block,
+.bubble .message-assistant .markdown .mcp-block,
+.ant-collapse-header-text {
+  background-color: var(--content-bgcolor-thinking);
+  border: 1px solid var(--border-color);
+  border-radius: 13px;
+  box-shadow: inset 0 0 22px rgba(0, 234, 255, 0.07), 0 0 16px var(--neon-secondary-glow);
+  backdrop-filter: blur(4px);
+}
+.ant-collapse-content-box {
+  background-color: var(--content-bgcolor-thinking);
+  border: 1.5px solid var(--border-color);
+  box-shadow: inset 0 0 20px rgba(255, 0, 255, 0.08);
+}
+
+/* Link hover accent */
+.bubble .message-assistant .markdown a, .markdown a { position: relative; }
+.bubble .message-assistant .markdown a::after, .markdown a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--neon-primary), transparent);
+  opacity: 0.6;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
+}
+.bubble .message-assistant .markdown a:hover::after, .markdown a:hover::after { transform: scaleX(1); }

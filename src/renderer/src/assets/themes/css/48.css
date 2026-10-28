@@ -1,0 +1,214 @@
+:root {
+
+    --color-border-light: rgba(35, 35, 45, 0.12);
+
+    --color-border-dark: rgba(255, 255, 255, 0.15);
+}
+* {
+    line-height: 1.7 !important;
+    letter-spacing: 0.018em !important;
+    font-weight: 500;
+}
+.markdown * code {
+    color: rgb(203, 64, 66);
+}
+body[theme-mode='dark'] .markdown * code {
+    color: #F4A68A;
+    background-color: rgba(244, 166, 138, 0.12);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+body[theme-mode=light] {
+    --color-primary: #C96442 !important;
+    --color-primary-soft: rgba(201, 100, 66, 0.6);
+    --color-primary-mute: rgba(201, 100, 66, 0.2);
+    --color-background: #F5F4ED;
+    --color-background-mute: #F0EFEB;
+    --color-background-soft: #F0EEE6;
+    --navbar-background: #F5F4ED;
+    --chat-background: #FAF9F5;
+    --chat-background-user: #F0EEE6;
+    --chat-background-assistant: #FAF9F5;
+    --color-text: #262624;
+    --color-border: var(--color-border-light);
+}
+body[theme-mode=dark] {
+    --color-primary: #E89975 !important;
+    --color-primary-soft: rgba(232, 153, 117, 0.6);
+    --color-primary-mute: rgba(232, 153, 117, 0.2);
+    --color-background: #363A45;
+    --color-background-mute: #454A57;
+    --color-background-soft: #3F444F;
+    --navbar-background: #363A45;
+    --chat-background: #313640;
+    --chat-background-user: #3F444F;
+    --chat-background-assistant: #313640;
+    --color-text: #F0F0F0;
+    --chat-text-user: #F0F0F0;
+    --color-border: var(--color-border-dark);
+    --color-text-secondary: #B8BCC8;
+}
+.message-content-container {
+    background: var(--chat-background-assistant) !important;
+    margin: 8px 0 !important;
+    padding: 16px 20px !important;
+    border-radius: 16px !important;
+    border: 1px solid var(--color-border) !important;
+    box-shadow: none !important;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
+    transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease !important;
+}
+
+.message-content-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+}
+
+body[theme-mode='dark'] .message-content-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
+}
+.message-user .message-content-container {
+    background: var(--chat-background-user) !important;
+    border-color: var(--color-border) !important;
+}
+body[theme-mode='dark'] .markdown {
+    color: var(--color-text) !important;
+}
+
+body[theme-mode='dark'] .markdown h1,
+body[theme-mode='dark'] .markdown h2,
+body[theme-mode='dark'] .markdown h3,
+body[theme-mode='dark'] .markdown h4,
+body[theme-mode='dark'] .markdown h5,
+body[theme-mode='dark'] .markdown h6 {
+    color: #F8F8F8 !important;
+}
+
+body[theme-mode='dark'] .markdown blockquote {
+    border-left-color: var(--color-primary) !important;
+    background-color: rgba(232, 153, 117, 0.08) !important;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+#inputbar {
+    margin: 0px 10px 10px 10px;
+    background: #FFFFFF !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 8px 32px -12px rgba(0,0,0,0.03) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+#inputbar:focus-within {
+    transform: scale(1.01);
+    box-shadow: 0 8px 24px -8px rgba(201, 100, 66, 0.15);
+    border-color: var(--color-primary-soft) !important;
+}
+
+body[theme-mode='dark'] #inputbar {
+    background: var(--color-background-soft) !important;
+    border: 1px solid var(--color-border) !important;
+    box-shadow: 0 8px 32px -12px rgba(0,0,0,0.25) !important;
+}
+
+body[theme-mode='dark'] #inputbar:focus-within {
+    box-shadow: 0 8px 24px -8px rgba(232, 153, 117, 0.25);
+    border-color: var(--color-primary-soft) !important;
+}
+body[theme-mode='dark'] #inputbar input,
+body[theme-mode='dark'] #inputbar textarea {
+    color: var(--color-text) !important;
+}
+
+body[theme-mode='dark'] #inputbar input::placeholder,
+body[theme-mode='dark'] #inputbar textarea::placeholder {
+    color: var(--color-text-secondary) !important;
+}
+.ant-collapse {
+    border: none !important;
+    background-color: transparent !important;
+}
+
+.ant-collapse > .ant-collapse-item {
+    background-color: var(--chat-background-assistant) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: 16px !important;
+    margin-bottom: 12px !important;
+    overflow: hidden;
+    transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease !important;
+}
+
+.ant-collapse > .ant-collapse-item:last-child {
+    margin-bottom: 0 !important;
+}
+
+.ant-collapse-header {
+    padding: 16px 20px !important;
+    align-items: center !important;
+}
+
+.ant-collapse-content {
+    border-top: 1px solid var(--color-border) !important;
+    background-color: transparent !important;
+}
+
+.ant-collapse-content > .ant-collapse-content-box {
+    padding: 16px 20px !important;
+}
+body[theme-mode='dark'] .ant-collapse-header {
+    color: var(--color-text) !important;
+}
+
+body[theme-mode='dark'] .ant-collapse-content {
+    color: var(--color-text) !important;
+}
+.bubble * .message-action-button:hover {
+    background-color: var(--color-background-mute) !important;
+    transform: scale(1.1);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.ant-btn-primary {
+    background-color: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+    color: #f2f2f2 !important;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.ant-btn-primary:hover, .ant-btn-primary:focus {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(232, 153, 117, 0.3) !important;
+}
+.ant-tabs-tab:hover {
+    color: var(--color-primary-soft) !important;
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: var(--color-primary) !important;
+}
+body[theme-mode='dark'] .ant-tabs-tab {
+    color: var(--color-text-secondary) !important;
+}
+
+body[theme-mode='dark'] .ant-tabs-tab:hover {
+    color: var(--color-primary-soft) !important;
+}
+body[theme-mode='dark'] ::-webkit-scrollbar {
+    width: 6px;
+}
+
+body[theme-mode='dark'] ::-webkit-scrollbar-track {
+    background: var(--color-background);
+}
+
+body[theme-mode='dark'] ::-webkit-scrollbar-thumb {
+    background: var(--color-background-mute);
+    border-radius: 3px;
+}
+
+body[theme-mode='dark'] ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary-soft);
+}

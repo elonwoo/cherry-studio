@@ -1,0 +1,200 @@
+/* 奶油国风Mac代码 主题 */
+
+/* ===== 暗色模式 ===== */
+body[theme-mode="dark"] {
+  --color-background: #1f1d1aee;
+  --color-background-soft: #2a2724;
+  --color-background-mute: #1f1d1a66;
+  --navbar-background: #1f1d1a;
+  --chat-background: #24211e;
+  --chat-background-user: #312d29;
+  --chat-background-assistant: #2a2724;
+  --color-text: #e8e2d9;
+  --color-text-soft: #b8aea1;
+  --color-border: #3a3530;
+}
+
+body[theme-mode="dark"] #content-container {
+  background-color: #26231f !important;
+}
+
+body[theme-mode="dark"] .sidebar,
+body[theme-mode="dark"] .ant-layout-sider,
+body[theme-mode="dark"] .ant-menu {
+  background: #1f1d1a !important;
+}
+
+body[theme-mode="dark"] .message,
+body[theme-mode="dark"] .chat-message,
+body[theme-mode="dark"] .card {
+  background: #2a2724 !important;
+  border: 1px solid #3a3530 !important;
+  border-radius: 16px;
+}
+
+body[theme-mode="dark"] input,
+body[theme-mode="dark"] textarea,
+body[theme-mode="dark"] .ant-input,
+body[theme-mode="dark"] .ant-input-affix-wrapper {
+  background: #2a2724 !important;
+  border: 1px solid #3a3530 !important;
+  color: #e8e2d9 !important;
+  border-radius: 16px !important;
+}
+
+body[theme-mode="dark"] button {
+  border-radius: 12px !important;
+}
+
+body[theme-mode="dark"] * {
+  box-shadow: none !important;
+}
+
+body[theme-mode="dark"] .ant-btn,
+body[theme-mode="dark"] .toolbar button,
+body[theme-mode="dark"] .action-button {
+  background: #2c2926 !important;
+  border: 1px solid #3d3833 !important;
+  color: #e8e2d9 !important;
+}
+
+
+/* ===== 全局变量 ===== */
+:root {
+  --color-black-soft: #1f1d1a;
+}
+
+
+/* ===== 亮色模式 ===== */
+body[theme-mode="light"] {
+  --color-background: #f7f3eb;
+  --color-background-soft: #f2ede3;
+  --color-background-mute: #e9e3d8;
+  --navbar-background: #f6f1e8;
+  --chat-background: #f9f6ef;
+  --chat-background-user: #f3eee4;
+  --chat-background-assistant: #f7f3eb;
+  --color-white: #fffdf8;
+  --color-text: #3b3733;
+  --color-text-soft: #6e675f;
+  --color-border: #d9d1c5;
+}
+
+body[theme-mode="light"] #content-container {
+  background-color: #fbf8f2 !important;
+}
+
+body[theme-mode="light"] .sidebar,
+body[theme-mode="light"] .ant-layout-sider,
+body[theme-mode="light"] .ant-menu {
+  background: #f6f1e8 !important;
+}
+
+body[theme-mode="light"] .message,
+body[theme-mode="light"] .chat-message,
+body[theme-mode="light"] .card {
+  background: #f7f3eb !important;
+  border: 1px solid #ddd5c9 !important;
+  border-radius: 16px;
+}
+
+body[theme-mode="light"] input,
+body[theme-mode="light"] textarea,
+body[theme-mode="light"] .ant-input,
+body[theme-mode="light"] .ant-input-affix-wrapper {
+  background: #fffdf8 !important;
+  border: 1px solid #d9d1c5 !important;
+  color: #3b3733 !important;
+  border-radius: 18px !important;
+}
+
+body[theme-mode="light"] button {
+  border-radius: 12px !important;
+}
+
+body[theme-mode="light"] .ant-btn,
+body[theme-mode="light"] .toolbar button,
+body[theme-mode="light"] .action-button {
+  background: #f8f4ec !important;
+  border: 1px solid #ddd5c9 !important;
+  color: #3b3733 !important;
+}
+
+/* 轻微柔和感，更接近 Claude */
+body[theme-mode="light"] .message,
+body[theme-mode="light"] .chat-message,
+body[theme-mode="light"] .card,
+body[theme-mode="light"] .ant-input,
+body[theme-mode="light"] .ant-input-affix-wrapper {
+  box-shadow: 0 1px 2px rgba(60, 50, 40, 0.03) !important;
+}
+
+/* 标题和文本统一偏暖灰 */
+body[theme-mode="light"],
+body[theme-mode="light"] * {
+  color: #3b3733;
+}
+
+body[theme-mode="dark"],
+body[theme-mode="dark"] * {
+  color: #e8e2d9;
+}
+
+/* ========== 滚动条 ========== */
+body[theme-mode="light"] ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+body[theme-mode="light"] ::-webkit-scrollbar-thumb {
+  background: #d9d1c5;
+  border-radius: 999px;
+}
+body[theme-mode="light"] ::-webkit-scrollbar-track {
+  background: #f3efe6;
+}
+body[theme-mode="dark"] ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+body[theme-mode="dark"] ::-webkit-scrollbar-thumb {
+  background: #4b443d;
+  border-radius: 999px;
+}
+body[theme-mode="dark"] ::-webkit-scrollbar-track {
+  background: #2a2724;
+}
+
+
+body[theme-mode="light"] pre {
+  position: relative;
+  background: var(--mac-code-bg-light) !important;
+  border: 1px solid var(--mac-code-border-light);
+  border-radius: 14px;
+  padding: 38px 16px 16px 16px !important;
+  overflow: auto;
+  box-shadow: 0 2px 8px rgba(60, 50, 40, 0.06);
+}
+body[theme-mode="dark"] pre {
+  position: relative;
+  background: var(--mac-code-bg-dark) !important;
+  border: 1px solid var(--mac-code-border-dark);
+  border-radius: 14px;
+  padding: 38px 16px 16px 16px !important;
+  overflow: auto;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+}
+/* macOS 顶部三色按钮 */
+body[theme-mode="light"] pre::before,
+body[theme-mode="dark"] pre::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff5f57;
+  box-shadow:
+    20px 0 0 #febc2e,
+    40px 0 0 #28c840;
+}

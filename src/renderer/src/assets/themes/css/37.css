@@ -1,0 +1,399 @@
+/* ========================
+   苹果玻璃风格主题优化（最终版）
+======================== */
+
+/* 全局字体设置 */
+:root {
+  font-family: "汉仪唐美人" !important;
+  /* 侧边栏变量 */
+  --sidebar-background: rgba(245, 248, 250, 0.65);
+  --sidebar-text-color: #2c3e50;
+  --sidebar-text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* 背景图片和玻璃效果基础设置 */
+body {
+  background-image: url('https://t.tutu.to/img/lyJD6');
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* 玻璃覆盖层 - 实现毛玻璃效果 */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  filter: blur(15px) brightness(0.9) contrast(1.1);
+  z-index: -2;
+}
+
+/* 玻璃效果核心类 */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.25) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 
+    0 8px 32px rgba(31, 38, 135, 0.15),
+    0 0 15px rgba(100, 181, 246, 0.3);
+  border-radius: 24px;
+}
+
+/* 霓虹光效增强 */
+.glow-effect {
+  box-shadow: 
+    0 0 15px rgba(100, 181, 246, 0.3),
+    0 0 30px rgba(66, 133, 244, 0.15) !important;
+}
+
+/* 确保所有内容容器透明 */
+#root > div,
+body > div {
+  background: transparent !important;
+}
+
+
+/* ========================
+   代码块优化 - 透明玻璃效果
+======================== */
+/* 行内代码 */
+code {
+  composes: glass-effect;
+  padding: 3px 7px;
+  border-radius: 8px;
+  font-family: "Fira Code", monospace !important;
+  border: 1px solid rgb(255 255 255, 0.2);
+  background: rgba(255, 255, 255, 0.45) !important; 
+}
+
+/* 代码块容器 */
+pre {
+  composes: glass-effect;
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  overflow: auto;
+  background: rgba(255, 255, 255, 0.35) !important;
+
+  /* 内部代码样式 */
+  code {
+    background: transparent !important;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+    color: inherit;
+    text-shadow: none;
+  }
+}
+
+
+/* 在特定容器中的应用 */
+.ant-collapse-content-box .markdown,
+.message-content {
+  .text-mixed {
+    background: rgba(255, 255, 255, 0.15); /* 轻微背景增强可读性 */
+    padding: 1px 4px;
+  }
+}
+
+/* ========================
+   深色主题玻璃优化
+======================== */
+body[theme-mode="dark"] {
+  /* 玻璃材质变量 */
+  --glass-opacity: 0.15;
+  --glass-blur: 20px;
+  --glass-border: rgba(255, 255, 255, 0.25);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  --neon-glow: 0 0 15px rgba(66, 133, 244, 0.25);
+  
+  /* 颜色变量 */
+  --color-background: rgba(43, 43, 43, var(--glass-opacity));
+  --color-background-soft: rgba(48, 48, 48, var(--glass-opacity));
+  --color-background-mute: rgba(40, 44, 52, var(--glass-opacity));
+  --chat-background-user: rgba(50, 51, 50, var(--glass-opacity));
+  --chat-background-assistant: rgba(45, 46, 45, var(--glass-opacity));
+  
+  /* 侧边栏深色优化 */
+  --sidebar-background: rgba(35, 40, 48, 0.7);
+  --sidebar-text-color: #e1e5eb;
+  --sidebar-text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  
+  /* 内容容器玻璃效果 */
+  #content-container,
+  #content-container #messages,
+  .inputbar-container {
+    composes: glass-effect;
+    --glass-opacity: 0.2;
+  }
+
+  /* 消息气泡增强 */
+  .message-bubble {
+    composes: glass-effect;
+    --glass-blur: 15px;
+    --glass-opacity: 0.35; /* 提高透明度增强区分度 */
+    background: rgba(60, 65, 72, 0.45) !important; /* 额外背景增强 */
+    margin-bottom: 12px;
+    
+    /* 霓虹边框效果保留 */
+    &::after {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: 24px;
+      z-index: -1;
+      background: linear-gradient(45deg, #3a8895, #4ac0d9, #7b68ee);
+      filter: blur(6px);
+      opacity: 0.35;
+    }
+  }
+
+  /* 输入框玻璃特效 */
+  .inputbar-container {
+    --glass-opacity: 0.3;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      --glass-opacity: 0.35;
+      box-shadow: 
+        var(--glass-shadow),
+        0 0 20px rgba(100, 181, 246, 0.4);
+    }
+  }
+
+  /* 导航栏玻璃效果 */
+  .navbar {
+    composes: glass-effect;
+    --glass-blur: 25px;
+    --glass-opacity: 0.18;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  /* 为深色模式下的代码块和行内代码设置更匹配的深色背景 */
+  code {
+    background: rgba(50, 55, 60, 0.6) !important;
+  }
+  pre {
+     background: rgba(40, 44, 52, 0.55) !important;
+  }
+
+  /* 代码块优化 */
+  code {
+    color: #AACB71 !important; 
+    /* 添加深色阴影以赋予文字深度感，消除“廉价感” */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+  }
+  
+  pre code {
+    color: #abb2bf !important;
+    text-shadow: none !important; /* 块内代码保持干净 */
+  }
+  
+  pre {
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      0 0 15px rgba(100, 181, 246, 0.2);
+  }
+  
+  /* 深色模式中英文混排 */
+  .text-mixed {
+    color: #AACB71 !important; 
+    text-shadow: 
+      0 1px 1px rgba(0, 0, 0, 0.5),
+      0 0 4px rgba(170, 203, 113, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* ========================
+   浅色主题玻璃优化
+======================== */
+body[theme-mode="light"] {
+  /* 玻璃材质变量 */
+  --glass-opacity: 0.2;
+  --glass-blur: 20px;
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+  --neon-glow: 0 0 15px rgba(100, 181, 246, 0.2);
+  
+  /* 颜色变量 */
+  --color-background: rgba(235, 232, 226, var(--glass-opacity));
+  --color-background-soft: rgba(203, 199, 190, var(--glass-opacity));
+  --color-background-mute: rgba(228, 225, 215, var(--glass-opacity));
+  --chat-background-user: rgba(248, 247, 242, var(--glass-opacity));
+  --chat-background-assistant: rgba(246, 244, 236, var(--glass-opacity));
+  
+  /* 侧边栏浅色优化 */
+  --sidebar-background: rgba(245, 248, 250, 0.75);
+  --sidebar-text-color: #2c3e50;
+  --sidebar-text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  
+  /* 内容容器玻璃效果 */
+  #content-container,
+  #content-container #messages,
+  .inputbar-container {
+    composes: glass-effect;
+    --glass-opacity: 0.25;
+  }
+
+  /* 消息气泡增强 */
+  .message-bubble {
+    composes: glass-effect;
+    --glass-blur: 15px;
+    --glass-opacity: 0.4; /* 提高透明度增强区分度 */
+    background: rgba(250, 250, 252, 0.5) !important; /* 额外背景增强 */
+    margin-bottom: 12px;
+    
+    /* 霓虹边框效果保留 */
+    &::after {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: 24px;
+      z-index: -1;
+      background: linear-gradient(45deg, #3a8895, #5e9bff, #00e5ff);
+      filter: blur(6px);
+      opacity: 0.3;
+    }
+  }
+
+  /* 输入框玻璃特效 */
+  .inputbar-container {
+    --glass-opacity: 0.3;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      --glass-opacity: 0.35;
+      box-shadow: 
+        var(--glass-shadow),
+        0 0 20px rgba(100, 181, 246, 0.3);
+    }
+  }
+
+  /* 导航栏玻璃效果 */
+  .navbar {
+    composes: glass-effect;
+    --glass-blur: 25px;
+    --glass-opacity: 0.22;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  }
+
+  /* 代码块优化 */
+  code {
+    color: #3a8c52 !important;
+    /* 添加与整体风格一致的柔和阴影 */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+  }
+  
+  pre code {
+    color: #3f3f3f !important;
+    text-shadow: none !important; /* 块内代码保持干净 */
+  }
+  
+  pre {
+    box-shadow: 
+      0 8px 32px rgba(31, 38, 135, 0.1),
+      0 0 10px rgba(100, 181, 246, 0.15);
+  }
+  
+  /* 浅色模式中英文混排 */
+  .text-mixed {
+    color: #46A563 !important;
+    background: rgba(255, 255, 255, 0.25);
+  }
+}
+
+/* ========================
+   全局玻璃元素增强
+======================== */
+/* 消息气泡增强基础样式 */
+.message-bubble {
+  position: relative;
+  padding: 16px 20px;
+  border-radius: 20px;
+  z-index: 1;
+  
+  /* 用户和助手消息区分 */
+  &.user-message {
+    background: rgba(240, 248, 255, 0.4) !important;
+    border-left: 3px solid rgba(58, 136, 149, 0.6);
+  }
+  
+  &.assistant-message {
+    background: rgba(245, 252, 255, 0.4) !important;
+    border-left: 3px solid rgba(100, 181, 246, 0.6);
+  }
+}
+
+/* 按钮玻璃效果 */
+.ant-btn-primary {
+  composes: glass-effect;
+  --glass-opacity: 0.3;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  
+  &:hover {
+    --glass-opacity: 0.35;
+    box-shadow: 
+      0 0 20px rgba(100, 181, 246, 0.5),
+      0 0 30px rgba(66, 133, 244, 0.2) !important;
+  }
+}
+
+/* 卡片玻璃效果 */
+.ant-card {
+  composes: glass-effect;
+  --glass-blur: 15px;
+  --glass-opacity: 0.25;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* 进度条玻璃效果 */
+.ant-progress-line {
+  composes: glass-effect;
+  --glass-opacity: 0.2;
+  background: rgba(255, 255, 255, 0.1) !important;
+  
+  .ant-progress-bg {
+    background: linear-gradient(90deg, #3a8895, #4ac0d9) !important;
+  }
+}
+
+/* 内容区域文字增强 */
+#content-container {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  
+  p, li, div {
+    color: inherit !important;
+  }
+}
+
+body[theme-mode="dark"] #content-container {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* 输入框优化 */
+.inputbar-container {
+  composes: glass-effect;
+  --glass-opacity: 0.4;
+  --glass-blur: 12px;
+  
+  textarea, input {
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: inherit !important;
+    text-shadow: inherit;
+  }
+}

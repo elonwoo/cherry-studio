@@ -29,6 +29,7 @@
     "build:linux:arm64": "dotenv npm run build && electron-builder --linux --arm64",
     "build:linux:x64": "dotenv npm run build && electron-builder --linux --x64",
     "generate:icons": "electron scripts/generate-icons.cjs",
+    "themes:build": "node scripts/build-theme-library.mjs",
     "release": "node scripts/version.js",
     "publish": "pnpm build:check && pnpm release patch push",
     "pulish:artifacts": "cd packages/artifacts && npm publish && cd -",

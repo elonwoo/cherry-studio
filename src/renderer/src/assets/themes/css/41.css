@@ -1,0 +1,245 @@
+/*
+ * Catppuccin Theme - Based on Catppuccin Color Scheme
+ * Original: https://github.com/catppuccin/catppuccin (MIT License)
+ */
+
+body[theme-mode="light"] {
+    /* Catppuccin Latte Colors */
+    --catppuccin-rosewater: #dc8a78;
+    --catppuccin-flamingo: #dd7878;
+    --catppuccin-pink: #ea76cb;
+    --catppuccin-mauve: #8839ef;
+    --catppuccin-red: #d20f39;
+    --catppuccin-maroon: #e64553;
+    --catppuccin-peach: #fe640b;
+    --catppuccin-yellow: #df8e1d;
+    --catppuccin-green: #40a02b;
+    --catppuccin-teal: #179299;
+    --catppuccin-sky: #04a5e5;
+    --catppuccin-sapphire: #209fb5;
+    --catppuccin-blue: #1e66f5;
+    --catppuccin-lavender: #7287fd;
+    
+    --catppuccin-text: #4c4f69;
+    --catppuccin-subtext1: #5c5f77;
+    --catppuccin-subtext0: #6c6f85;
+    --catppuccin-overlay2: #7c7f93;
+    --catppuccin-overlay1: #8c8fa1;
+    --catppuccin-overlay0: #9ca0b0;
+    --catppuccin-surface2: #acb0be;
+    --catppuccin-surface1: #bcc0cc;
+    --catppuccin-surface0: #ccd0da;
+    --catppuccin-base: #eff1f5;
+    --catppuccin-mantle: #e6e9ef;
+    --catppuccin-crust: #dce0e8;
+
+    --color-white: var(--catppuccin-base);
+    --color-white-soft: var(--catppuccin-mantle);
+    --color-background: var(--catppuccin-base);
+    --color-background-soft: var(--catppuccin-mantle);
+    --color-background-mute: var(--catppuccin-crust);
+    --color-border-soft: var(--catppuccin-surface1);
+    --color-text-primary: var(--catppuccin-text);
+    --color-text-secondary: var(--catppuccin-subtext1);
+    --color-code-background-inline: var(--catppuccin-surface0);
+    --color-code-text-inline: var(--catppuccin-mauve);
+    --color-code-background-block: var(--catppuccin-mantle);
+
+    --navbar-background: var(--catppuccin-base);
+    --chat-background: var(--catppuccin-base);
+    --chat-background-user: var(--catppuccin-surface0);
+    --chat-background-assistant: var(--catppuccin-base);
+
+    color: var(--color-text-primary);
+    transition: color 0.3s ease, background-color 0.3s ease;
+
+    #content-container {
+        background-color: var(--color-background) !important;
+        transition: background-color 0.25s ease-out;
+    }
+
+    #content-container #messages,
+    #content-container #chat {
+        background-image: none !important;
+        background-color: var(--chat-background);
+        transition: background-color 0.25s ease-out;
+    }
+
+    .inputbar-container {
+        background-color: var(--catppuccin-base);
+        border: 1px solid var(--color-border-soft);
+        border-radius: 8px;
+        transition: all 0.25s ease-out;
+    }
+
+    .message-user .message-bubble {
+        background-color: var(--chat-background-user);
+        border: 1px solid var(--catppuccin-surface1);
+        transition: all 0.25s ease-out;
+    }
+
+    .message-assistant .message-bubble {
+        background-color: var(--chat-background-assistant);
+        transition: all 0.25s ease-out;
+    }
+
+    .markdown {
+        pre .shiki {
+            border: none !important;
+            background-color: var(--color-background-mute) !important;
+            transition: background-color 0.25s ease-out;
+        }
+
+        pre {
+            padding: 0 !important;
+            border-radius: 12px !important;
+            background: none !important;
+            box-shadow: none !important;
+        }
+
+        pre [class^="CodeBlockWrapper-"] {
+            border-radius: 12px !important;
+            overflow: hidden;
+        }
+
+        pre [class^="CodeHeader-"] {
+            border-radius: 12px 12px 0 0 !important;
+            background-color: var(--catppuccin-mantle) !important;
+            border-bottom: none !important;
+            margin-bottom: 0 !important;
+            transition: background-color 0.25s ease-out;
+        }
+
+        pre [class^="CodeContent-"] {
+            background-color: var(--color-background-mute) !important;
+            border-radius: 0 0 12px 12px !important;
+            border-top: none !important;
+            margin-top: 0 !important;
+            transition: background-color 0.25s ease-out;
+        }
+    }
+
+    .ant-collapse-content,
+    .ant-collapse-content-box {
+        background-color: var(--color-background-mute) !important;
+        border-radius: 0 0 8px 8px;
+        transition: background-color 0.25s ease-out;
+    }
+}
+
+body[theme-mode="dark"] {
+    /* Catppuccin Frappé Colors */
+    --catppuccin-rosewater: #f2d5cf;
+    --catppuccin-flamingo: #eebebe;
+    --catppuccin-pink: #f4b8e4;
+    --catppuccin-mauve: #ca9ee6;
+    --catppuccin-red: #e78284;
+    --catppuccin-maroon: #ea999c;
+    --catppuccin-peach: #ef9f76;
+    --catppuccin-yellow: #e5c890;
+    --catppuccin-green: #a6d189;
+    --catppuccin-teal: #81c8be;
+    --catppuccin-sky: #99d1db;
+    --catppuccin-sapphire: #85c1dc;
+    --catppuccin-blue: #8caaee;
+    --catppuccin-lavender: #babbf1;
+    
+    --catppuccin-text: #c6d0f5;
+    --catppuccin-subtext1: #b5bfe2;
+    --catppuccin-subtext0: #a5adce;
+    --catppuccin-overlay2: #949cbb;
+    --catppuccin-overlay1: #838ba7;
+    --catppuccin-overlay0: #737994;
+    --catppuccin-surface2: #626880;
+    --catppuccin-surface1: #51576d;
+    --catppuccin-surface0: #414559;
+    --catppuccin-base: #303446;
+    --catppuccin-mantle: #292c3c;
+    --catppuccin-crust: #232634;
+
+    --color-background: var(--catppuccin-base);
+    --color-background-soft: var(--catppuccin-surface0);
+    --color-background-mute: var(--catppuccin-mantle);
+    --color-text-primary: var(--catppuccin-text);
+    --color-text-secondary: var(--catppuccin-subtext1);
+
+    --navbar-background: var(--catppuccin-base);
+    --chat-background: var(--catppuccin-base);
+    --chat-background-user: var(--catppuccin-surface0);
+    --chat-background-assistant: var(--catppuccin-base);
+
+    color: var(--color-text-primary);
+    transition: color 0.3s ease, background-color 0.3s ease;
+
+    #content-container {
+        background-color: var(--color-background) !important;
+        transition: background-color 0.25s ease-out;
+    }
+
+    #content-container #messages,
+    #content-container #chat {
+        background-image: none !important;
+        background-color: var(--chat-background);
+        transition: background-color 0.25s ease-out;
+    }
+
+    .inputbar-container {
+        background-color: var(--catppuccin-surface0);
+        border: 1px solid var(--catppuccin-surface1);
+        border-radius: 8px;
+        transition: all 0.25s ease-out;
+    }
+
+    .message-user .message-bubble {
+        background-color: var(--chat-background-user);
+        transition: all 0.25s ease-out;
+    }
+
+    .message-assistant .message-bubble {
+        background-color: var(--chat-background-assistant);
+        transition: all 0.25s ease-out;
+    }
+
+    .markdown {
+        pre .shiki {
+            border: none !important;
+            background-color: var(--color-background-mute) !important;
+            transition: background-color 0.25s ease-out;
+        }
+
+        pre {
+            padding: 0 !important;
+            border-radius: 12px !important;
+            background: none !important;
+            box-shadow: none !important;
+        }
+
+        pre [class^="CodeBlockWrapper-"] {
+            border-radius: 12px !important;
+            overflow: hidden;
+        }
+
+        pre [class^="CodeHeader-"] {
+            border-radius: 12px 12px 0 0 !important;
+            background-color: var(--catppuccin-surface0) !important;
+            border-bottom: none !important;
+            margin-bottom: 0 !important;
+            transition: background-color 0.25s ease-out;
+        }
+
+        pre [class^="CodeContent-"] {
+            background-color: var(--color-background-mute) !important;
+            border-radius: 0 0 12px 12px !important;
+            border-top: none !important;
+            margin-top: 0 !important;
+            transition: background-color 0.25s ease-out;
+        }
+    }
+
+    .ant-collapse-content,
+    .ant-collapse-content-box {
+        background-color: var(--color-background-mute) !important;
+        border-radius: 0 0 8px 8px;
+        transition: background-color 0.25s ease-out;
+    }
+}

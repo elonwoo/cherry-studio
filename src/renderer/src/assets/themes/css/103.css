@@ -1,0 +1,1434 @@
+/* =========================================================
+   Cherry Studio Unified CSS - Fixed Row Height Version
+   目标：
+   - 不再全局乱改行高
+   - 助手页 / 智能体页 / 设置页左侧菜单统一
+   - 设置页内容区不再被列表规则污染
+   - 顶栏统一
+   - 无毛玻璃、无雾层
+   - 背景图保留
+   - 中文宋体，英文 Times New Roman，代码 JetBrains Mono
+   - 输入框保留跑马灯 + 水波环
+   ========================================================= */
+
+
+/* =========================================================
+   0. 全局变量
+   ========================================================= */
+
+:root {
+  --font-main: "Times New Roman", Times, "宋体", "SimSun", "STSong", serif;
+  --font-code: "JetBrains Mono", "Consolas", "Menlo", "Monaco", monospace;
+
+  --cs-row-height: 37px;
+  --cs-row-gap: 8px;
+  --cs-row-radius: 14px;
+  --cs-row-padding-x: 12px;
+
+  --cs-sidebar-width: var(--assistants-width);
+
+  --cs-radius-sm: 8px;
+  --cs-radius-md: 12px;
+  --cs-radius-lg: 16px;
+  --cs-radius-xl: 20px;
+
+  --cs-flow-orange: rgba(255, 141, 86, 0.95);
+  --cs-flow-violet: rgba(155, 110, 255, 0.95);
+  --cs-flow-cyan: rgba(90, 225, 255, 0.95);
+  --cs-flow-white: rgba(255, 255, 255, 0.88);
+
+  --flow-idle-duration: 28s;
+  --flow-focus-duration: 8s;
+  --flow-running-duration: 4s;
+
+  --chat-background-image: url("https://picsum.photos/2560/1440");
+}
+
+
+/* =========================================================
+   1. 浅色模式
+   ========================================================= */
+
+body[theme-mode="light"],
+body.light {
+  --cs-page-bg: #ede6da;
+
+  --cs-bg-opacity: 0.56;
+  --cs-bg-brightness: 1.03;
+  --cs-bg-saturation: 0.88;
+  --cs-bg-contrast: 1.02;
+
+  --cs-shell-bg: rgba(232, 226, 214, 0.42);
+  --cs-shell-bg-strong: rgba(232, 226, 214, 0.52);
+  --cs-shell-bg-soft: rgba(232, 226, 214, 0.28);
+
+  --cs-row-bg: transparent;
+  --cs-row-hover-bg: rgba(255, 255, 255, 0.32);
+  --cs-row-active-bg: rgba(255, 255, 255, 0.76);
+
+  --cs-panel-bg: rgba(232, 226, 214, 0.34);
+  --cs-panel-bg-strong: rgba(232, 226, 214, 0.46);
+  --cs-input-bg: rgba(232, 226, 214, 0.38);
+  --cs-editor-bg: rgba(238, 234, 226, 0.44);
+
+  --cs-border: rgba(0, 0, 0, 0.1);
+  --cs-border-soft: rgba(0, 0, 0, 0.065);
+  --cs-border-strong: rgba(0, 0, 0, 0.16);
+
+  --cs-text: rgba(18, 18, 18, 0.96);
+  --cs-text-secondary: rgba(42, 42, 42, 0.72);
+  --cs-text-tertiary: rgba(72, 72, 72, 0.54);
+
+  --cs-shadow: 0 10px 26px rgba(0, 0, 0, 0.045);
+  --cs-shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.025);
+
+  --color-background: transparent;
+  --color-background-soft: transparent;
+  --color-background-mute: transparent;
+
+  --navbar-background: transparent;
+
+  --color-list-item: var(--cs-row-active-bg);
+  --color-list-item-hover: var(--cs-row-hover-bg);
+  --list-item-border-radius: var(--cs-row-radius);
+
+  --color-text: var(--cs-text);
+  --color-text-secondary: var(--cs-text-secondary);
+  --color-text-2: var(--cs-text-secondary);
+  --color-text-3: var(--cs-text-tertiary);
+  --color-icon: var(--cs-text-secondary);
+  --color-border: var(--cs-border-soft);
+
+  --content-bgcolor: transparent;
+  --content-bgcolor-soft: transparent;
+  --content-bgcolor-hard: transparent;
+  --content-bgcolor-soft-soft: transparent;
+
+  --message-assistant-bg: transparent;
+  --message-user-bg: transparent;
+  --input-bg: var(--cs-input-bg);
+  --code-bg: var(--cs-editor-bg);
+}
+
+
+/* =========================================================
+   2. 深色模式
+   ========================================================= */
+
+body[theme-mode="dark"],
+body.dark {
+  --cs-page-bg: #000000;
+
+  --cs-bg-opacity: 0.94;
+  --cs-bg-brightness: 0.78;
+  --cs-bg-saturation: 0.96;
+  --cs-bg-contrast: 1.04;
+
+  --cs-shell-bg: rgba(18, 18, 18, 0.48);
+  --cs-shell-bg-strong: rgba(18, 18, 18, 0.58);
+  --cs-shell-bg-soft: rgba(18, 18, 18, 0.32);
+
+  --cs-row-bg: transparent;
+  --cs-row-hover-bg: rgba(255, 255, 255, 0.075);
+  --cs-row-active-bg: rgba(255, 255, 255, 0.12);
+
+  --cs-panel-bg: rgba(24, 24, 24, 0.38);
+  --cs-panel-bg-strong: rgba(24, 24, 24, 0.5);
+  --cs-input-bg: rgba(18, 18, 18, 0.54);
+  --cs-editor-bg: rgba(26, 26, 26, 0.58);
+
+  --cs-border: rgba(255, 255, 255, 0.11);
+  --cs-border-soft: rgba(255, 255, 255, 0.075);
+  --cs-border-strong: rgba(255, 255, 255, 0.16);
+
+  --cs-text: rgba(244, 242, 236, 0.96);
+  --cs-text-secondary: rgba(218, 214, 204, 0.76);
+  --cs-text-tertiary: rgba(218, 214, 204, 0.52);
+
+  --cs-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
+  --cs-shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  --color-background: transparent;
+  --color-background-soft: transparent;
+  --color-background-mute: transparent;
+
+  --navbar-background: transparent;
+
+  --color-list-item: var(--cs-row-active-bg);
+  --color-list-item-hover: var(--cs-row-hover-bg);
+  --list-item-border-radius: var(--cs-row-radius);
+
+  --color-text: var(--cs-text);
+  --color-text-secondary: var(--cs-text-secondary);
+  --color-text-2: var(--cs-text-secondary);
+  --color-text-3: var(--cs-text-tertiary);
+  --color-icon: var(--cs-text-secondary);
+  --color-border: var(--cs-border-soft);
+
+  --content-bgcolor: transparent;
+  --content-bgcolor-soft: transparent;
+  --content-bgcolor-hard: transparent;
+  --content-bgcolor-soft-soft: transparent;
+
+  --message-assistant-bg: transparent;
+  --message-user-bg: transparent;
+  --input-bg: var(--cs-input-bg);
+  --code-bg: var(--cs-editor-bg);
+}
+
+
+/* =========================================================
+   3. 全局初始化
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--cs-page-bg) !important;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  position: relative;
+  overflow-x: hidden;
+  background: transparent !important;
+  background-color: transparent !important;
+  color: var(--cs-text) !important;
+  font-family: var(--font-main) !important;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+
+  background-image: var(--chat-background-image);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  opacity: var(--cs-bg-opacity);
+  filter:
+    brightness(var(--cs-bg-brightness))
+    saturate(var(--cs-bg-saturation))
+    contrast(var(--cs-bg-contrast));
+}
+
+body::after {
+  content: none !important;
+  display: none !important;
+}
+
+#root {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+
+/* =========================================================
+   4. 字体
+   ========================================================= */
+
+body,
+button,
+input,
+textarea,
+select,
+.ant-btn,
+.ant-input,
+.ant-input-affix-wrapper,
+.ant-select,
+.ant-select-selector,
+.ant-modal,
+.ant-drawer,
+.ant-dropdown,
+.ant-menu,
+.ant-tabs,
+.ant-typography,
+.markdown,
+.message,
+.message-header,
+.message-content-container,
+.MessageFooter,
+.home-tabs,
+.home-tabs-content,
+.assistants-tab,
+.agents-tab,
+.home-navbar,
+.agent-navbar,
+#content-container {
+  font-family: var(--font-main) !important;
+  font-weight: 400;
+}
+
+code,
+pre,
+kbd,
+samp,
+.markdown code,
+.markdown pre,
+.markdown pre *,
+.cm-editor,
+.cm-content,
+.monaco-editor,
+textarea[data-language],
+[class*="code"],
+[class*="Code"] {
+  font-family: var(--font-code) !important;
+  font-variant-ligatures: none;
+}
+
+.ant-select-selection-item,
+.ant-select-item-option-content {
+  font-family: var(--font-main) !important;
+}
+
+[class*="model"] .ant-select-selection-item,
+[class*="Model"] .ant-select-selection-item,
+[class*="model-name"],
+[class*="ModelName"],
+[class*="model-id"],
+[class*="ModelId"] {
+  font-family: var(--font-code) !important;
+}
+
+
+/* =========================================================
+   5. 清除大底板
+   ========================================================= */
+
+#root,
+.ant-app,
+.ant-layout,
+.ant-layout-content,
+.ant-layout-sider,
+.ant-layout-header,
+#home-page,
+#agent-page,
+#chat,
+#chat-main,
+#content-container,
+#messages,
+.messages-container,
+.main,
+.content,
+.container,
+.virtual-scroller,
+.virtual-list,
+.infinite-scroll-component,
+.infinite-scroll-component__outerdiv,
+[class*="plain"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+
+/* =========================================================
+   6. 顶部全局标签栏
+   ========================================================= */
+
+.tab-scroll-container,
+.tabs-sortable,
+.sc-cpqxys,
+.sc-hDLGov > div:first-child {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.tab-scroll-container {
+  color: var(--cs-text) !important;
+}
+
+.tabs-sortable [role="button"] {
+  color: var(--cs-text) !important;
+}
+
+.tabs-sortable [role="button"] > div {
+  border-radius: 14px !important;
+  border: 1px solid transparent !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tabs-sortable [role="button"] > div:hover {
+  background: var(--cs-row-hover-bg) !important;
+  border-color: var(--cs-border-soft) !important;
+}
+
+
+/* =========================================================
+   7. 左侧栏容器统一
+   注意：这里只改容器，不改行高
+   ========================================================= */
+
+#home-page .home-tabs,
+#agent-page > .flex > div[style*="assistants-width"] > .flex,
+#content-container > div:first-child:has(a[href^="#/settings/"]) {
+  width: var(--cs-sidebar-width) !important;
+  height: calc(100vh - var(--navbar-height)) !important;
+
+  background: var(--cs-shell-bg) !important;
+  background-color: var(--cs-shell-bg) !important;
+  background-image: none !important;
+
+  border: none !important;
+  border-right: 1px solid var(--cs-border-soft) !important;
+
+  box-shadow: none !important;
+  color: var(--cs-text) !important;
+
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+#home-page .home-tabs *,
+#agent-page > .flex > div[style*="assistants-width"] *,
+#content-container > div:first-child:has(a[href^="#/settings/"]) * {
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+
+/* =========================================================
+   8. 左侧顶部分栏：助手/话题、智能体/会话
+   统一高度，但不污染列表行
+   ========================================================= */
+
+#home-page .home-tabs > div:first-child,
+#agent-page > .flex > div[style*="assistants-width"] div[style*="app-region"] {
+  height: 42px !important;
+  min-height: 42px !important;
+
+  margin: 0 12px 8px !important;
+  padding: 4px 0 6px !important;
+
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid var(--cs-border-soft) !important;
+  box-shadow: none !important;
+}
+
+#home-page .home-tabs > div:first-child button,
+#agent-page > .flex > div[style*="assistants-width"] div[style*="app-region"] button {
+  height: 30px !important;
+  min-height: 30px !important;
+  line-height: 20px !important;
+
+  margin: 0 3px !important;
+  padding: 0 10px !important;
+
+  border: 1px solid transparent !important;
+  border-radius: 12px !important;
+
+  background: transparent !important;
+  color: var(--cs-text-secondary) !important;
+
+  font-size: 14px !important;
+  box-shadow: none !important;
+}
+
+#home-page .home-tabs > div:first-child button:hover,
+#agent-page > .flex > div[style*="assistants-width"] div[style*="app-region"] button:hover {
+  background: var(--cs-row-hover-bg) !important;
+  color: var(--cs-text) !important;
+}
+
+
+/* =========================================================
+   9. 新建按钮统一
+   只命中助手页和智能体页的新建按钮
+   ========================================================= */
+
+#home-page .assistants-tab > div:first-child .ant-btn,
+#agent-page .agents-tab .virtual-scroller > div:first-child .ant-btn {
+  width: calc(var(--cs-sidebar-width) - 24px) !important;
+  height: var(--cs-row-height) !important;
+  min-height: var(--cs-row-height) !important;
+  line-height: 20px !important;
+
+  margin: 0 2px var(--cs-row-gap) !important;
+  padding: 0 var(--cs-row-padding-x) !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 10px !important;
+
+  border-radius: var(--cs-row-radius) !important;
+  border: 1px solid transparent !important;
+
+  background: transparent !important;
+  color: var(--cs-text) !important;
+  box-shadow: none !important;
+}
+
+#home-page .assistants-tab > div:first-child .ant-btn:hover,
+#agent-page .agents-tab .virtual-scroller > div:first-child .ant-btn:hover {
+  background: var(--cs-row-hover-bg) !important;
+  border-color: var(--cs-border-soft) !important;
+}
+
+
+/* =========================================================
+   10. 助手页 / 智能体页列表行统一
+   这部分严格只改列表行，不碰设置内容
+   ========================================================= */
+
+#home-page .draggable-list-container,
+#agent-page .virtual-list {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#home-page .draggable-list-container > div,
+#agent-page .virtual-list > .draggable-item,
+#agent-page .virtual-list > .draggable-item > .draggable-content {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 真实行元素 */
+#home-page .draggable-list-container > div > div.ant-dropdown-trigger,
+#agent-page .virtual-list > .draggable-item > .draggable-content > div.ant-dropdown-trigger {
+  width: calc(var(--cs-sidebar-width) - 24px) !important;
+
+  height: var(--cs-row-height) !important;
+  min-height: var(--cs-row-height) !important;
+  max-height: var(--cs-row-height) !important;
+  line-height: 20px !important;
+
+  margin: 0 2px !important;
+  padding: 0 var(--cs-row-padding-x) !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+
+  border-radius: var(--cs-row-radius) !important;
+  border: 1px solid transparent !important;
+
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+
+  color: var(--cs-text) !important;
+  box-shadow: none !important;
+
+  overflow: hidden !important;
+}
+
+/* 外层原本自带 margin-bottom: 8px，保留统一间距 */
+#home-page .draggable-list-container > div,
+#agent-page .virtual-list > .draggable-item > .draggable-content {
+  margin-bottom: var(--cs-row-gap) !important;
+}
+
+#home-page .draggable-list-container > div > div.ant-dropdown-trigger:hover,
+#agent-page .virtual-list > .draggable-item > .draggable-content > div.ant-dropdown-trigger:hover {
+  background: var(--cs-row-hover-bg) !important;
+  background-color: var(--cs-row-hover-bg) !important;
+  border-color: var(--cs-border-soft) !important;
+}
+
+/* 选中态：只命中已经带 bg-(--color-list-item) 的真实选中行 */
+#home-page .draggable-list-container > div > div[class*="bg-(--color-list-item)"],
+#agent-page .virtual-list > .draggable-item > .draggable-content > div[class*="bg-(--color-list-item)"] {
+  background: var(--cs-row-active-bg) !important;
+  background-color: var(--cs-row-active-bg) !important;
+  border-color: rgba(255, 255, 255, 0.42) !important;
+}
+
+#home-page .draggable-list-container .name,
+#agent-page .virtual-list .name {
+  color: var(--cs-text) !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+}
+
+#home-page .draggable-list-container .name > div:last-child,
+#agent-page .virtual-list .name span.truncate,
+#home-page .draggable-list-container .truncate,
+#agent-page .virtual-list .truncate {
+  color: var(--cs-text) !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+}
+
+
+/* =========================================================
+   11. 设置页左侧菜单统一
+   关键：只改 settings 菜单 li，不碰右侧设置项
+   ========================================================= */
+
+#content-container > div:first-child:has(a[href^="#/settings/"]) {
+  padding: 12px 8px !important;
+  overflow-y: auto !important;
+}
+
+#content-container > div:first-child:has(a[href^="#/settings/"]) a[href^="#/settings/"] {
+  display: block !important;
+  text-decoration: none !important;
+  color: var(--cs-text) !important;
+}
+
+/* 设置页左侧菜单行：和助手/智能体列表同一个高度 */
+#content-container > div:first-child:has(a[href^="#/settings/"]) a[href^="#/settings/"] > li {
+  width: calc(var(--cs-sidebar-width) - 24px) !important;
+
+  height: var(--cs-row-height) !important;
+  min-height: var(--cs-row-height) !important;
+  max-height: var(--cs-row-height) !important;
+  line-height: 20px !important;
+
+  margin: 0 2px var(--cs-row-gap) !important;
+  padding: 0 var(--cs-row-padding-x) !important;
+
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+
+  border-radius: var(--cs-row-radius) !important;
+  border: 1px solid transparent !important;
+
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+
+  color: var(--cs-text) !important;
+  font-size: 14px !important;
+
+  box-shadow: none !important;
+}
+
+#content-container > div:first-child:has(a[href^="#/settings/"]) a[href^="#/settings/"] > li:hover {
+  background: var(--cs-row-hover-bg) !important;
+  border-color: var(--cs-border-soft) !important;
+}
+
+#content-container > div:first-child:has(a[href^="#/settings/"]) a[href^="#/settings/"] > li.active {
+  background: var(--cs-row-active-bg) !important;
+  border-color: rgba(255, 255, 255, 0.42) !important;
+}
+
+#content-container > div:first-child:has(a[href^="#/settings/"]) a[href^="#/settings/"] > li svg {
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+  color: var(--cs-text-secondary) !important;
+}
+
+/* 设置页左侧分割线，不占用大高度 */
+#content-container > div:first-child:has(a[href^="#/settings/"]) .ant-divider {
+  height: 1px !important;
+  min-height: 1px !important;
+  margin: 6px 12px !important;
+  border: none !important;
+  background: rgba(128, 128, 128, 0.16) !important;
+  box-shadow: none !important;
+}
+
+
+/* =========================================================
+   12. 智能体页清理：删除 bot 小图标，但保留三点菜单
+   ========================================================= */
+
+#agent-page .virtual-list,
+#agent-page .virtual-list::before,
+#agent-page .virtual-list::after,
+#agent-page .draggable-item::before,
+#agent-page .draggable-item::after,
+#agent-page .draggable-content::before,
+#agent-page .draggable-content::after {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#agent-page .draggable-content div:has(> svg.lucide-bot),
+#agent-page .draggable-content svg.lucide-bot {
+  display: none !important;
+}
+
+#agent-page .draggable-content .name {
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+#agent-page .draggable-content .name > div:first-child {
+  min-width: 0 !important;
+}
+
+
+/* =========================================================
+   13. 头像 / Emoji 图标统一
+   ========================================================= */
+
+#home-page .draggable-list-container .sc-duKOXo,
+#agent-page .virtual-list .sc-duKOXo,
+#home-page .draggable-list-container .sc-cHijrb,
+#agent-page .virtual-list .sc-cHijrb {
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  min-height: 28px !important;
+
+  border-radius: 999px !important;
+  overflow: hidden !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  box-shadow: none !important;
+  border: none !important;
+}
+
+
+/* =========================================================
+   14. 页面顶栏统一
+   ========================================================= */
+
+.home-navbar,
+.agent-navbar,
+#home-page .home-navbar,
+#agent-page .agent-navbar {
+  background: var(--cs-shell-bg) !important;
+  background-color: var(--cs-shell-bg) !important;
+  background-image: none !important;
+
+  border: none !important;
+  border-bottom: 1px solid var(--cs-border-soft) !important;
+
+  box-shadow: none !important;
+
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+
+  color: var(--cs-text) !important;
+}
+
+.home-navbar *,
+.agent-navbar * {
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.home-navbar .ant-btn,
+.agent-navbar .ant-btn,
+.home-navbar button,
+.agent-navbar button {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+
+  border: 1px solid var(--cs-border-soft) !important;
+  border-radius: 14px !important;
+
+  color: var(--cs-text) !important;
+  box-shadow: none !important;
+}
+
+.home-navbar .ant-btn:hover,
+.agent-navbar .ant-btn:hover,
+.home-navbar button:hover,
+.agent-navbar button:hover {
+  background: var(--cs-row-hover-bg) !important;
+}
+
+.home-navbar .ant-avatar,
+.agent-navbar .ant-avatar {
+  box-shadow: none !important;
+}
+
+
+/* =========================================================
+   15. 设置页内容区
+   注意：不改行高，不改内部表单高度，只做透明面板
+   ========================================================= */
+
+#content-container .sc-ebxktz,
+#content-container .sc-eoaQPq {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  color: var(--cs-text) !important;
+}
+
+/* 只命中设置页的一级设置卡片，不用 div:has，避免误伤内部行 */
+#content-container .sc-eoaQPq > .sc-diLodP {
+  background: var(--cs-panel-bg) !important;
+  background-color: var(--cs-panel-bg) !important;
+  background-image: none !important;
+
+  border: 1px solid var(--cs-border-soft) !important;
+  border-radius: 18px !important;
+
+  box-shadow: var(--cs-shadow-soft) !important;
+
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+#content-container .sc-QIYgV,
+#content-container .sc-efUxvT,
+#content-container .sc-kZyiuq {
+  color: var(--cs-text) !important;
+}
+
+#content-container .sc-kZyiuq {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#content-container .ant-divider,
+#content-container .ant-divider::before,
+#content-container .ant-divider::after {
+  border-color: var(--cs-border-soft) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+
+/* =========================================================
+   16. 消息区：无卡片、无边框
+   ========================================================= */
+
+#messages,
+#messages > *,
+#messages [id^="message-group-"],
+#messages [id^="message-"],
+#messages .fold,
+#messages .selected,
+#messages .message,
+#messages .message-assistant,
+#messages .message-user,
+#messages .message-header,
+#messages .message-content-container,
+#messages .MessageFooter,
+#messages .block-wrapper,
+#messages .markdown,
+#messages .markdown-body,
+#messages .system-prompt {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+
+  border: none !important;
+  border-radius: 0 !important;
+
+  box-shadow: none !important;
+  outline: none !important;
+
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+
+  color: var(--cs-text) !important;
+}
+
+#messages .message {
+  margin-top: 14px !important;
+  margin-bottom: 18px !important;
+}
+
+#messages .message-content-container {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+#messages .message::before,
+#messages .message::after,
+#messages .message-header::before,
+#messages .message-header::after,
+#messages .message-content-container::before,
+#messages .message-content-container::after,
+#messages .MessageFooter::before,
+#messages .MessageFooter::after {
+  content: none !important;
+  display: none !important;
+}
+
+#messages .ant-avatar,
+#messages .ant-avatar img,
+#messages .message-header img {
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#messages .message-action-button,
+#messages .tokens,
+#messages .message-tokens,
+#messages .menubar {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+
+/* =========================================================
+   17. Markdown
+   ========================================================= */
+
+.markdown {
+  color: var(--cs-text) !important;
+  line-height: 1.78;
+  letter-spacing: 0.01em;
+}
+
+.markdown p,
+.markdown li {
+  color: var(--cs-text) !important;
+}
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4 {
+  font-family: var(--font-main) !important;
+  font-weight: 600;
+  color: var(--cs-text) !important;
+}
+
+.markdown strong {
+  font-weight: 600;
+}
+
+.markdown a {
+  color: var(--cs-flow-cyan) !important;
+  text-decoration: none;
+}
+
+
+/* =========================================================
+   18. Ant 组件通用外观
+   不在这里改 height，避免再次污染行高
+   ========================================================= */
+
+.ant-btn,
+.ant-btn-default,
+.ant-input,
+.ant-input-outlined,
+.ant-input-affix-wrapper,
+.ant-input-number,
+.ant-picker,
+.ant-select .ant-select-selector,
+.ant-mentions,
+.ant-tag,
+.ant-segmented,
+.ant-color-picker-trigger {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+
+  border: 1px solid var(--cs-border-soft) !important;
+  box-shadow: none !important;
+
+  color: var(--cs-text) !important;
+
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.ant-btn:hover,
+.ant-btn-default:hover,
+.ant-tag:hover,
+.ant-segmented:hover {
+  background: var(--cs-row-hover-bg) !important;
+  border-color: var(--cs-border-strong) !important;
+}
+
+.ant-input::placeholder,
+textarea::placeholder,
+input::placeholder {
+  color: var(--cs-text-tertiary) !important;
+}
+
+.ant-modal .ant-modal-content,
+.ant-drawer-content,
+.ant-popover-inner,
+.ant-dropdown .ant-dropdown-menu,
+.ant-dropdown-menu-submenu .ant-dropdown-menu,
+.ant-select-dropdown,
+.ant-picker-dropdown .ant-picker-panel-container,
+.ant-tooltip-inner {
+  background: var(--cs-panel-bg-strong) !important;
+  background-color: var(--cs-panel-bg-strong) !important;
+  background-image: none !important;
+
+  border: 1px solid var(--cs-border-soft) !important;
+  border-radius: 16px !important;
+
+  box-shadow: var(--cs-shadow) !important;
+  color: var(--cs-text) !important;
+
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.ant-tooltip-arrow::before {
+  background: var(--cs-panel-bg-strong) !important;
+}
+
+
+/* =========================================================
+   19. 代码块 / 编辑器
+   ========================================================= */
+
+pre {
+  background: var(--cs-editor-bg) !important;
+  background-color: var(--cs-editor-bg) !important;
+
+  color: var(--cs-text) !important;
+
+  border: 1px solid var(--cs-border-soft) !important;
+  border-radius: 14px !important;
+
+  box-shadow: none !important;
+  overflow: hidden;
+}
+
+code {
+  font-family: var(--font-code) !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.cm-theme,
+.cm-editor,
+.monaco-editor {
+  background: var(--cs-editor-bg) !important;
+  background-color: var(--cs-editor-bg) !important;
+  border: 1px solid var(--cs-border-soft) !important;
+  border-radius: 14px !important;
+  box-shadow: none !important;
+}
+
+.cm-scroller,
+.cm-content,
+.cm-gutters,
+.cm-gutter,
+.cm-line,
+.cm-activeLine,
+.cm-activeLineGutter,
+.monaco-editor-background,
+.monaco-editor .margin,
+.monaco-editor .inputarea,
+.monaco-editor .view-lines,
+.monaco-editor .view-line {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.cm-gutters,
+.cm-gutter,
+.cm-activeLineGutter {
+  color: var(--cs-text-tertiary) !important;
+}
+
+
+/* =========================================================
+   20. 输入框
+   ========================================================= */
+
+.inputbar,
+#inputbar,
+.inputbar-container {
+  position: relative;
+}
+
+#inputbar.inputbar-container,
+.inputbar-container {
+  overflow: visible !important;
+
+  background: var(--cs-input-bg) !important;
+  background-color: var(--cs-input-bg) !important;
+  background-image: none !important;
+
+  border: 1px solid var(--cs-border) !important;
+  border-radius: 20px !important;
+
+  box-shadow: var(--cs-shadow) !important;
+
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+#inputbar {
+  isolation: isolate;
+  overflow: visible !important;
+  border-radius: 18px !important;
+}
+
+#inputbar,
+#inputbar > *,
+#inputbar textarea,
+#inputbar input,
+#inputbar .ant-input,
+#inputbar .ant-input-outlined,
+#inputbar .ant-input-affix-wrapper,
+#inputbar .ant-input-number,
+#inputbar .ant-picker,
+#inputbar .ant-select .ant-select-selector,
+#inputbar .ant-mentions,
+#inputbar .ant-btn,
+#inputbar .ant-btn-default,
+#inputbar button,
+#inputbar .ant-tag,
+#inputbar .ant-segmented {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+#inputbar input,
+#inputbar textarea,
+#inputbar .ant-input,
+#inputbar .ant-input-affix-wrapper,
+#inputbar button {
+  position: relative;
+  z-index: 3;
+}
+
+
+/* =========================================================
+   21. 输入框跑马灯
+   ========================================================= */
+
+@keyframes flow-idle {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 260% 50%;
+  }
+}
+
+@keyframes flow-ramp {
+  0% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 0 rgba(90, 225, 255, 0));
+  }
+
+  35% {
+    background-position: 90% 50%;
+  }
+
+  70% {
+    background-position: 220% 50%;
+    filter: drop-shadow(0 0 8px rgba(90, 225, 255, 0.24));
+  }
+
+  100% {
+    background-position: 430% 50%;
+    filter: drop-shadow(0 0 14px rgba(90, 225, 255, 0.34));
+  }
+}
+
+@keyframes flow-slowdown {
+  0% {
+    background-position: 430% 50%;
+    opacity: 1;
+  }
+
+  100% {
+    background-position: 610% 50%;
+    opacity: 0.42;
+  }
+}
+
+#inputbar::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: inherit;
+  padding: 1.5px;
+
+  background: linear-gradient(
+    90deg,
+    var(--cs-flow-orange),
+    var(--cs-flow-violet),
+    var(--cs-flow-cyan),
+    var(--cs-flow-white),
+    var(--cs-flow-cyan),
+    var(--cs-flow-violet),
+    var(--cs-flow-orange)
+  );
+  background-size: 260% 100%;
+
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+
+  opacity: 0.42;
+  animation: flow-idle var(--flow-idle-duration) linear infinite;
+
+  transition:
+    opacity 0.8s ease,
+    filter 0.8s ease,
+    inset 0.4s ease;
+}
+
+#inputbar:focus-within::before {
+  opacity: 0.76;
+  inset: -2.5px;
+  animation-name: flow-ramp;
+  animation-duration: var(--flow-focus-duration);
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#inputbar.ai-active::before,
+#inputbar.ai-thinking::before,
+#inputbar[data-ai-status="running"]::before,
+#inputbar[data-loading="true"]::before,
+#inputbar[aria-busy="true"]::before,
+body:has(.ant-spin-spinning) #inputbar::before {
+  opacity: 1;
+  inset: -3px;
+  animation-name: flow-ramp;
+  animation-duration: var(--flow-running-duration);
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#inputbar[data-ai-status="done"]::before,
+#inputbar.ai-done::before {
+  animation: flow-slowdown 4.8s ease 1 forwards;
+}
+
+
+/* =========================================================
+   22. 水波环
+   ========================================================= */
+
+@keyframes water-idle {
+  0%,
+  100% {
+    transform: translateY(-50%) scale(0.96);
+    opacity: 0.42;
+  }
+
+  50% {
+    transform: translateY(-50%) scale(1.04);
+    opacity: 0.62;
+  }
+}
+
+@keyframes water-running {
+  0% {
+    transform: translateY(-50%) scale(0.78);
+    opacity: 1;
+    box-shadow:
+      0 0 0 2px rgba(90, 225, 255, 0.24),
+      0 0 0 7px rgba(155, 110, 255, 0.16),
+      0 0 0 13px rgba(255, 141, 86, 0.1);
+  }
+
+  100% {
+    transform: translateY(-50%) scale(1.32);
+    opacity: 0;
+    box-shadow:
+      0 0 0 10px rgba(90, 225, 255, 0),
+      0 0 0 19px rgba(155, 110, 255, 0),
+      0 0 0 30px rgba(255, 141, 86, 0);
+  }
+}
+
+#inputbar::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -28px;
+  z-index: 2;
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+  border-radius: 999px;
+
+  border: 1px solid rgba(90, 225, 255, 0.46) !important;
+  box-shadow:
+    0 0 0 5px rgba(90, 225, 255, 0.09),
+    0 0 0 10px rgba(155, 110, 255, 0.07),
+    0 0 0 16px rgba(255, 141, 86, 0.045);
+
+  opacity: 0.42;
+  animation: water-idle 7.5s ease-in-out infinite;
+}
+
+#inputbar:focus-within::after {
+  right: -31px;
+  opacity: 0.76;
+  animation: water-running 2.8s ease-out infinite;
+}
+
+#inputbar.ai-active::after,
+#inputbar.ai-thinking::after,
+#inputbar[data-ai-status="running"]::after,
+#inputbar[data-loading="true"]::after,
+#inputbar[aria-busy="true"]::after,
+body:has(.ant-spin-spinning) #inputbar::after {
+  right: -34px;
+  opacity: 1;
+  animation: water-running 1.45s ease-out infinite;
+}
+
+
+/* =========================================================
+   23. Focus
+   ========================================================= */
+
+*:focus,
+*:focus-visible,
+*:focus-within {
+  outline: none !important;
+}
+
+.ant-input:focus,
+.ant-input-focused,
+.ant-input-affix-wrapper:focus,
+.ant-input-affix-wrapper-focused,
+.ant-select-focused .ant-select-selector,
+.ant-picker-focused,
+.ant-btn:focus,
+.ant-btn:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: var(--cs-border-strong) !important;
+}
+
+#inputbar *:focus,
+#inputbar *:focus-visible,
+#inputbar *:focus-within {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+
+
+/* =========================================================
+   24. 滚动条
+   ========================================================= */
+
+*::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(90, 225, 255, 0.36),
+      rgba(155, 110, 255, 0.3)
+    )
+    border-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(90, 225, 255, 0.58),
+      rgba(155, 110, 255, 0.48)
+    )
+    border-box;
+}
+
+
+/* =========================================================
+   25. 移动端
+   ========================================================= */
+
+@media (max-width: 768px) {
+  #content-container #messages,
+  #messages {
+    padding: 10px !important;
+  }
+
+  #inputbar::before {
+    inset: -1.5px;
+    padding: 1px;
+  }
+
+  #inputbar::after {
+    right: -18px;
+    width: 12px;
+    height: 12px;
+  }
+
+  #inputbar:focus-within::after,
+  #inputbar.ai-active::after,
+  #inputbar.ai-thinking::after,
+  #inputbar[data-ai-status="running"]::after {
+    right: -20px;
+  }
+}
+
+
+/* =========================================================
+   26. 减少动态
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

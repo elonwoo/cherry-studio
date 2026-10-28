@@ -1,0 +1,491 @@
+/*
+ * @name: GitHub Style Theme
+ * @description: A custom theme with light and dark modes, styled to resemble GitHub.
+ * @author: Theowastaken
+ * @date: 2025-07-13
+ * @version: 2.0 (Enhanced GitHub Style)
+ */
+
+/*
+ * 更新日志:
+ * Version 2.0:
+ * - 去掉侧边栏设置中的solid边框，只保留聊天框的边框
+ * Version 1.9:
+ * - 将AI输出聊天框中的"思考（thinking）"、报错、和mcp调用的方块颜色改为#f7f7f7
+ * Version 1.8:
+ * - 将AI输出聊天框中的"思考（thinking）"、报错、和mcp调用的方块颜色改为接近白色的灰色
+ * - 给输入框加上和模型选择框一样的阴影效果
+ * - 增大每个聊天框（AI和用户的都要）的框前间距
+ */
+
+:root {
+  --navbar-background: unset;
+  transition: background-color 0.3s linear, background-image 0.3s linear;
+}
+
+/* ==========================================================================
+   Body & Theme Variables
+   ========================================================================== */
+
+body[theme-mode] {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  transition: background-image 0.3s linear;
+}
+
+body[theme-mode="light"] {
+  --message-bgcolor: #f7f7f7; /* 用户消息框颜色 */
+  --input-bgcolor: #f3f4f5; /* 输入框颜色 */
+  --content-bgcolor: #ffffff;
+  --content-bgcolor-hard: #dadada; /* 稍微深一点的灰色 */
+  --content-bgcolor-soft: #f4f4f4; /* 侧边栏等颜色 */
+  --content-bgcolor-ai: #fdfdfd; /* AI聊天框颜色 */
+  --content-bgcolor-thinking: #a1bfe01c; /* 思维链显示框颜色 - 对应截图中的思考框背景色 */
+  --content-bgcolor-thinking-border: #88a8ca8a; /* 思维链显示框边框颜色 */
+
+  --content-bgcolor-soft-soft: #f6f8fa;
+  --content-color: #24292e;
+  --border-color: #d1d5da; /* 边框颜色 */
+  --thinking-block-bgcolor: #f6f8fa; /* 接近白色的灰色 */
+
+  --modal-background: var(--content-bgcolor-soft);
+  --color-background-mute: var(--content-bgcolor-soft);
+  --color-background: transparent;
+  --color-background-soft: var(--content-bgcolor-soft);
+  --navbar-background: unset;
+  background-image: unset;
+  background-color: #ffffff;
+}
+
+body[theme-mode="dark"] {
+  --message-bgcolor: #0d1117;
+  --content-bgcolor: #0d1117;
+  --content-bgcolor-soft: #161b22;
+  --content-bgcolor-ai: #161b22; /* AI聊天框颜色 */
+  --content-bgcolor-thinking: #1a1f25; /* 思维链显示框颜色 */
+  --content-bgcolor-soft-soft: #1a2029;
+  --content-bgcolor-hard: #21262d;
+  --content-color: #f0f6fc; /* 添加浅色用于深色模式文字 */
+  --border-color: #30363d; /* 深色模式边框颜色 */
+  --thinking-block-bgcolor: #161b22; /* 接近白色的灰色 */
+
+  --modal-background: var(--content-bgcolor-soft);
+  --color-background-mute: var(--content-bgcolor-soft);
+  --color-background: transparent;
+  --color-background-soft: var(--content-bgcolor-soft);
+  --navbar-background: unset;
+  background-image: unset;
+  background-color: #0d1117;
+}
+
+/* ==========================================================================
+   Ant Design Component Overrides
+   ========================================================================== */
+
+.draggable-item {
+  transform: translateY();
+}
+
+.ant-input-outlined, .ant-input-number-outlined, .ant-input-filled:focus, .ant-input-filled:focus-within {
+  background: var(--input-bgcolor);
+  border: 1.5px solid var(--border-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+  transition: background-color 0.3s ease;
+}
+
+.ant-input-number-outlined:focus, .ant-input-number-outlined:focus-within, .ant-input-number-outlined:hover, .ant-input-number .ant-input-number-handler, .ant-steps-item-process .ant-steps-item-icon, .ant-btn-variant-outlined:not(:disabled):not(.ant-btn-disabled):hover, .ant-btn-variant-dashed:not(:disabled):not(.ant-btn-disabled):hover {
+  background-color: var(--content-bgcolor-hard);
+}
+
+.ant-btn-variant-outlined, .ant-btn-variant-dashed {
+    border-color: var(--ant-button-default-border-color);
+    background: var(--content-bgcolor-soft);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
+    border: var(--ant-line-width) var(--ant-line-type) var(--ant-color-border);
+    background: var(--content-bgcolor-soft);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.ant-segmented {
+  transition: 2s ease-in-out;
+}
+
+.ant-alert-success {
+  background-color: var(--content-bgcolor-soft);
+}
+
+.ant-btn-dangerous {
+  color: #d73a49;
+  border-color: #d73a49;
+}
+
+.ant-btn-dangerous:hover {
+  color: #cb2431;
+  border-color: #cb2431;
+}
+
+.ant-btn-dangerous.ant-btn-primary {
+  background-color: #d73a49;
+  border-color: #d73a49;
+}
+
+.ant-btn-dangerous.ant-btn-primary:hover {
+  background-color: #cb2431;
+  border-color: #cb2431;
+}
+
+.ant-segmented .ant-segmented-item-selected {
+  background-color: var(--content-bgcolor-hard);
+}
+
+.ant-segmented .ant-segmented-thumb {
+  background-color: var(--content-bgcolor-hard);
+}
+
+.ant-modal-root .ant-modal-mask {
+  background-color: unset;
+}
+
+.ant-select-dropdown {
+  background-color: var(--content-bgcolor-soft);
+}
+
+/* ==========================================================================
+   Markdown & Code Block Styles
+   ========================================================================== */
+
+.markdown pre {
+  background-color: var(--content-bgcolor-soft);
+  border: 1.5px solid var(--border-color);
+  border-radius: 6px;
+  padding: 16px;
+  overflow: auto;
+}
+
+.markdown pre .shiki {
+  background-color: var(--content-bgcolor-soft-soft) !important; /*Element style is set*/
+}
+
+.iztnTo:not(:has(+ [class*="Container"])) {
+  border-radius: 0 0 6px 6px;
+}
+
+.markdown pre [class^="CodeHeader"] {
+  justify-content: center;
+  position: relative;
+}
+
+.markdown pre [class^="CodeHeader"]::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  box-shadow:
+      20px 0 0 0 #FFBD2E,
+      40px 0 0 0 #27C93F; 
+  background-color: #FF5F56;
+  border: 0.5px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.markdown th {
+  background-color: var(--content-bgcolor-hard);
+}
+
+.markdown p code, .markdown li code {
+  background: var(--content-bgcolor-hard);
+  border-radius: 3px;
+  padding: 0.2em 0.4em;
+  font-size: 85%;
+  color: var(--content-color); /* 使用主题文字颜色 */
+}
+
+.markdown blockquote {
+  margin: 0;
+  padding: 0 1em;
+  color: var(--content-color); /* 使用主题文字颜色 */
+  border-left: 0.25em solid var(--content-bgcolor-hard);
+  background-color: var(--content-bgcolor-soft);
+  border-radius: 6px;
+}
+
+/* ==========================================================================
+   Custom Component Styles
+   ========================================================================== */
+
+/* Buttons */
+.kMcPid.active, .bBIuDF.active, .iIQSsF.active, .kifmQt.active {
+  background-color: var(--content-bgcolor-hard);
+}
+
+.kMcPid:hover, .bBIuDF:hover, .iIQSsF:hover, .kifmQt:hover {
+  background-color: var(--content-bgcolor-soft);
+  transition: unset;
+}
+
+.bBIuDF, .iIQSsF, .kifmQt {
+  transition: background-color 0.3s ease;
+}
+
+.kMcPid {
+  transition: background-color 0.3s ease;
+}
+
+.lfecvJ .ant-segmented-item, .fnBPAQ {
+  transition: background-color 0.3s ease;
+}
+
+.jrOjPS {
+  background-color: var(--content-bgcolor-hard);
+}
+
+div[class^="InputContainer"], div[class^="OutputContainer"], div[class^="ImagePlaceholder"], div[class^="SettingGroup"] {
+  background-color: var(--content-bgcolor-soft);
+  border-radius: 6px;
+}
+
+/* Unified style for sidebar, top bar, and other components */
+#app-sidebar,
+.home-tabs, 
+ul[class^="SettingMenus"], 
+div[class^="ProviderListContainer"], 
+div[class^="CardContent"], 
+div[class^="KnowledgeSideNav"], 
+div[class^="ServerCard"], 
+[class^="LeftContainer-"], 
+div[class^="MenuList"], 
+div[class^="SideNav"], 
+.AgentsGroupList-cCGLE, 
+.ant-upload-wrapper .ant-upload-drag, 
+.ejMDpr, 
+.dWJYjX, 
+.jjBPON, 
+.ggGGTJ, 
+.iZnnzJ {
+  background-color: var(--content-bgcolor-soft);
+  border-radius: 6px;
+}
+
+div[class^="SettingContainer"] {
+  background: transparent;
+}
+
+.ant-modal .ant-modal-content, div[class^="AgentCardContainer"] {
+  background-color: var(--content-bgcolor-soft);
+}
+
+/* Plugins */
+.hLFumB {
+  background-color: var(--content-bgcolor-soft);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 6px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.hLFumB div {
+  margin: 0;
+}
+
+.hLFumB:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 5px 16px 5px rgba(33,33,33,.1);
+}
+
+/* Chat & Message Styles */
+.inputbar-container {
+  background-color: var(--input-bgcolor);
+  border: 1.5px solid var(--border-color);
+  border-radius: 6px;
+  transform: none;
+}
+
+.bubble:not(.multi-select-mode) .message-user .message-content-container {
+  background-color: var(--message-bgcolor);
+  border: 1.5px solid var(--border-color);
+  border-radius: 6px;
+  margin-top: 10px; /* 增加上边距 */
+}
+
+.system-prompt > div {
+  color: var(--color-text);
+}
+
+.message-user {
+  will-change: unset;
+  transform: none;
+}
+
+.message-assistant {
+  background-color: var(--content-bgcolor-ai);
+  border: 1.5px solid var(--border-color);
+  border-radius: 6px;
+  padding: 18px 20px 10px 20px !important;
+  will-change: unset;
+  transform: none;
+  margin-top: 10px; /* 增加上边距 */
+}
+
+[class^="Main"] {
+  transform: none;
+}
+
+/* AI Output Chat Box Styles */
+.bubble .message-assistant .markdown {
+  color: var(--content-color);
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.bubble .message-assistant .markdown h1,
+.bubble .message-assistant .markdown h2,
+.bubble .message-assistant .markdown h3,
+.bubble .message-assistant .markdown h4,
+.bubble .message-assistant .markdown h5,
+.bubble .message-assistant .markdown h6 {
+  color: var(--content-color);
+  border-bottom: 1.5px solid var(--content-bgcolor-hard);
+  margin-top: 1.5em;
+  margin-bottom: 1em;
+  padding-bottom: 0.3em;
+}
+
+.bubble .message-assistant .markdown a {
+  color: #58a6ff; /* GitHub链接颜色 */
+  text-decoration: none;
+}
+
+.bubble .message-assistant .markdown a:hover {
+  text-decoration: underline;
+}
+
+.bubble .message-assistant .markdown table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+}
+
+.bubble .message-assistant .markdown table th,
+.bubble .message-assistant .markdown table td {
+  padding: 6px 13px;
+  border: 1.5px solid var(--content-bgcolor-hard);
+}
+
+.bubble .message-assistant .markdown table tr:nth-child(2n) {
+  background-color: var(--content-bgcolor-soft);
+}
+
+.bubble .message-assistant .markdown pre {
+  background-color: var(--content-bgcolor-soft-soft);
+  border: 1.5px solid var(--border-color);
+  border-radius: 6px;
+  padding: 16px;
+  overflow: auto;
+  margin: 1em 0;
+}
+
+.bubble .message-assistant .markdown code {
+  background-color: var(--content-bgcolor-hard);
+  border-radius: 3px;
+  padding: 0.2em 0.4em;
+  font-size: 85%;
+  color: var(--content-color);
+}
+
+.bubble .message-assistant .markdown pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+.bubble .message-assistant .markdown blockquote {
+  margin: 1em 0;
+  padding: 0 1em;
+  color: var(--content-color);
+  border-left: 0.25em solid #58a6ff; /* GitHub引用边框颜色 */
+  background-color: var(--content-bgcolor-soft);
+  border-radius: 6px;
+}
+
+.bubble .message-assistant .markdown ul,
+.bubble .message-assistant .markdown ol {
+  padding-left: 2em;
+  margin: 1em 0;
+}
+
+.bubble .message-assistant .markdown ul {
+  list-style-type: disc;
+}
+
+.bubble .message-assistant .markdown ol {
+  list-style-type: decimal;
+}
+
+.bubble .message-assistant .markdown li {
+  margin-bottom: 0.5em;
+}
+
+.bubble .message-assistant .markdown li > p {
+  margin: 0;
+}
+
+.bubble .message-assistant .markdown img {
+  max-width: 100%;
+  box-sizing: content-box;
+  background-color: var(--content-bgcolor);
+  margin: 1em 0;
+}
+
+.bubble .message-assistant .markdown hr {
+  height: 0.25em;
+  padding: 0;
+  margin: 24px 0;
+  background-color: var(--content-bgcolor-hard);
+  border: 0;
+}
+
+/* Task list styles */
+.bubble .message-assistant .markdown input[type="checkbox"] {
+  margin-right: 0.5em;
+  vertical-align: middle;
+}
+
+.bubble .message-assistant .markdown ul.task-list {
+  list-style-type: none;
+  padding-left: 1.5em;
+}
+
+.bubble .message-assistant .markdown ul.task-list li {
+  position: relative;
+}
+
+.bubble .message-assistant .markdown ul.task-list li input[type="checkbox"] {
+  position: absolute;
+  left: -1.5em;
+}
+
+/* AI输出中的思考、报错、MCP调用方块样式 */
+.bubble .message-assistant .markdown .thinking-block,
+.bubble .message-assistant .markdown .error-block,
+.bubble .message-assistant .markdown .mcp-block,
+/* 以下是根据截图添加的思考框样式 */
+.ant-collapse-header-text {
+  background-color: var(--content-bgcolor-thinking); /* 思维链显示框颜色 - 对应截图中的思考框背景色 */
+  border: 1px solid var(--border-color);
+  border-radius: 13px;
+}
+
+.ant-collapse-content-box {
+  background-color: var(--content-bgcolor-thinking); /* 思维链显示框颜色 - 对应截图中的思考框背景色 */
+  border: 1.5px solid var(--border-color);
+}

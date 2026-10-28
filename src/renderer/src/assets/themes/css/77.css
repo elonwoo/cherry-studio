@@ -1,0 +1,158 @@
+:root {
+    /* --- TYPOGRAPHY --- */
+    --font-default: "Outfit", "Segoe UI", "Inter", system-ui, sans-serif;
+    --font-code: "JetBrains Mono", "Fira Code", monospace;
+
+    /* --- COOL TONE PALETTE --- */
+    --primary-glow: #7c8ca3;       /* Slate Blue / Gray */
+    --secondary-glow: #cbd6e3;     /* Soft Icy White / Blue */
+    --accent-glow: #e0e4eb;        /* Highlight for borders / subtle accents */
+
+    /* --- GLOWS & GRADIENTS --- */
+    --glow-primary: 0 0 12px rgba(124, 140, 163, 0.6);
+    --glow-secondary: 0 0 10px rgba(203, 214, 227, 0.5);
+    --gradient-core: radial-gradient(circle at center, rgba(124, 140, 163, 0.15) 0%, rgba(0,0,0,0) 70%);
+
+    /* --- DIMENSIONS --- */
+    --radius-soft: 8px;
+    --radius-round: 16px;
+
+    /* --- SEMI-TRANSPARENT COLORS --- */
+    --semi-dark-75: rgba(20, 20, 30, 0.75);
+    --semi-dark-85: rgba(20, 20, 30, 0.85);
+
+    /* --- BACKGROUND IMAGE --- */
+    --background-image-url: url('https://images.unsplash.com/photo-1638184984605-af1f05249a56?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+}
+
+/* --- AI Breathing Glow --- */
+@keyframes ai-breathe {
+    0% {
+        box-shadow: 0 0 15px var(--primary-glow), inset 0 0 5px var(--primary-glow);
+        border-color: rgba(124, 140, 163, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 25px var(--secondary-glow), inset 0 0 8px var(--secondary-glow);
+        border-color: rgba(203, 214, 227, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 15px var(--primary-glow), inset 0 0 5px var(--primary-glow);
+        border-color: rgba(124, 140, 163, 0.6);
+    }
+}
+
+/* --- DARK MODE BODY --- */
+body[theme-mode="dark"] {
+    background-image: var(--background-image-url);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    --color-background: transparent;
+    --color-background-soft: rgba(255, 255, 255, 0.03);
+
+    --chat-background-user: var(--semi-dark-75);
+    --chat-background-assistant: var(--semi-dark-75);
+
+    --text-primary: #e0e4eb;
+    --text-secondary: #cbd6e3;
+    --text-code: var(--text-primary);
+
+    --color-brand-primary: var(--primary-glow);
+    --deep-thinking-color: var(--secondary-glow);
+
+    --navbar-background: var(--semi-dark-85);
+    --shadow-intensity: 0.2;
+}
+
+/* --- CORE PANEL STYLING --- */
+.message-content-container {
+    border-radius: var(--radius-round);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 18px 22px;
+    margin: 12px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 1px solid rgba(124, 140, 163, 0.2);
+}
+
+.chat-item.user .message-content-container {
+    background: var(--chat-background-user) !important;
+    border: 1px solid rgba(124, 140, 163, 0.5);
+    box-shadow: var(--glow-primary);
+}
+
+.chat-item.assistant .message-content-container {
+    background: var(--chat-background-assistant) !important;
+    border: 1px solid rgba(203, 214, 227, 0.4);
+    border-left: 4px solid var(--secondary-glow);
+}
+
+.message-content-container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3), 0 0 18px var(--secondary-glow);
+    border-color: var(--secondary-glow);
+}
+
+/* --- INPUT BAR --- */
+#inputbar {
+    background: var(--semi-dark-75) !important;
+    backdrop-filter: blur(25px);
+    border-radius: var(--radius-round);
+    border: 1px solid rgba(124, 140, 163, 0.4);
+    margin: 0 25px 25px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px var(--primary-glow);
+    animation: ai-breathe 8s ease-in-out infinite alternate-reverse;
+}
+
+#inputbar:focus-within {
+    border-color: var(--secondary-glow);
+    box-shadow: 0 0 25px var(--secondary-glow);
+}
+
+#inputbar textarea.ant-input {
+    color: var(--text-code) !important;
+    font-size: 16px;
+    font-family: var(--font-code);
+}
+
+/* --- BUTTONS --- */
+button, .ant-btn {
+    background: rgba(124, 140, 163, 0.15) !important;
+    border: 1px solid var(--primary-glow) !important;
+    color: var(--text-primary) !important;
+    font-weight: 600;
+    border-radius: var(--radius-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover, .ant-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--glow-secondary);
+    background: rgba(203, 214, 227, 0.2) !important;
+}
+
+/* --- SCROLLBARS --- */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--primary-glow);
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-glow);
+}
+
+/* --- HEADINGS & LINKS --- */
+.markdown h1, h2, h3 { color: var(--secondary-glow); }
+.markdown a { color: var(--primary-glow); }
+.markdown a:hover {
+    color: var(--text-primary);
+    background: var(--primary-glow);
+    box-shadow: var(--glow-primary);
+}

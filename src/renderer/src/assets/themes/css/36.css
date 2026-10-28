@@ -1,0 +1,187 @@
+/* ===== 完整液态荡漾输入框CSS ===== */
+#inputbar {
+  /* 玻璃材质基础 */
+  --glass-light: rgba(255, 255, 255, 0.25);
+  --glass-edge: rgba(255, 255, 255, 0.1);
+  --glass-shadow: rgba(0, 0, 0, 0.15);
+  
+  position: relative;
+  margin: 0 15px 15px 15px !important;
+  border-radius: 16px;
+  background: 
+    linear-gradient(135deg, 
+      var(--glass-light) 0%, 
+      rgba(255, 255, 255, 0.05) 50%, 
+      var(--glass-light) 100%);
+  border: 1px solid var(--glass-edge);
+  backdrop-filter: blur(16px);
+  box-shadow:
+    0 4px 24px var(--glass-shadow),
+    inset 0 4px 8px rgba(255, 255, 255, 0.2),
+    inset 0 -6px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* 输入区域 */
+#inputbar .input-area {
+  position: relative;
+  width: 100%;
+  padding: 18px 20px;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  color: #333;
+  outline: none;
+  z-index: 2;
+}
+
+/* 高光动画层 */
+#inputbar::after {
+  content: '';
+  will-change: height, opacity, transform;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: linear-gradient(
+    to top, 
+    rgba(255, 255, 255, 0.7),
+    transparent 80%
+  );
+  border-radius: 16px;
+  opacity: 0;
+  z-index: 1;
+  transform-origin: bottom;
+  pointer-events: none;
+}
+
+/* 焦点动画触发 */
+#inputbar:focus-within {
+  box-shadow:
+    0 8px 32px var(--glass-shadow),
+    inset 0 6px 12px rgba(255, 255, 255, 0.3),
+    inset 0 -8px 16px rgba(0, 0, 0, 0.15);
+  
+  &::after {
+    animation: liquidRipple 5s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+  }
+}
+
+/* 荡漾高光动画定义 */
+@keyframes liquidRipple {
+  0% {
+    height: 10%;
+    opacity: 0;
+    transform: scaleY(0.5);
+  }
+  30% {
+    height: 50%;
+    opacity: 0.9;
+    transform: scaleY(1);
+  }
+  70% {
+    height: 75%;
+    opacity: 0.4;
+  }
+  100% {
+    height: 100%;
+    opacity: 0;
+    transform: scaleY(1.1);
+  }
+}
+
+/* 暗色模式适配 */
+[theme-mode='dark'] #inputbar {
+  --glass-light: rgba(255, 255, 255, 0.1);
+  --glass-edge: rgba(255, 255, 255, 0.05);
+  --glass-shadow: rgba(0, 0, 0, 0.3);
+  
+  .input-area {
+    color: #f0f0f0 !important;
+  }
+  
+  &::after {
+    background: linear-gradient(
+      to top, 
+      rgba(255, 255, 255, 0.4),
+      transparent 80%
+    );
+  }
+}
+
+/* 移动端触控优化 */
+@media (hover: none) {
+  #inputbar:focus-within::after {
+    animation-duration: 0.8s;
+  }
+}
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes blinking {
+  0% {
+    filter: drop-shadow(rgba(33, 150, 243, 0.72) 0px 0px 3px);
+  }
+  25% {
+    filter: drop-shadow(rgba(33, 150, 243, 0.72) 0px 0px 5px);
+  }
+  50% {
+    filter: drop-shadow(rgba(255, 165, 0, 0.72) 0px 0px 10px);
+  }
+  75% {
+    filter: drop-shadow(rgba(33, 150, 243, 0.72) 0px 0px 5px);
+  }
+  100% {
+    filter: drop-shadow(rgba(33, 150, 243, 0.72) 0px 0px 3px);
+  }
+}
+
+[theme-mode='dark'] #inputbar:focus-within::before {
+  opacity: 0.5 !important;
+}
+
+#inputbar {
+  z-index: 1;
+  position: relative;
+  box-shadow: var(--box-shadow);
+  margin: 0 15px 15px 15px !important;
+}
+
+#inputbar::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(90deg, #d65f00, #ffb800, #8a2be2, #ffb800, #d45e00);
+  background-size: 200% 200%;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: gradientFlow 4s linear infinite;
+  opacity: 0;
+  transition: all 0.4s ease-in-out;
+  pointer-events: none;
+}
+
+#inputbar:focus-within {
+  animation: blinking 40s linear infinite;
+}
+
+#inputbar::before {
+  opacity: 0.1; /* 默认显示但半透明 */
+  transition: all 0.4s ease-in-out;
+}
+#inputbar:focus-within::before {
+  opacity: 1; /* 聚焦时全显 */
+}

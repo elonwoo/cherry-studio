@@ -1,0 +1,215 @@
+/* *==============================================================================
+ * 主题名称：CherryStudio-by-bilibili
+ * 联系方式：2793415370@qq.com
+ * 作    者：yihao li
+ * 版    本：1.0
+ * * ==============================================================================*/
+
+@import url("https://fontsapi.zeoseven.com/479/main/result.css");
+@import url("https://fontsapi.zeoseven.com/3/main/result.css");
+
+/* 输入框绿色霓虹流动边框动画 */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+/* 输入框绿色霓虹闪烁阴影动画 */
+
+@keyframes blinking {
+  0% {
+    filter: drop-shadow(rgba(0, 255, 127, 0.72) 0px 0px 3px);
+  }
+  25% {
+    filter: drop-shadow(rgba(0, 255, 127, 0.72) 0px 0px 5px);
+  }
+  50% {
+    filter: drop-shadow(rgba(50, 205, 50, 0.72) 0px 0px 10px);
+  }
+  75% {
+    filter: drop-shadow(rgba(0, 255, 127, 0.72) 0px 0px 5px);
+  }
+  100% {
+    filter: drop-shadow(rgba(0, 255, 127, 0.72) 0px 0px 3px);
+  }
+}
+
+/* 暗色模式下输入框聚焦时边框透明度减半 */
+[theme-mode='dark'] #inputbar:focus-within::before {
+  opacity: 0.5 !important;
+}
+
+/* 输入框容器定位 */
+#inputbar {
+  z-index: 1;
+  position: relative;
+  box-shadow: var(--box-shadow);
+  margin: 0 15px 15px 15px !important;
+}
+
+/* 输入框绿色霓虹边框伪元素 */
+#inputbar::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(90deg, #006400, #32cd32, #00ff7f, #32cd32, #006400);
+  background-size: 200% 200%;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: gradientFlow 4s linear infinite;
+  opacity: 0;
+  transition: all 0.4s ease-in-out;
+  pointer-events: none;
+}
+
+/* 输入框聚焦时启用绿色霓虹闪烁 */
+#inputbar:focus-within {
+  animation: blinking 4s linear infinite;
+}
+
+/* 输入框聚焦时显示绿色霓虹边框 */
+#inputbar:focus-within::before {
+  opacity: 1;
+}
+
+/* 输入框绿色霓虹特效结束 */
+
+/* 全局绿色主题变量 */
+:root {
+  --color-white-soft: #F0FAF0; /* 暗色模式主文字色 */
+  --color-black-soft: #4B6B4B; /* 亮色模式主文字色 */
+  --color-primary: #00C957; /* 绿色主色调 */
+  --color-primary-soft: rgba(0, 201, 87, 0.6);
+  --color-primary-mute: rgba(0, 201, 87, 0.2);
+}
+
+/* 全局背景图设置 */
+body {
+  font-family: "TsangerYuMo W03";
+  font-weight: normal;
+  background-image: url('https://youke1.picui.cn/s1/2025/07/31/688b61800d1e0.png');
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  /* 调低背景透明度：整体叠加一层半透明白色遮罩 */
+  background-color: rgba(255,255,255,0.5);
+  background-blend-mode: lighten;
+}
+
+/* 核心容器透明以显示背景 */
+#root > div,
+body > div, 
+#content-container {
+  background: transparent !important;
+}
+
+body[theme-mode="dark"] #content-container {
+}
+
+/* 暗色模式绿色玻璃变量 */
+body[theme-mode="dark"] {
+  --color-background: rgba(40, 60, 45, 0.35); /* 调低透明度，似乎并没有什么用，无所谓了╮(╯_╰)╭ */
+  --color-background-mute: rgba(55, 75, 60, 0.3);
+  --color-background-soft: rgba(65, 85, 70, 0.25);
+  --navbar-background-mac: rgba(40, 60, 45, 0.45);
+  --navbar-background: rgba(40, 60, 45, 0.3);
+  --chat-background: transparent;
+  --chat-background-user: rgba(65, 90, 70, 0.35);
+  --chat-background-assistant: rgba(50, 70, 55, 0.4);
+  --color-text: #F0F5F0;
+  --chat-text-user: #F0FAF0;
+  --color-hover: rgba(85, 110, 90, 0.3);
+  --color-active: rgba(100, 125, 105, 0.35);
+  --color-border: rgba(240, 245, 240, 0.2);
+  --color-border-soft: rgba(240, 245, 240, 0.15);
+  --content-backdrop-filter: blur(12px);
+  /* 暗色背景图替换 */
+  background-image: url('https://youke1.picui.cn/s1/2025/07/31/688b617fc95a9.png');
+  background-color: rgba(0,0,0,0.65);
+  background-blend-mode: darken;
+}
+
+/* 亮色模式绿色玻璃变量 */
+body[theme-mode="light"] {
+  --color-background: rgba(240, 253, 245, 0.35); /* 调低透明度，似乎并没有什么用，无所谓了╮(╯_╰)╭ */
+  --color-background-mute: rgba(235, 245, 235, 0.4);
+  --color-background-soft: rgba(240, 250, 240, 0.45);
+  --navbar-background-mac: rgba(240, 253, 245, 0.45);
+  --navbar-background: rgba(240, 253, 245, 0.3);
+  --chat-background: transparent;
+  --chat-background-user: rgba(224, 255, 235, 0.5);
+  --chat-background-assistant: rgba(238, 252, 245, 0.55);
+  --color-text: #4B6B4B;
+  --color-hover: rgba(210, 240, 220, 0.35);
+  --color-active: rgba(200, 235, 210, 0.4);
+  --color-border: rgba(90, 125, 90, 0.15);
+  --color-border-soft: rgba(90, 125, 90, 0.08);
+  --color-white: rgba(255, 255, 255, 0.3);
+  --content-backdrop-filter: blur(16px);
+}
+
+/* 绿色玻璃质感统一应用到组件 */
+.message-user .bubble-content-container,
+.message-assistant .bubble-content-container,
+#app-sidebar,
+.prompt-input-container,
+.ant-popover-inner,
+.ant-modal-content {
+  background: var(--color-background-soft) !important;
+  -webkit-backdrop-filter: var(--content-backdrop-filter);
+  backdrop-filter: var(--content-backdrop-filter);
+  border: 1px solid var(--color-border-soft) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* 用户气泡背景 */
+.message-user .bubble-content-container {
+    background: var(--chat-background-user) !important;
+}
+/* 助手气泡背景 */
+.message-assistant .bubble-content-container {
+    background: var(--chat-background-assistant) !important;
+}
+
+/* 侧边栏背景 */
+#app-sidebar {
+  background: var(--color-background) !important;
+}
+/* 输入框背景 */
+.prompt-input-container {
+  background: var(--color-background-mute) !important;
+}
+
+/* 兼容性修复 */
+.bubble .message-user .message-action-button:hover {
+    background-color: var(--color-background-mute);
+}
+body[theme-mode="dark"]{
+    --color-list-item: var(--color-background-soft) !important;
+    --color-list-item-hover: var(--color-background-soft) !important;
+}
+body[theme-mode="light"]{
+    --color-list-item: var(--color-background-soft) !important;
+    --color-list-item-hover: var(--color-background-soft) !important;
+}
+
+/* Markdown 主题一键切换 */
+/* 只需修改下面这一行的 URL 即可换肤 */
+@import url("https://cdn.bootcdn.net/ajax/libs/github-markdown-css/5.8.1/github-markdown-dark.css");
+
+.markdown {
+  /* 在线主题已经提供了大部分样式，这里只留一个兜底字体 */
+  font-family: "undefined";
+  font-weight: normal;
+  /* 如果你想强制覆盖在线主题的背景/颜色，可取消下面两行注释 */
+  /* background: transparent !important; */
+  /* color: inherit !important; */
+}

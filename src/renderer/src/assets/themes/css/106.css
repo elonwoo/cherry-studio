@@ -1,0 +1,144 @@
+/* ===================================
+   咒术回战 (Jujutsu Kaisen) 主题 · 壁纸增强版
+   适用于 Cherry Studio v1.9.12
+   建议在「深色模式」下使用
+   =================================== */
+
+/* ---------- 深色主题变量覆盖 ---------- */
+body[theme-mode="dark"] {
+  /* 背景色系 - 透明度降低，让壁纸透出 */
+  --color-background: rgba(20, 12, 32, 0.35);
+  --color-background-soft: rgba(28, 18, 44, 0.4);
+  --color-background-mute: rgba(35, 22, 55, 0.45);
+
+  /* 聊天区域 */
+  --navbar-background: rgba(18, 10, 30, 0.55);
+  --chat-background: transparent;
+  --chat-background-user: rgba(88, 24, 138, 0.6);
+  --chat-background-assistant: rgba(18, 14, 28, 0.55);
+
+  /* 文本颜色 - 保障可读性 */
+  --color-text-primary: #ede4ff;
+  --color-text-secondary: #c9b8e8;
+
+  /* 行内代码 */
+  --color-code-text-inline: #d4a5ff;
+}
+
+/* ---------- 全局背景图（壁纸突出） ---------- */
+body[theme-mode="dark"] {
+  /* 纯色兜底：图片加载失败时不至于太难看 */
+  background-color: #0a0514 !important;
+  background-image:
+    /* 遮罩大幅减淡，壁纸明显 */
+    linear-gradient(rgba(10, 5, 20, 0.35), rgba(15, 8, 28, 0.45)),
+    url('https://img.3dmgame.com/uploads/images/news/20220926/1664161302_881287.jpg') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-attachment: fixed !important;
+  background-repeat: no-repeat !important;
+}
+
+/* 内容容器透明化，让壁纸透出 */
+body[theme-mode="dark"] #content-container,
+body[theme-mode="dark"] .messages-container,
+body[theme-mode="dark"] .chat-content {
+  background-color: transparent !important;
+}
+
+/* ---------- 侧边栏磨砂玻璃效果 ---------- */
+body[theme-mode="dark"] #app-sidebar,
+body[theme-mode="dark"] .sidebar {
+  background: rgba(18, 10, 30, 0.6) !important;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border-right: 1px solid rgba(138, 43, 226, 0.3);
+}
+
+/* ---------- 消息气泡美化 ---------- */
+.bubble {
+  border-radius: 12px !important;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+/* 兼容子元素/同元素两种结构 */
+.bubble.message-user,
+.bubble .message-user {
+  border: 1px solid rgba(180, 100, 255, 0.4) !important;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.bubble.message-assistant,
+.bubble .message-assistant {
+  border: 1px solid rgba(138, 43, 226, 0.35) !important;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+/* 用户气泡文字更白，提升对比度 */
+.bubble.message-user,
+.bubble.message-user * {
+  color: #ffffff !important;
+}
+
+/* ---------- 文字可读性强化 ---------- */
+body[theme-mode="dark"] .message-content,
+body[theme-mode="dark"] p,
+body[theme-mode="dark"] span,
+body[theme-mode="dark"] li {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75);
+}
+
+/* 标题 - 咒术金紫 */
+body[theme-mode="dark"] h1,
+body[theme-mode="dark"] h2,
+body[theme-mode="dark"] h3 {
+  color: #d4a5ff !important;
+  text-shadow: 0 0 8px rgba(138, 43, 226, 0.5);
+}
+
+/* ---------- 代码块 - 高对比深底 ---------- */
+body[theme-mode="dark"] pre,
+body[theme-mode="dark"] code {
+  background-color: rgba(10, 8, 18, 0.92) !important;
+  border: 1px solid rgba(138, 43, 226, 0.3);
+  text-shadow: none !important;
+}
+
+/* 代码块内高亮 span 不受全局阴影影响 */
+body[theme-mode="dark"] pre span,
+body[theme-mode="dark"] code span {
+  text-shadow: none !important;
+}
+
+/* ---------- 输入框 ---------- */
+body[theme-mode="dark"] .inputbar,
+body[theme-mode="dark"] textarea {
+  background-color: rgba(20, 15, 30, 0.75) !important;
+  border: 1px solid rgba(138, 43, 226, 0.4) !important;
+  color: #f0e8ff !important;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+body[theme-mode="dark"] textarea:focus {
+  border-color: rgba(180, 100, 255, 0.7) !important;
+  box-shadow: 0 0 10px rgba(138, 43, 226, 0.4) !important;
+}
+
+/* ---------- 滚动条 ---------- */
+body[theme-mode="dark"] ::-webkit-scrollbar {
+  width: 8px;
+}
+body[theme-mode="dark"] ::-webkit-scrollbar-track {
+  background: rgba(20, 10, 35, 0.4);
+}
+body[theme-mode="dark"] ::-webkit-scrollbar-thumb {
+  background: rgba(138, 43, 226, 0.5);
+  border-radius: 4px;
+}
+body[theme-mode="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(180, 100, 255, 0.7);
+}

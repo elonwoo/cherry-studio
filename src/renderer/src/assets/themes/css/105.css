@@ -1,0 +1,545 @@
+/**
+ * =========================================================
+ * Marathon Industrial UI
+ * Black + Fluorescent Lime + Minimal Glow
+ * =========================================================
+ */
+
+:root {
+
+    /* =====================================================
+       CORE COLORS - Marathon Style
+    ===================================================== */
+
+    --bg-main: #000000;
+    --bg-soft: #0a0a0a;
+    --bg-panel: #111111;
+
+    --line: #1a1a1a;
+
+    /* 主色：荧光黄绿 */
+    --acid-lime: #CAFF00;
+    --acid-yellow: #ffe600;
+    --acid-cyan: #00fff7;
+    --acid-pink: #ff2bd6;
+
+    /* 文字颜色 */
+    --text-main: #ffffff;
+    --text-dim: #9a9a9a;
+
+    /* 极简发光 - 仅悬停时使用 */
+    --glow-lime:
+        0 0 6px rgba(202,255,0,0.6);
+
+    --text-glow:
+        0 0 10px rgba(202,255,0,0.5);
+}
+
+* {
+    box-sizing: border-box;
+    border-radius: 0 !important;
+}
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+html,
+body {
+
+    margin: 0;
+    padding: 0;
+
+    background: var(--bg-main);
+    color: var(--text-main) !important;
+
+    font-family:
+        "Space Grotesk",
+        "IBM Plex Mono",
+        sans-serif;
+
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+
+    overflow-x: hidden;
+}
+
+/* =====================================================
+   统一所有文字为白色
+===================================================== */
+
+body,
+p,
+span,
+div,
+h1,h2,h3,h4,h5,h6,
+label,
+.ant-typography,
+.ant-menu-item,
+.ant-menu-title-content,
+.ant-modal-title,
+.ant-modal-body,
+.ant-card,
+.ant-collapse,
+.message-content-container {
+    color: var(--text-main) !important;
+}
+
+/* =====================================================
+   文字悬停微发光
+===================================================== */
+
+a,
+button,
+.ant-btn,
+.ant-menu-item,
+.ant-typography,
+h1,h2,h3,h4,h5,h6 {
+    transition:
+        color 0.12s ease,
+        text-shadow 0.12s ease;
+}
+
+a:hover,
+button:hover span,
+.ant-menu-item:hover,
+.ant-typography:hover,
+h1:hover,h2:hover,h3:hover {
+    color: var(--acid-lime) !important;
+    text-shadow: var(--text-glow);
+}
+
+/* =====================================================
+   MAIN BACKGROUND - 纯黑
+===================================================== */
+
+#content-container {
+
+    background: #000000 !important;
+
+    position: relative;
+    overflow: hidden;
+}
+
+/* =====================================================
+   CRT SCANLINE - 极简版
+===================================================== */
+
+#content-container::before {
+
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: 0.03;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            rgba(255,255,255,0.02) 0px,
+            rgba(255,255,255,0.02) 1px,
+            transparent 1px,
+            transparent 4px
+        );
+}
+
+/* =====================================================
+   MESSAGE ANIMATION
+===================================================== */
+
+@keyframes messagePop {
+
+    from {
+        opacity: 0;
+        transform: translateY(3px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message-content-container {
+
+    animation:
+        messagePop 0.2s ease forwards;
+
+    will-change:
+        opacity,
+        transform;
+}
+
+/* =====================================================
+   INPUT BAR
+===================================================== */
+
+.inputbar-container {
+
+    background:
+        rgba(10,10,10,0.98);
+
+    border:
+        1px solid var(--acid-lime);
+
+    transition:
+        all 0.12s ease;
+
+    /* 去掉发光 */
+    box-shadow: none;
+}
+
+.inputbar-container:focus-within {
+
+    border-color:
+        var(--acid-lime);
+
+    /* 悬停时轻微发光 */
+    box-shadow:
+        var(--glow-lime);
+}
+
+/* =====================================================
+   INPUTS
+===================================================== */
+
+.ant-input-outlined,
+.ant-input-number,
+.ant-picker,
+.ant-select .ant-select-selector,
+.ant-select-dropdown,
+.ant-mentions,
+.ant-input,
+input,
+textarea {
+
+    background:
+        #0a0a0a !important;
+
+    border:
+        1px solid #1a1a1a !important;
+
+    color:
+        var(--text-main) !important;
+
+    transition:
+        all 0.12s ease;
+
+    box-shadow: none !important;
+}
+
+.ant-input-outlined:hover,
+.ant-input-outlined:focus,
+.ant-picker:hover,
+.ant-select .ant-select-selector:hover,
+.ant-input:hover,
+.ant-input:focus,
+input:hover,
+input:focus,
+textarea:hover,
+textarea:focus {
+
+    border-color:
+        var(--acid-lime) !important;
+
+    box-shadow:
+        var(--glow-lime) !important;
+}
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.ant-btn {
+
+    background:
+        #000 !important;
+
+    border:
+        1px solid var(--acid-lime) !important;
+
+    color:
+        var(--acid-lime) !important;
+
+    font-weight:
+        700;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.1em;
+
+    transition:
+        all 0.12s ease;
+
+    box-shadow: none !important;
+}
+
+.ant-btn:hover,
+.ant-btn:focus {
+
+    background:
+        var(--acid-lime) !important;
+
+    color:
+        #000 !important;
+
+    box-shadow:
+        var(--glow-lime) !important;
+}
+
+/* =====================================================
+   ICONS - 扁平化、无发光
+===================================================== */
+
+.anticon,
+svg {
+
+    color:
+        var(--acid-lime) !important;
+
+    fill: currentColor;
+
+    transition:
+        color 0.12s ease;
+
+    /* 完全扁平 */
+    filter: none;
+}
+
+.anticon:hover,
+svg:hover {
+
+    color:
+        var(--acid-yellow) !important;
+}
+
+/* =====================================================
+   SIDEBAR / PANELS
+===================================================== */
+
+.ant-layout-sider,
+.ant-layout,
+.ant-menu,
+.ant-collapse {
+
+    background:
+        #000 !important;
+
+    border:
+        1px solid #1a1a1a;
+}
+
+/* =====================================================
+   MENU ITEMS
+===================================================== */
+
+.ant-menu-item {
+
+    color: var(--text-main) !important;
+
+    transition:
+        all 0.12s ease;
+}
+
+.ant-menu-item:hover {
+
+    background:
+        rgba(202,255,0,0.05) !important;
+
+    color:
+        var(--acid-lime) !important;
+}
+
+.ant-menu-item-selected {
+
+    background:
+        var(--acid-lime) !important;
+
+    color:
+        #000 !important;
+
+    font-weight:
+        900;
+}
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.ant-modal .ant-modal-content {
+
+    background:
+        #000;
+
+    border:
+        1px solid var(--acid-lime);
+
+    box-shadow: none;
+}
+
+.ant-modal .ant-modal-header {
+
+    background:
+        transparent;
+
+    border-bottom:
+        1px solid #1a1a1a;
+}
+
+.ant-modal .ant-modal-title {
+
+    color:
+        var(--text-main) !important;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.12em;
+
+    font-weight:
+        700;
+}
+
+/* =====================================================
+   CODE
+===================================================== */
+
+code,
+pre {
+
+    font-family:
+        "IBM Plex Mono",
+        monospace !important;
+
+    background:
+        #000 !important;
+
+    border:
+        1px solid var(--acid-lime);
+
+    color:
+        var(--acid-lime) !important;
+
+    padding:
+        2px 6px !important;
+
+    text-shadow: none;
+}
+
+/* =====================================================
+   SCROLLBAR
+===================================================== */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+
+    background:
+        #000;
+}
+
+::-webkit-scrollbar-thumb {
+
+    background:
+        var(--acid-lime);
+
+    border:
+        2px solid #000;
+}
+
+/* =====================================================
+   SELECTION
+===================================================== */
+
+::selection {
+
+    background:
+        var(--acid-lime);
+
+    color:
+        #000;
+}
+
+/* =====================================================
+   LINKS
+===================================================== */
+
+a {
+
+    color:
+        var(--acid-lime) !important;
+
+    text-decoration:
+        none;
+}
+
+a:hover {
+
+    color:
+        var(--acid-yellow) !important;
+
+    text-shadow:
+        var(--text-glow);
+}
+
+/* =====================================================
+   工业符号角标 - Marathon 风格
+===================================================== */
+
+.ant-card,
+.ant-modal-content,
+.inputbar-container {
+
+    position: relative;
+}
+
+/* 左上角：十字符号 */
+.ant-card::before,
+.ant-modal-content::before,
+.inputbar-container::before {
+
+    content: "+";
+
+    position: absolute;
+
+    top: 4px;
+    left: 4px;
+
+    color: var(--acid-lime);
+
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 1;
+
+    pointer-events: none;
+}
+
+/* 右下角：箭头符号 */
+.ant-card::after,
+.ant-modal-content::after,
+.inputbar-container::after {
+
+    content: "→";
+
+    position: absolute;
+
+    right: 6px;
+    bottom: 6px;
+
+    color: var(--acid-lime);
+
+    font-size: 16px;
+    font-weight: 900;
+    opacity: 0.6;
+
+    pointer-events: none;
+}

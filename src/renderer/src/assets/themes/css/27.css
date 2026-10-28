@@ -1,0 +1,230 @@
+/* 浅色主题 - 奶白色 */
+body[theme-mode="light"] {
+    /* --- 基础颜色变量定义 - 奶白色系 --- */
+    /* (注释以变量名实际使用为主) */
+    --color-white: #fffef8;
+    /* 主奶白色 (助手聊天气泡/聊天背景等) */
+    --color-white-soft: #fbfaf5;
+    /* 略深一点的奶白色 (用户聊天气泡/输入框背景) */
+    --color-background: ;
+    /* 内容容器背景色 (比聊天区稍深) */
+    --color-background-soft: #fbfaf5;
+    /* 更柔和的背景 (用于行内代码块等) */
+    --color-background-mute: #EAE8E1;
+    /* 中性背景/强调色 (比内容容器背景略浅/不同调) */
+    --color-border-soft: #DCD9D0;
+    /* 柔和边框色 */
+    --color-grid: rgba(210, 190, 170, 0.25);
+    /* 网格线颜色 (暖灰褐色调) */
+    --color-text-primary: #4a4a4a;
+    /* 主要文本颜色 (深灰色，非纯黑) */
+    --color-text-secondary: #545454;
+    /* 次要/代码块文本 */
+    --color-code-background-inline: var(--color-background-soft);
+    /* 行内代码背景 */
+    --color-code-text-inline: #B35E5A;
+    /* 行内代码文本颜色 (柔和棕红) */
+    --color-code-background-block: #f2f1ea;
+    /* 代码块背景色 (略深奶白) */
+
+    /* --- 应用颜色变量 --- */
+    --navbar-background: var(--color-white-soft);
+    /* 导航栏背景色 */
+    --chat-background: var(--color-white);
+    /* 聊天区域默认背景 */
+    --chat-background-user: var(--color-white-soft);
+    /* 用户聊天气泡背景 */
+    --chat-background-assistant: var(--color-white);
+    /* 助手聊天气泡背景 */
+
+    /* --- 全局与基础样式 --- */
+    color: var(--color-text-primary);
+    /* 设置默认文本颜色 */
+
+    #content-container {
+        /* 内容容器背景色 - 使用比聊天区稍深的奶白色，提供层次感 */
+        background-color: var(--color-background) !important;
+    }
+
+
+    /* */
+    #content-container #messages,
+    #content-container #chat {
+        /* 聊天消息区域 - 网格背景 */
+        background-image: linear-gradient(to right, var(--color-grid) 1px, transparent 1px),
+            linear-gradient(to bottom, var(--color-grid) 1px, transparent 1px) !important;
+        background-size: 25px 25px;
+        background-color: var(--chat-background);
+        /* 明确设置主体背景 */
+    }
+
+    .inputbar-container {
+        background-color: var(--color-white-soft);
+        /* 输入框背景色 */
+        border: 1px solid var(--color-border-soft);
+        /* 输入框边框颜色 */
+        border-radius: 8px;
+    }
+
+    /* --- 聊天气泡区分 --- */
+    /* !! 注意: 你需要根据你的 HTML 结构调整下面的选择器 !! */
+    /* 例如，如果用户消息的气泡是 <div class="message message-user"><div class="bubble">...</div></div> */
+    .message-user .message-bubble {
+        /* 假设这是用户气泡的选择器 */
+        background-color: var(--chat-background-user);
+        border: 1px solid var(--color-border-soft);
+        /* 为用户气泡增加细边框以区分 */
+        /* 你可能还需要在这里或父级设置 padding 和 border-radius */
+    }
+
+    .message-assistant .message-bubble {
+        /* 假设这是助手气泡的选择器 */
+        background-color: var(--chat-background-assistant);
+        /* 助手气泡通常不需要额外边框 */
+    }
+
+
+    /* 在这里! */
+    .markdown {
+        pre .shiki {
+            border: none !important;
+            /* background-color: transparent !important; */ /* 注释掉透明背景 */
+            background-color: var(--color-background-soft) !important; /* 使用柔和的背景 */
+        }
+
+        pre {
+            padding: 0 !important;
+            border-radius: 12px !important;
+            background: none !important;
+            box-shadow: none !important;
+        }
+
+        pre [class^="CodeBlockWrapper-"] {
+            border-radius: 12px !important;
+            overflow: hidden;
+        }
+
+        pre [class^="CodeHeader-"] {
+            border-radius: 12px 12px 0 0 !important;
+            background-color: #EAE8E1 !important;
+            border-bottom: none !important;
+            margin-bottom: 0 !important;
+        }
+
+        pre [class^="CodeContent-"] {
+            /* background-color: transparent !important; */ /* 注释掉透明背景 */
+            background-color: var(--color-background-mute) !important; /* 使用柔和的背景 */
+            border-radius: 0 0 12px 12px !important;
+            border-top: none !important;
+            margin-top: 0 !important;
+        }
+    }
+
+    /* 在这里! */
+    /* ----- 思考框 ----- */
+    .ant-collapse-content,
+    .ant-collapse-content-box {
+        /* background-color: transparent !important; */ /* 注释掉透明背景 */
+        background-color: var(--color-background-mute) !important; /* 使用柔和的背景 */
+        border-radius: 0 0 8px 8px;
+    }
+}
+
+/* --- 深色主题 (保持不变) --- */
+body[theme-mode="dark"] {
+    /* Colors */
+    --color-black-soft: #2a2b2a;
+    --color-background: #2b2b2b;
+    --color-background-soft: #303030;
+    --color-background-mute: #282c34;
+    --chat-background-user: #323332;
+    --chat-background-assistant: #2d2e2d;
+
+    --navbar-background: var(--color-black-soft);
+    --chat-background: var(--color-black-soft);
+
+    /* --- 全局与基础样式 --- */
+    /* (深色主题也应设置基础文本颜色) */
+    color: #c9d1d9;
+    /* 示例：GitHub Dark Dimmed 的文本颜色 */
+
+    #content-container {
+        background-color: var(--color-background) !important;
+    }
+
+    /* 将#content-container #messages换成#content-container #chat */
+    #content-container #messages,
+    #content-container #chat {
+        background-image: linear-gradient(to right, rgba(173, 216, 230, 0.08) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(173, 216, 230, 0.08) 1px, transparent 1px);
+        background-size: 25px 25px;
+        background-color: var(--chat-background-assistant);
+        /* 使用助手背景作为聊天区背景 */
+    }
+
+    .inputbar-container {
+        background-color: #3d3d3a;
+        border: 1px solid #5e5d5940;
+        border-radius: 8px;
+    }
+
+    /* --- 聊天气泡区分 (深色) --- */
+    /* !! 注意: 同样需要调整选择器 !! */
+    .message-user .message-bubble {
+        background-color: var(--chat-background-user);
+        /* 深色模式下背景色差异可能足够，通常不需要边框 */
+        /* border: 1px solid #444; */
+        /* 如果需要可取消注释 */
+    }
+
+    .message-assistant .message-bubble {
+        background-color: var(--chat-background-assistant);
+    }
+
+
+
+    /* 在这里! */
+    .markdown {
+        pre .shiki {
+            border: none !important;
+            /* background-color: transparent !important; */ /* 注释掉透明背景 */
+            background-color: var(--color-background-mute) !important; /* 使用柔和的背景 */
+        }
+
+        pre {
+            padding: 0 !important;
+            border-radius: 12px !important;
+            background: none !important;
+            box-shadow: none !important;
+        }
+
+        pre [class^="CodeBlockWrapper-"] {
+            border-radius: 12px !important;
+            overflow: hidden;
+        }
+
+        pre [class^="CodeHeader-"] {
+            border-radius: 12px 12px 0 0 !important;
+            background-color: #2A2B2A !important;
+            border-bottom: none !important;
+            margin-bottom: 0 !important;
+        }
+
+        pre [class^="CodeContent-"] {
+            /* background-color: transparent !important; */ /* 注释掉透明背景 */
+            background-color: var(--color-background-mute) !important; /* 使用柔和的背景 */
+            border-radius: 0 0 12px 12px !important;
+            border-top: none !important;
+            margin-top: 0 !important;
+        }
+    }
+
+    /* 在这里! */
+    /* ----- 思考框 ----- */
+    .ant-collapse-content,
+    .ant-collapse-content-box {
+        /* background-color: transparent !important; */ /* 注释掉透明背景 */
+        background-color: var(--color-background-mute) !important; /* 使用柔和的背景 */
+        border-radius: 0 0 8px 8px;
+    }
+}

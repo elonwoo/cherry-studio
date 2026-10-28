@@ -1,0 +1,1177 @@
+/* 输入框RGB效果 */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes blinking {
+  0% {
+    filter: drop-shadow(rgba(var(--color-theme-blue-rgb), 0.72) 0px 0px 3px);
+  }
+  25% {
+    filter: drop-shadow(rgba(var(--color-theme-blue-rgb), 0.72) 0px 0px 5px);
+  }
+  50% {
+    filter: drop-shadow(rgba(var(--color-theme-purple-rgb), 0.72) 0px 0px 10px);
+  }
+  75% {
+    filter: drop-shadow(rgba(var(--color-theme-blue-rgb), 0.72) 0px 0px 5px);
+  }
+  100% {
+    filter: drop-shadow(rgba(var(--color-theme-blue-rgb), 0.72) 0px 0px 3px);
+  }
+}
+
+/* Dark Mode Background */
+body[theme-mode="dark"] {
+  --color-background: transparent; /* Make background transparent to show image */
+  background-image: url('https://hdwallsbox.com/wallpapers/l/original/46/ocean_minimalistic_soft_shading_light_gradient_background_deep_2880x1800_45707.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  /* Override other background variables */
+  --color-background-soft: rgba(40, 44, 52, 0.2); /* Semi-transparent */
+  --color-background-mute: rgba(50, 55, 62, 0.2); /* Semi-transparent */
+  --navbar-background: transparent;
+  --navbar-background-mac: transparent; /* Also override mac variant */
+  --chat-background: transparent;
+  --chat-background-user: rgba(22, 27, 34, 0.8); /* Semi-transparent from example.css */
+  --chat-background-assistant: rgba(22, 27, 34, 0.8); /* Semi-transparent from example.css */
+  --color-group-background: transparent;
+}
+
+/* Light Mode Background */
+body[theme-mode="light"] {
+  --color-background: transparent; /* Make background transparent to show image */
+  background-image: url('https://cdn.prod.website-files.com/61e61bc712a95079885fb13f/62aace0f4b6bc83b758b04f1_wallpaper-gradient-p-1080.jpeg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  /* Override other background variables */
+  --color-background-soft: rgba(220, 220, 220, 0.2); /* Semi-transparent */
+  --color-background-mute: rgba(210, 210, 210, 0.2); /* Semi-transparent */
+  --navbar-background: transparent;
+  --navbar-background-mac: transparent; /* Also override mac variant */
+  --chat-background: transparent;
+  --chat-background-user: rgba(246, 248, 250, 0.8); /* Semi-transparent from example.css */
+  --chat-background-assistant: rgba(246, 248, 250, 0.8); /* Semi-transparent from example.css */
+  --color-group-background: transparent;
+}
+
+/* Ensure content container is also transparent */
+#content-container {
+  background-color: transparent !important; /* Use !important to ensure override */
+  border: none; /* Optionally remove border if it looks weird with background */
+}
+
+/* == Transparent Inputs, Selects, Buttons == */
+
+/* Define semi-transparent background variables (can be adjusted) */
+:root {
+  --transparent-bg-ui-dark: rgba(40, 44, 52, 0.35); /* Increased opacity */
+  --transparent-bg-ui-light: rgba(220, 220, 220, 0.35); /* Increased opacity */
+  --transparent-bg-hover-dark: rgba(50, 55, 62, 0.5); /* Increased opacity */
+  --transparent-bg-hover-light: rgba(210, 210, 210, 0.5); /* Increased opacity */
+  --transparent-bg-focus-dark: rgba(60, 65, 72, 0.6); /* Increased opacity */
+  --transparent-bg-focus-light: rgba(200, 200, 200, 0.6); /* Increased opacity */
+  --transparent-bg-dropdown-dark: rgba(30, 33, 39, 0.8); /* Increased opacity */
+  --transparent-bg-dropdown-light: rgba(235, 235, 235, 0.8); /* Increased opacity */
+  --ui-blur-amount: 8px;
+  --dropdown-blur-amount: 12px;
+
+  /* Windows Blue Accent */
+  --color-windows-blue: #0078D4;
+  --color-windows-blue-rgb: 0, 120, 212;
+  --shadow-windows-blue-glow: rgba(var(--color-windows-blue-rgb), 0.15);
+  /* Keep bright blue from example.css for contrast */
+  --color-cyber-accent-bright: #0091FF;
+
+  /* New Theme Colors & Gradient */
+  --color-theme-blue: #0078D4;
+  --color-theme-purple: #8A2BE2;
+  --color-theme-blue-rgb: 0, 120, 212;
+  --color-theme-purple-rgb: 138, 43, 226;
+  --gradient-theme: linear-gradient(to right, var(--color-theme-blue), var(--color-theme-purple));
+
+  /* Markdown Specific */
+  --markdown-border-radius: 8px;
+
+  /* Light Mode Theme Colors (Using same as dark mode) */
+  --color-theme-light: var(--color-theme-blue);
+  --color-theme-light-accent: var(--color-theme-purple);
+  --color-theme-light-rgb: var(--color-theme-blue-rgb);
+  --color-theme-light-accent-rgb: var(--color-theme-purple-rgb);
+  --gradient-theme-light: var(--gradient-theme);
+}
+
+/* --- Inputs (Textarea, Input Fields) --- */
+
+/* Input Wrapper - Restore default padding, apply background/blur */
+.ant-input-affix-wrapper {
+  background: transparent !important; /* Base transparent */
+  border: none !important;
+  border-radius: 6px !important; /* Keep radius */
+  box-shadow: none !important;
+  transition: all 0.3s ease !important; /* Restore transition */
+  position: relative !important;
+  padding: 4px 11px !important; /* Restore default padding */
+  display: flex !important; /* Ensure proper alignment */
+  align-items: center !important; /* Vertically center content */
+  box-sizing: border-box !important; /* Ensure correct box sizing */
+  backdrop-filter: blur(var(--ui-blur-amount)); /* Apply blur */
+  -webkit-backdrop-filter: blur(var(--ui-blur-amount));
+  /* Apply theme-specific subtle background to wrapper */
+}
+body[theme-mode="dark"] .ant-input-affix-wrapper {
+  background-color: rgba(40, 44, 52, 0.2) !important;
+}
+body[theme-mode="light"] .ant-input-affix-wrapper {
+  background-color: rgba(220, 220, 220, 0.2) !important;
+}
+
+/* Ensure suffix/prefix is transparent */
+.ant-input-affix-wrapper .ant-input-prefix,
+.ant-input-affix-wrapper .ant-input-suffix {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Apply styles DIRECTLY to the inner input and standalone inputs/textarea */
+.ant-input-affix-wrapper > input.ant-input,
+input.ant-input:not(.ant-input-affix-wrapper input),
+.inputbar-container textarea {
+  background: transparent !important; /* Start transparent */
+  border: none !important;
+  border-radius: 6px !important; /* Apply radius here */
+  box-shadow: none !important;
+  color: var(--color-text-1) !important;
+  padding: 0 !important; /* Ensure padding is 0 */
+  margin: 0 !important;
+  /* Keep height removed */
+  line-height: 1.5715 !important; /* Restore default line-height */
+  transition: none !important; /* Remove transition from inner input */
+  position: static !important; /* Reset position */
+  width: 100% !important; /* Ensure full width */
+  flex-grow: 1 !important; /* Allow input to grow */
+  box-sizing: border-box !important; /* Ensure correct box sizing */
+}
+
+/* Ensure inner input is completely transparent and has no blur (Combine theme rules) */
+.ant-input-affix-wrapper > input.ant-input {
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Apply styles to standalone input AND other textareas (EXCLUDING .inputbar-container textarea) */
+input.ant-input:not(.ant-input-affix-wrapper input),
+textarea.ant-input:not(.inputbar-container textarea) { /* General textarea ONLY */
+  padding: 4px 11px !important;
+  backdrop-filter: blur(var(--ui-blur-amount));
+  -webkit-backdrop-filter: blur(var(--ui-blur-amount));
+  border-radius: 6px !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: var(--color-text-1) !important;
+  transition: all 0.3s ease !important;
+  /* position: relative !important; REMOVED */
+  width: 100% !important;
+  box-sizing: border-box !important;
+  line-height: 1.5715 !important;
+  margin: 0 !important;
+}
+/* Apply theme-specific background to standalone and other textareas */
+body[theme-mode="dark"] input.ant-input:not(.ant-input-affix-wrapper input),
+body[theme-mode="dark"] textarea.ant-input:not(.inputbar-container textarea) { /* General textarea ONLY */
+  background-color: rgba(40, 44, 52, 0.2) !important;
+}
+body[theme-mode="light"] input.ant-input:not(.ant-input-affix-wrapper input),
+body[theme-mode="light"] textarea.ant-input:not(.inputbar-container textarea) { /* General textarea ONLY */
+  background-color: rgba(220, 220, 220, 0.2) !important;
+}
+
+/* --- Input Bar Container Specific Styles --- */
+.inputbar-container {
+  border-radius: 6px !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: blur(var(--ui-blur-amount)); /* Apply blur to container */
+  -webkit-backdrop-filter: blur(var(--ui-blur-amount));
+  position: relative; /* Keep relative if needed for children */
+  overflow: hidden; /* Keep hidden if needed */
+  padding: 4px 11px !important; /* Add padding to container */
+}
+body[theme-mode="dark"] .inputbar-container {
+  background-color: rgba(40, 44, 52, 0.2) !important; /* Apply background to container */
+}
+body[theme-mode="light"] .inputbar-container {
+  background-color: rgba(220, 220, 220, 0.2) !important; /* Apply background to container */
+}
+
+/* Ensure textarea inside inputbar is completely transparent */
+.inputbar-container textarea {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: var(--color-text-1) !important;
+  padding: 0 !important; /* Remove padding from textarea itself */
+  margin: 0 !important;
+  resize: none !important; /* Keep resize none */
+  width: 100% !important;
+  line-height: 1.5715 !important;
+  /* position: relative !important; REMOVED */
+}
+
+/* Focus States - Apply DIRECTLY to input/textarea */
+input.ant-input:focus,
+textarea:focus { /* This applies to ALL textareas */
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important; /* Ensure no default outline */
+}
+
+
+/* Ensure inner input remains transparent even when wrapper is focused */
+.ant-input-affix-wrapper-focused > input.ant-input {
+    background-color: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+
+/* --- Selects / Dropdowns --- */
+
+/* Select Trigger (Apply blur here) */
+.ant-select:not(.ant-select-disabled):not(.ant-select-customize-input) .ant-select-selector {
+  border: none !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+  backdrop-filter: blur(var(--ui-blur-amount));
+  -webkit-backdrop-filter: blur(var(--ui-blur-amount));
+  background-color: transparent !important; /* Fallback */
+}
+body[theme-mode="dark"] .ant-select:not(.ant-select-disabled):not(.ant-select-customize-input) .ant-select-selector {
+  background-color: var(--transparent-bg-ui-dark) !important;
+}
+body[theme-mode="light"] .ant-select:not(.ant-select-disabled):not(.ant-select-customize-input) .ant-select-selector {
+  background-color: var(--transparent-bg-ui-light) !important;
+}
+
+/* Select Trigger - Focused State */
+.ant-select-focused:not(.ant-select-disabled):not(.ant-select-customize-input) .ant-select-selector {
+  box-shadow: 0 0 0 2px rgba(0, 120, 215, 0.2) !important; /* Subtle focus ring */
+}
+body[theme-mode="dark"] .ant-select-focused:not(.ant-select-disabled):not(.ant-select-customize-input) .ant-select-selector {
+   background-color: var(--transparent-bg-focus-dark) !important;
+}
+body[theme-mode="light"] .ant-select-focused:not(.ant-select-disabled):not(.ant-select-customize-input) .ant-select-selector {
+   background-color: var(--transparent-bg-focus-light) !important;
+}
+
+/* Select Trigger Inner Elements (NO blur, transparent background) */
+.ant-select-selection-search-input,
+.ant-select-selection-item,
+.ant-select-selection-placeholder {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  color: var(--color-text-1) !important;
+}
+
+/* Dropdown Panel (Apply blur here) */
+.ant-select-dropdown,
+.ant-dropdown-menu {
+  border: none !important;
+  border-radius: 8px !important; /* Slightly larger radius for dropdowns */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  backdrop-filter: blur(var(--dropdown-blur-amount));
+  -webkit-backdrop-filter: blur(var(--dropdown-blur-amount));
+  padding: 4px !important; /* Add some padding */
+  background-color: transparent !important; /* Fallback */
+}
+body[theme-mode="dark"] .ant-select-dropdown,
+body[theme-mode="dark"] .ant-dropdown-menu {
+  background-color: var(--transparent-bg-dropdown-dark) !important;
+}
+body[theme-mode="light"] .ant-select-dropdown,
+body[theme-mode="light"] .ant-dropdown-menu {
+  background-color: var(--transparent-bg-dropdown-light) !important;
+}
+
+/* Dropdown Items (NO blur, transparent background initially) */
+.ant-select-item,
+.ant-dropdown-menu-item {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-radius: 4px !important;
+  color: var(--color-text-1) !important;
+  margin: 2px 0 !important; /* Add spacing */
+}
+
+/* Dropdown Item Hover/Active State */
+.ant-select-item-option-active:not(.ant-select-item-option-disabled),
+.ant-dropdown-menu-item:not(.ant-dropdown-menu-item-disabled):hover {
+  color: var(--color-text-1) !important;
+}
+body[theme-mode="dark"] .ant-select-item-option-active:not(.ant-select-item-option-disabled),
+body[theme-mode="dark"] .ant-dropdown-menu-item:not(.ant-dropdown-menu-item-disabled):hover {
+  background-color: var(--transparent-bg-hover-dark) !important;
+}
+body[theme-mode="light"] .ant-select-item-option-active:not(.ant-select-item-option-disabled),
+body[theme-mode="light"] .ant-dropdown-menu-item:not(.ant-dropdown-menu-item-disabled):hover {
+  background-color: var(--transparent-bg-hover-light) !important;
+}
+
+/* Dropdown Item Selected State */
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled),
+.ant-dropdown-menu-item-selected {
+  font-weight: 600; /* Make selected item bold */
+  color: var(--color-text-1) !important; /* Use default text color */
+  background-color: transparent !important; /* Remove default background */
+  position: relative; /* For pseudo-element */
+  padding-left: calc(1rem + 5px) !important; /* Make space for the gradient line */
+}
+
+/* Add gradient line */
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled)::before,
+.ant-dropdown-menu-item-selected::before {
+  content: '';
+  position: absolute;
+  left: 4px; /* Slight indent from edge */
+  top: 4px; /* Add top margin */
+  bottom: 4px; /* Add bottom margin */
+  width: 5px; /* Line thickness */
+  background: linear-gradient(to bottom, var(--color-theme-blue), var(--color-theme-purple)); /* Vertical gradient */
+  border-radius: 3px; /* Rounded corners */
+}
+
+
+/* Active items in lists - EXCEPT sidebar items */
+li[class*="active"]:not([class*="SideBarItem"]),
+[data-active="true"]:not([class*="SideBarItem"]) {
+  color: var(--color-text-1) !important;
+  background-color: transparent !important;
+  position: relative;
+  padding-left: calc(1rem + 5px) !important;
+}
+
+/* Apply gradient line to active items - EXCEPT sidebar items */
+li[class*="active"]:not([class*="SideBarItem"])::before,
+[data-active="true"]:not([class*="SideBarItem"])::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  bottom: 4px;
+  width: 5px;
+  background: linear-gradient(to bottom, var(--color-theme-blue), var(--color-theme-purple));
+  border-radius: 3px;
+}
+
+/* Specific style for sidebar icons */
+#app-sidebar [class*="SideBarItem-module__item"], /* Targeting the item container */
+div[class*="SideBarItem-module__item"],
+#app-sidebar [class*="active"],
+div[class*="SideBarItem-module__active"] {
+  border-radius: 12px !important; /* Increased radius for both hover and active states */
+  transition: background-color 0.2s ease; /* Smooth transition for hover */
+}
+
+/* Hover state for sidebar icons */
+#app-sidebar [class*="SideBarItem-module__item"]:hover,
+div[class*="SideBarItem-module__item"]:hover {
+  border-radius: 12px !important; /* Ensure hover has same radius */
+}
+body[theme-mode="dark"] #app-sidebar [class*="SideBarItem-module__item"]:hover,
+body[theme-mode="dark"] div[class*="SideBarItem-module__item"]:hover {
+  background-color: var(--transparent-bg-hover-dark) !important;
+}
+body[theme-mode="light"] #app-sidebar [class*="SideBarItem-module__item"]:hover,
+body[theme-mode="light"] div[class*="SideBarItem-module__item"]:hover {
+  background-color: var(--transparent-bg-hover-light) !important;
+}
+
+
+/* Active state for sidebar icons */
+#app-sidebar [class*="active"], /* Guessing sidebar ID */
+div[class*="SideBarItem-module__active"] /* Another common pattern */
+{
+  /* background-color applied per theme */
+  /* color: var(--color-primary) !important; REMOVED - Keep original icon color */
+  padding-left: initial !important; /* Reset padding */
+  position: static !important; /* Reset position */
+  border-radius: 12px !important; /* Use the same radius as hover */
+}
+
+/* Dark mode active sidebar icon background */
+body[theme-mode="dark"] #app-sidebar [class*="active"],
+body[theme-mode="dark"] div[class*="SideBarItem-module__active"] {
+  background-color: var(--transparent-bg-hover-dark) !important;
+}
+
+/* Light mode active sidebar icon background (Lighter) */
+body[theme-mode="light"] #app-sidebar [class*="active"],
+body[theme-mode="light"] div[class*="SideBarItem-module__active"] {
+  background-color: var(--transparent-bg-hover-light) !important;
+}
+/* Ensure pseudo-element is explicitly hidden for sidebar icons */
+#app-sidebar [class*="active"]::before,
+div[class*="SideBarItem-module__active"]::before {
+  display: none !important;
+}
+
+/* --- Buttons --- */
+
+.ant-btn {
+  border: none !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+  backdrop-filter: blur(var(--ui-blur-amount));
+  -webkit-backdrop-filter: blur(var(--ui-blur-amount));
+  color: var(--color-text-1) !important;
+  background-color: transparent !important; /* Fallback */
+}
+/* Default Button Background - Make fully transparent */
+body[theme-mode="dark"] .ant-btn:not(.ant-btn-primary):not(.ant-btn-dangerous):not(:disabled) {
+  background-color: transparent !important; /* Fully transparent */
+}
+body[theme-mode="light"] .ant-btn:not(.ant-btn-primary):not(.ant-btn-dangerous):not(:disabled) {
+  background-color: transparent !important; /* Fully transparent */
+}
+
+/* Button Hover State */
+body[theme-mode="dark"] .ant-btn:not(.ant-btn-primary):not(.ant-btn-dangerous):not(:disabled):hover {
+  background-color: var(--transparent-bg-hover-dark) !important;
+}
+body[theme-mode="light"] .ant-btn:not(.ant-btn-primary):not(.ant-btn-dangerous):not(:disabled):hover {
+  background-color: var(--transparent-bg-hover-light) !important;
+}
+
+/* Button Active/Focus State (Optional: can use hover state or a slightly darker/lighter one) */
+body[theme-mode="dark"] .ant-btn:not(.ant-btn-primary):not(.ant-btn-dangerous):not(:disabled):active,
+body[theme-mode="dark"] .ant-btn:not(.ant-btn-primary):not(.ant-btn-dangerous):not(:disabled):focus-visible {
+  background-color: var(--transparent-bg-focus-dark) !important;
+  box-shadow: 0 0 0 2px rgba(0, 120, 215, 0.2) !important; /* Focus ring */
+}
+body[theme-mode="light"] .ant-btn:not(.ant-btn-primary):not(.ant-btn-dangerous):not(:disabled):active,
+body[theme-mode="light"] .ant-btn:not(.ant-btn-primary):not(.ant-btn-dangerous):not(:disabled):focus-visible {
+  background-color: var(--transparent-bg-focus-light) !important;
+  box-shadow: 0 0 0 2px rgba(0, 120, 215, 0.2) !important; /* Focus ring */
+}
+
+/* Primary Button (Keep solid color or make semi-transparent if desired) */
+.ant-btn-primary:not(:disabled) {
+  background-color: var(--color-primary) !important;
+  color: var(--color-white) !important; /* Ensure contrast */
+  backdrop-filter: none !important; /* Usually solid buttons don't need blur */
+}
+body[theme-mode="light"] .ant-btn-primary:not(:disabled) {
+   color: var(--color-black) !important; /* Adjust contrast for light mode if needed */
+}
+.ant-btn-primary:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--color-primary) 90%, black) !important; /* Darken slightly */
+}
+
+/* Ensure icons inside buttons inherit color */
+.ant-btn .anticon, .ant-btn .iconfont, .ant-btn .lucide {
+  color: inherit !important;
+}
+
+/* Ensure selected segmented control items are transparent */
+.ant-segmented-item-selected {
+  background-color: transparent !important;
+}
+
+#inputbar {
+  z-index: 1;
+  position: relative;
+  box-shadow: var(--box-shadow); /* Assuming --box-shadow is defined elsewhere or can be removed */
+  margin: 0 15px 15px 15px !important;
+}
+
+#inputbar::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 2px;
+  /* Use theme gradient for background */
+  background: var(--gradient-theme);
+  background-size: 200% 200%;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: gradientFlow 4s linear infinite;
+  opacity: 0;
+  transition: all 0.4s ease-in-out;
+  pointer-events: none;
+}
+
+#inputbar:focus-within {
+  /* Apply blinking animation */
+  animation: blinking 4s linear infinite;
+}
+
+#inputbar:focus-within::before {
+  opacity: 1;
+}
+
+/* Dark mode blinking shadow colors */
+body[theme-mode='dark'] #inputbar:focus-within {
+  filter: drop-shadow(rgba(var(--color-theme-blue-rgb), 0.72) 0px 0px 3px);
+}
+
+body[theme-mode='dark'] #inputbar:focus-within:hover {
+   filter: drop-shadow(rgba(var(--color-theme-blue-rgb), 0.72) 0px 0px 5px);
+}
+
+body[theme-mode='dark'] #inputbar:focus-within:active {
+   filter: drop-shadow(rgba(var(--color-theme-purple-rgb), 0.72) 0px 0px 10px);
+}
+
+
+/* Light mode blinking shadow colors */
+body[theme-mode='light'] #inputbar:focus-within {
+  filter: drop-shadow(rgba(var(--color-theme-blue-rgb), 0.72) 0px 0px 3px);
+}
+
+body[theme-mode='light'] #inputbar:focus-within:hover {
+   filter: drop-shadow(rgba(var(--color-theme-blue-rgb), 0.72) 0px 0px 5px);
+}
+
+body[theme-mode='light'] #inputbar:focus-within:active {
+   filter: drop-shadow(rgba(255, 105, 180, 0.72) 0px 0px 10px); /* Using a standard pink RGBA */
+}
+
+
+/* --- Modals / Drawers --- */
+
+/* Apply blur and semi-opaque background */
+.ant-modal .ant-modal-content,
+.ant-drawer-content {
+  border: none !important;
+  border-radius: 8px !important; /* Match dropdown radius */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important; /* Match dropdown shadow */
+  backdrop-filter: blur(var(--dropdown-blur-amount)) !important; /* Use dropdown blur */
+  -webkit-backdrop-filter: blur(var(--dropdown-blur-amount)) !important;
+  background-color: transparent !important; /* Fallback */
+}
+/* Use chat bubble background colors for higher opacity */
+body[theme-mode="dark"] .ant-modal .ant-modal-content,
+body[theme-mode="dark"] .ant-drawer-content {
+  background-color: var(--chat-background-assistant) !important; /* Use chat bubble variable (0.8 opacity) */
+}
+body[theme-mode="light"] .ant-modal .ant-modal-content,
+body[theme-mode="light"] .ant-drawer-content {
+  background-color: var(--chat-background-assistant) !important; /* Use chat bubble variable (0.8 opacity) */
+}
+
+/* Ensure header/body/footer inside are transparent if needed, or style them */
+.ant-modal-header,
+.ant-modal-body,
+.ant-modal-footer,
+.ant-drawer-header,
+.ant-drawer-body,
+.ant-drawer-footer {
+    background: transparent !important; /* Make inner sections transparent */
+    color: inherit !important; /* Inherit text color */
+}
+/* Specific styling for header might be needed */
+.ant-modal-header {
+    border-bottom: none !important; /* Remove default border */
+}
+.ant-drawer-header {
+    border-bottom: none !important; /* Remove default border */
+}
+
+
+/* --- Font Overrides (Based on example.css) --- */
+
+/* Specific text elements within conversation/markdown */
+.bubble .message-content-container,
+.markdown p, /* Add paragraph targeting */
+.markdown li /* Add list item targeting */
+{
+    font-family: "Maple Mono NF CN", monospace !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.03em !important;
+    line-height: 1.6 !important;
+}
+
+/* Code elements font */
+code, /* Inline code */
+pre, /* Code blocks */
+.markdown pre [class^="CodeContent-"] * /* Content within code blocks */
+{
+  font-family: "Maple Mono NF CN", monospace !important;
+  font-weight: 400 !important;
+  letter-spacing: normal !important; /* Use normal spacing for code */
+  line-height: 1.45 !important; /* Use specific line height for code */
+}
+
+/* Remove potentially redundant rule */
+/*
+.markdown pre {
+    font-family: "Maple Mono NF CN", monospace !important;
+}
+*/
+
+/* --- New Markdown Styles --- */
+
+/* General Markdown Container */
+.markdown {
+  color: var(--color-text-1);
+  line-height: 1.7; /* Slightly increased line height for readability */
+}
+
+/* 覆盖默认的绿色为蓝紫色调 */
+:root {
+  --color-primary: var(--color-theme-blue) !important;
+  --color-primary-soft: rgba(var(--color-theme-blue-rgb), 0.6) !important;
+  --color-primary-mute: rgba(var(--color-theme-blue-rgb), 0.2) !important;
+}
+
+/* Light Mode 覆盖变量 */
+body[theme-mode="light"] {
+  --color-primary: var(--color-theme-blue) !important;
+  --color-primary-soft: rgba(var(--color-theme-blue-rgb), 0.6) !important;
+  --color-primary-mute: rgba(var(--color-theme-blue-rgb), 0.2) !important;
+  --chat-background-user: var(--color-theme-blue) !important;
+}
+
+/* 修改列表项标记颜色（深浅模式） */
+.markdown li::marker,
+body[theme-mode="light"] .markdown li::marker {
+  color: var(--color-theme-blue) !important;
+}
+
+/* 修改引用块样式 */
+.markdown blockquote {
+  border-left-color: var(--color-theme-blue) !important;
+}
+
+/* 选中项的背景 */
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled),
+.ant-dropdown-menu-item-selected {
+  background: linear-gradient(to right, rgba(var(--color-theme-blue-rgb), 0.12), rgba(var(--color-theme-purple-rgb), 0.12)) !important;
+  color: var(--color-theme-blue) !important;
+}
+
+/* 浅色模式选中项背景（更轻的阴影） */
+body[theme-mode="light"] .ant-select-item-option-selected:not(.ant-select-item-option-disabled),
+body[theme-mode="light"] .ant-dropdown-menu-item-selected {
+  background: linear-gradient(to right, rgba(var(--color-theme-blue-rgb), 0.08), rgba(var(--color-theme-purple-rgb), 0.08)) !important;
+  color: var(--color-theme-blue) !important;
+}
+
+/* 链接颜色 */
+.markdown a,
+.markdown .link {
+  color: var(--color-theme-blue) !important;
+}
+
+.markdown a:hover,
+.markdown .link:hover {
+  color: var(--color-theme-purple) !important;
+}
+
+/* 脚注引用样式 */
+.markdown .footnote-ref,
+.footnotes .footnote-backref {
+  color: var(--color-theme-blue) !important;
+}
+
+.markdown .footnote-ref:hover,
+.footnotes .footnote-backref:hover {
+  color: var(--color-theme-purple) !important;
+}
+
+/* Ensure footnotes section background is transparent */
+.markdown .footnotes {
+  background-color: transparent !important;
+}
+
+/* Headings */
+.markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 {
+  font-weight: 700; /* Bold headings */
+  margin-top: 1.8em;
+  margin-bottom: 1em;
+  color: var(--color-text-1); /* Default text color */
+}
+
+.markdown h1 {
+  font-size: 2.2em;
+  border-bottom: 3px solid;
+  /* border-image applied per theme */
+  padding-bottom: 0.4em;
+}
+body[theme-mode="dark"] .markdown h1 {
+  border-image: var(--gradient-theme) 1; /* Dark mode gradient */
+}
+body[theme-mode="light"] .markdown h1 {
+  border-image: var(--gradient-theme) 1; /* Use same gradient as dark mode */
+}
+
+.markdown h2 {
+  font-size: 1.8em;
+  /* border-left: 4px solid; REMOVED */
+  /* border-image: var(--gradient-theme) 1; REMOVED */
+  padding-left: 1.5rem; /* Increased padding to make space for pseudo-element */
+  position: relative; /* Needed for pseudo-element */
+}
+.markdown h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 5px; /* Make thicker */
+  /* background applied per theme */
+  border-radius: 3px; /* Adjust radius */
+}
+body[theme-mode="dark"] .markdown h2::before {
+  background: linear-gradient(to bottom, var(--color-theme-blue), var(--color-theme-purple)); /* Dark mode gradient */
+}
+body[theme-mode="light"] .markdown h2::before {
+  background: linear-gradient(to bottom, var(--color-theme-blue), var(--color-theme-purple)); /* Use same gradient as dark mode */
+}
+
+.markdown h3 {
+  font-size: 1.2em;
+  display: inline-block; /* Allow background to wrap content */
+  padding: 0.3em 0.8em; /* Add padding inside the box */
+  border-radius: var(--markdown-border-radius); /* Use defined radius */
+  margin-bottom: 1em; /* Keep bottom margin */
+  /* Background and text color applied per theme */
+}
+.markdown h3 {
+  color: var(--color-white) !important; /* White text for both themes */
+  text-shadow: 0 1px 1px rgba(0,0,0,0.3); /* Dark shadow for better contrast */
+}
+
+body[theme-mode="dark"] .markdown h3 {
+  background: var(--gradient-theme); /* Dark mode gradient background */
+}
+
+body[theme-mode="light"] .markdown h3 {
+  background: var(--gradient-theme); /* Use same gradient as dark mode */
+}
+
+.markdown h4 {
+  font-size: 1.2em;
+  /* color applied per theme */
+}
+body[theme-mode="dark"] .markdown h4 {
+  color: var(--color-theme-blue); /* Dark mode blue */
+}
+body[theme-mode="light"] .markdown h4 {
+  color: var(--color-theme-blue); /* Use same blue as dark mode */
+}
+
+/* Code Blocks */
+.markdown pre {
+  padding: 0 !important;
+  border-radius: var(--markdown-border-radius) !important;
+  background: none !important;
+  box-shadow: none !important;
+  margin: 1.5rem 0;
+  font-family: "Maple Mono NF CN", monospace !important; /* Ensure font */
+}
+.markdown pre [class^="CodeBlockWrapper-"] {
+  border-radius: 10px !important; /* 统一使用稍大的圆角 */
+  overflow: hidden;
+  backdrop-filter: blur(10px); /* Slightly less blur than dropdowns */
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* 深色模式下的代码块样式 */
+body[theme-mode="dark"] .markdown pre [class^="CodeBlockWrapper-"] {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15); /* 更明显的阴影 */
+  background-color: rgba(30, 33, 39, 0.5); /* 调整透明度以提高可读性 */
+  border: none;
+}
+
+/* 浅色模式下的代码块样式 */
+body[theme-mode="light"] .markdown pre [class^="CodeBlockWrapper-"] {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08); /* 更柔和的阴影 */
+  background-color: rgba(250, 250, 250, 0.5); /* 调整透明度以提高可读性 */
+  border: none; /* 移除边框 */
+}
+.markdown pre [class^="CodeHeader-"] {
+  border-radius: 10px 10px 0 0 !important; /* 统一圆角大小 */
+  background-color: rgba(var(--color-theme-blue-rgb), 0.03) !important;
+  border-bottom: none;
+  margin-bottom: 0 !important;
+  justify-content: center;
+  color: var(--color-text-1);
+  font-size: 0.9em;
+  font-weight: 500;
+  padding: 8px 16px;
+  position: relative;
+  overflow: hidden;
+}
+.markdown pre [class^="CodeHeader-"]::before {
+  content: ' ';
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff5f57;
+  box-shadow: 
+    20px 0 #ffbd2e,
+    40px 0 #28c840,
+    0 1px 2px rgba(0, 0, 0, 0.15),
+    20px 1px 2px rgba(0, 0, 0, 0.15),
+    40px 1px 2px rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  transition: transform 0.2s ease;
+}
+
+.markdown pre [class^="CodeHeader-"]:hover::before {
+  transform: scale(1.1);
+}
+.markdown pre [class^="CodeContent-"] {
+  background-color: transparent !important;
+  border-radius: 0 0 10px 10px !important; /* 统一圆角大小 */
+  border-top: none !important;
+  margin-top: 0 !important;
+  padding: 16px 20px !important;
+  line-height: 1.45 !important;
+}
+
+/* Inline Code */
+.markdown code {
+  font-family: "Maple Mono NF CN", monospace !important; /* Ensure font */
+  /* background-color applied per theme */
+  border-radius: 4px;
+  padding: 0.2em 0.4em;
+  font-size: 0.9em;
+  color: var(--color-text-1);
+  margin: 0 2px;
+}
+/* Avoid applying background to code inside code blocks */
+.markdown pre code {
+  background-color: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  font-size: inherit !important;
+}
+
+body[theme-mode="dark"] .markdown code {
+  background-color: rgba(var(--color-theme-blue-rgb), 0.1); /* Dark mode light blue background */
+}
+body[theme-mode="light"] .markdown code {
+  background-color: rgba(var(--color-theme-blue-rgb), 0.1); /* Use same blue as dark mode */
+}
+/* Avoid applying background to code inside code blocks */
+.markdown pre code {
+  background-color: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  font-size: inherit !important;
+}
+
+/* Blockquotes */
+.markdown blockquote {
+  /* border-left: 4px solid var(--color-theme-purple); REMOVED */
+  padding: 1rem 1.5rem 1rem 2rem; /* Increased left padding */
+  margin: 1.5rem 0;
+  /* background-color applied per theme */
+  color: var(--color-text-2); /* Muted text color */
+  border-radius: var(--markdown-border-radius); /* Apply radius to all corners now */
+  position: relative; /* Needed for pseudo-element */
+}
+.markdown blockquote::before {
+  content: '';
+  position: absolute;
+  left: 0.5rem; /* Position slightly inset */
+  top: 0.5rem; /* Add some top/bottom margin */
+  bottom: 0.5rem;
+  /* height: calc(100% - 1rem); Calculate height based on top/bottom */
+  width: 5px; /* Make thicker */
+  /* background applied per theme */
+  border-radius: 3px; /* Adjust radius */
+}
+body[theme-mode="dark"] .markdown blockquote {
+  background-color: rgba(var(--color-theme-purple-rgb), 0.05); /* Dark mode light purple background */
+}
+body[theme-mode="light"] .markdown blockquote {
+  background-color: rgba(var(--color-theme-purple-rgb), 0.05); /* Use same purple as dark mode */
+}
+body[theme-mode="light"] .markdown blockquote::before {
+  background: var(--color-theme-purple); /* Use same purple as dark mode */
+}
+body[theme-mode="light"] .markdown blockquote::before {
+  background: var(--color-theme-pink-light); /* Light mode pink */
+}
+.markdown blockquote p {
+  margin-bottom: 0; /* Remove extra margin inside blockquote */
+}
+
+/* Lists */
+.markdown ul li::marker, .markdown ol li::marker {
+  /* color applied per theme */
+}
+body[theme-mode="dark"] .markdown ul li::marker,
+body[theme-mode="dark"] .markdown ol li::marker {
+  color: var(--color-theme-blue); /* Dark mode blue marker */
+}
+body[theme-mode="light"] .markdown ul li::marker,
+body[theme-mode="light"] .markdown ol li::marker {
+  color: var(--color-theme-blue); /* Use same blue as dark mode */
+}
+.markdown ul, .markdown ol {
+  padding-left: 2em; /* Standard padding */
+}
+
+/* Horizontal Rule */
+.markdown hr {
+  border: none;
+  height: 2px; /* Slightly thicker */
+  /* background applied per theme */
+  margin: 2.5rem 0;
+  opacity: 0.8;
+  /* Add mask for tapering effect */
+  mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  /* Add vendor prefix for compatibility */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  -webkit-mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+}
+
+/* REMOVED duplicate -webkit-mask lines and closing brace */
+
+body[theme-mode="dark"] .markdown hr {
+  background: var(--gradient-theme); /* Dark mode gradient */
+}
+body[theme-mode="light"] .markdown hr {
+  background: var(--gradient-theme-light); /* Light mode gradient */
+}
+
+/* Tables */
+.markdown table {
+  width: 100%;
+  border-collapse: separate; /* Use separate for border-radius */
+  border-spacing: 0;
+  margin: 1.5rem 0;
+  background-color: transparent !important;
+  /* border applied per theme */
+  border-radius: var(--markdown-border-radius);
+  overflow: hidden; /* Needed for border-radius */
+  box-shadow: none;
+}
+body[theme-mode="dark"] .markdown table {
+  border: 1px solid rgba(var(--color-theme-blue-rgb), 0.1); /* Dark mode subtle blue border */
+}
+body[theme-mode="light"] .markdown table {
+  border: 1px solid rgba(var(--color-theme-skyblue-light-rgb), 0.1); /* Light mode subtle skyblue border */
+}
+.markdown th {
+  /* background-color applied per theme */
+  color: var(--color-text-1);
+  padding: 0.8em 1em;
+  /* border-bottom applied per theme */
+  border-left: none;
+  text-align: left;
+  font-weight: 600;
+}
+.markdown th:first-child { border-left: none; }
+body[theme-mode="dark"] .markdown th {
+  background-color: rgba(var(--color-theme-blue-rgb), 0.05) !important; /* Dark mode light blue header */
+  border-bottom: 1px solid rgba(var(--color-theme-blue-rgb), 0.1);
+}
+body[theme-mode="light"] .markdown th {
+  background-color: rgba(var(--color-theme-skyblue-light-rgb), 0.05) !important; /* Light mode light skyblue header */
+  border-bottom: 1px solid rgba(var(--color-theme-skyblue-light-rgb), 0.1);
+}
+.markdown td {
+  padding: 0.8em 1em;
+  /* border-bottom applied per theme */
+  border-left: none;
+  transition: background-color 0.3s ease;
+}
+body[theme-mode="dark"] .markdown td {
+  border-bottom: 1px solid rgba(var(--color-theme-blue-rgb), 0.05); /* Dark mode lighter border */
+}
+body[theme-mode="light"] .markdown td {
+  border-bottom: 1px solid rgba(var(--color-theme-skyblue-light-rgb), 0.05); /* Light mode lighter border */
+}
+.markdown td:first-child { border-left: none; }
+.markdown tr:last-child td { border-bottom: none; }
+.markdown tr:hover td {
+  /* background-color applied per theme */
+}
+body[theme-mode="dark"] .markdown tr:hover td {
+  background-color: rgba(var(--color-theme-purple-rgb), 0.05) !important; /* Dark mode light purple hover */
+}
+body[theme-mode="light"] .markdown tr:hover td {
+  background-color: rgba(var(--color-theme-purple-rgb), 0.05) !important; /* Use same purple as dark mode */
+}
+
+/* Links */
+.markdown a {
+  /* color applied per theme */
+  transition: color 0.3s ease;
+  text-decoration: none;
+  font-weight: 500;
+}
+body[theme-mode="dark"] .markdown a {
+  color: var(--color-theme-blue) !important; /* Dark mode blue link */
+}
+body[theme-mode="light"] .markdown a {
+  color: var(--color-theme-blue) !important; /* Use same blue as dark mode */
+}
+.markdown a:hover {
+  /* color applied per theme */
+  text-decoration: underline;
+}
+body[theme-mode="dark"] .markdown a:hover {
+  color: var(--color-theme-purple) !important; /* Dark mode purple hover */
+}
+body[theme-mode="light"] .markdown a:hover {
+  color: var(--color-theme-purple) !important; /* Use same purple as dark mode */
+}
+
+/* Alert/Note Blocks (Typora Style - Keeping original colors) */
+.markdown .hint-container {
+  padding: 1em 1.5em;
+  margin: 1.5rem 0;
+  border-radius: var(--markdown-border-radius);
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+.markdown .hint-container > .hint-title {
+  font-weight: 700;
+  margin-bottom: 0.5em;
+  display: flex;
+  align-items: center;
+}
+.markdown .hint-container > .hint-title::before {
+  /* Placeholder for icon - needs specific icons per type */
+  content: ''; /* Add icons via ::before if desired */
+  margin-right: 0.5em;
+  font-size: 1.2em;
+}
+.markdown .hint-container p:last-child {
+  margin-bottom: 0;
+}
+
+/* Alert/Note Block Variables */
+:root {
+  /* Note Colors */
+  --alert-note-border: rgba(0, 120, 212, 0.3);
+  --alert-note-bg: rgba(0, 120, 212, 0.05);
+  --alert-note-color: #0078D4;
+
+  /* Tip Colors */
+  --alert-tip-border: rgba(138, 43, 226, 0.3);
+  --alert-tip-bg: rgba(138, 43, 226, 0.05);
+  --alert-tip-color: #8A2BE2;
+
+  /* Important Colors */
+  --alert-important-border: rgba(25, 113, 194, 0.3);
+  --alert-important-bg: rgba(25, 113, 194, 0.05);
+  --alert-important-color: #1971C2;
+
+  /* Warning Colors */
+  --alert-warning-border: rgba(245, 158, 11, 0.3);
+  --alert-warning-bg: rgba(245, 158, 11, 0.05);
+  --alert-warning-color: #F59E0B;
+
+  /* Caution Colors */
+  --alert-caution-border: rgba(239, 68, 68, 0.3);
+  --alert-caution-bg: rgba(239, 68, 68, 0.05);
+  --alert-caution-color: #EF4444;
+}
+
+/* Alert/Note Block Styles */
+.markdown blockquote:has(> [class^="hint-"]) {
+  border: 1px solid var(--alert-note-border);
+  background: var(--alert-note-bg);
+  color: var(--color-text-1);
+  padding: 1em 1.2em;
+  margin: 1.5rem 0;
+  border-radius: 6px;
+}
+
+/* Specific Alert Types */
+.markdown blockquote:has(> .hint-note) {
+  border-color: var(--alert-note-border);
+  background-color: var(--alert-note-bg);
+}
+
+.markdown blockquote:has(> .hint-tip) {
+  border-color: var(--alert-tip-border);
+  background-color: var(--alert-tip-bg);
+}
+
+.markdown blockquote:has(> .hint-important) {
+  border-color: var(--alert-important-border);
+  background-color: var(--alert-important-bg);
+}
+
+.markdown blockquote:has(> .hint-warning) {
+  border-color: var(--alert-warning-border);
+  background-color: var(--alert-warning-bg);
+}
+
+.markdown blockquote:has(> .hint-caution) {
+  border-color: var(--alert-caution-border);
+  background-color: var(--alert-caution-bg);
+}
+
+/* Alert Titles */
+.markdown blockquote [class^="hint-"] {
+  font-weight: 600;
+  color: var(--alert-note-color);
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.markdown blockquote .hint-note {
+  color: var(--alert-note-color);
+}
+
+.markdown blockquote .hint-tip {
+  color: var(--alert-tip-color);
+}
+
+.markdown blockquote .hint-important {
+  color: var(--alert-important-color);
+}
+
+.markdown blockquote .hint-warning {
+  color: var(--alert-warning-color);
+}
+
+.markdown blockquote .hint-caution {
+  color: var(--alert-caution-color);
+}
+
+/* Hide default blockquote marker for alerts */
+.markdown blockquote:has(> [class^="hint-"])::before {
+  display: none;
+}

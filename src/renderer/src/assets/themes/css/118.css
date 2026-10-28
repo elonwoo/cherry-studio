@@ -1,0 +1,237 @@
+/* ============================================================
+   Cherry Studio v2 自定义主题 — 丹霞 (Dan-Xia) v2
+   ============================================================
+   Theme inspired by the glowing red clouds at sunset and the
+   cinnabar red commonly used in traditional Chinese art.
+   由 v1 主题(theme.css)迁移而来,适配 v2 语义化设计令牌体系。
+
+   ⚠️ 使用须知:
+   1. 这是全新的 v2 主题文件,与旧 v1 文件互相独立,不互相依赖。
+   2. 请勿把本文件拼在旧 theme.css 内容后面 —— 旧文件首行的 v1 迁移
+      标记注释(v1 marker,见旧 theme.css 第 1 行)会使整段样式被 v2
+      客户端直接丢弃,请把本文件内容完整粘贴进
+      「设置 → 外观 → 自定义样式」并整体替换旧内容。
+   3. v2 主题模式切换依据是 <html>/<body> 上的 .light / .dark 类;
+      v1 的 body[theme-mode=...] 属性选择器已失效,本文件不再使用。
+   4. v2 的组件只消费「无前缀公共语义变量」(--background、--primary、
+      --sidebar、--muted ...),内部 --cs-* 提供层不应被主题覆盖,
+      因此本文件只覆盖公共语义令牌,即可完整覆盖全部窗口界面。
+
+   v1 → v2 关键映射(详见文末说明):
+   --color-background        → --background
+   --color-background-soft   → --muted(气泡/柔和填充)
+   --color-background-mute   → --secondary-hover / --ghost-active
+   --color-text / chat-text  → --foreground(+ 分层 muted/tertiary)
+   --navbar-background       → --sidebar / --sidebar-accent
+   --chat-background-user    → --muted(用户气泡)
+   --chat-background-assistant → 已并入 --card / --popover(助手消息
+                                 v2 不再自带底色,见文末「差异说明」)
+   --color-hover / --active  → --accent / --ghost-active / --secondary-*
+   --color-border 系列       → --border / --border-subtle / ...
+   --color-list-item         → v2 行状态令牌 --resource-list-row-*
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   0. 滚动条(把 v2 默认的灰/黑滚动条染成暖色调)
+   v2 scrollbar.css 逻辑: :root 默认取 dark 值, body.light 时取 light 值,
+   这里只需覆写四个基础色变量即可,无需改它的切换规则。
+   ------------------------------------------------------------ */
+:root {
+  --scrollbar-thumb-dark: rgba(255, 230, 230, 0.22);
+  --scrollbar-thumb-dark-hover: rgba(255, 230, 230, 0.34);
+  --scrollbar-thumb-light: rgba(74, 28, 28, 0.18);
+  --scrollbar-thumb-light-hover: rgba(74, 28, 28, 0.3);
+}
+
+/* ============================================================
+   1. 浅色模式(对应 v1 的 body[theme-mode="light"])
+   ============================================================ */
+:root {
+  /* 页面底色: v1 light --chat-background(#FFFAFA)/--color-white */
+  --background: #fffafa;
+  /* 极安静的轻微填充(列表行 hover、引用浮层等) */
+  --background-subtle: rgba(74, 28, 28, 0.04);
+
+  /* 文字: v1 --color-text #4A1C1C 深朱砂,
+     并衍生 v2 需要的二级/三级层级 */
+  --foreground: #4a1c1c;
+  --muted-foreground: #805959;
+  --foreground-tertiary: #a28582;
+  --foreground-disabled: #a28582;
+
+  /* 卡片(输入框/对话框/设置分组等): 取 v1 浅红阶的中段暖调 */
+  --card: #fff2f0;
+  --card-foreground: #4a1c1c;
+  /* 浮层(菜单/气泡选择器等): 高于卡片、近乎纸白 */
+  --popover: #fff8f6;
+  --popover-foreground: #4a1c1c;
+
+  /* 主题色: v1 --color-primary #A03C3C 正朱砂(与 v1 完全一致) */
+  --primary: #a03c3c;
+  --primary-foreground: #fff7f7; /* v1 --color-white-soft */
+
+  /* 次级按钮/填充 */
+  --secondary: #ffe9e9;
+  --secondary-foreground: #4a1c1c;
+  --secondary-hover: #ffdfdf;
+  --secondary-active: #ffd5d5; /* 接近 v1 --color-background-mute #FFD4D4 */
+
+  /* 柔和填充(v2 用户消息气泡、状态底色):
+     对应 v1 light --chat-background-user #FFE4E4 */
+  --muted: #ffe4e4;
+
+  /* hover / active: v1 --color-hover #FFE8E8、--color-active #FFDADA */
+  --accent: #ffe8e8;
+  --accent-foreground: #4a1c1c;
+  --ghost-active: #ffdada;
+
+  /* 边框: v1 light --color-border 12% / --color-border-soft 6% */
+  --border: rgba(74, 28, 28, 0.12);
+  --border-subtle: rgba(74, 28, 28, 0.06);
+  --border-strong: rgba(74, 28, 28, 0.22);
+  --border-selected: rgba(74, 28, 28, 0.34);
+  --input: rgba(74, 28, 28, 0.16);
+
+  /* 聚焦光环: 朱砂 40%(v1 --color-primary-mute 同风格) */
+  --ring: rgba(160, 60, 60, 0.4);
+
+  /* 侧栏/顶部栏: v1 light --navbar-background #FFF0F0 */
+  --sidebar: #fff0f0;
+  --sidebar-foreground: #4a1c1c;
+  --sidebar-primary: #a03c3c;
+  --sidebar-primary-foreground: #fff7f7;
+  --sidebar-accent: #ffe5e5;
+  --sidebar-accent-foreground: #4a1c1c;
+  --sidebar-border: rgba(74, 28, 28, 0.1);
+  --sidebar-ring: rgba(160, 60, 60, 0.45);
+
+  /* v2 产品域令牌 */
+  --chat-user: rgba(74, 28, 28, 0.05);
+
+  /* 资源列表(话题/助手列表)行状态:
+     承接 v1 bugfix 中 --color-list-item = --color-background-soft 的意图 */
+  --resource-list-row-hover: rgba(74, 28, 28, 0.05);
+  --resource-list-row-active: rgba(160, 60, 60, 0.12);
+  --resource-list-row-active-foreground: #4a1c1c;
+  --resource-list-row-selected: rgba(160, 60, 60, 0.18);
+  --resource-list-row-selected-foreground: #4a1c1c;
+}
+
+/* ============================================================
+   2. 深色模式(对应 v1 的 body[theme-mode="dark"])
+   v2 在 <html>/<body> 上加 .dark 类,选择器同时兼容两种挂载点
+   ============================================================ */
+.dark {
+  /* 页面底色: v1 dark --color-background / --chat-background #4A1C1C */
+  --background: #4a1c1c;
+  --background-subtle: rgba(255, 230, 230, 0.045);
+
+  /* 文字: v1 --color-text #FFE6E6,衍生二级/三级暖粉灰层级 */
+  --foreground: #ffe6e6;
+  --muted-foreground: #bb9999;
+  --foreground-tertiary: #a08080;
+  --foreground-disabled: #a08080;
+
+  /* 卡片/输入框: 在背景之上抬一级的深朱砂
+     (取 v1 用户气泡 #642424 与助手气泡 #8B3434 之间的低阶) */
+  --card: #5d2424;
+  --card-foreground: #ffe6e6;
+  /* 浮层(菜单等)再抬一级 */
+  --popover: #6b2c2c;
+  --popover-foreground: #ffe6e6;
+
+  /* 主题色(深色下略微提亮保证可读性):
+     v1 dark 的 hover 阶 #B54545,白字对比度 5.1:1 ✓ */
+  --primary: #b54545;
+  --primary-foreground: #fff7f7;
+
+  /* 次级按钮: 在背景与气泡之间取阶 */
+  --secondary: #5a2222;
+  --secondary-foreground: #ffe6e6;
+  --secondary-hover: #682828;
+  --secondary-active: #743232;
+
+  /* 柔和填充 = 用户气泡: v1 dark --chat-background-user #642424 原值 */
+  --muted: #642424;
+
+  /* hover / active: 从 v1 红阶中取 hover 方向 */
+  --accent: #6e2a2a;
+  --accent-foreground: #ffe6e6;
+  --ghost-active: #7e3434;
+
+  /* 边框: v1 dark --color-border 15% / --color-border-soft 8% */
+  --border: rgba(255, 230, 230, 0.15);
+  --border-subtle: rgba(255, 230, 230, 0.08);
+  --border-strong: rgba(255, 230, 230, 0.28);
+  --border-selected: rgba(255, 230, 230, 0.4);
+  --input: rgba(255, 230, 230, 0.18);
+
+  /* 聚焦光环: 亮玫瑰红(替代 v2 默认的荧光绿 lime) */
+  --ring: rgba(255, 150, 150, 0.5);
+
+  /* 侧栏/顶部栏: v1 dark --navbar-background #4A1C1C 原值 */
+  --sidebar: #4a1c1c;
+  --sidebar-foreground: #ffe6e6;
+  --sidebar-primary: #b54545;
+  --sidebar-primary-foreground: #fff7f7;
+  --sidebar-accent: #612626;
+  --sidebar-accent-foreground: #ffe6e6;
+  --sidebar-border: rgba(255, 230, 230, 0.1);
+  --sidebar-ring: rgba(255, 150, 150, 0.5);
+
+  /* v2 产品域令牌 */
+  --chat-user: rgba(255, 230, 230, 0.06);
+
+  /* 资源列表行状态(深色) */
+  --resource-list-row-hover: rgba(255, 230, 230, 0.055);
+  --resource-list-row-active: rgba(255, 230, 230, 0.1);
+  --resource-list-row-active-foreground: #ffe6e6;
+  --resource-list-row-selected: rgba(255, 230, 230, 0.15);
+  --resource-list-row-selected-foreground: #ffe6e6;
+}
+
+/* ============================================================
+   3. 侧栏选中/发光(组件私有令牌修复)
+   v2 应用导航的「当前项高亮 + 光晕」默认是品牌荧光绿
+   (rgba(16,185,129,…) / rgba(114,255,121,…)),
+   与丹霞红主题冲突,这里改回朱砂红阶。
+   ------------------------------------------------------------ */
+.sidebar-theme {
+  --sidebar-active-bg: rgba(160, 60, 60, 0.1);
+  --sidebar-active-border: rgba(160, 60, 60, 0.22);
+  --sidebar-glow-bg: rgba(160, 60, 60, 0.28);
+  --sidebar-glow-line: rgba(160, 60, 60, 0.55);
+}
+.dark .sidebar-theme {
+  --sidebar-active-bg: rgba(255, 230, 230, 0.08);
+  --sidebar-active-border: rgba(255, 160, 160, 0.18);
+  --sidebar-glow-bg: rgba(255, 180, 180, 0.16);
+  --sidebar-glow-line: rgba(255, 170, 170, 0.4);
+}
+
+/* ============================================================
+   4. v1 bugfix 移植: 用户气泡内消息操作按钮的 hover 底色
+   v1: .bubble .message-user .message-action-button:hover 背景为
+   --color-background-mute(浅色 #FFD4D4 / 深色 #8B3434)。
+   v2 中按钮 hover 默认叠 var(--muted),而气泡本身正是 --muted,
+   叠上去会看不见 —— 改用 --ghost-active(浅色向深走 #FFDADA、
+   深色向亮走 #7E3434),等效还原 v1 的修复效果。
+   ------------------------------------------------------------ */
+.message-user .message-action-button:hover {
+  background-color: var(--ghost-active);
+}
+
+/* v1 里 list-item 的 !important 强制已无对应物:
+   v2 列表行由 --resource-list-row-* 语义令牌接管,本文件已在第 1/2 节
+   统一覆写,无需再写组件级 hack。 */
+
+/* ============================================================
+   5.(可选,默认注释)如果你怀念 v1「助手消息自带气泡底色」的观感,
+   可以取消下面注释 —— 会给助手消息内容区加一层极淡的面板色,
+   浅色 #FFF4F2 / 深色 rgba(255,230,230,0.03)。
+   注意: 这会作用于「平铺/气泡」两种消息排版,请按喜好取舍。
+   ------------------------------------------------------------ */
+/* .message-assistant .message-content-container {
+  background-color: color-mix(in srgb, var(--card) 55%, transparent);
+  border-radius: 10px;
+} */

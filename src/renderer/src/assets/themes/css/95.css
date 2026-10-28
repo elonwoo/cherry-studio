@@ -1,0 +1,76 @@
+/* Dracula-soft主题 */
+/* 依照 Dracula-soft 映射规则修改自 cherrycss.com 中的 Dracula 主题 */
+:root {
+    /* 基础色板 */
+    --color-white: #F6F6F4;       /* Dracula Foreground */
+    --color-white-soft: #F6F6F4CC;
+    --color-white-mute: #F6F6F499;
+    --color-black: #282A36;      /* Dracula Background */
+    --color-black-soft: #343746;  /* 稍暗背景 */
+    --color-black-mute: #44475A;  /* Dracula Current Line */
+    
+    /* 灰度阶梯 */
+    --color-gray-1: #7B7F8B;      /* Dracula Comment */
+    --color-gray-2: #44475A;      /* Current Line */
+    --color-gray-3: #343746;      /* 深灰 */
+    
+    /* 文本色阶 */
+    --color-text-1: #F6F6F4;      /* Foreground */
+    --color-text-2: #F6F6F4B2;
+    --color-text-3: #F6F6F47F;
+    
+    /* 背景系统 */
+    --color-background: var(--color-black);
+    --color-background-soft: var(--color-black-soft);
+    --color-background-mute: var(--color-black-mute);
+    --color-background-opacity: #282A3616;  /* Dracula背景+透明度 */
+    
+    /* 主色系统 */
+    --color-primary: #BF9EEE;      /* Dracula Purple */
+    --color-primary-soft: #BF9EEE99;
+    --color-primary-mute: #BF9EEE33;
+    
+    /* 图标与边框 */
+    --color-icon: #F6F6F499;
+    --color-icon-white: #F6F6F4;
+    --color-border: #F6F6F419;
+    --color-border-soft: #F6F6F414;
+    --color-border-mute: #F6F6F40C;
+    
+    /* 功能色 */
+    --color-error: #EE6666;        /* Dracula Red */
+    --color-link: #97E1F1;         /* Dracula Cyan */
+    --color-code-background: #343746;
+    
+    /* 交互状态 */
+    --color-hover: #44475A0C;  /* Current Line 50%透明度 */
+    --color-active: #44475A14; 
+    
+    /* 组件特定 */
+    --color-frame-border: #7B7F8B;        /* Comment颜色 */
+    --color-group-background: var(--color-black-soft);
+    --color-reference: #44475A;
+    --color-reference-text: #F6F6F4;
+    --color-reference-background: #282A36;
+    
+    /* 导航栏与聊天 */
+    --navbar-background-mac: #282A3614;
+    --navbar-background: #282A36;
+    --chat-background: #282A36;
+    --chat-background-user: #44475A;       /* Current Line */
+    --chat-background-assistant: #343746;  /* 深灰 */
+    --chat-text-user: #F6F6F4;
+}
+
+/* Bug fixes */
+.bubble .message-user .message-action-button:hover {
+  background-color: var(--color-background-mute);
+}
+body[theme-mode="dark"]{
+    --color-list-item: var(--color-background-soft) !important;
+    --color-list-item-hover: var(--color-background-soft) !important;
+}
+body[theme-mode="light"]{
+    --color-list-item: var(--color-background-soft) !important;
+    --color-list-item-hover: var(--color-background-soft) !important;
+}
