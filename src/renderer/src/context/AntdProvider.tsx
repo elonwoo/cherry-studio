@@ -1,4 +1,5 @@
 import { useSettings } from '@renderer/hooks/useSettings'
+import { resolveColorPrimary } from '@renderer/services/ThemeService'
 import type { LanguageVarious } from '@renderer/types'
 import { ConfigProvider, theme } from 'antd'
 import deDE from 'antd/locale/de_DE'
@@ -20,9 +21,17 @@ import { useTheme } from './ThemeProvider'
 const AntdProvider: FC<PropsWithChildren> = ({ children }) => {
   const {
     language,
+    themeId,
+    themeColorOverride,
     userTheme: { colorPrimary }
   } = useSettings()
   const { theme: _theme } = useTheme()
+  const resolvedColorPrimary = resolveColorPrimary(
+    themeId,
+    _theme === 'dark' ? 'dark' : 'light',
+    colorPrimary,
+    themeColorOverride
+  )
 
   return (
     <ConfigProvider
@@ -110,7 +119,7 @@ const AntdProvider: FC<PropsWithChildren> = ({ children }) => {
           }
         },
         token: {
-          colorPrimary: colorPrimary,
+          colorPrimary: resolvedColorPrimary,
           fontFamily: 'var(--font-family)',
           colorBgMask: _theme === 'dark' ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.8)',
           motionDurationMid: '100ms'

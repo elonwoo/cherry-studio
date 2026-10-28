@@ -7,6 +7,7 @@ import db from '@renderer/databases'
 import i18n, { setDayjsLocale } from '@renderer/i18n'
 import KnowledgeQueue from '@renderer/queue/KnowledgeQueue'
 import MemoryService from '@renderer/services/MemoryService'
+import { getThemeCss } from '@renderer/services/ThemeService'
 import { handleSaveData, useAppDispatch, useAppSelector } from '@renderer/store'
 import { selectMemoryConfig } from '@renderer/store/memory'
 import { setAvatar, setFilesPath, setResourcesPath, setUpdateState } from '@renderer/store/runtime'
@@ -34,6 +35,7 @@ export function useAppInit() {
     autoCheckUpdate,
     proxyMode,
     customCss,
+    themeId,
     privacyPolicyVersion
   } = useSettings()
   const { setDefaultModel, setQuickModel, setTranslateModel } = useDefaultModel()
@@ -152,6 +154,36 @@ export function useAppInit() {
   useEffect(() => {
     void KnowledgeQueue.checkAllBases()
   }, [])
+
+  useEffect(() => {
+    let cancelled = false
+    document.getElementById('user-defined-theme-css')?.remove()
+
+    void getThemeCss(themeId)
+      .then((css) => {
+        if (cancelled) {
+          return
+        }
+
+        const themeCssElement = document.createElement('style')
+        themeCssElement.id = 'user-defined-theme-css'
+        themeCssElement.textContent = css
+        // 主题样式要排在应用内置样式之后、自定义 CSS 之前
+        const customCssElement = document.getElementById('user-defined-custom-css')
+        if (customCssElement) {
+          customCssElement.before(themeCssElement)
+        } else {
+          document.head.appendChild(themeCssElement)
+        }
+      })
+      .catch((error) => {
+        logger.error('Failed to load theme css:', error)
+      })
+
+    return () => {
+      cancelled = true
+    }
+  }, [themeId])
 
   useEffect(() => {
     let customCssElement = document.getElementById('user-defined-custom-css') as HTMLStyleElement

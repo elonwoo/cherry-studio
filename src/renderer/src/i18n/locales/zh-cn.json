@@ -4256,6 +4256,28 @@
         }
       }
     },
+    "themeSettings": {
+      "apply": "应用",
+      "collapse": "收起",
+      "current": "当前：{{name}}",
+      "default": "默认外观",
+      "empty": "没有匹配的主题，换个关键词或标签试试",
+      "filters": {
+        "all": "全部",
+        "dark": "暗色",
+        "eye": "护眼",
+        "glass": "玻璃 / 透明",
+        "minimal": "简约",
+        "motion": "动效",
+        "style": "风格化"
+      },
+      "library": "主题库",
+      "needsNetwork": "需联网",
+      "reset": "恢复默认",
+      "search": "搜索主题名、作者或标签",
+      "showAll": "显示全部 {{count}} 个主题",
+      "title": "主题设置"
+    },
     "title": "设置",
     "tool": {
       "ocr": {

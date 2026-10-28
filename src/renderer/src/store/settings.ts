@@ -19,7 +19,6 @@ import { createSlice } from '@reduxjs/toolkit'
 import { DEFAULT_STREAM_OPTIONS_INCLUDE_USAGE, isMac, LATEST_PRIVACY_POLICY_VERSION } from '@renderer/config/constant'
 import { TRANSLATE_PROMPT } from '@renderer/config/prompts'
 import { DEFAULT_SIDEBAR_ICONS } from '@renderer/config/sidebar'
-import { DRACULA_SHADCN_CSS } from '@renderer/config/themePresets'
 import type {
   AssistantsSortType,
   CodeStyleVarious,
@@ -78,6 +77,8 @@ export interface SettingsState {
   trayOnClose: boolean
   tray: boolean
   theme: ThemeMode
+  themeId: string
+  themeColorOverride: boolean
   userTheme: UserTheme
   windowStyle: 'transparent' | 'opaque'
   fontSize: number
@@ -261,6 +262,8 @@ export const initialState: SettingsState = {
   trayOnClose: false,
   tray: false,
   theme: ThemeMode.system,
+  themeId: 'default',
+  themeColorOverride: false,
   userTheme: {
     colorPrimary: '#BD93F9',
     userFontFamily: '',
@@ -327,7 +330,7 @@ export const initialState: SettingsState = {
   autoTranslateWithSpace: false,
   showTranslateConfirm: true,
   enableTopicNaming: true,
-  customCss: DRACULA_SHADCN_CSS,
+  customCss: '',
   topicNamingPrompt: '',
   sidebarIcons: {
     visible: DEFAULT_SIDEBAR_ICONS,
@@ -492,6 +495,12 @@ const settingsSlice = createSlice({
     },
     setTheme: (state, action: PayloadAction<ThemeMode>) => {
       state.theme = action.payload
+    },
+    setThemeId: (state, action: PayloadAction<string>) => {
+      state.themeId = action.payload
+    },
+    setThemeColorOverride: (state, action: PayloadAction<boolean>) => {
+      state.themeColorOverride = action.payload
     },
     setCustomCss: (state, action: PayloadAction<string>) => {
       state.customCss = action.payload
@@ -855,6 +864,8 @@ export const {
   setTrayOnClose,
   setTray,
   setTheme,
+  setThemeId,
+  setThemeColorOverride,
   setUserTheme,
   setFontSize,
   setWindowStyle,

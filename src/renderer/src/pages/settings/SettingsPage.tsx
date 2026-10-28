@@ -12,6 +12,7 @@ import {
   Info,
   MonitorCog,
   Package,
+  Palette,
   Search,
   Settings2,
   Zap
@@ -31,6 +32,7 @@ import MemorySettings from './MemorySettings'
 import { ProviderList } from './ProviderSettings'
 import QuickPhraseSettings from './QuickPhraseSettings'
 import ShortcutSettings from './ShortcutSettings'
+import ThemeSettings from './ThemeSettings/ThemeSettings'
 import WebSearchSettings from './WebSearchSettings'
 
 const SettingsPage: FC = () => {
@@ -69,6 +71,12 @@ const SettingsPage: FC = () => {
             <MenuItem className={isRoute('/settings/display')}>
               <MonitorCog size={18} />
               {t('settings.display.title')}
+            </MenuItem>
+          </MenuItemLink>
+          <MenuItemLink to="/settings/theme">
+            <MenuItem className={isRoute('/settings/theme')}>
+              <Palette size={18} />
+              {t('settings.themeSettings.title')}
             </MenuItem>
           </MenuItemLink>
           <MenuItemLink to="/settings/data">
@@ -133,6 +141,7 @@ const SettingsPage: FC = () => {
             <Route path="memory" element={<MemorySettings />} />
             <Route path="general/*" element={<GeneralSettings />} />
             <Route path="display" element={<DisplaySettings />} />
+            <Route path="theme" element={<ThemeSettings />} />
             <Route path="shortcut" element={<ShortcutSettings />} />
             <Route path="data" element={<DataSettings />} />
             <Route path="about" element={<AboutSettings />} />

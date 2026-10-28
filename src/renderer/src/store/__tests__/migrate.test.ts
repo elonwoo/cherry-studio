@@ -1,3 +1,4 @@
+import { DRACULA_SHADCN_CSS } from '@renderer/config/themePresets'
 import { describe, expect, it } from 'vitest'
 
 import migrate from '../migrate'
@@ -220,6 +221,49 @@ describe('store migrations', () => {
       const migrated: any = await migrate(state as any, 217)
 
       expect(migrated.settings).toEqual({ autoCheckUpdate: true })
+    })
+  })
+
+  describe('migration 220: theme settings', () => {
+    it('clears the legacy default Dracula CSS and backfills theme fields', async () => {
+      const state = {
+        settings: {
+          customCss: DRACULA_SHADCN_CSS
+        },
+        _persist: { version: 219, rehydrated: false }
+      }
+
+      const migrated: any = await migrate(state as any, 220)
+
+      expect(migrated.settings.customCss).toBe('')
+      expect(migrated.settings.themeId).toBe('default')
+      expect(migrated.settings.themeColorOverride).toBe(false)
+    })
+
+    it('keeps a customized custom CSS untouched', async () => {
+      const customCss = `${DRACULA_SHADCN_CSS}\n/* user tweak */`
+      const state = {
+        settings: {
+          customCss
+        },
+        _persist: { version: 219, rehydrated: false }
+      }
+
+      const migrated: any = await migrate(state as any, 220)
+
+      expect(migrated.settings.customCss).toBe(customCss)
+    })
+
+    it('backfills missing theme fields', async () => {
+      const state = {
+        settings: {},
+        _persist: { version: 219, rehydrated: false }
+      }
+
+      const migrated: any = await migrate(state as any, 220)
+
+      expect(migrated.settings.themeId).toBe('default')
+      expect(migrated.settings.themeColorOverride).toBe(false)
     })
   })
 })

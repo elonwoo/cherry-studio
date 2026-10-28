@@ -4256,6 +4256,28 @@
         }
       }
     },
+    "themeSettings": {
+      "apply": "Apply",
+      "collapse": "Collapse",
+      "current": "Current: {{name}}",
+      "default": "Default Appearance",
+      "empty": "No matching themes. Try another keyword or tag.",
+      "filters": {
+        "all": "All",
+        "dark": "Dark",
+        "eye": "Eye-friendly",
+        "glass": "Glass / Transparent",
+        "minimal": "Minimal",
+        "motion": "Motion",
+        "style": "Stylized"
+      },
+      "library": "Theme Library",
+      "needsNetwork": "Needs network",
+      "reset": "Reset to default",
+      "search": "Search by name, author or tag",
+      "showAll": "Show all {{count}} themes",
+      "title": "Theme Settings"
+    },
     "title": "Settings",
     "tool": {
       "ocr": {

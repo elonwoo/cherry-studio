@@ -3528,6 +3528,22 @@ const migrateConfig = {
       logger.error('migrate 219 error', error as Error)
       return state
     }
+  },
+  '220': (state: RootState) => {
+    try {
+      state.settings.themeId ||= 'default'
+      state.settings.themeColorOverride ??= false
+      // Dracula 已改为内置默认主题，样式由主题注入通道提供
+      if (state.settings.customCss === DRACULA_SHADCN_CSS) {
+        state.settings.customCss = ''
+      }
+
+      logger.info('migrate 220 success')
+      return state
+    } catch (error) {
+      logger.error('migrate 220 error', error as Error)
+      return state
+    }
   }
 }
 

@@ -4256,6 +4256,28 @@
         }
       }
     },
+    "themeSettings": {
+      "apply": "套用",
+      "collapse": "收合",
+      "current": "目前：{{name}}",
+      "default": "預設外觀",
+      "empty": "沒有符合的主題，換個關鍵字或標籤試試",
+      "filters": {
+        "all": "全部",
+        "dark": "暗色",
+        "eye": "護眼",
+        "glass": "玻璃 / 透明",
+        "minimal": "簡約",
+        "motion": "動效",
+        "style": "風格化"
+      },
+      "library": "主題庫",
+      "needsNetwork": "需要網路",
+      "reset": "恢復預設",
+      "search": "搜尋主題名稱、作者或標籤",
+      "showAll": "顯示全部 {{count}} 個主題",
+      "title": "主題設定"
+    },
     "title": "設定",
     "tool": {
       "ocr": {

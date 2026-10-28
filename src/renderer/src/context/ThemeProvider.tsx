@@ -33,9 +33,13 @@ const tailwindThemeChange = (theme: ThemeMode) => {
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   // 用户设置的主题
   const { theme: settedTheme, setTheme: setSettedTheme, language } = useSettings()
-  const [actualTheme, setActualTheme] = useState<ThemeMode>(
-    window.matchMedia('(prefers-color-scheme: dark)').matches ? ThemeMode.dark : ThemeMode.light
-  )
+  const [actualTheme, setActualTheme] = useState<ThemeMode>(() => {
+    // 显式选择了浅色/深色时按设置初始化，避免重启后主进程尚未广播实际主题
+    if (settedTheme === ThemeMode.dark || settedTheme === ThemeMode.light) {
+      return settedTheme
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? ThemeMode.dark : ThemeMode.light
+  })
   const { initUserTheme } = useUserTheme()
   const { navbarPosition } = useNavbarPosition()
 
