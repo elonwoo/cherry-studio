@@ -14,7 +14,6 @@ import { useTimer } from '@renderer/hooks/useTimer'
 import AnthropicSettings from '@renderer/pages/settings/ProviderSettings/AnthropicSettings'
 import { ModelList } from '@renderer/pages/settings/ProviderSettings/ModelList'
 import { checkApi } from '@renderer/services/ApiService'
-import { isProviderSupportAuth } from '@renderer/services/ProviderService'
 import { useAppDispatch } from '@renderer/store'
 import { updateWebSearchProvider } from '@renderer/store/websearch'
 import type { SystemProviderId } from '@renderer/types'
@@ -54,15 +53,12 @@ import {
 } from '..'
 import ApiOptionsSettingsPopup from './ApiOptionsSettings/ApiOptionsSettingsPopup'
 import AwsBedrockSettings from './AwsBedrockSettings'
-import CherryINOAuth from './CherryINOAuth'
-import CherryINSettings from './CherryINSettings'
 import CustomHeaderPopup from './CustomHeaderPopup'
 import DMXAPISettings from './DMXAPISettings'
 import GithubCopilotSettings from './GithubCopilotSettings'
 import GPUStackSettings from './GPUStackSettings'
 import LMStudioSettings from './LMStudioSettings'
 import OVMSSettings from './OVMSSettings'
-import ProviderOAuth from './ProviderOAuth'
 import SelectProviderModelPopup from './SelectProviderModelPopup'
 import VertexAISettings from './VertexAISettings'
 
@@ -80,7 +76,6 @@ const ANTHROPIC_COMPATIBLE_PROVIDER_IDS = [
   SystemProviderIds.modelscope,
   SystemProviderIds.aihubmix,
   SystemProviderIds.grok,
-  SystemProviderIds.cherryin,
   SystemProviderIds.longcat,
   SystemProviderIds.minimax,
   SystemProviderIds.silicon,
@@ -116,8 +111,6 @@ const ProviderSetting: FC<Props> = ({ providerId, isOnboarding = false }) => {
 
   const isAzureOpenAI = isAzureOpenAIProvider(provider)
   const isDmxapi = provider.id === 'dmxapi'
-  const isCherryIN = provider.id === 'cherryin'
-  const isChineseUser = i18n.language.startsWith('zh')
   const noAPIInputProviders = ['aws-bedrock'] as const satisfies SystemProviderId[]
   const hideApiInput = noAPIInputProviders.some((id) => id === provider.id)
   const noAPIKeyInputProviders = ['copilot', 'vertexai'] as const satisfies SystemProviderId[]
@@ -400,16 +393,13 @@ const ProviderSetting: FC<Props> = ({ providerId, isOnboarding = false }) => {
   }, [provider.anthropicApiHost])
 
   const canConfigureAnthropicHost = useMemo(() => {
-    if (isCherryIN) {
-      return false
-    }
     if (isNewApiProvider(provider)) {
       return true
     }
     return (
       provider.type !== 'anthropic' && isSystemProviderId(provider.id) && isAnthropicCompatibleProviderId(provider.id)
     )
-  }, [isCherryIN, provider])
+  }, [provider])
 
   const anthropicHostPreview = useMemo(() => {
     const rawHost = anthropicApiHost ?? provider.anthropicApiHost
@@ -477,8 +467,6 @@ const ProviderSetting: FC<Props> = ({ providerId, isOnboarding = false }) => {
         />
       </SettingTitle>
       <Divider style={{ width: '100%', margin: '10px 0' }} />
-      {isProviderSupportAuth(provider) && <ProviderOAuth providerId={provider.id} />}
-      {isCherryIN && <CherryINOAuth providerId={provider.id} />}
       {provider.id === 'openai' && <OpenAIAlert />}
       {provider.id === 'ovms' && <OVMSSettings />}
       {isDmxapi && <DMXAPISettings providerId={provider.id} />}
@@ -521,7 +509,7 @@ const ProviderSetting: FC<Props> = ({ providerId, isOnboarding = false }) => {
                   placeholder={t('settings.provider.api_key.label')}
                   onChange={(e) => setLocalApiKey(e.target.value)}
                   spellCheck={false}
-                  autoFocus={provider.enabled && provider.apiKey === '' && !isProviderSupportAuth(provider)}
+                  autoFocus={provider.enabled && provider.apiKey === ''}
                   disabled={provider.id === 'copilot'}
                   suffix={renderStatusIndicator()}
                 />
@@ -579,23 +567,19 @@ const ProviderSetting: FC<Props> = ({ providerId, isOnboarding = false }) => {
               </SettingSubtitle>
               {activeHostField === 'apiHost' && (
                 <>
-                  {isCherryIN && isChineseUser ? (
-                    <CherryINSettings providerId={provider.id} apiHost={apiHost} setApiHost={setApiHost} />
-                  ) : (
-                    <Space.Compact style={{ width: '100%', marginTop: 5 }}>
-                      <Input
-                        value={apiHost}
-                        placeholder={t('settings.provider.api_host')}
-                        onChange={(e) => setApiHost(e.target.value)}
-                        onBlur={onUpdateApiHost}
-                      />
-                      {isApiHostResettable && (
-                        <Button danger onClick={onReset}>
-                          {t('settings.provider.api.url.reset')}
-                        </Button>
-                      )}
-                    </Space.Compact>
-                  )}
+                  <Space.Compact style={{ width: '100%', marginTop: 5 }}>
+                    <Input
+                      value={apiHost}
+                      placeholder={t('settings.provider.api_host')}
+                      onChange={(e) => setApiHost(e.target.value)}
+                      onBlur={onUpdateApiHost}
+                    />
+                    {isApiHostResettable && (
+                      <Button danger onClick={onReset}>
+                        {t('settings.provider.api.url.reset')}
+                      </Button>
+                    )}
+                  </Space.Compact>
                   {isVertexProvider(provider) && (
                     <SettingHelpTextRow>
                       <SettingHelpText>{t('settings.provider.vertex_ai.api_host_help')}</SettingHelpText>

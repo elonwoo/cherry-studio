@@ -1,12 +1,5 @@
 import type { Model, SystemProviderId } from '@renderer/types'
 
-export const qwenModel: Model = {
-  id: 'qwen',
-  name: 'Qwen',
-  provider: 'cherryai',
-  group: 'Qwen'
-}
-
 export const fallbackModel: Model = {
   id: 'deepseek-v4-flash',
   provider: 'deepseek',
@@ -24,7 +17,6 @@ export const SYSTEM_MODELS: Record<SystemProviderId | 'defaultModel', Model[]> =
     fallbackModel,
     fallbackModel
   ],
-  cherryin: [],
   vertexai: [],
   sophnet: [],
   '302ai': [],

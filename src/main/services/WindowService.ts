@@ -274,29 +274,6 @@ export class WindowService {
     mainWindow.webContents.setWindowOpenHandler((details) => {
       const { url } = details
 
-      const oauthProviderUrls = [
-        'https://account.siliconflow.cn/oauth',
-        'https://cloud.siliconflow.cn/bills',
-        'https://cloud.siliconflow.cn/expensebill',
-        'https://console.inferera.com/token',
-        'https://console.inferera.com/topup',
-        'https://console.inferera.com/statistics',
-        'https://dash.302.ai/sso/login',
-        'https://dash.302.ai/charge',
-        'https://maas.aiionly.com/login'
-      ]
-
-      if (oauthProviderUrls.some((link) => url.startsWith(link))) {
-        return {
-          action: 'allow',
-          overrideBrowserWindowOptions: {
-            webPreferences: {
-              partition: 'persist:webview'
-            }
-          }
-        }
-      }
-
       if (url.includes('http://file/')) {
         const fileName = url.replace('http://file/', '')
         if (!fileName) {

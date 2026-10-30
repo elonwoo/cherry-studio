@@ -269,6 +269,5 @@ export const REMOVED_BUILTIN_MODEL_IDS: Record<string, string[]> = {
   ],
   longcat: ['LongCat-2.0'],
   cerebras: ['gpt-oss-120b', 'zai-glm-4.6', 'qwen-3-235b-a22b-instruct-2507'],
-  mimo: ['mimo-v2.5', 'mimo-v2.5-pro', 'mimo-v2-flash', 'mimo-v2-omni'],
-  cherryai: ['qwen']
+  mimo: ['mimo-v2.5', 'mimo-v2.5-pro', 'mimo-v2-flash', 'mimo-v2-omni']
 }

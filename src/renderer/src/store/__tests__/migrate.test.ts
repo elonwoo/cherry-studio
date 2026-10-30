@@ -73,22 +73,8 @@ describe('store migrations', () => {
       expect(migrated.llm.providers[1].models).toHaveLength(1)
     })
 
-    it('removes qwen from the persisted cherryai provider', async () => {
-      const state = {
-        llm: {
-          providers: [{ id: 'cherryai', models: [{ id: 'qwen', provider: 'cherryai', name: 'Qwen', group: 'Qwen' }] }]
-        },
-        assistants: { assistants: [] },
-        _persist: { version: 213, rehydrated: false }
-      }
-
-      const migrated: any = await migrate(state as any, 214)
-
-      expect(migrated.llm.providers[0].models).toEqual([])
-    })
-
     it('resets removed built-in selections to the fallback model', async () => {
-      const removedBuiltin = { id: 'qwen', provider: 'cherryai', name: 'Qwen', group: 'Qwen' }
+      const removedBuiltin = { id: 'gpt-5', provider: 'aihubmix', name: 'GPT-5', group: 'gpt-5' }
       const customModel = { id: 'my-model', provider: 'custom', name: 'my-model', group: 'Custom' }
       const state = {
         llm: {

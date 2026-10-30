@@ -5,7 +5,6 @@ import { usePreprocessProvider } from '@renderer/hooks/usePreprocess'
 import { useProvider } from '@renderer/hooks/useProvider'
 import { useWebSearchProvider } from '@renderer/hooks/useWebSearchProviders'
 import { SettingHelpText } from '@renderer/pages/settings'
-import { isProviderSupportAuth } from '@renderer/services/ProviderService'
 import type { PreprocessProviderId, WebSearchProviderId } from '@renderer/types'
 import type { ApiKeyWithStatus } from '@renderer/types/healthCheck'
 import { HealthStatus } from '@renderer/types/healthCheck'
@@ -75,7 +74,7 @@ export const ApiKeyList: FC<ApiKeyListProps> = ({ provider, updateProvider, show
 
   const shouldAutoFocus = () => {
     if (provider.apiKey) return false
-    return isLlmProvider(provider) && provider.enabled && !isProviderSupportAuth(provider)
+    return isLlmProvider(provider) && provider.enabled
   }
 
   // 合并真实 keys 和临时新项

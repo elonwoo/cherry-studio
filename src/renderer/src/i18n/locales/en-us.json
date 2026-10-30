@@ -857,7 +857,6 @@
         "model": "Select a model"
       }
     },
-    "powered_by": "Powered by ",
     "preview": "Preview",
     "previous_match": "Previous match",
     "prompt": "Prompt",
@@ -1976,16 +1975,11 @@
       "title": "Choose Your Default Models"
     },
     "skip": "Skip",
-    "toast": {
-      "connected": "Successfully connected to CherryIN"
-    },
     "welcome": {
-      "login_cherryin": "Login with CherryIN",
       "or_continue_with": "OR CONTINUE WITH",
       "other_provider": "Choose Other Providers",
       "select_other_provider": "Select Other Provider",
       "setup_hint": "Please configure at least one provider for the best experience",
-      "subtitle": "Enjoy top-tier AI services with CherryIN",
       "title": "Welcome to Pear Studio"
     }
   },
@@ -2366,7 +2360,6 @@
     "burncloud": "BurnCloud",
     "cephalon": "Cephalon",
     "cerebras": "Cerebras AI",
-    "cherryin": "CherryIN",
     "copilot": "GitHub Copilot",
     "dashscope": "Alibaba Cloud",
     "deepseek": "DeepSeek",
@@ -4118,13 +4111,6 @@
       "oauth": {
         "balance": "Balance",
         "button": "Login with {{provider}}",
-        "cherryIn": {
-          "description": "Login to CherryIN using OAuth 2.0",
-          "logged_in": "Logged in via OAuth",
-          "login_button": "Login with OAuth",
-          "logout_button": "Logout",
-          "title": "OAuth Login"
-        },
         "connect": "Connect {{provider}}",
         "description": "This service is provided by <website>{{provider}}</website>",
         "error": "Authentication failed",

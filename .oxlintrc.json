@@ -16,8 +16,6 @@
     ".gitignore",
     "scripts/cloudflare-worker.js",
     "src/main/integration/nutstore/sso/lib/**",
-    "src/main/integration/cherryai/index.js",
-    "src/main/integration/nutstore/sso/lib/**",
     "src/renderer/src/ui/**",
     "packages/**/dist",
     "eslint.config.mjs"
@@ -51,12 +49,6 @@
         "node": true
       },
       "files": ["src/preload/**"]
-    },
-    {
-      "files": ["packages/ai-sdk-provider/**"],
-      "globals": {
-        "fetch": "readonly"
-      }
     }
   ],
   "plugins": ["unicorn", "typescript", "oxc", "import"],

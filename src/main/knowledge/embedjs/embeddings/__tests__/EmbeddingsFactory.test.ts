@@ -33,30 +33,6 @@ describe('EmbeddingsFactory', () => {
     vi.clearAllMocks()
   })
 
-  it('passes CherryIN model names through without passing dimensions to OpenAI-compatible embeddings', async () => {
-    const { default: EmbeddingsFactory } = await import('../EmbeddingsFactory')
-
-    EmbeddingsFactory.create({
-      embedApiClient: createEmbedApiClient({
-        provider: 'cherryin',
-        baseURL: 'https://open.cherryin.ai/v1',
-        model: 'baai/bge-m3(free)'
-      })
-    })
-
-    expect(openAiEmbeddingsMock).toHaveBeenCalledWith(
-      expect.objectContaining({
-        model: 'baai/bge-m3(free)',
-        apiKey: 'test-key',
-        batchSize: 10,
-        configuration: expect.objectContaining({
-          baseURL: 'https://open.cherryin.ai/v1'
-        })
-      })
-    )
-    expect(openAiEmbeddingsMock.mock.calls[0][0]).not.toHaveProperty('dimensions')
-  })
-
   it('keeps configured dimensions local without passing them to official OpenAI embeddings', async () => {
     const { default: Embeddings } = await import('../Embeddings')
 

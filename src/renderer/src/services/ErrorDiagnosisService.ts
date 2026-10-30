@@ -1,11 +1,10 @@
-import { CHERRYAI_PROVIDER } from '@renderer/config/providers'
 import { loggerService } from '@renderer/services/LoggerService'
 import store from '@renderer/store'
 import type { Model } from '@renderer/types'
 import type { SerializedError } from '@renderer/types/error'
 import { isMcpErrorMessage, isQuotaErrorMessage } from '@renderer/utils/errorClassifier'
 
-import { fetchGenerate, fetchModels } from './ApiService'
+import { fetchGenerate } from './ApiService'
 
 const logger = loggerService.withContext('ErrorDiagnosisService')
 
@@ -26,28 +25,12 @@ export interface DiagnosisContext {
   modelId?: string
 }
 
-async function getCherryAiFreeModel(): Promise<Model | undefined> {
-  try {
-    const models = await fetchModels(CHERRYAI_PROVIDER)
-    return models.length > 0 ? models[0] : undefined
-  } catch {
-    logger.warn('Failed to fetch CherryAI free models')
-    return undefined
-  }
-}
-
 async function buildModelsToTry(context?: DiagnosisContext): Promise<Model[]> {
   const defaultModel = store.getState().llm.defaultModel
   const models: Model[] = []
 
-  // CherryAI free model as primary diagnosis model
-  const cherryModel = await getCherryAiFreeModel()
-  if (cherryModel) {
-    models.push(cherryModel)
-  }
-
-  // User's default model as fallback (skip if same as failing model)
-  if (defaultModel && defaultModel.id !== context?.modelId && !models.some((m) => m.id === defaultModel.id)) {
+  // User's default model (skip if same as failing model)
+  if (defaultModel && defaultModel.id !== context?.modelId) {
     models.push(defaultModel)
   }
 

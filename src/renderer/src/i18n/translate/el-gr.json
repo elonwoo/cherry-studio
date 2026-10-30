@@ -869,7 +869,6 @@
         "model": "Επιλέξτε μοντέλο"
       }
     },
-    "powered_by": "Με την υποστήριξη της",
     "preview": "Προεπισκόπηση",
     "previous_match": "Προηγούμενος αγώνας",
     "prompt": "Ενδεικτικός ρήματος",
@@ -2047,16 +2046,11 @@
       "title": "Επιλέξτε τα Προεπιλεγμένα Σας Μοντέλα"
     },
     "skip": "Παράλειψη",
-    "toast": {
-      "connected": "Συνδέθηκε επιτυχώς με το CherryIN"
-    },
     "welcome": {
-      "login_cherryin": "Σύνδεση με CherryIN",
       "or_continue_with": "Ή ΣΥΝΕΧΕΙΑ ΜΕ",
       "other_provider": "Επιλέξτε Άλλους Παρόχους",
       "select_other_provider": "Επιλέξτε Άλλο Πάροχο",
       "setup_hint": "Παρακαλούμε ρυθμίστε τουλάχιστον έναν πάροχο για την καλύτερη εμπειρία",
-      "subtitle": "Απολαύστε κορυφαίες υπηρεσίες τεχνητής νοημοσύνης με την CherryIN",
       "title": "Καλώς ήρθατε στο Pear Studio"
     }
   },
@@ -2437,7 +2431,6 @@
     "burncloud": "BurnCloud",
     "cephalon": "Cephalon",
     "cerebras": "Cerebras AI",
-    "cherryin": "CherryIN",
     "copilot": "GitHub Copilot",
     "dashscope": "AliCloud Bailian",
     "deepseek": "Βαθιά Αναζήτηση",
@@ -4189,13 +4182,6 @@
       "oauth": {
         "balance": "Υπόλοιπο",
         "button": "Σύνδεση με λογαριασμό {{provider}}",
-        "cherryIn": {
-          "description": "Συνδεθείτε με τον διακομιστή New-API που φιλοξενείτε ο ίδιος χρησιμοποιώντας OAuth 2.0 (PKCE)",
-          "logged_in": "Σύνδεση μέσω OAuth",
-          "login_button": "Σύνδεση με OAuth",
-          "logout_button": "Αποσύνδεση",
-          "title": "Σύνδεση μέσω OAuth"
-        },
         "connect": "Σύνδεση {{provider}}",
         "description": "Η υπηρεσία παρέχεται από την ιστοσελίδα {{provider}}",
         "error": "Αποτυχία πιστοποίησης",

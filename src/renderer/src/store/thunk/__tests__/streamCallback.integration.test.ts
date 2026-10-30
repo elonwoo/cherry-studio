@@ -60,12 +60,6 @@ vi.mock('@renderer/config/models', async (importOriginal) => {
   const actual = (await importOriginal()) as Record<string, unknown>
   return {
     ...actual,
-    qwen3Model: {
-      id: 'qwen',
-      name: 'Qwen',
-      provider: 'cherryai',
-      group: 'Qwen'
-    },
     SYSTEM_MODELS: {
       defaultModel: [{}, {}, {}],
       silicon: [],

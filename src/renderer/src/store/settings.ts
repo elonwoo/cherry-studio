@@ -408,7 +408,7 @@ export const initialState: SettingsState = {
   localBackupSyncInterval: 0,
   localBackupMaxBackups: 0,
   localBackupSkipBackupFile: false,
-  defaultPaintingProvider: 'cherryin',
+  defaultPaintingProvider: 'zhipu',
   s3: {
     endpoint: '',
     region: '',

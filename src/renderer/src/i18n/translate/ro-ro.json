@@ -869,7 +869,6 @@
         "model": "Selectează un model"
       }
     },
-    "powered_by": "Cu tehnologia",
     "preview": "Previzualizare",
     "previous_match": "Meciul anterior",
     "prompt": "Prompt",
@@ -2047,16 +2046,11 @@
       "title": "Alegeți Modelele Dvs. Implicite"
     },
     "skip": "Sariți",
-    "toast": {
-      "connected": "Conectat cu succes la CherryIN"
-    },
     "welcome": {
-      "login_cherryin": "Conectare cu CherryIN",
       "or_continue_with": "SAU CONTINUAȚI CU",
       "other_provider": "Alegeți alți furnizori",
       "select_other_provider": "Selectați alt furnizor",
       "setup_hint": "Vă rugăm să configurați cel puțin un furnizor pentru cea mai bună experiență",
-      "subtitle": "Bucurați-vă de servicii AI de top cu CherryIN",
       "title": "Bun venit la Pear Studio"
     }
   },
@@ -2437,7 +2431,6 @@
     "burncloud": "BurnCloud",
     "cephalon": "Cephalon",
     "cerebras": "Cerebras AI",
-    "cherryin": "CherryIN",
     "copilot": "GitHub Copilot",
     "dashscope": "Alibaba Cloud",
     "deepseek": "DeepSeek",
@@ -4189,13 +4182,6 @@
       "oauth": {
         "balance": "Sold",
         "button": "Conectare cu {{provider}}",
-        "cherryIn": {
-          "description": "Autentifică-te cu serverul tău auto-găzduit New-API folosind OAuth 2.0 (PKCE)",
-          "logged_in": "Conectat prin OAuth",
-          "login_button": "Conectare cu OAuth",
-          "logout_button": "Deconectare",
-          "title": "Autentificare OAuth"
-        },
         "connect": "Conectează {{provider}}",
         "description": "Acest serviciu este furnizat de <website>{{provider}}</website>",
         "error": "Autentificare eșuată",
