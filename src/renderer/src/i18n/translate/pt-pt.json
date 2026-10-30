@@ -244,13 +244,6 @@
     },
     "title": "Assistente"
   },
-  "auth": {
-    "error": "Falha ao obter a chave automaticamente, por favor obtenha manualmente",
-    "get_key": "Obter",
-    "get_key_success": "Obtenção automática da chave bem-sucedida",
-    "login": "Entrar",
-    "oauth_button": "Entrar com {{provider}}"
-  },
   "backup": {
     "confirm": {
       "button": "Escolher local de backup",
@@ -2032,28 +2025,6 @@
     },
     "title": "Ollama"
   },
-  "onboarding": {
-    "privacy": {
-      "accept_and_continue": "Aceitar e continuar",
-      "notice": "Ao continuar, você confirma que leu e concorda com",
-      "period": ".",
-      "policy": "Política de Privacidade"
-    },
-    "select_model": {
-      "change_later": "Você pode alterar isso a qualquer momento nas configurações",
-      "start": "Comece",
-      "subtitle": "Selecionar modelo padrão para cada cenário",
-      "title": "Escolha Seus Modelos Padrão"
-    },
-    "skip": "Pular",
-    "welcome": {
-      "or_continue_with": "OU CONTINUAR COM",
-      "other_provider": "Escolher Outros Provedores",
-      "select_other_provider": "Selecionar Outro Provedor",
-      "setup_hint": "Por favor, configure pelo menos um provedor para a melhor experiência",
-      "title": "Bem-vindo ao Pear Studio"
-    }
-  },
   "ovms": {
     "action": {
       "install": "Instalar",
@@ -2338,54 +2309,6 @@
         "standard_default": "Padrão (Padrão)"
       }
     }
-  },
-  "plugins": {
-    "actions": "Operação",
-    "agents": "agente",
-    "all_categories": "Todas as categorias",
-    "all_types": "Tudo",
-    "category": "categoria",
-    "commands": "comando",
-    "confirm_uninstall": "Tem certeza de que deseja desinstalar {{name}}?",
-    "confirm_uninstall_package": "Tem certeza de que deseja desinstalar o pacote {{name}} e todos os seus componentes?",
-    "content_saved": "Conteúdo do plugin salvo com sucesso",
-    "detail": {
-      "allowed_tools": "Ferramentas Permitidas",
-      "author": "Autor",
-      "content": "Conteúdo",
-      "description": "Descrição",
-      "file": "Arquivo",
-      "installed": "Instalado",
-      "metadata": "Metadados",
-      "size": "Tamanho",
-      "source": "Fonte",
-      "tags": "Etiquetas",
-      "tools": "Ferramentas"
-    },
-    "install": "Instalação",
-    "install_plugins_from_browser": "Navegue pelos plugins disponíveis para começar a usar",
-    "installing": "Instalando...",
-    "name": "Nome",
-    "no_description": "Sem descrição",
-    "no_installed_plugins": "Nenhum plugin foi instalado ainda",
-    "no_results": "Plugin não encontrado",
-    "search_placeholder": "Pesquisar plugin...",
-    "showing_results": "Exibir {{count}} extensões",
-    "showing_results_one": "Mostrar {{count}} extensões",
-    "showing_results_other": "Exibir {{count}} extensões",
-    "showing_results_plural": "Exibir {{count}} extensões",
-    "sort": {
-      "downloads": "Downloads",
-      "label": "Ordenar",
-      "relevance": "Relevância",
-      "stars": "Estrelas"
-    },
-    "standalone_plugins": "Plugins Autônomos",
-    "try_different_search": "Por favor, tente ajustar a pesquisa ou os filtros de categoria.",
-    "type": "tipo",
-    "uninstall": "Desinstalar",
-    "uninstall_package": "Desinstalar Pacote",
-    "uninstalling": "Desinstalando..."
   },
   "preview": {
     "copy": {

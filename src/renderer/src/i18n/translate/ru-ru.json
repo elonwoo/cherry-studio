@@ -244,13 +244,6 @@
     },
     "title": "Ассистенты"
   },
-  "auth": {
-    "error": "Автоматический получение ключа API не удалось, пожалуйста, получите ключ вручную",
-    "get_key": "Получить",
-    "get_key_success": "Автоматический получение ключа API успешно",
-    "login": "Войти",
-    "oauth_button": "Авторизоваться с {{provider}}"
-  },
   "backup": {
     "confirm": {
       "button": "Выбрать папку для резервной копии",
@@ -2032,28 +2025,6 @@
     },
     "title": "Ollama"
   },
-  "onboarding": {
-    "privacy": {
-      "accept_and_continue": "Принять и продолжить",
-      "notice": "Продолжая, вы подтверждаете, что прочитали и соглашаетесь с",
-      "period": ".",
-      "policy": "Политика конфиденциальности"
-    },
-    "select_model": {
-      "change_later": "Вы можете изменить это в любое время в настройках",
-      "start": "Начать",
-      "subtitle": "Выберите модель по умолчанию для каждого сценария",
-      "title": "Выберите модели по умолчанию"
-    },
-    "skip": "Пропустить",
-    "welcome": {
-      "or_continue_with": "ИЛИ ПРОДОЛЖИТЬ С",
-      "other_provider": "Выбрать других поставщиков",
-      "select_other_provider": "Выбрать другого поставщика",
-      "setup_hint": "Пожалуйста, настройте хотя бы одного поставщика для лучшего опыта",
-      "title": "Добро пожаловать в Pear Studio"
-    }
-  },
   "ovms": {
     "action": {
       "install": "Установить",
@@ -2338,54 +2309,6 @@
         "standard_default": "Стандарт (по умолчанию)"
       }
     }
-  },
-  "plugins": {
-    "actions": "Операция",
-    "agents": "агент",
-    "all_categories": "Все категории",
-    "all_types": "всё",
-    "category": "категория",
-    "commands": "команда",
-    "confirm_uninstall": "Вы уверены, что хотите удалить {{name}}?",
-    "confirm_uninstall_package": "Вы уверены, что хотите удалить пакет {{name}} и все его компоненты?",
-    "content_saved": "Содержимое плагина успешно сохранено",
-    "detail": {
-      "allowed_tools": "Разрешённые инструменты",
-      "author": "Автор",
-      "content": "Контент",
-      "description": "Описание",
-      "file": "Файл",
-      "installed": "Установлено",
-      "metadata": "Метаданные",
-      "size": "Размер",
-      "source": "Источник",
-      "tags": "Теги",
-      "tools": "Инструменты"
-    },
-    "install": "установка",
-    "install_plugins_from_browser": "Просмотрите доступные плагины, чтобы начать работу",
-    "installing": "Установка...",
-    "name": "название",
-    "no_description": "Без описания",
-    "no_installed_plugins": "Плагины ещё не установлены",
-    "no_results": "Плагин не найден",
-    "search_placeholder": "Поиск плагинов...",
-    "showing_results": "Отображено {{count}} плагинов",
-    "showing_results_one": "Отображено {{count}} плагинов",
-    "showing_results_other": "Отображено {{count}} плагинов",
-    "showing_results_plural": "Отображение {{count}} плагинов",
-    "sort": {
-      "downloads": "Загрузки",
-      "label": "Сортировка",
-      "relevance": "Актуальность",
-      "stars": "Звезды"
-    },
-    "standalone_plugins": "Автономные плагины",
-    "try_different_search": "Пожалуйста, попробуйте изменить поиск или фильтры категорий",
-    "type": "тип",
-    "uninstall": "Удаление",
-    "uninstall_package": "Удалить пакет",
-    "uninstalling": "Удаление..."
   },
   "preview": {
     "copy": {

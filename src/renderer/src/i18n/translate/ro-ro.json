@@ -244,13 +244,6 @@
     },
     "title": "Asistenți"
   },
-  "auth": {
-    "error": "Obținerea automată a cheii API a eșuat, te rugăm să o obții manual",
-    "get_key": "Obține",
-    "get_key_success": "Cheia API a fost obținută automat cu succes",
-    "login": "Autentificare",
-    "oauth_button": "Autentificare cu {{provider}}"
-  },
   "backup": {
     "confirm": {
       "button": "Selectează locația de backup",
@@ -2032,28 +2025,6 @@
     },
     "title": "Ollama"
   },
-  "onboarding": {
-    "privacy": {
-      "accept_and_continue": "Acceptă și continuă",
-      "notice": "Continuând, confirmi că ai citit și ești de acord cu",
-      "period": ".",
-      "policy": "Politica de confidențialitate"
-    },
-    "select_model": {
-      "change_later": "Poți schimba oricând asta din setări.",
-      "start": "Începe",
-      "subtitle": "Selectați modelul implicit pentru fiecare scenariu",
-      "title": "Alegeți Modelele Dvs. Implicite"
-    },
-    "skip": "Sariți",
-    "welcome": {
-      "or_continue_with": "SAU CONTINUAȚI CU",
-      "other_provider": "Alegeți alți furnizori",
-      "select_other_provider": "Selectați alt furnizor",
-      "setup_hint": "Vă rugăm să configurați cel puțin un furnizor pentru cea mai bună experiență",
-      "title": "Bun venit la Pear Studio"
-    }
-  },
   "ovms": {
     "action": {
       "install": "Instalează",
@@ -2338,54 +2309,6 @@
         "standard_default": "Standard (Implicit)"
       }
     }
-  },
-  "plugins": {
-    "actions": "Acțiuni",
-    "agents": "Agenți",
-    "all_categories": "Toate categoriile",
-    "all_types": "Toate",
-    "category": "Categorie",
-    "commands": "Comenzi",
-    "confirm_uninstall": "Ești sigur că vrei să dezinstalezi {{name}}?",
-    "confirm_uninstall_package": "Sigur doriți să dezinstalați pachetul {{name}} și toate componentele sale?",
-    "content_saved": "Conținutul plugin-ului a fost salvat cu succes",
-    "detail": {
-      "allowed_tools": "Unelte Permise",
-      "author": "Autor",
-      "content": "Conținut",
-      "description": "Descriere",
-      "file": "Fișier",
-      "installed": "Instalat",
-      "metadata": "Metadate",
-      "size": "Dimensiune",
-      "source": "Sursă",
-      "tags": "Etichete",
-      "tools": "Unelte"
-    },
-    "install": "Instalează",
-    "install_plugins_from_browser": "Răsfoiește pluginurile disponibile pentru a începe",
-    "installing": "Se instalează...",
-    "name": "Nume",
-    "no_description": "Nicio descriere disponibilă",
-    "no_installed_plugins": "Niciun plugin instalat încă",
-    "no_results": "Nu s-au găsit pluginuri",
-    "search_placeholder": "Caută pluginuri...",
-    "showing_results": "Se afișează {{count}} plugin",
-    "showing_results_one": "Se afișează {{count}} plugin",
-    "showing_results_other": "Se afișează {{count}} pluginuri",
-    "showing_results_plural": "Se afișează {{count}} pluginuri",
-    "sort": {
-      "downloads": "Descărcări",
-      "label": "Sortare",
-      "relevance": "Relevanță",
-      "stars": "Stele"
-    },
-    "standalone_plugins": "Plugin-uri independente",
-    "try_different_search": "Încearcă să ajustezi căutarea sau filtrele de categorie",
-    "type": "Tip",
-    "uninstall": "Dezinstalează",
-    "uninstall_package": "Dezinstalează pachetul",
-    "uninstalling": "Se dezinstalează..."
   },
   "preview": {
     "copy": {

@@ -21,10 +21,8 @@ export * from './knowledge'
 export * from './mcp'
 export * from './notification'
 export * from './ocr'
-export * from './plugin'
 export * from './provider'
 export * from './serialize'
-export * from './skill'
 
 export type McpMode = 'disabled' | 'auto' | 'manual'
 

@@ -244,13 +244,6 @@
     },
     "title": "Trợ lý"
   },
-  "auth": {
-    "error": "Failed to obtain API key automatically, please retrieve it manually",
-    "get_key": "Lấy",
-    "get_key_success": "Khóa API đã được lấy tự động thành công",
-    "login": "Đăng nhập",
-    "oauth_button": "Xác thực với {{provider}}"
-  },
   "backup": {
     "confirm": {
       "button": "Chọn Vị trí Sao lưu",
@@ -2032,28 +2025,6 @@
     },
     "title": "Ollama"
   },
-  "onboarding": {
-    "privacy": {
-      "accept_and_continue": "Chấp nhận và tiếp tục",
-      "notice": "Bằng cách tiếp tục, bạn xác nhận rằng bạn đã đọc và đồng ý với",
-      "period": ".",
-      "policy": "Chính sách quyền riêng tư"
-    },
-    "select_model": {
-      "change_later": "Bạn có thể thay đổi điều này bất cứ lúc nào trong phần cài đặt",
-      "start": "Bắt đầu",
-      "subtitle": "Chọn mô hình mặc định cho mỗi kịch bản",
-      "title": "Chọn Mô hình Mặc định của Bạn"
-    },
-    "skip": "Bỏ qua",
-    "welcome": {
-      "or_continue_with": "HOẶC TIẾP TỤC VỚI",
-      "other_provider": "Chọn Nhà Cung Cấp Khác",
-      "select_other_provider": "Chọn Nhà Cung Cấp Khác",
-      "setup_hint": "Vui lòng cấu hình ít nhất một nhà cung cấp để có trải nghiệm tốt nhất",
-      "title": "Chào mừng bạn đến với Pear Studio"
-    }
-  },
   "ovms": {
     "action": {
       "install": "Cài đặt",
@@ -2338,54 +2309,6 @@
         "standard_default": "Tiêu chuẩn (Mặc định)"
       }
     }
-  },
-  "plugins": {
-    "actions": "Hành động",
-    "agents": "Đại lý",
-    "all_categories": "Tất cả danh mục",
-    "all_types": "Tất cả",
-    "category": "Thể loại",
-    "commands": "Lệnh",
-    "confirm_uninstall": "Bạn có chắc chắn muốn gỡ cài đặt {{name}} không?",
-    "confirm_uninstall_package": "Bạn có chắc chắn muốn gỡ cài đặt gói {{name}} và tất cả các thành phần của nó không?",
-    "content_saved": "Nội dung plugin đã được lưu thành công",
-    "detail": {
-      "allowed_tools": "Công cụ được phép",
-      "author": "Tác giả",
-      "content": "Nội dung",
-      "description": "Mô tả",
-      "file": "Tập tin",
-      "installed": "Đã cài đặt",
-      "metadata": "Siêu dữ liệu",
-      "size": "Kích thước",
-      "source": "Nguồn",
-      "tags": "Thẻ",
-      "tools": "Công cụ"
-    },
-    "install": "Cài đặt",
-    "install_plugins_from_browser": "Duyệt qua các kỹ năng có sẵn để bắt đầu",
-    "installing": "Đang cài đặt...",
-    "name": "Tên",
-    "no_description": "Không có mô tả nào",
-    "no_installed_plugins": "Chưa cài đặt kỹ năng nào",
-    "no_results": "Không tìm thấy plugin nào",
-    "search_placeholder": "Tìm kiếm plugin...",
-    "showing_results": "Hiển thị {{count}} plugin",
-    "showing_results_one": "Hiển thị {{count}} plugin",
-    "showing_results_other": "Hiển thị {{count}} plugin",
-    "showing_results_plural": "Hiển thị {{count}} plugin",
-    "sort": {
-      "downloads": "Tải xuống",
-      "label": "Sắp xếp",
-      "relevance": "Tính liên quan",
-      "stars": "Sao"
-    },
-    "standalone_plugins": "Plugin Độc Lập",
-    "try_different_search": "Hãy thử điều chỉnh tìm kiếm hoặc bộ lọc danh mục của bạn",
-    "type": "Loại",
-    "uninstall": "Gỡ cài đặt",
-    "uninstall_package": "Gỡ cài đặt gói",
-    "uninstalling": "Đang gỡ cài đặt..."
   },
   "preview": {
     "copy": {

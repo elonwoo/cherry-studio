@@ -244,13 +244,6 @@
     },
     "title": "助手"
   },
-  "auth": {
-    "error": "自動取得金鑰失敗，請手動取得",
-    "get_key": "取得",
-    "get_key_success": "自動取得金鑰成功",
-    "login": "登入",
-    "oauth_button": "使用 {{provider}} 登入"
-  },
   "backup": {
     "confirm": {
       "button": "選擇備份位置",
@@ -1961,28 +1954,6 @@
     },
     "title": "Ollama"
   },
-  "onboarding": {
-    "privacy": {
-      "accept_and_continue": "同意並繼續",
-      "notice": "繼續即表示你已閱讀並同意",
-      "period": "。",
-      "policy": "隱私政策"
-    },
-    "select_model": {
-      "change_later": "您可以隨時在設定中更改此項目",
-      "start": "開始使用",
-      "subtitle": "為每個情境選擇預設模型",
-      "title": "選擇您的預設模型"
-    },
-    "skip": "跳過",
-    "welcome": {
-      "or_continue_with": "或繼續使用",
-      "other_provider": "選擇其他供應商",
-      "select_other_provider": "選擇其他供應商",
-      "setup_hint": "請至少設定一個提供者以獲得最佳體驗",
-      "title": "歡迎來到 Pear Studio"
-    }
-  },
   "ovms": {
     "action": {
       "install": "安裝",
@@ -2267,54 +2238,6 @@
         "standard_default": "標準（預設）"
       }
     }
-  },
-  "plugins": {
-    "actions": "操作",
-    "agents": "代理",
-    "all_categories": "所有類別",
-    "all_types": "全部",
-    "category": "類別",
-    "commands": "指令",
-    "confirm_uninstall": "確定要解除安裝 {{name}} 嗎？",
-    "confirm_uninstall_package": "確定要解除安裝套件 {{name}} 及其所有組件嗎？",
-    "content_saved": "外掛內容已成功儲存",
-    "detail": {
-      "allowed_tools": "允許的工具",
-      "author": "作者",
-      "content": "內容",
-      "description": "描述",
-      "file": "檔案",
-      "installed": "已安裝",
-      "metadata": "詮釋資料",
-      "size": "尺寸",
-      "source": "來源",
-      "tags": "標籤",
-      "tools": "工具"
-    },
-    "install": "安裝",
-    "install_plugins_from_browser": "瀏覽可用技能以開始使用",
-    "installing": "安裝中...",
-    "name": "名稱",
-    "no_description": "無描述",
-    "no_installed_plugins": "尚未安裝任何技能",
-    "no_results": "未找到外掛",
-    "search_placeholder": "搜尋外掛...",
-    "showing_results": "顯示 {{count}} 個外掛",
-    "showing_results_one": "顯示 {{count}} 個外掛",
-    "showing_results_other": "顯示 {{count}} 個外掛",
-    "showing_results_plural": "顯示 {{count}} 個外掛",
-    "sort": {
-      "downloads": "下載量",
-      "label": "排序",
-      "relevance": "相關性",
-      "stars": "星標"
-    },
-    "standalone_plugins": "獨立外掛",
-    "try_different_search": "請嘗試調整搜尋或類別篩選",
-    "type": "類型",
-    "uninstall": "解除安裝",
-    "uninstall_package": "解除安裝外掛包",
-    "uninstalling": "解除安裝中..."
   },
   "preview": {
     "copy": {

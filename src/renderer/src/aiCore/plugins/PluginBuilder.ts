@@ -128,11 +128,6 @@ export function buildPlugins({ provider, model, config }: BuildPluginsContext): 
     plugins.push(searchOrchestrationPlugin(config.assistant, config.topicId || ''))
   }
 
-  // 3. 推理模型时添加推理插件
-  // if (config.enableReasoning) {
-  //   plugins.push(reasoningTimePlugin)
-  // }
-
   // 4. 启用Prompt工具调用时添加工具插件
   if (config.isPromptToolUse) {
     plugins.push(

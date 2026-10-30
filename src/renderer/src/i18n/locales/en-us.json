@@ -244,13 +244,6 @@
     },
     "title": "Assistants"
   },
-  "auth": {
-    "error": "API key automatically obtained failed, please get it manually",
-    "get_key": "Get",
-    "get_key_success": "API key automatically obtained successfully",
-    "login": "Login",
-    "oauth_button": "Auth with {{provider}}"
-  },
   "backup": {
     "confirm": {
       "button": "Select Backup Location",
@@ -1961,28 +1954,6 @@
     },
     "title": "Ollama"
   },
-  "onboarding": {
-    "privacy": {
-      "accept_and_continue": "Accept and Continue",
-      "notice": "By continuing, you confirm that you have read and agree to the",
-      "period": ".",
-      "policy": "Privacy Policy"
-    },
-    "select_model": {
-      "change_later": "You can change this anytime in settings",
-      "start": "Get Started",
-      "subtitle": "Select default model for each scenario",
-      "title": "Choose Your Default Models"
-    },
-    "skip": "Skip",
-    "welcome": {
-      "or_continue_with": "OR CONTINUE WITH",
-      "other_provider": "Choose Other Providers",
-      "select_other_provider": "Select Other Provider",
-      "setup_hint": "Please configure at least one provider for the best experience",
-      "title": "Welcome to Pear Studio"
-    }
-  },
   "ovms": {
     "action": {
       "install": "Install",
@@ -2267,54 +2238,6 @@
         "standard_default": "Standard (Default)"
       }
     }
-  },
-  "plugins": {
-    "actions": "Actions",
-    "agents": "Agents",
-    "all_categories": "All Categories",
-    "all_types": "All",
-    "category": "Category",
-    "commands": "Commands",
-    "confirm_uninstall": "Are you sure you want to uninstall {{name}}?",
-    "confirm_uninstall_package": "Are you sure you want to uninstall the package {{name}} and all its components?",
-    "content_saved": "Plugin content saved successfully",
-    "detail": {
-      "allowed_tools": "Allowed Tools",
-      "author": "Author",
-      "content": "Content",
-      "description": "Description",
-      "file": "File",
-      "installed": "Installed",
-      "metadata": "Metadata",
-      "size": "Size",
-      "source": "Source",
-      "tags": "Tags",
-      "tools": "Tools"
-    },
-    "install": "Install",
-    "install_plugins_from_browser": "Browse available skills to get started",
-    "installing": "Installing...",
-    "name": "Name",
-    "no_description": "No description available",
-    "no_installed_plugins": "No skills installed yet",
-    "no_results": "No plugins found",
-    "search_placeholder": "Search plugins...",
-    "showing_results": "Showing {{count}} plugin",
-    "showing_results_one": "Showing {{count}} plugin",
-    "showing_results_other": "Showing {{count}} plugins",
-    "showing_results_plural": "Showing {{count}} plugins",
-    "sort": {
-      "downloads": "Downloads",
-      "label": "Sort",
-      "relevance": "Relevance",
-      "stars": "Stars"
-    },
-    "standalone_plugins": "Standalone Plugins",
-    "try_different_search": "Try adjusting your search or category filters",
-    "type": "Type",
-    "uninstall": "Uninstall",
-    "uninstall_package": "Uninstall Package",
-    "uninstalling": "Uninstalling..."
   },
   "preview": {
     "copy": {
