@@ -25,7 +25,6 @@ import {
   isOpenAIDeepResearchModel,
   isOpenAIModel,
   isOpenAIOpenWeightModel,
-  isOpenAIReasoningModel,
   isQwen35to39Model,
   isQwenAlwaysThinkModel,
   isQwenReasoningModel,
@@ -53,7 +52,6 @@ import { EFFORT_RATIO, isSystemProvider, SystemProviderIds } from '@renderer/typ
 import type { OpenAIReasoningEffort, OpenAIReasoningSummary } from '@renderer/types/aiCoreTypes'
 import { getLowerBaseModelName } from '@renderer/utils'
 import { isSupportEnableThinkingProvider } from '@renderer/utils/provider'
-import { toInteger } from 'lodash'
 import type { OllamaProviderOptions } from 'ollama-ai-provider-v2'
 
 const logger = loggerService.withContext('reasoning')
@@ -101,9 +99,6 @@ type ReasoningEffortOptionalParams = {
 export function getReasoningEffort(assistant: Assistant, model: Model): ReasoningEffortOptionalParams {
   const provider = getProviderByModel(model)
   const modelId = getLowerBaseModelName(model.id)
-  if (provider.id === 'groq') {
-    return {}
-  }
 
   if (!isReasoningModel(model)) {
     return {}
@@ -151,24 +146,6 @@ export function getReasoningEffort(assistant: Assistant, model: Model): Reasonin
       return { reasoning: { enabled: false, exclude: true } }
     }
 
-    // nvidia: must use chat_template_kwargs
-    // Since limited documentation, it's hard to find what parameters should be set
-    // only part of mainstream oss model covered, all verified by nvidia api
-    if (model.provider === SystemProviderIds.nvidia) {
-      if (isSupportedThinkingTokenQwenModel(model)) {
-        return { chat_template_kwargs: { enable_thinking: false } }
-      } else if (isDeepSeekHybridInferenceModel(model)) {
-        return { chat_template_kwargs: { thinking: false } }
-      } else if (isSupportedThinkingTokenKimiModel(model)) {
-        // kimi-k2.7-code is always-think: skipping the disable branch keeps the
-        // upstream call's default thinking on, which the model requires.
-        if (isKimiK27CodeModel(model)) return {}
-        return { chat_template_kwargs: { thinking: false } }
-      } else if (isSupportedThinkingTokenZhipuModel(model)) {
-        return { chat_template_kwargs: { enable_thinking: false } }
-      }
-    }
-
     // providers that use enable_thinking
     if (
       (isSupportEnableThinkingProvider(provider) &&
@@ -177,17 +154,9 @@ export function getReasoningEffort(assistant: Assistant, model: Model): Reasonin
         (isDeepSeekHybridInferenceModel(model) ||
           isSupportedThinkingTokenZhipuModel(model) ||
           // kimi-k2.7-code is always-think: never emit enable_thinking: false for it.
-          (isSupportedThinkingTokenKimiModel(model) && !isKimiK27CodeModel(model)))) ||
-      // SiliconFlow uses enable_thinking for DeepSeek and Zhipu models, same as positive path
-      (provider.id === SystemProviderIds.silicon &&
-        (isDeepSeekHybridInferenceModel(model) || isSupportedThinkingTokenZhipuModel(model)))
+          (isSupportedThinkingTokenKimiModel(model) && !isKimiK27CodeModel(model))))
     ) {
       return { enable_thinking: false }
-    }
-
-    // together
-    if (provider.id === SystemProviderIds.together) {
-      return { reasoning: { enabled: false } }
     }
 
     // gemini
@@ -215,14 +184,9 @@ export function getReasoningEffort(assistant: Assistant, model: Model): Reasonin
       isSupportedThinkingTokenMiMoModel(model) ||
       // kimi-k2.7-code is always-think: cannot be disabled, so skip the
       // "send {type:'disabled'}" branch. Same rationale as the k2.7-code
-      // exclusion in the nvidia / dashscope / anthropic paths below.
+      // exclusion in the dashscope / anthropic paths below.
       (isSupportedThinkingTokenKimiModel(model) && !isKimiK27CodeModel(model))
     ) {
-      if (provider.id === SystemProviderIds.cerebras) {
-        return {
-          disable_reasoning: true
-        }
-      }
       return { thinking: { type: 'disabled' } }
     }
 
@@ -262,70 +226,6 @@ export function getReasoningEffort(assistant: Assistant, model: Model): Reasonin
     return {}
   }
 
-  // reasoningEffort有效的情况
-  // https://creator.poe.com/docs/external-applications/openai-compatible-api#additional-considerations
-  // Poe provider - supports custom bot parameters via extra_body
-  if (provider.id === SystemProviderIds.poe) {
-    if (isOpenAIReasoningModel(model)) {
-      return {
-        extra_body: {
-          reasoning_effort: reasoningEffort === 'auto' ? 'medium' : reasoningEffort
-        }
-      }
-    }
-
-    // Claude models use thinking_budget parameter in extra_body
-    if (isSupportedThinkingTokenClaudeModel(model)) {
-      const effortRatio = EFFORT_RATIO[reasoningEffort]
-      const tokenLimit = findTokenLimit(model.id)
-      const maxTokens = assistant.settings?.maxTokens
-
-      if (!tokenLimit) {
-        logger.warn(
-          `No token limit configuration found for Claude model "${model.id}" on Poe provider. ` +
-            `Reasoning effort setting "${reasoningEffort}" will not be applied.`
-        )
-        return {}
-      }
-
-      let budgetTokens = Math.floor((tokenLimit.max - tokenLimit.min) * effortRatio + tokenLimit.min)
-      budgetTokens = Math.floor(Math.max(1024, Math.min(budgetTokens, (maxTokens || DEFAULT_MAX_TOKENS) * effortRatio)))
-
-      return {
-        extra_body: {
-          thinking_budget: budgetTokens
-        }
-      }
-    }
-
-    // Gemini models use thinking_budget parameter in extra_body
-    if (isSupportedThinkingTokenGeminiModel(model)) {
-      const effortRatio = EFFORT_RATIO[reasoningEffort]
-      const tokenLimit = findTokenLimit(model.id)
-      let budgetTokens: number | undefined
-      if (tokenLimit && reasoningEffort !== 'auto') {
-        budgetTokens = Math.floor((tokenLimit.max - tokenLimit.min) * effortRatio + tokenLimit.min)
-      } else if (!tokenLimit && reasoningEffort !== 'auto') {
-        logger.warn(
-          `No token limit configuration found for Gemini model "${model.id}" on Poe provider. ` +
-            `Using auto (-1) instead of requested effort "${reasoningEffort}".`
-        )
-      }
-      return {
-        extra_body: {
-          thinking_budget: budgetTokens ?? -1
-        }
-      }
-    }
-
-    // Poe reasoning model not in known categories (GPT-5, Claude, Gemini)
-    logger.warn(
-      `Poe provider reasoning model "${model.id}" does not match known categories ` +
-        `(GPT-5, Claude, Gemini). Reasoning effort setting "${reasoningEffort}" will not be applied.`
-    )
-    return {}
-  }
-
   // OpenRouter models
   if (model.provider === SystemProviderIds.openrouter) {
     // Grok 4 Fast doesn't support effort levels, always use enabled: true
@@ -352,44 +252,6 @@ export function getReasoningEffort(assistant: Assistant, model: Model): Reasonin
   let budgetTokens: number | undefined
   if (tokenLimit) {
     budgetTokens = Math.floor((tokenLimit.max - tokenLimit.min) * effortRatio + tokenLimit.min)
-  }
-
-  // nvidia: must use chat_template_kwargs
-  // Since limited documentation, it's hard to find what parameters should be set
-  // only part of mainstream oss model covered, all verified by nvidia api
-  if (model.provider === SystemProviderIds.nvidia) {
-    if (isSupportedThinkingTokenQwenModel(model)) {
-      const enableThinkingConfig = isQwenAlwaysThinkModel(model) ? {} : { enable_thinking: true }
-      return {
-        chat_template_kwargs: {
-          ...enableThinkingConfig,
-          thinking_budget: budgetTokens
-        }
-      }
-    } else if (isDeepSeekHybridInferenceModel(model)) {
-      return { chat_template_kwargs: { thinking: true } }
-    } else if (isSupportedThinkingTokenKimiModel(model)) {
-      return { chat_template_kwargs: { thinking: true } }
-    } else if (isSupportedThinkingTokenZhipuModel(model)) {
-      return { chat_template_kwargs: { enable_thinking: true } }
-    }
-  }
-
-  // See https://docs.siliconflow.cn/cn/api-reference/chat-completions/chat-completions
-  if (model.provider === SystemProviderIds.silicon) {
-    if (
-      isDeepSeekHybridInferenceModel(model) ||
-      isSupportedThinkingTokenZhipuModel(model) ||
-      isSupportedThinkingTokenQwenModel(model) ||
-      isSupportedThinkingTokenHunyuanModel(model)
-    ) {
-      return {
-        enable_thinking: true,
-        // Hard-encoded maximum, only for silicon
-        thinking_budget: budgetTokens ? toInteger(Math.max(budgetTokens, 32768)) : undefined
-      }
-    }
-    return {}
   }
 
   // DeepSeek V4+ models support reasoning_effort: "high" | "max" alongside thinking control.
@@ -440,21 +302,14 @@ export function getReasoningEffort(assistant: Assistant, model: Model): Reasonin
             }
           }
         }
-        case SystemProviderIds.hunyuan:
-        case SystemProviderIds['tencent-cloud-ti']:
         case SystemProviderIds.doubao:
         case SystemProviderIds.deepseek:
-        case SystemProviderIds.aihubmix:
-        case SystemProviderIds.sophnet:
-        case SystemProviderIds.ppio:
-        case SystemProviderIds.dmxapi:
           return {
             thinking: {
               type: 'enabled' // auto is invalid
             }
           }
         case SystemProviderIds.openrouter:
-        case SystemProviderIds.together:
           return {
             reasoning: {
               enabled: true
@@ -503,30 +358,6 @@ export function getReasoningEffort(assistant: Assistant, model: Model): Reasonin
         enable_thinking: true,
         thinking_budget: budgetTokens
       }
-    }
-  }
-
-  // https://docs.together.ai/reference/chat-completions-1#body-reasoning-effort
-  if (provider.id === SystemProviderIds.together) {
-    let adjustedReasoningEffort: 'low' | 'medium' | 'high' = 'medium'
-    switch (reasoningEffort) {
-      case 'minimal':
-        adjustedReasoningEffort = 'low'
-        break
-      case 'xhigh':
-        adjustedReasoningEffort = 'high'
-        break
-      case 'auto':
-        adjustedReasoningEffort = 'medium'
-        break
-      default:
-        adjustedReasoningEffort = reasoningEffort
-        break
-    }
-    return {
-      // Only low, medium, high
-      reasoningEffort: adjustedReasoningEffort,
-      reasoning: { enabled: true }
     }
   }
 
@@ -637,9 +468,6 @@ export function getReasoningEffort(assistant: Assistant, model: Model): Reasonin
     return {}
   }
   if (isSupportedThinkingTokenZhipuModel(model)) {
-    if (provider.id === SystemProviderIds.cerebras) {
-      return {}
-    }
     return { thinking: { type: 'enabled' } }
   }
 

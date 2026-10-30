@@ -1302,7 +1302,7 @@ const migrateConfig = {
 
       const qiniuProvider = state.llm.providers.find((provider) => provider.id === 'qiniu')
       if (qiniuProvider && isEmpty(qiniuProvider.models)) {
-        qiniuProvider.models = SYSTEM_MODELS.qiniu
+        qiniuProvider.models = []
       }
       return state
     } catch (error) {
@@ -1720,12 +1720,7 @@ const migrateConfig = {
       ]
       if (ppioProvider) {
         updateProvider(state, 'ppio', {
-          models: [
-            ...ppioProvider.models.filter((model) => !modelsToRemove.includes(model.id)),
-            ...SYSTEM_MODELS.ppio.filter(
-              (systemModel) => !ppioProvider.models.some((existingModel) => existingModel.id === systemModel.id)
-            )
-          ],
+          models: [...ppioProvider.models.filter((model) => !modelsToRemove.includes(model.id))],
           apiHost: 'https://api.ppinfra.com/v3/openai/'
         })
       }
@@ -1894,7 +1889,7 @@ const migrateConfig = {
 
       const lanyunProvider = state.llm.providers.find((provider) => provider.id === 'lanyun')
       if (lanyunProvider && lanyunProvider.models.length === 0) {
-        updateProvider(state, 'lanyun', { models: SYSTEM_MODELS.lanyun })
+        updateProvider(state, 'lanyun', { models: [] })
       }
 
       return state
@@ -2651,7 +2646,7 @@ const migrateConfig = {
   },
   '174': (state: RootState) => {
     try {
-      addProvider(state, SystemProviderIds.longcat)
+      addProvider(state, 'longcat')
 
       addProvider(state, 'gateway')
       addProvider(state, 'cerebras')
@@ -2690,10 +2685,10 @@ const migrateConfig = {
   '176': (state: RootState) => {
     try {
       state.llm.providers.forEach((provider) => {
-        if (provider.id === SystemProviderIds.qiniu) {
+        if (provider.id === 'qiniu') {
           provider.anthropicApiHost = 'https://api.qnaigc.com'
         }
-        if (provider.id === SystemProviderIds.longcat) {
+        if (provider.id === 'longcat') {
           provider.anthropicApiHost = 'https://api.longcat.chat/anthropic'
         }
       })
@@ -2718,7 +2713,7 @@ const migrateConfig = {
   },
   '178': (state: RootState) => {
     try {
-      const groq = state.llm.providers.find((p) => p.id === SystemProviderIds.groq)
+      const groq = state.llm.providers.find((p) => p.id === 'groq')
       if (groq) {
         groq.verbosity = undefined
       }
@@ -2733,13 +2728,13 @@ const migrateConfig = {
     try {
       state.llm.providers.forEach((provider) => {
         switch (provider.id) {
-          case SystemProviderIds.silicon:
+          case 'silicon':
             provider.anthropicApiHost = 'https://api.siliconflow.cn'
             break
-          case SystemProviderIds.qiniu:
+          case 'qiniu':
             provider.anthropicApiHost = 'https://api.qnaigc.com'
             break
-          case SystemProviderIds.dmxapi:
+          case 'dmxapi':
             provider.anthropicApiHost = provider.apiHost
             break
         }
@@ -2755,12 +2750,12 @@ const migrateConfig = {
     try {
       state.llm.providers.forEach((provider) => {
         if (provider.id === 'ai-gateway') {
-          provider.id = SystemProviderIds.gateway
+          provider.id = 'gateway'
         }
         // Also update model.provider references to avoid orphaned models
         provider.models?.forEach((model) => {
           if (model.provider === 'ai-gateway') {
-            model.provider = SystemProviderIds.gateway
+            model.provider = 'gateway'
           }
         })
         // @ts-ignore
@@ -2792,7 +2787,7 @@ const migrateConfig = {
   },
   '183': (state: RootState) => {
     try {
-      state.llm.providers = moveProvider(state.llm.providers, SystemProviderIds.poe, 10)
+      state.llm.providers = moveProvider(state.llm.providers, 'poe', 10)
       logger.info('migrate 183 success')
       return state
     } catch (error) {

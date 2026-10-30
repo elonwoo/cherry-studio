@@ -5,8 +5,6 @@
  * Used by the Anthropic SDK client.
  */
 
-import { SystemProviderIds } from '@types'
-
 /**
  * Silicon provider models that support Anthropic API endpoint.
  * These models can be used with Claude Code via the Anthropic-compatible API.
@@ -54,19 +52,7 @@ export const CLAUDE_OFFICIAL_SUPPORTED_PROVIDERS = [
   'moonshot',
   'zhipu',
   'dashscope',
-  'modelscope',
   'minimax',
-  'longcat',
-  SystemProviderIds.qiniu,
-  SystemProviderIds.silicon,
-  SystemProviderIds.mimo,
-  SystemProviderIds.stepfun,
-  SystemProviderIds.openrouter
+  'openrouter'
 ]
-export const CLAUDE_SUPPORTED_PROVIDERS = [
-  'aihubmix',
-  'dmxapi',
-  'new-api',
-  '302ai',
-  ...CLAUDE_OFFICIAL_SUPPORTED_PROVIDERS
-]
+export const CLAUDE_SUPPORTED_PROVIDERS = ['new-api', ...CLAUDE_OFFICIAL_SUPPORTED_PROVIDERS]

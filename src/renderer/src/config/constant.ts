@@ -19,8 +19,6 @@ export const isLinux = platform === 'linux'
 export const isDev = window.electron?.process?.env?.NODE_ENV === 'development'
 export const isProd = window.electron?.process?.env?.NODE_ENV === 'production'
 
-export const TOKENFLUX_HOST = 'https://tokenflux.ai'
-
 // Messages loading configuration
 export const INITIAL_MESSAGES_COUNT = 20
 export const LOAD_MORE_COUNT = 20

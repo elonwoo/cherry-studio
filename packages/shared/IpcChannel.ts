@@ -33,7 +33,6 @@ export enum IpcChannel {
   App_GetBinaryPath = 'app:get-binary-path',
   App_InstallUvBinary = 'app:install-uv-binary',
   App_InstallBunBinary = 'app:install-bun-binary',
-  App_InstallOvmsBinary = 'app:install-ovms-binary',
   App_LogToMain = 'app:log-to-main',
   App_SaveData = 'app:save-data',
   App_GetDiskInfo = 'app:get-disk-info',
@@ -86,14 +85,6 @@ export enum IpcChannel {
   Mcp_ServerLog = 'mcp:server-log',
   // Python
   Python_Execute = 'python:execute',
-
-  //copilot
-  Copilot_GetAuthMessage = 'copilot:get-auth-message',
-  Copilot_GetCopilotToken = 'copilot:get-copilot-token',
-  Copilot_SaveCopilotToken = 'copilot:save-copilot-token',
-  Copilot_GetToken = 'copilot:get-token',
-  Copilot_Logout = 'copilot:logout',
-  Copilot_GetUser = 'copilot:get-user',
 
   // obsidian
   Obsidian_GetVaults = 'obsidian:get-vaults',
@@ -310,16 +301,6 @@ export enum IpcChannel {
   // OCR
   OCR_ocr = 'ocr:ocr',
   OCR_ListProviders = 'ocr:list-providers',
-
-  // OVMS
-  Ovms_IsSupported = 'ovms:is-supported',
-  Ovms_AddModel = 'ovms:add-model',
-  Ovms_StopAddModel = 'ovms:stop-addmodel',
-  Ovms_GetModels = 'ovms:get-models',
-  Ovms_IsRunning = 'ovms:is-running',
-  Ovms_GetStatus = 'ovms:get-status',
-  Ovms_RunOVMS = 'ovms:run-ovms',
-  Ovms_StopOVMS = 'ovms:stop-ovms',
 
   // Local Transfer
   LocalTransfer_ListServices = 'local-transfer:list',

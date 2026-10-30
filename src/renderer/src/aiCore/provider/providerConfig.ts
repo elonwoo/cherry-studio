@@ -10,7 +10,7 @@ import {
 import { createVertexProvider, isVertexAIConfigured } from '@renderer/hooks/useVertexAI'
 import { getProviderByModel } from '@renderer/services/AssistantService'
 import store from '@renderer/store'
-import { type Model, type Provider, SystemProviderIds } from '@renderer/types'
+import { type Model, type Provider } from '@renderer/types'
 import {
   formatApiHost,
   formatOllamaApiHost,
@@ -23,7 +23,6 @@ import {
   isAzureOpenAIProvider,
   isGeminiProvider,
   isOllamaProvider,
-  isPerplexityProvider,
   isSupportStreamOptionsProvider,
   isVertexProvider
 } from '@renderer/utils/provider'
@@ -31,7 +30,6 @@ import { defaultAppHeaders, withoutTrailingApiVersion } from '@shared/utils'
 import { cloneDeep, isEmpty } from 'lodash'
 
 import type { ProviderConfig } from '../types'
-import { COPILOT_DEFAULT_HEADERS } from './constants'
 import { getAiSdkProviderId } from './factory'
 
 // === Types ===
@@ -76,11 +74,6 @@ export function formatProviderApiHost(provider: Provider): Provider {
   }
 
   const formatters: HostFormatter[] = [
-    {
-      match: (p) => p.id === SystemProviderIds.copilot || p.id === SystemProviderIds.github,
-      format: (p) => formatApiHost(p.apiHost, false)
-    },
-    { match: isPerplexityProvider, format: (p) => formatApiHost(p.apiHost, false) },
     { match: isOllamaProvider, format: (p) => formatOllamaApiHost(p.apiHost) },
     { match: isGeminiProvider, format: (p, av) => formatApiHost(p.apiHost, av, 'v1beta') },
     { match: isAzureOpenAIProvider, format: (p) => formatApiHost(p.apiHost, false) },
@@ -118,14 +111,12 @@ export function providerToAiSdkConfig(
   }
 
   const builders: ConfigBuilderEntry[] = [
-    { match: (p) => p.id === SystemProviderIds.copilot, build: buildCopilotConfig },
     { match: (p) => p.id === 'anthropic' && p.authType === 'oauth', build: buildAnthropicConfig },
     { match: (p) => isOllamaProvider(p), build: buildOllamaConfig },
     { match: (p) => isAzureOpenAIProvider(p), build: buildAzureConfig },
     { match: (_, id) => id === 'bedrock', build: buildBedrockConfig },
     { match: (_, id) => id === 'google-vertex', build: buildVertexConfig },
-    { match: (_, id) => id === 'newapi', build: buildNewApiConfig },
-    { match: (_, id) => id === 'aihubmix', build: buildAiHubMixConfig }
+    { match: (_, id) => id === 'newapi', build: buildNewApiConfig }
   ]
 
   const builder = builders.find((b) => b.match(actualProvider, aiSdkProviderId))
@@ -207,23 +198,6 @@ function buildCommonOptions(ctx: BuilderContext) {
     options.headers['X-Api-Key'] = ctx.baseConfig.apiKey
   }
   return options
-}
-
-async function buildCopilotConfig(ctx: BuilderContext): Promise<ProviderConfig<'github-copilot-openai-compatible'>> {
-  const storedHeaders = store.getState().copilot.defaultHeaders ?? {}
-  const headers = { ...COPILOT_DEFAULT_HEADERS, ...storedHeaders }
-  const { token } = await window.api.copilot.getToken(headers)
-
-  return {
-    providerId: 'github-copilot-openai-compatible',
-    endpoint: ctx.endpoint,
-    providerSettings: {
-      ...ctx.baseConfig,
-      apiKey: token,
-      headers: { ...headers, ...ctx.actualProvider.extra_headers },
-      name: ctx.actualProvider.id
-    }
-  }
 }
 
 function buildOllamaConfig(ctx: BuilderContext): ProviderConfig<'ollama'> {
@@ -373,17 +347,6 @@ function buildGenericProviderConfig(ctx: BuilderContext): ProviderConfig {
     providerId: ctx.aiSdkProviderId as StringKeys<AppProviderSettingsMap>,
     endpoint: ctx.endpoint,
     providerSettings: { ...ctx.baseConfig, ...commonOptions }
-  }
-}
-
-function buildAiHubMixConfig(ctx: BuilderContext): ProviderConfig<'aihubmix'> {
-  return {
-    providerId: 'aihubmix',
-    endpoint: ctx.endpoint,
-    providerSettings: {
-      ...ctx.baseConfig,
-      headers: { ...defaultAppHeaders(), ...ctx.actualProvider.extra_headers }
-    }
   }
 }
 

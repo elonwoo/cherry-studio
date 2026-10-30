@@ -54,7 +54,7 @@ export function isWebSearchModel(model: Model): boolean {
   const modelId = getLowerBaseModelName(model.id, '/')
 
   // bedrock不支持, azure支持
-  if (isAnthropicModel(model) && !(provider.id === SystemProviderIds['aws-bedrock'])) {
+  if (isAnthropicModel(model) && !(provider.id === 'aws-bedrock')) {
     if (isVertexProvider(provider)) {
       return isClaude4SeriesModel(model)
     }
@@ -70,23 +70,6 @@ export function isWebSearchModel(model: Model): boolean {
 
     // v2
     if (provider.id === SystemProviderIds.grok) {
-      return true
-    }
-
-    return false
-  }
-
-  if (provider.id === SystemProviderIds.perplexity) {
-    return PERPLEXITY_SEARCH_MODELS.includes(modelId)
-  }
-
-  if (provider.id === SystemProviderIds.aihubmix) {
-    // modelId 不以-search结尾
-    if (!modelId.endsWith('-search') && GEMINI_SEARCH_REGEX.test(modelId)) {
-      return true
-    }
-
-    if (isOpenAIWebSearchModel(model)) {
       return true
     }
 

@@ -54,13 +54,12 @@ vi.mock('@renderer/store/llm', () => ({
 vi.mock('@renderer/config/constant', () => ({
   DEFAULT_MAX_TOKENS: 4096,
   isMac: false,
-  isWin: false,
-  TOKENFLUX_HOST: 'mock-host'
+  isWin: false
 }))
 
 vi.mock('@renderer/utils/provider', () => ({
   isSupportEnableThinkingProvider: vi.fn((provider) => {
-    return [SystemProviderIds.dashscope, SystemProviderIds.silicon].includes(provider.id)
+    return [SystemProviderIds.dashscope].includes(provider.id)
   })
 }))
 
@@ -460,7 +459,7 @@ describe('reasoning utils', () => {
       const model: Model = {
         id: 'mimo-v2-pro',
         name: 'MiMo V2 Pro',
-        provider: SystemProviderIds.mimo
+        provider: 'mimo'
       } as Model
 
       const assistant: Assistant = {
@@ -488,7 +487,7 @@ describe('reasoning utils', () => {
       const model: Model = {
         id: 'mimo-v2-pro',
         name: 'MiMo V2 Pro',
-        provider: SystemProviderIds.mimo
+        provider: 'mimo'
       } as Model
 
       const assistant: Assistant = {
@@ -505,80 +504,6 @@ describe('reasoning utils', () => {
           type: 'enabled'
         }
       })
-    })
-
-    it('should handle DeepSeek hybrid inference models', async () => {
-      const { isReasoningModel, isDeepSeekHybridInferenceModel } = await import('@renderer/config/models')
-
-      vi.mocked(isReasoningModel).mockReturnValue(true)
-      vi.mocked(isDeepSeekHybridInferenceModel).mockReturnValue(true)
-
-      const model: Model = {
-        id: 'deepseek-v3.1',
-        name: 'DeepSeek V3.1',
-        provider: SystemProviderIds.silicon
-      } as Model
-
-      const assistant: Assistant = {
-        id: 'test',
-        name: 'Test',
-        settings: {
-          reasoning_effort: 'high'
-        }
-      } as Assistant
-
-      const result = getReasoningEffort(assistant, model)
-      expect(result).toEqual({
-        enable_thinking: true
-      })
-    })
-
-    it('should use enable_thinking:false for SiliconFlow + DeepSeek-V4-Flash when reasoning_effort is none', async () => {
-      const { isReasoningModel, isDeepSeekHybridInferenceModel } = await import('@renderer/config/models')
-
-      vi.mocked(isReasoningModel).mockReturnValue(true)
-      vi.mocked(isDeepSeekHybridInferenceModel).mockReturnValue(true)
-
-      const model: Model = {
-        id: 'deepseek-ai/DeepSeek-V4-Flash',
-        name: 'DeepSeek V4 Flash',
-        provider: SystemProviderIds.silicon
-      } as Model
-
-      const assistant: Assistant = {
-        id: 'test',
-        name: 'Test',
-        settings: {
-          reasoning_effort: 'none'
-        }
-      } as Assistant
-
-      const result = getReasoningEffort(assistant, model)
-      expect(result).toEqual({ enable_thinking: false })
-    })
-
-    it('should use enable_thinking:false for SiliconFlow + Zhipu model when reasoning_effort is none', async () => {
-      const { isReasoningModel, isSupportedThinkingTokenZhipuModel } = await import('@renderer/config/models')
-
-      vi.mocked(isReasoningModel).mockReturnValue(true)
-      vi.mocked(isSupportedThinkingTokenZhipuModel).mockReturnValue(true)
-
-      const model: Model = {
-        id: 'THUDM/glm-4.5-thinking',
-        name: 'GLM-4.5 Thinking',
-        provider: SystemProviderIds.silicon
-      } as Model
-
-      const assistant: Assistant = {
-        id: 'test',
-        name: 'Test',
-        settings: {
-          reasoning_effort: 'none'
-        }
-      } as Assistant
-
-      const result = getReasoningEffort(assistant, model)
-      expect(result).toEqual({ enable_thinking: false })
     })
 
     // DeepSeek V4+ reasoning effort must reach both the official @ai-sdk/deepseek path

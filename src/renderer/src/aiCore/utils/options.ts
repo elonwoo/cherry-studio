@@ -20,15 +20,9 @@ import { getStoreSetting } from '@renderer/hooks/useSettings'
 import { getProviderById } from '@renderer/services/ProviderService'
 import {
   type Assistant,
-  type GroqServiceTier,
-  GroqServiceTiers,
-  type GroqSystemProvider,
-  isGroqServiceTier,
-  isGroqSystemProvider,
   isOpenAIServiceTier,
   isTranslateAssistant,
   type Model,
-  type NotGroqProvider,
   type OpenAIServiceTier,
   OpenAIServiceTiers,
   type Provider,
@@ -71,33 +65,15 @@ function toOpenAIServiceTier(model: Model, serviceTier: ServiceTier): OpenAIServ
   }
 }
 
-function toGroqServiceTier(model: Model, serviceTier: ServiceTier): GroqServiceTier {
-  if (
-    !isGroqServiceTier(serviceTier) ||
-    (serviceTier === GroqServiceTiers.flex && !isSupportFlexServiceTierModel(model))
-  ) {
-    return undefined
-  } else {
-    return serviceTier
-  }
-}
-
-function getServiceTier<T extends GroqSystemProvider>(model: Model, provider: T): GroqServiceTier
-function getServiceTier<T extends NotGroqProvider>(model: Model, provider: T): OpenAIServiceTier
-function getServiceTier<T extends Provider>(model: Model, provider: T): OpenAIServiceTier | GroqServiceTier {
+function getServiceTier(model: Model, provider: Provider): OpenAIServiceTier {
   const serviceTierSetting = provider.serviceTier
 
   if (!isSupportServiceTierProvider(provider) || !isOpenAIModel(model) || !serviceTierSetting) {
     return undefined
   }
 
-  // 处理不同供应商需要 fallback 到默认值的情况
-  if (isGroqSystemProvider(provider)) {
-    return toGroqServiceTier(model, serviceTierSetting)
-  } else {
-    // 其他 OpenAI 供应商，假设他们的服务层级设置和 OpenAI 完全相同
-    return toOpenAIServiceTier(model, serviceTierSetting)
-  }
+  // 假设供应商的服务层级设置和 OpenAI 完全相同
+  return toOpenAIServiceTier(model, serviceTierSetting)
 }
 
 function getVerbosity(model: Model): OpenAIVerbosity {
@@ -198,7 +174,7 @@ export function buildProviderOptions(
       break
     case 'newapi':
     case 'aihubmix':
-    case SystemProviderIds.gateway:
+    case 'gateway':
       providerSpecificOptions = buildAIGatewayOptions(assistant, model, capabilities, serviceTier, textVerbosity)
       break
     case 'deepseek':
@@ -272,7 +248,7 @@ export function buildProviderOptions(
     } else if (key === rawProviderId && !actualAiSdkProviderIds.includes(rawProviderId)) {
       // Case 2: Key is the current provider (not in actualAiSdkProviderIds, so it's a proxy or special provider)
       // Gateway is special: it needs routing config preserved
-      if (key === SystemProviderIds.gateway) {
+      if (key === 'gateway') {
         // Preserve gateway config for routing
         providerSpecificOptions = {
           ...providerSpecificOptions,

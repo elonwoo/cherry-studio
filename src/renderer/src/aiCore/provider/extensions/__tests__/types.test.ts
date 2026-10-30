@@ -20,26 +20,20 @@ describe('Auto-Extracted Type System', () => {
       const expectedMainIds: AppProviderId[] = [
         'google-vertex',
         'google-vertex-anthropic',
-        'github-copilot-openai-compatible',
         'bedrock',
-        'perplexity',
         'mistral',
-        'huggingface',
         'gateway',
-        'cerebras',
-        'ollama'
+        'ollama',
+        'newapi'
       ]
 
       // 验证别名
       const expectedAliases: AppProviderId[] = [
         'vertexai',
         'vertexai-anthropic',
-        'copilot',
-        'github-copilot',
         'aws-bedrock',
-        'hf',
-        'hugging-face',
-        'ai-gateway'
+        'ai-gateway',
+        'new-api'
       ]
 
       // 验证所有期望的 ID 都存在于运行时
@@ -86,35 +80,23 @@ describe('Auto-Extracted Type System', () => {
       const projectIds: AppProviderId[] = [
         'google-vertex',
         'google-vertex-anthropic',
-        'github-copilot-openai-compatible',
         'bedrock',
-        'perplexity',
         'mistral',
-        'huggingface',
         'gateway',
-        'cerebras',
-        'ollama'
+        'ollama',
+        'newapi'
       ]
 
       // 运行时验证
-      expect(projectIds.length).toBe(10)
+      expect(projectIds.length).toBe(7)
     })
 
     it('应该接受项目特定 provider 别名', () => {
       // 编译时类型检查 - 别名也自动提取
-      const aliases: AppProviderId[] = [
-        'vertexai',
-        'vertexai-anthropic',
-        'copilot',
-        'github-copilot',
-        'aws-bedrock',
-        'hf',
-        'hugging-face',
-        'ai-gateway'
-      ]
+      const aliases: AppProviderId[] = ['vertexai', 'vertexai-anthropic', 'aws-bedrock', 'ai-gateway', 'new-api']
 
       // 运行时验证
-      expect(aliases.length).toBe(8)
+      expect(aliases.length).toBe(5)
     })
 
     it('AppProviderId 应该包含项目和核心的所有 IDs', () => {

@@ -1,4 +1,3 @@
-import { PROVIDER_URLS, SYSTEM_PROVIDERS_CONFIG } from '@renderer/config/providers'
 import { type AzureOpenAIProvider, type Provider, SystemProviderIds } from '@renderer/types'
 import { describe, expect, it, vi } from 'vitest'
 
@@ -58,21 +57,11 @@ const createSystemProvider = (overrides: Partial<Provider> = {}): Provider =>
   })
 
 describe('provider utils', () => {
-  it('configures StepFun as Anthropic-compatible with current official documentation links', () => {
-    expect(SYSTEM_PROVIDERS_CONFIG.stepfun.anthropicApiHost).toBe('https://api.stepfun.com')
-    expect(isAnthropicSupportedProvider(SYSTEM_PROVIDERS_CONFIG.stepfun)).toBe(true)
-    expect(getClaudeSupportedProviders([createSystemProvider({ id: SystemProviderIds.stepfun })])).toHaveLength(1)
-    expect(PROVIDER_URLS.stepfun.websites?.docs).toBe(
-      'https://platform.stepfun.com/docs/api-reference/chat/chat-completion-create'
-    )
-    expect(PROVIDER_URLS.stepfun.websites?.models).toBe('https://platform.stepfun.com/docs/guides/models/overview')
-  })
-
   it('filters Claude supported providers', () => {
     const providers = [
       createProvider({ id: 'anthropic-official', type: 'anthropic' }),
       createProvider({ id: 'custom-host', anthropicApiHost: 'https://anthropic.local' }),
-      createProvider({ id: 'aihubmix' }),
+      createProvider({ id: 'deepseek' }),
       createProvider({ id: 'other' })
     ]
 
@@ -112,7 +101,6 @@ describe('provider utils', () => {
   it('evaluates developer role support', () => {
     expect(isSupportDeveloperRoleProvider(createProvider({ apiOptions: { isSupportDeveloperRole: true } }))).toBe(true)
     expect(isSupportDeveloperRoleProvider(createSystemProvider())).toBe(true)
-    expect(isSupportDeveloperRoleProvider(createSystemProvider({ id: SystemProviderIds.poe }))).toBe(false)
   })
 
   it('checks stream options support', () => {
@@ -120,7 +108,6 @@ describe('provider utils', () => {
     expect(isSupportStreamOptionsProvider(createProvider({ apiOptions: { isNotSupportStreamOptions: true } }))).toBe(
       false
     )
-    expect(isSupportStreamOptionsProvider(createSystemProvider({ id: SystemProviderIds.mistral }))).toBe(false)
   })
 
   it('checks enable thinking support', () => {
@@ -128,13 +115,12 @@ describe('provider utils', () => {
     expect(isSupportEnableThinkingProvider(createProvider({ apiOptions: { isNotSupportEnableThinking: true } }))).toBe(
       false
     )
-    expect(isSupportEnableThinkingProvider(createSystemProvider({ id: SystemProviderIds.nvidia }))).toBe(false)
   })
 
   it('determines service tier support', () => {
     expect(isSupportServiceTierProvider(createProvider({ apiOptions: { isSupportServiceTier: true } }))).toBe(true)
     expect(isSupportServiceTierProvider(createSystemProvider())).toBe(true)
-    expect(isSupportServiceTierProvider(createSystemProvider({ id: SystemProviderIds.github }))).toBe(false)
+    expect(isSupportServiceTierProvider(createSystemProvider({ id: 'github' }))).toBe(false)
   })
 
   it('determines verbosity support', () => {
@@ -149,14 +135,6 @@ describe('provider utils', () => {
     // System providers that support verbosity (default behavior)
     expect(isSupportVerbosityProvider(createSystemProvider())).toBe(true)
     expect(isSupportVerbosityProvider(createSystemProvider({ id: SystemProviderIds.openai }))).toBe(true)
-
-    // System providers in the NOT_SUPPORT_VERBOSITY_PROVIDERS list (cannot be overridden by apiOptions)
-    expect(isSupportVerbosityProvider(createSystemProvider({ id: SystemProviderIds.groq }))).toBe(false)
-    expect(
-      isSupportVerbosityProvider(
-        createSystemProvider({ id: SystemProviderIds.groq, apiOptions: { isNotSupportVerbosity: false } })
-      )
-    ).toBe(false)
 
     // apiOptions can disable verbosity for any provider
     expect(
@@ -173,9 +151,6 @@ describe('provider utils', () => {
 
   it('identifies Gemini web search providers', () => {
     expect(isGeminiWebSearchProvider(createSystemProvider({ id: SystemProviderIds.gemini, type: 'gemini' }))).toBe(true)
-    expect(isGeminiWebSearchProvider(createSystemProvider({ id: SystemProviderIds.vertexai, type: 'vertexai' }))).toBe(
-      true
-    )
     expect(isGeminiWebSearchProvider(createSystemProvider())).toBe(false)
   })
 
@@ -186,7 +161,7 @@ describe('provider utils', () => {
   })
 
   it('detects specific provider ids', () => {
-    expect(isPerplexityProvider(createProvider({ id: SystemProviderIds.perplexity }))).toBe(true)
+    expect(isPerplexityProvider(createProvider({ id: 'perplexity' }))).toBe(true)
     expect(isPerplexityProvider(createProvider())).toBe(false)
   })
 
@@ -217,7 +192,6 @@ describe('provider utils', () => {
 
   it('computes API version support', () => {
     expect(isSupportAPIVersionProvider(createSystemProvider())).toBe(true)
-    expect(isSupportAPIVersionProvider(createSystemProvider({ id: SystemProviderIds.github }))).toBe(false)
     expect(isSupportAPIVersionProvider(createProvider())).toBe(true)
     expect(isSupportAPIVersionProvider(createProvider({ apiOptions: { isNotSupportAPIVersion: false } }))).toBe(false)
   })

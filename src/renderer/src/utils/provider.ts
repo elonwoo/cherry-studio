@@ -21,14 +21,7 @@ export const isAnthropicSupportedProvider = (provider: Provider) => {
   return provider.type === 'anthropic' || !!provider.anthropicApiHost
 }
 
-const NOT_SUPPORT_ARRAY_CONTENT_PROVIDERS = [
-  'deepseek',
-  'baichuan',
-  'minimax',
-  'xirang',
-  'poe',
-  'cephalon'
-] as const satisfies SystemProviderId[]
+const NOT_SUPPORT_ARRAY_CONTENT_PROVIDERS = ['deepseek', 'minimax'] as const satisfies SystemProviderId[]
 
 /**
  * 判断提供商是否支持 message 的 content 为数组类型。 Only for OpenAI Chat Completions API.
@@ -40,7 +33,7 @@ export const isSupportArrayContentProvider = (provider: Provider) => {
   )
 }
 
-const NOT_SUPPORT_DEVELOPER_ROLE_PROVIDERS = ['poe', 'qiniu'] as const satisfies SystemProviderId[]
+const NOT_SUPPORT_DEVELOPER_ROLE_PROVIDERS = [] as const satisfies SystemProviderId[]
 
 /**
  * 判断提供商是否支持 developer 作为 message role。 Only for OpenAI API.
@@ -52,7 +45,7 @@ export const isSupportDeveloperRoleProvider = (provider: Provider) => {
   )
 }
 
-const NOT_SUPPORT_STREAM_OPTIONS_PROVIDERS = ['mistral'] as const satisfies SystemProviderId[]
+const NOT_SUPPORT_STREAM_OPTIONS_PROVIDERS = [] as const satisfies SystemProviderId[]
 
 /**
  * 判断提供商是否支持 stream_options 参数。Only for OpenAI API.
@@ -64,12 +57,7 @@ export const isSupportStreamOptionsProvider = (provider: Provider) => {
   )
 }
 
-const NOT_SUPPORT_QWEN3_ENABLE_THINKING_PROVIDER = [
-  'ollama',
-  'lmstudio',
-  'nvidia',
-  'gpustack'
-] as const satisfies SystemProviderId[]
+const NOT_SUPPORT_QWEN3_ENABLE_THINKING_PROVIDER = ['ollama'] as const satisfies SystemProviderId[]
 
 /**
  * 判断提供商是否支持使用 enable_thinking 参数来控制 Qwen3 等模型的思考。 Only for OpenAI Chat Completions API.
@@ -82,9 +70,7 @@ export const isSupportEnableThinkingProvider = (provider: Provider) => {
 }
 
 const SUPPORT_SERVICE_TIER_PROVIDERS = [
-  SystemProviderIds.openai,
-  SystemProviderIds['azure-openai'],
-  SystemProviderIds.groq
+  SystemProviderIds.openai
   // TODO: 等待上游支持aws-bedrock
 ]
 
@@ -99,7 +85,7 @@ export const isSupportServiceTierProvider = (provider: Provider) => {
   )
 }
 
-const NOT_SUPPORT_VERBOSITY_PROVIDERS = ['groq'] as const satisfies SystemProviderId[]
+const NOT_SUPPORT_VERBOSITY_PROVIDERS = [] as const satisfies SystemProviderId[]
 
 /**
  * Determines whether the provider supports the verbosity option.
@@ -126,7 +112,7 @@ export const isSupportUrlContextProvider = (provider: Provider) => {
   return SUPPORT_URL_CONTEXT_PROVIDER_TYPES.some((type) => type === provider.type)
 }
 
-const SUPPORT_GEMINI_NATIVE_WEB_SEARCH_PROVIDERS = ['gemini', 'vertexai'] as const satisfies SystemProviderId[]
+const SUPPORT_GEMINI_NATIVE_WEB_SEARCH_PROVIDERS = ['gemini'] as const satisfies SystemProviderId[]
 
 /** 判断是否是使用 Gemini 原生搜索工具的 provider. 目前假设只有官方 API 使用原生工具 */
 export const isGeminiWebSearchProvider = (provider: Provider) => {
@@ -134,7 +120,7 @@ export const isGeminiWebSearchProvider = (provider: Provider) => {
 }
 
 export const isNewApiProvider = (provider: Provider) => {
-  return ['new-api', 'aionly'].includes(provider.id) || provider.type === 'new-api'
+  return provider.id === 'new-api' || provider.type === 'new-api'
 }
 
 /**
@@ -168,7 +154,7 @@ export function isAIGatewayProvider(provider: Provider): boolean {
   return provider.type === 'gateway'
 }
 
-const NOT_SUPPORT_API_VERSION_PROVIDERS = ['github', 'copilot', 'perplexity'] as const satisfies SystemProviderId[]
+const NOT_SUPPORT_API_VERSION_PROVIDERS = [] as const satisfies SystemProviderId[]
 
 export const isSupportAPIVersionProvider = (provider: Provider) => {
   if (isSystemProvider(provider)) {
@@ -177,13 +163,7 @@ export const isSupportAPIVersionProvider = (provider: Provider) => {
   return provider.apiOptions?.isNotSupportAPIVersion !== false
 }
 
-export const NOT_SUPPORT_API_KEY_PROVIDERS: readonly SystemProviderId[] = [
-  'ollama',
-  'lmstudio',
-  'vertexai',
-  'aws-bedrock',
-  'copilot'
-]
+export const NOT_SUPPORT_API_KEY_PROVIDERS: readonly SystemProviderId[] = ['ollama']
 
 export const NOT_SUPPORT_API_KEY_PROVIDER_TYPES: readonly ProviderType[] = ['vertexai', 'aws-bedrock']
 
@@ -192,7 +172,6 @@ export const isSupportAnthropicPromptCacheProvider = (provider: Provider) => {
   return (
     provider.type === 'anthropic' ||
     isNewApiProvider(provider) ||
-    provider.id === SystemProviderIds.aihubmix ||
     provider.id === SystemProviderIds.openrouter ||
     isAzureOpenAIProvider(provider)
   )

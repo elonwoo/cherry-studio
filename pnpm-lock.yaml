@@ -127,9 +127,6 @@ patchedDependencies:
   '@openrouter/ai-sdk-provider':
     hash: 6f905d5d4efe8dacf34b76a13807f84b19418cf68adc7febeaf1a96fa5886df8
     path: patches/@openrouter__ai-sdk-provider.patch
-  '@opeoginni/github-copilot-openai-compatible@1.0.0':
-    hash: 4bea0e526136ed32d0be4849ec5cbb41bd5de7b7418dd6920598357438cfef25
-    path: patches/@opeoginni__github-copilot-openai-compatible@1.0.0.patch
   '@tiptap/extension-drag-handle@3.2.0':
     hash: 8432665d4553fb9ba8ff2a126a9181c3ccfee06ae57688aa14f65aa560e52fce
     path: patches/@tiptap-extension-drag-handle-npm-3.2.0-5a9ebff7c9.patch
@@ -226,9 +223,6 @@ importers:
       '@ai-sdk/azure':
         specifier: ^3.0.54
         version: 3.0.54(zod@4.6.7)
-      '@ai-sdk/cerebras':
-        specifier: ^2.0.45
-        version: 2.0.45(zod@4.6.7)
       '@ai-sdk/gateway':
         specifier: ^3.0.104
         version: 3.0.104(zod@4.6.7)
@@ -238,12 +232,6 @@ importers:
       '@ai-sdk/google-vertex':
         specifier: ^4.0.112
         version: 4.0.112(zod@4.6.7)
-      '@ai-sdk/groq':
-        specifier: ^3.0.35
-        version: 3.0.35(zod@4.6.7)
-      '@ai-sdk/huggingface':
-        specifier: ^1.0.43
-        version: 1.0.43(zod@4.6.7)
       '@ai-sdk/mistral':
         specifier: ^3.0.30
         version: 3.0.30(zod@4.6.7)
@@ -253,18 +241,12 @@ importers:
       '@ai-sdk/openai-compatible':
         specifier: 2.0.37
         version: 2.0.37(patch_hash=50ffd57b3f7d2de99f0315f0b3bca05cde1dc3d9f760d4f1be4143d8c6f260c7)(zod@4.6.7)
-      '@ai-sdk/perplexity':
-        specifier: ^3.0.29
-        version: 3.0.29(zod@4.6.7)
       '@ai-sdk/provider':
         specifier: ^3.0.8
         version: 3.0.8
       '@ai-sdk/provider-utils':
         specifier: 4.0.33
         version: 4.0.33(zod@4.6.7)
-      '@ai-sdk/togetherai':
-        specifier: ^2.0.45
-        version: 2.0.45(zod@4.6.7)
       '@ai-sdk/xai':
         specifier: ^3.0.83
         version: 3.0.83(patch_hash=cea8532677e6ed5c42055d3f359c447d0eff682ae359d922da2f891a61518a45)(zod@4.6.7)
@@ -460,9 +442,6 @@ importers:
       '@opentelemetry/sdk-trace-web':
         specifier: ^2.0.0
         version: 2.2.0(@opentelemetry/api@1.9.0)
-      '@opeoginni/github-copilot-openai-compatible':
-        specifier: ^1.0.0
-        version: 1.0.0(patch_hash=4bea0e526136ed32d0be4849ec5cbb41bd5de7b7418dd6920598357438cfef25)(zod@4.6.7)
       '@playwright/test':
         specifier: ^1.55.1
         version: 1.57.0
@@ -1087,9 +1066,6 @@ importers:
       vitest:
         specifier: ^3.2.7
         version: 3.2.7(@types/debug@4.1.13)(@types/node@24.10.4)(@vitest/browser@3.2.7)(@vitest/ui@3.2.7)(esbuild@0.25.12)(jiti@2.6.1)(jsdom@26.1.0)(msw@2.12.7(@types/node@24.10.4)(typescript@5.8.3))(tsx@4.21.0)(yaml@2.9.1)
-      voyage-ai-provider:
-        specifier: ^3.0.0
-        version: 3.0.0(zod@4.6.7)
       webdav:
         specifier: ^5.9.0
         version: 5.9.0
@@ -1352,12 +1328,6 @@ packages:
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
-  '@ai-sdk/cerebras@2.0.45':
-    resolution: {integrity: sha512-GGDGTS9d073lamFVa3VGCPaGubWqIB6WlfKPv23PBd+/yQmBVC0f0vdZfyJs2xPpzdirSQWeE6PsXplMmkcLeA==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      zod: ^3.25.76 || ^4.1.8
-
   '@ai-sdk/deepseek@2.0.30':
     resolution: {integrity: sha512-ATqXxA0u2h201mrtr8KYp6hJGKbnorby9gti/Jgk5m9A3HzWpnw2AjO0uFHTRkhHonhoZD6QH/WyIEQGKDtmIg==}
     engines: {node: '>=18'}
@@ -1388,18 +1358,6 @@ packages:
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
-  '@ai-sdk/groq@3.0.35':
-    resolution: {integrity: sha512-LXoPwSKaqXst9LyLN2J7gK8n7RldQLbP2zsnBYxXcOsXKrtceksqtbsmGXujvab2TM9FisquAw/ZG2hTbD5vnQ==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      zod: ^3.25.76 || ^4.1.8
-
-  '@ai-sdk/huggingface@1.0.43':
-    resolution: {integrity: sha512-bEHZNmQNabbs7zYjRa7e0Hz1RFiVwm/hjfZ2YFwTFsxC0WmPSSvjyG5SqRM8DApbSC2EtGP5K/zO2IKEXZrYyQ==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      zod: ^3.25.76 || ^4
-
   '@ai-sdk/mistral@3.0.30':
     resolution: {integrity: sha512-+j4IXRSk9E661cFSafmIr+XHOzwjFagawwzMOlSqwL6U4Sq4PCFLDF+oHbX5NUqNjUL7FD1zi/9lBIfa41pUvw==}
     engines: {node: '>=18'}
@@ -1414,12 +1372,6 @@ packages:
 
   '@ai-sdk/openai@3.0.53':
     resolution: {integrity: sha512-Wld+Rbc05KaUn08uBt06eEuwcgalcIFtIl32Yp+GxuZXUQwOb6YeAuq+C6da4ch6BurFoqEaLemJVwjBb7x+PQ==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      zod: ^3.25.76 || ^4.1.8
-
-  '@ai-sdk/perplexity@3.0.29':
-    resolution: {integrity: sha512-9UfV7ywpnxNLPI/hdheFPHXDdLG9vLqNoPSdRTPV+nPAX117zMtBmqD5KSvmXTjeF7IXpObUZ9bWzwMR/ewL1g==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -1441,12 +1393,6 @@ packages:
   '@ai-sdk/provider@3.0.9':
     resolution: {integrity: sha512-/ngMKqKdL9dSlY/eQ3NFDzzFyw0Hix+cbFFlyuKEKcOgpHdBt/spKUvX/i0wGrDLFPYJeVvv3N0j92LxWRL7yQ==}
     engines: {node: '>=18'}
-
-  '@ai-sdk/togetherai@2.0.45':
-    resolution: {integrity: sha512-+20Gruk4fF6FZxjMX7QT8PtFNNadBvBz2xgNDEf+O8uMpyi2FP11DOE9W2AShio/lh82Gjd8b7wxSC+RfxXnPg==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      zod: ^3.25.76 || ^4.1.8
 
   '@ai-sdk/xai@3.0.83':
     resolution: {integrity: sha512-SuQz68BZGeuZjrSUJAzku97IlhdiNJJBsvG/Tvm3K2tuxkBS7TJq0fH4/AzAM7w2H2jxVUgboP7kRR6IfpRxcg==}
@@ -3661,9 +3607,6 @@ packages:
   '@opentelemetry/semantic-conventions@1.38.0':
     resolution: {integrity: sha512-kocjix+/sSggfJhwXqClZ3i9Y/MI0fp7b+g7kCRm6psy2dsf8uApTRclwG18h8Avm7C9+fnt+O36PspJ/OzoWg==}
     engines: {node: '>=14'}
-
-  '@opeoginni/github-copilot-openai-compatible@1.0.0':
-    resolution: {integrity: sha512-Ml4GvqA0k3dqfOHZHXxY+g/jt8sj+r5Hi6831BEgUAnHm8ibZvVyPDgaxANeVuDGb3+MSa6sgeVVBuHPcTZfgw==}
 
   '@oxc-project/runtime@0.101.0':
     resolution: {integrity: sha512-t3qpfVZIqSiLQ5Kqt/MC4Ge/WCOGrrcagAdzTcDaggupjiGxUx4nJF2v6wUCXWSzWHn5Ns7XLv13fCJEwCOERQ==}
@@ -11756,14 +11699,6 @@ packages:
     resolution: {integrity: sha512-Dhxzh5HZuiHQhbvTW9AMetFfBHDMYpo23Uo9btPXgdYP+3T5S+p+jgNy7spra+veYhBP2dCSgxR/i2Y02h5/6w==}
     engines: {node: '>=0.10.0'}
 
-  voyage-ai-provider@3.0.0:
-    resolution: {integrity: sha512-m7+N9xVjCaDYjv1vxGuTIbigoBD2eC5LX73hL0FiHo/kNwuJluo+PrSUo24RfQuFbZcSlE3ss5vXgmdqGqHRIA==}
-    peerDependencies:
-      zod: ^3.25.76 || ^4
-    peerDependenciesMeta:
-      zod:
-        optional: true
-
   w3c-keyname@2.2.8:
     resolution: {integrity: sha512-dpojBhNsCNN7T82Tm7k26A6G9ML3NkhDsnw9n/eoxSRlVBB4CEtIQ/KTCLI2Fwf3ataSXRhYFkQi3SlnFwPvPQ==}
 
@@ -12138,13 +12073,6 @@ snapshots:
       '@ai-sdk/provider-utils': 4.0.33(zod@4.6.7)
       zod: 4.6.7
 
-  '@ai-sdk/cerebras@2.0.45(zod@4.6.7)':
-    dependencies:
-      '@ai-sdk/openai-compatible': 2.0.37(patch_hash=50ffd57b3f7d2de99f0315f0b3bca05cde1dc3d9f760d4f1be4143d8c6f260c7)(zod@4.6.7)
-      '@ai-sdk/provider': 3.0.8
-      '@ai-sdk/provider-utils': 4.0.33(zod@4.6.7)
-      zod: 4.6.7
-
   '@ai-sdk/deepseek@2.0.30(patch_hash=db4c4c1e60c18e61952ec4432de7a401adf44420bdbfe4bb6f726a8958642790)(zod@4.6.7)':
     dependencies:
       '@ai-sdk/provider': 3.0.9
@@ -12183,19 +12111,6 @@ snapshots:
       '@ai-sdk/provider-utils': 4.0.33(zod@4.6.7)
       zod: 4.6.7
 
-  '@ai-sdk/groq@3.0.35(zod@4.6.7)':
-    dependencies:
-      '@ai-sdk/provider': 3.0.8
-      '@ai-sdk/provider-utils': 4.0.33(zod@4.6.7)
-      zod: 4.6.7
-
-  '@ai-sdk/huggingface@1.0.43(zod@4.6.7)':
-    dependencies:
-      '@ai-sdk/openai-compatible': 2.0.37(patch_hash=50ffd57b3f7d2de99f0315f0b3bca05cde1dc3d9f760d4f1be4143d8c6f260c7)(zod@4.6.7)
-      '@ai-sdk/provider': 3.0.8
-      '@ai-sdk/provider-utils': 4.0.33(zod@4.6.7)
-      zod: 4.6.7
-
   '@ai-sdk/mistral@3.0.30(zod@4.6.7)':
     dependencies:
       '@ai-sdk/provider': 3.0.8
@@ -12209,12 +12124,6 @@ snapshots:
       zod: 4.6.7
 
   '@ai-sdk/openai@3.0.53(patch_hash=83a4d486601eff47ad8b5e22024878be2ced05b5b86e09884199a3f47fd53530)(zod@4.6.7)':
-    dependencies:
-      '@ai-sdk/provider': 3.0.8
-      '@ai-sdk/provider-utils': 4.0.33(zod@4.6.7)
-      zod: 4.6.7
-
-  '@ai-sdk/perplexity@3.0.29(zod@4.6.7)':
     dependencies:
       '@ai-sdk/provider': 3.0.8
       '@ai-sdk/provider-utils': 4.0.33(zod@4.6.7)
@@ -12238,13 +12147,6 @@ snapshots:
   '@ai-sdk/provider@3.0.9':
     dependencies:
       json-schema: 0.4.0
-
-  '@ai-sdk/togetherai@2.0.45(zod@4.6.7)':
-    dependencies:
-      '@ai-sdk/openai-compatible': 2.0.37(patch_hash=50ffd57b3f7d2de99f0315f0b3bca05cde1dc3d9f760d4f1be4143d8c6f260c7)(zod@4.6.7)
-      '@ai-sdk/provider': 3.0.8
-      '@ai-sdk/provider-utils': 4.0.33(zod@4.6.7)
-      zod: 4.6.7
 
   '@ai-sdk/xai@3.0.83(patch_hash=cea8532677e6ed5c42055d3f359c447d0eff682ae359d922da2f891a61518a45)(zod@4.6.7)':
     dependencies:
@@ -15024,14 +14926,6 @@ snapshots:
       '@opentelemetry/sdk-trace-base': 2.2.0(@opentelemetry/api@1.9.0)
 
   '@opentelemetry/semantic-conventions@1.38.0': {}
-
-  '@opeoginni/github-copilot-openai-compatible@1.0.0(patch_hash=4bea0e526136ed32d0be4849ec5cbb41bd5de7b7418dd6920598357438cfef25)(zod@4.6.7)':
-    dependencies:
-      '@ai-sdk/openai-compatible': 2.0.37(patch_hash=50ffd57b3f7d2de99f0315f0b3bca05cde1dc3d9f760d4f1be4143d8c6f260c7)(zod@4.6.7)
-      '@ai-sdk/provider': 3.0.8
-      '@ai-sdk/provider-utils': 4.0.33(zod@4.6.7)
-    transitivePeerDependencies:
-      - zod
 
   '@oxc-project/runtime@0.101.0': {}
 
@@ -24688,13 +24582,6 @@ snapshots:
       - yaml
 
   void-elements@3.1.0: {}
-
-  voyage-ai-provider@3.0.0(zod@4.6.7):
-    dependencies:
-      '@ai-sdk/provider': 3.0.8
-      '@ai-sdk/provider-utils': 4.0.33(zod@4.6.7)
-    optionalDependencies:
-      zod: 4.6.7
 
   w3c-keyname@2.2.8: {}
 

@@ -321,17 +321,6 @@ const api = {
     clearAuthCache: (projectId: string, clientEmail?: string) =>
       ipcRenderer.invoke(IpcChannel.VertexAI_ClearAuthCache, projectId, clientEmail)
   },
-  ovms: {
-    isSupported: (): Promise<boolean> => ipcRenderer.invoke(IpcChannel.Ovms_IsSupported),
-    addModel: (modelName: string, modelId: string, modelSource: string, task: string) =>
-      ipcRenderer.invoke(IpcChannel.Ovms_AddModel, modelName, modelId, modelSource, task),
-    stopAddModel: () => ipcRenderer.invoke(IpcChannel.Ovms_StopAddModel),
-    getModels: () => ipcRenderer.invoke(IpcChannel.Ovms_GetModels),
-    isRunning: () => ipcRenderer.invoke(IpcChannel.Ovms_IsRunning),
-    getStatus: () => ipcRenderer.invoke(IpcChannel.Ovms_GetStatus),
-    runOvms: () => ipcRenderer.invoke(IpcChannel.Ovms_RunOVMS),
-    stopOvms: () => ipcRenderer.invoke(IpcChannel.Ovms_StopOVMS)
-  },
   config: {
     set: (key: string, value: any, isNotify: boolean = false) =>
       ipcRenderer.invoke(IpcChannel.Config_Set, key, value, isNotify),
@@ -398,22 +387,11 @@ const api = {
       return shell.openExternal(url, options)
     }
   },
-  copilot: {
-    getAuthMessage: (headers?: Record<string, string>) =>
-      ipcRenderer.invoke(IpcChannel.Copilot_GetAuthMessage, headers),
-    getCopilotToken: (device_code: string, headers?: Record<string, string>) =>
-      ipcRenderer.invoke(IpcChannel.Copilot_GetCopilotToken, device_code, headers),
-    saveCopilotToken: (access_token: string) => ipcRenderer.invoke(IpcChannel.Copilot_SaveCopilotToken, access_token),
-    getToken: (headers?: Record<string, string>) => ipcRenderer.invoke(IpcChannel.Copilot_GetToken, headers),
-    logout: () => ipcRenderer.invoke(IpcChannel.Copilot_Logout),
-    getUser: (token: string) => ipcRenderer.invoke(IpcChannel.Copilot_GetUser, token)
-  },
   // Binary related APIs
   isBinaryExist: (name: string) => ipcRenderer.invoke(IpcChannel.App_IsBinaryExist, name),
   getBinaryPath: (name: string) => ipcRenderer.invoke(IpcChannel.App_GetBinaryPath, name),
   installUVBinary: () => ipcRenderer.invoke(IpcChannel.App_InstallUvBinary),
   installBunBinary: () => ipcRenderer.invoke(IpcChannel.App_InstallBunBinary),
-  installOvmsBinary: () => ipcRenderer.invoke(IpcChannel.App_InstallOvmsBinary),
   protocol: {
     onReceiveData: (callback: (data: { url: string; params: any }) => void) => {
       const listener = (_event: Electron.IpcRendererEvent, data: { url: string; params: any }) => {

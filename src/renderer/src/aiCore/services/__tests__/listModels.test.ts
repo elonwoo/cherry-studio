@@ -6,13 +6,9 @@ import type { Provider } from '@renderer/types'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 const mockGetFromApi = vi.fn()
-const mockCopilotGetToken = vi.fn()
 const mockVertexGetAuthHeaders = vi.fn()
 const mockToastError = vi.fn()
 const createMockStoreState = () => ({
-  copilot: {
-    defaultHeaders: {}
-  },
   llm: {
     settings: {
       vertexai: {
@@ -153,25 +149,6 @@ const REAL_ANTHROPIC = {
   last_id: 'claude-sonnet-4-5-20250929'
 }
 
-// From https://api.together.xyz/v1/models
-const REAL_TOGETHER = [
-  { id: 'hexgrad/Kokoro-82M', display_name: 'Kokoro 82M', organization: 'Hexgrad', description: null },
-  { id: 'cartesia/sonic', display_name: 'Cartesia Sonic', organization: 'Cartesia', description: null },
-  {
-    id: 'black-forest-labs/FLUX.1-krea-dev',
-    display_name: 'FLUX.1 Krea [dev]',
-    organization: 'Black Forest Labs',
-    description: null
-  },
-  {
-    id: 'google/imagen-4.0-preview',
-    display_name: 'Google Imagen 4.0 Preview',
-    organization: 'Google',
-    description: null
-  },
-  { id: 'cartesia/sonic-2', display_name: 'Cartesia Sonic 2', organization: 'Cartesia', description: null }
-]
-
 // From https://api.siliconflow.cn/v1/models (OpenAI-compatible)
 const REAL_SILICONFLOW = {
   data: [
@@ -189,17 +166,6 @@ const REAL_GROQ = {
   data: [
     { id: 'qwen/qwen3-32b', object: 'model', created: 1748396646, owned_by: 'Alibaba Cloud' },
     { id: 'groq/compound-mini', object: 'model', created: 1756949707, owned_by: 'Groq' }
-  ]
-}
-
-// From https://api.ppinfra.com/v3/openai/models
-const REAL_PPIO_CHAT = {
-  data: [
-    { id: 'minimax/minimax-m2.7', object: 'model', owned_by: 'unknown' },
-    { id: 'minimax/minimax-m2.5-highspeed', object: 'model', owned_by: 'unknown' },
-    { id: 'qwen/qwen3.5-27b', object: 'model', owned_by: 'unknown' },
-    { id: 'qwen/qwen3.5-122b-a10b', object: 'model', owned_by: 'unknown' },
-    { id: 'qwen/qwen3.5-35b-a3b', object: 'model', owned_by: 'unknown' }
   ]
 }
 
@@ -240,66 +206,6 @@ const REAL_VERCEL_GATEWAY = {
       }
     }
   ]
-}
-
-// From https://aihubmix.com/api/v1/models (custom schema with model_id/model_name)
-const REAL_AIHUBMIX = {
-  data: [
-    {
-      model_id: 'qwen3.6-plus',
-      model_name: 'Qwen3.6 Plus',
-      developer_id: 13,
-      desc: 'Qwen 3.6, the native vision-language Plus series model.',
-      pricing: { cache_read: 0.0282, cache_write: 0.3525, input: 0.282, output: 1.692 },
-      types: 'llm',
-      features: 'tools,function_calling,structured_outputs,web,long_context,thinking',
-      input_modalities: 'text,image,video',
-      endpoints: '',
-      max_output: 64000,
-      context_length: 991000
-    },
-    {
-      model_id: 'claude-sonnet-4-6',
-      model_name: 'Claude Sonnet 4.6',
-      developer_id: 2,
-      desc: 'Claude Sonnet 4.6 delivers frontier intelligence at scale.',
-      pricing: { cache_read: 0.3, cache_write: 3.75, input: 3, output: 15 },
-      types: 'llm',
-      features: 'thinking,tools,function_calling,structured_outputs',
-      input_modalities: 'text,image',
-      endpoints: 'chat_completions,gemini_api,claude_api',
-      max_output: 64000,
-      context_length: 1000000
-    },
-    {
-      model_id: 'gpt-5.4',
-      model_name: 'GPT 5.4',
-      developer_id: 12,
-      desc: 'GPT-5.4 is our frontier model for complex professional work.',
-      pricing: { cache_read: 0.25, input: 2.5, output: 15 },
-      types: 'llm',
-      features: 'thinking,function_calling,structured_outputs,web,tools',
-      input_modalities: 'text,image',
-      endpoints: '',
-      max_output: 128000,
-      context_length: 400000
-    },
-    {
-      model_id: 'doubao-seedance-2-0-260128',
-      model_name: 'Doubao Seedance 2.0 260128',
-      developer_id: 4,
-      desc: 'A new-generation professional-grade multimodal video-creation model.',
-      pricing: { input: 2, output: 0 },
-      types: 'video',
-      features: '',
-      input_modalities: 'image,text',
-      endpoints: '',
-      max_output: 0,
-      context_length: 0
-    }
-  ],
-  message: '',
-  success: true
 }
 
 // === Helpers ===
@@ -376,32 +282,11 @@ function mockVertexPublisherResponses(
   })
 }
 
-const COPILOT_PROVIDER = makeProvider({
-  id: 'copilot',
-  apiHost: 'https://api.githubcopilot.com/'
-})
-
-const COPILOT_MODELS_RESPONSE = {
-  value: {
-    data: [
-      { id: 'accounts/msft/routers/f185i3v4' },
-      { id: 'tts-1', object: 'model' },
-      { id: 'gpt-4o-mini', owned_by: 'github' },
-      { id: 'claude-sonnet-4.5', policy: { state: 'disabled' } },
-      { id: 'gpt-4o-mini', owned_by: 'github' }
-    ]
-  }
-}
-
-// === Tests ===
-
 beforeEach(() => {
   mockGetFromApi.mockReset()
-  mockCopilotGetToken.mockReset()
   mockVertexGetAuthHeaders.mockReset()
   mockToastError.mockReset()
   mockStoreState = createMockStoreState()
-  mockCopilotGetToken.mockResolvedValue({ token: 'copilot-dynamic-token' })
   mockVertexGetAuthHeaders.mockResolvedValue({ Authorization: 'Bearer vertex-token' })
   vi.stubGlobal('window', {
     ...globalThis.window,
@@ -410,9 +295,6 @@ beforeEach(() => {
       error: mockToastError
     },
     api: {
-      copilot: {
-        getToken: mockCopilotGetToken
-      },
       vertexAI: {
         getAuthHeaders: mockVertexGetAuthHeaders
       }
@@ -421,26 +303,6 @@ beforeEach(() => {
 })
 
 describe('listModels', () => {
-  describe('Copilot', () => {
-    it('should use Copilot-specific token and filter unsupported Copilot entries', async () => {
-      mockGetFromApi.mockResolvedValue(COPILOT_MODELS_RESPONSE)
-
-      const models = await listModels(COPILOT_PROVIDER)
-      expect(mockGetFromApi).toHaveBeenCalledTimes(1)
-      const [request] = mockGetFromApi.mock.calls[0]
-
-      expect(mockCopilotGetToken).toHaveBeenCalledTimes(1)
-      expect(request).toMatchObject({
-        url: 'https://api.githubcopilot.com/models',
-        headers: {
-          Authorization: 'Bearer copilot-dynamic-token',
-          'Copilot-Integration-Id': 'vscode-chat'
-        }
-      })
-      expect(models.map((model) => model.id)).toEqual(['gpt-4o-mini'])
-    })
-  })
-
   describe('OpenAI-compatible (DeepSeek)', () => {
     it('should convert real DeepSeek response', async () => {
       mockGetFromApi.mockResolvedValue({ value: REAL_DEEPSEEK })
@@ -743,21 +605,6 @@ describe('listModels', () => {
     })
   })
 
-  describe('Together', () => {
-    it('should use display_name and organization from real response', async () => {
-      mockGetFromApi.mockResolvedValue({ value: REAL_TOGETHER })
-      const models = await listModels(makeProvider({ id: 'together' }))
-      assertValidModels(models)
-      expect(models[0].name).toBe('Kokoro 82M')
-      expect(models[0].owned_by).toBe('Hexgrad')
-      expect(models[0].group).toBe('hexgrad')
-      // FLUX model with org "Black Forest Labs"
-      expect(models[2].name).toBe('FLUX.1 Krea [dev]')
-      expect(models[2].owned_by).toBe('Black Forest Labs')
-      expect(models).toMatchSnapshot()
-    })
-  })
-
   describe('OpenRouter', () => {
     it('should merge chat and embedding endpoints from real response', async () => {
       mockGetFromApi
@@ -785,68 +632,6 @@ describe('listModels', () => {
       mockGetFromApi.mockResolvedValueOnce({ value: REAL_OPENROUTER }).mockRejectedValueOnce(new Error('404 Not Found'))
       const models = await listModels(makeProvider({ id: 'openrouter' }))
       expect(models).toHaveLength(REAL_OPENROUTER.data.length)
-    })
-  })
-
-  describe('PPIO', () => {
-    it('should merge all three endpoints from real response', async () => {
-      mockGetFromApi
-        .mockResolvedValueOnce({ value: REAL_PPIO_CHAT })
-        .mockResolvedValueOnce({ value: { data: [{ id: 'BAAI/bge-m3', object: 'model', owned_by: 'BAAI' }] } })
-        .mockResolvedValueOnce({
-          value: { data: [{ id: 'BAAI/bge-reranker-v2-m3', object: 'model', owned_by: 'BAAI' }] }
-        })
-      const models = await listModels(makeProvider({ id: 'ppio' }))
-      assertValidModels(models)
-      expect(models).toHaveLength(7)
-      expect(models.find((m) => m.id === 'BAAI/bge-m3')?.group).toBe('BAAI')
-      expect(models).toMatchSnapshot()
-    })
-
-    it('should handle partial endpoint failures', async () => {
-      mockGetFromApi
-        .mockResolvedValueOnce({ value: REAL_PPIO_CHAT })
-        .mockRejectedValueOnce(new Error('timeout'))
-        .mockRejectedValueOnce(new Error('timeout'))
-      const models = await listModels(makeProvider({ id: 'ppio' }))
-      expect(models).toHaveLength(REAL_PPIO_CHAT.data.length)
-    })
-  })
-
-  describe('AIHubMix', () => {
-    it('should convert real AIHubMix response with model_id and model_name', async () => {
-      mockGetFromApi.mockResolvedValue({ value: REAL_AIHUBMIX })
-      const models = await listModels(makeProvider({ id: 'aihubmix' }))
-      assertValidModels(models)
-      expect(models).toHaveLength(4)
-      // model_name should be used as name
-      expect(models[0].name).toBe('Qwen3.6 Plus')
-      expect(models[0].id).toBe('qwen3.6-plus')
-      expect(models[0].description).toBe('Qwen 3.6, the native vision-language Plus series model.')
-      // No slash in ID -> group falls back to provider id
-      expect(models[0].group).toBe('aihubmix')
-      expect(models[1].name).toBe('Claude Sonnet 4.6')
-      expect(models[2].name).toBe('GPT 5.4')
-      expect(models[3].name).toBe('Doubao Seedance 2.0 260128')
-      expect(models).toMatchSnapshot()
-    })
-
-    it('should deduplicate by model_id', async () => {
-      const duped = {
-        ...REAL_AIHUBMIX,
-        data: [REAL_AIHUBMIX.data[0], REAL_AIHUBMIX.data[0], REAL_AIHUBMIX.data[1]]
-      }
-      mockGetFromApi.mockResolvedValue({ value: duped })
-      const models = await listModels(makeProvider({ id: 'aihubmix' }))
-      expect(models).toHaveLength(2)
-    })
-
-    it('should build the models URL from the configured base URL, stripping a trailing /v1', async () => {
-      mockGetFromApi.mockResolvedValue({ value: REAL_AIHUBMIX })
-      await listModels(makeProvider({ id: 'aihubmix', apiHost: 'https://custom.example.com/v1' }))
-      expect(mockGetFromApi).toHaveBeenCalledTimes(1)
-      const [request] = mockGetFromApi.mock.calls[0]
-      expect(request.url).toBe('https://custom.example.com/api/v1/models')
     })
   })
 

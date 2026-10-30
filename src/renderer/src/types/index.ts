@@ -345,7 +345,7 @@ export type PaintingParams = {
   providerId?: string
 }
 
-export type PaintingProvider = 'zhipu' | 'aihubmix' | 'silicon' | 'dmxapi' | 'new-api' | 'ovms' | 'ppio'
+export type PaintingProvider = 'zhipu' | 'new-api'
 
 export interface Painting extends PaintingParams {
   model?: string

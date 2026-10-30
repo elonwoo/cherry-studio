@@ -17,18 +17,7 @@ export const SYSTEM_MODELS: Record<SystemProviderId | 'defaultModel', Model[]> =
     fallbackModel,
     fallbackModel
   ],
-  vertexai: [],
-  sophnet: [],
-  '302ai': [],
-  ph8: [],
-  aihubmix: [],
-  burncloud: [],
-  ovms: [],
   ollama: [],
-  lmstudio: [],
-  silicon: [],
-  ppio: [],
-  alayanew: [],
   openai: [
     { id: 'gpt-5.4', provider: 'openai', name: ' GPT 5.4', group: 'gpt-5.4' },
     { id: 'gpt-5.4-pro', provider: 'openai', name: ' GPT 5.4 Pro', group: 'gpt-5.4' },
@@ -40,7 +29,6 @@ export const SYSTEM_MODELS: Record<SystemProviderId | 'defaultModel', Model[]> =
     { id: 'gpt-5-chat', provider: 'openai', name: ' GPT 5 Chat', group: 'gpt-5' },
     { id: 'gpt-image-1', provider: 'openai', name: ' GPT Image 1', group: 'gpt-image' }
   ],
-  'azure-openai': [],
   gemini: [
     {
       id: 'gemini-2.5-flash',
@@ -131,11 +119,6 @@ export const SYSTEM_MODELS: Record<SystemProviderId | 'defaultModel', Model[]> =
       group: 'DeepSeek'
     }
   ],
-  together: [],
-  ocoolai: [],
-  github: [],
-  copilot: [],
-  yi: [],
   zhipu: [
     {
       id: 'glm-5',
@@ -248,8 +231,6 @@ export const SYSTEM_MODELS: Record<SystemProviderId | 'defaultModel', Model[]> =
       capabilities: [{ type: 'text' }, { type: 'vision' }, { type: 'function_calling' }]
     }
   ],
-  baichuan: [],
-  modelscope: [],
   dashscope: [
     { id: 'qwen3.5-plus', name: 'Qwen3.5-Plus', provider: 'dashscope', group: 'Qwen' },
     { id: 'qwen3.5-flash', name: 'Qwen3.5-Flash', provider: 'dashscope', group: 'Qwen' },
@@ -259,7 +240,6 @@ export const SYSTEM_MODELS: Record<SystemProviderId | 'defaultModel', Model[]> =
     { id: 'MiniMax/MiniMax-M2.5', name: 'MiniMax M2.5', provider: 'dashscope', group: 'MiniMax' },
     { id: 'deepseek-v3.2', name: 'DeepSeek V3.2', provider: 'dashscope', group: 'DeepSeek' }
   ],
-  stepfun: [],
   doubao: [
     {
       id: 'doubao-seed-1-8-251228',
@@ -438,7 +418,6 @@ export const SYSTEM_MODELS: Record<SystemProviderId | 'defaultModel', Model[]> =
   ],
   minimax: [],
   'minimax-global': [],
-  hyperbolic: [],
   grok: [
     {
       id: 'grok-4.3',
@@ -477,11 +456,6 @@ export const SYSTEM_MODELS: Record<SystemProviderId | 'defaultModel', Model[]> =
       group: 'Grok'
     }
   ],
-  mistral: [],
-  jina: [],
-  fireworks: [],
-  hunyuan: [],
-  nvidia: [],
   openrouter: [
     {
       id: 'google/gemini-2.5-flash-image-preview',
@@ -514,28 +488,7 @@ export const SYSTEM_MODELS: Record<SystemProviderId | 'defaultModel', Model[]> =
       group: 'mistralai'
     }
   ],
-  groq: [],
-  'baidu-cloud': [],
-  dmxapi: [],
-  perplexity: [],
-  infini: [],
-  xirang: [],
-  'tencent-cloud-ti': [],
-  gpustack: [],
-  voyageai: [],
-  qiniu: [],
-  tokenflux: [],
-  cephalon: [],
-  lanyun: [],
   'new-api': [],
-  'aws-bedrock': [],
-  poe: [],
-  aionly: [],
-  longcat: [],
-  huggingface: [],
-  gateway: [],
-  cerebras: [],
-  mimo: [],
   zai: [
     {
       id: 'glm-5',

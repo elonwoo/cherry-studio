@@ -61,15 +61,12 @@ vi.mock('@renderer/hooks/useAwsBedrock', () => ({
 
 import type { GoogleVertexProviderSettings } from '@ai-sdk/google-vertex/edge'
 import type { OpenAICompatibleProviderSettings } from '@ai-sdk/openai-compatible'
-import type { GitHubCopilotProviderSettings } from '@opeoginni/github-copilot-openai-compatible'
 import type { ProviderConfig } from '@renderer/aiCore/types'
 import { getAwsBedrockAuthType } from '@renderer/hooks/useAwsBedrock'
 import { isVertexAIConfigured } from '@renderer/hooks/useVertexAI'
 import { getProviderByModel } from '@renderer/services/AssistantService'
 import type { AwsBedrockAuthType, Model, Provider } from '@renderer/types'
 
-import { COPILOT_DEFAULT_HEADERS } from '../constants'
-import type { AihubmixProviderSettings } from '../custom/aihubmix-provider'
 import type { NewApiProviderSettings } from '../custom/newapi-provider'
 import {
   adaptProvider,
@@ -96,17 +93,11 @@ const createWindowKeyv = () => {
 }
 
 interface WindowMockApi {
-  copilot?: { getToken: ReturnType<typeof vi.fn> }
   anthropic_oauth?: { getAccessToken: ReturnType<typeof vi.fn> }
 }
 
-const setupWindowMock = (options?: { withCopilotToken?: boolean; withAnthropicOAuth?: boolean }) => {
+const setupWindowMock = (options?: { withAnthropicOAuth?: boolean }) => {
   const api: WindowMockApi = {}
-  if (options?.withCopilotToken) {
-    api.copilot = {
-      getToken: vi.fn().mockResolvedValue({ token: 'mock-copilot-token' })
-    }
-  }
   if (options?.withAnthropicOAuth) {
     api.anthropic_oauth = {
       getAccessToken: vi.fn().mockResolvedValue('mock-oauth-token')
@@ -122,12 +113,10 @@ const setupWindowMock = (options?: { withCopilotToken?: boolean; withAnthropicOA
 
 interface StoreMockOverrides {
   includeUsage?: boolean
-  copilot?: { defaultHeaders: Record<string, string> }
 }
 
 const setupStoreMock = (overrides?: StoreMockOverrides) => {
   mockGetState.mockReturnValue({
-    copilot: overrides?.copilot ?? { defaultHeaders: {} },
     settings: {
       openAI: {
         streamOptions: {
@@ -220,47 +209,6 @@ describe('formatProviderApiHost', () => {
 
       // Trailing # disables version append
       expect(result.apiHost).not.toContain('/v1/v1')
-    })
-  })
-
-  describe('Copilot / GitHub provider', () => {
-    it('formats apiHost without appending version', () => {
-      const provider = makeProvider({
-        id: 'copilot',
-        type: 'openai',
-        apiHost: 'https://api.githubcopilot.com'
-      })
-
-      const result = formatProviderApiHost(provider)
-
-      // Copilot uses formatApiHost(host, false) — no /v1 appended
-      expect(result.apiHost).toBe('https://api.githubcopilot.com')
-    })
-
-    it('formats GitHub provider the same way', () => {
-      const provider = makeProvider({
-        id: 'github',
-        type: 'openai',
-        apiHost: 'https://models.inference.ai.azure.com'
-      })
-
-      const result = formatProviderApiHost(provider)
-
-      expect(result.apiHost).toBe('https://models.inference.ai.azure.com')
-    })
-  })
-
-  describe('Perplexity provider', () => {
-    it('formats apiHost without appending version', () => {
-      const provider = makeProvider({
-        id: 'perplexity',
-        type: 'openai',
-        apiHost: 'https://api.perplexity.ai'
-      })
-
-      const result = formatProviderApiHost(provider)
-
-      expect(result.apiHost).toBe('https://api.perplexity.ai')
     })
   })
 
@@ -517,14 +465,14 @@ describe('getActualProvider', () => {
 describe('adaptProvider', () => {
   it('deep clones and formats the provider', () => {
     const provider = makeProvider({
-      id: 'perplexity',
+      id: 'openai',
       type: 'openai',
-      apiHost: 'https://api.perplexity.ai'
+      apiHost: 'https://api.openai.com'
     })
 
     const result = adaptProvider({ provider })
 
-    expect(result.apiHost).toBe('https://api.perplexity.ai')
+    expect(result.apiHost).toBe('https://api.openai.com/v1')
     expect(result).not.toBe(provider)
   })
 })
@@ -533,45 +481,9 @@ describe('adaptProvider', () => {
 
 describe('providerToAiSdkConfig', () => {
   beforeEach(() => {
-    setupWindowMock({ withCopilotToken: true, withAnthropicOAuth: true })
+    setupWindowMock({ withAnthropicOAuth: true })
     setupStoreMock()
     vi.clearAllMocks()
-  })
-
-  describe('Copilot builder', () => {
-    it('uses copilot token and default headers', async () => {
-      const provider = makeProvider({
-        id: 'copilot',
-        type: 'openai',
-        apiHost: 'https://api.githubcopilot.com'
-      })
-
-      const config = await providerToAiSdkConfig(provider, makeModel('gpt-4', 'copilot'))
-
-      expect(config.providerId).toBe('github-copilot-openai-compatible')
-      const settings = config.providerSettings as GitHubCopilotProviderSettings
-      expect(settings.apiKey).toBe('mock-copilot-token')
-      expect(settings.headers).toBeDefined()
-      expect(settings.headers!['Copilot-Integration-Id']).toBe(COPILOT_DEFAULT_HEADERS['Copilot-Integration-Id'])
-      expect(settings.headers!['Editor-Version']).toBe(COPILOT_DEFAULT_HEADERS['Editor-Version'])
-      expect(settings.headers!['copilot-vision-request']).toBe('true')
-    })
-
-    it('merges stored custom headers', async () => {
-      setupStoreMock({ copilot: { defaultHeaders: { 'X-Custom': 'value' } } })
-
-      const provider = makeProvider({
-        id: 'copilot',
-        type: 'openai',
-        apiHost: 'https://api.githubcopilot.com'
-      })
-
-      const config = await providerToAiSdkConfig(provider, makeModel('gpt-4', 'copilot'))
-
-      const settings = config.providerSettings as GitHubCopilotProviderSettings
-      expect(settings.headers).toBeDefined()
-      expect(settings.headers!['X-Custom']).toBe('value')
-    })
   })
 
   describe('Anthropic OAuth builder', () => {
@@ -861,23 +773,6 @@ describe('providerToAiSdkConfig', () => {
 
       const settings = config.providerSettings as NewApiProviderSettings
       expect(settings.baseURL).toBe('https://api.newapi.com/v1')
-    })
-  })
-
-  describe('AiHubMix builder', () => {
-    it('returns aihubmix provider config', async () => {
-      const provider = makeProvider({
-        id: 'aihubmix',
-        type: 'openai',
-        apiHost: 'https://api.aihubmix.com'
-      })
-
-      const config = await providerToAiSdkConfig(provider, makeModel('gpt-4', provider.id))
-
-      expect(config.providerId).toBe('aihubmix')
-      const settings = config.providerSettings as AihubmixProviderSettings
-      expect(settings.baseURL).toBeTruthy()
-      expect(settings.apiKey).toBe('test-key')
     })
   })
 

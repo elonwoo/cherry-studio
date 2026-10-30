@@ -24,7 +24,6 @@ import storage from 'redux-persist/lib/storage'
 import storeSyncService from '../services/StoreSyncService'
 import assistants from './assistants'
 import backup from './backup'
-import copilot from './copilot'
 import inputToolsReducer from './inputTools'
 import knowledge from './knowledge'
 import llm from './llm'
@@ -61,7 +60,6 @@ const rootReducer = combineReducers({
   websearch,
   mcp,
   memory,
-  copilot,
   tabs,
   preprocess,
   messages: newMessagesReducer,
