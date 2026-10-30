@@ -1,7 +1,7 @@
 {
   "name": "pear-studio",
   "productName": "Pear Studio",
-  "version": "1.9.25",
+  "version": "1.9.26",
   "private": true,
   "description": "A personal, chat-only AI client for Apple Silicon.",
   "desktopName": "PearStudio.desktop",
