@@ -150,7 +150,6 @@ export function buildProviderOptions(
     case 'openai-chat':
     case 'azure':
     case 'azure-responses':
-    case 'huggingface':
       providerSpecificOptions = buildOpenAIProviderOptions(assistant, model, capabilities, serviceTier, textVerbosity)
       break
     case 'anthropic':
@@ -173,7 +172,6 @@ export function buildProviderOptions(
       providerSpecificOptions = buildOllamaProviderOptions(assistant, model, capabilities)
       break
     case 'newapi':
-    case 'aihubmix':
     case 'gateway':
       providerSpecificOptions = buildAIGatewayOptions(assistant, model, capabilities, serviceTier, textVerbosity)
       break

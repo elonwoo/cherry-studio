@@ -38,9 +38,16 @@ vi.mock('@renderer/i18n', () => ({
 
 vi.mock('@renderer/utils', () => ({
   formatApiHost: (host: string) => host?.replace(/\/$/, ''),
-  getDefaultGroupName: (id: string, provider?: string) => {
-    const parts = id.toLowerCase().split(/[-_]/)
-    return provider && parts.length > 1 ? `${parts[0]}-${parts[1]}` : id.toLowerCase()
+  getDefaultGroupName: (id: string) => {
+    const str = id.toLowerCase()
+    for (const d of ['/', ' ', ':']) if (str.includes(d)) return str.split(d)[0]
+    for (const d of ['-', '_']) {
+      if (str.includes(d)) {
+        const parts = str.split(d)
+        return parts.length > 1 ? `${parts[0]}-${parts[1]}` : parts[0]
+      }
+    }
+    return str
   },
   withoutTrailingSlash: (s: string) => s?.replace(/\/$/, ''),
   getLowerBaseModelName: (id: string) => id.toLowerCase()

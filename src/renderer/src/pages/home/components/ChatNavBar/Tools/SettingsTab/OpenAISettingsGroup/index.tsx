@@ -30,10 +30,10 @@ const OpenAISettingsGroup: FC<Props> = ({ model, providerId, SettingGroup, Setti
   const showSummarySetting =
     isSupportedReasoningEffortOpenAIModel(model) &&
     !model.id.includes('o1-pro') &&
-    (provider.type === 'openai-response' || model.endpoint_type === 'openai-response' || provider.id === 'aihubmix')
+    (provider.type === 'openai-response' || model.endpoint_type === 'openai-response')
   const showVerbositySetting = isSupportVerbosityModel(model) && isSupportVerbosityProvider(provider)
   const isSupportServiceTier = isSupportServiceTierProvider(provider)
-  const showServiceTierSetting = isSupportServiceTier && providerId !== 'groq'
+  const showServiceTierSetting = isSupportServiceTier
   const showStreamOptionsSetting = isSupportStreamOptionsProvider(provider)
 
   if (!showSummarySetting && !showServiceTierSetting && !showVerbositySetting && !showStreamOptionsSetting) {

@@ -243,10 +243,7 @@ describe('websearch helpers', () => {
   })
 
   describe('isMandatoryWebSearchModel', () => {
-    it('requires sonar ids for perplexity/openrouter providers', () => {
-      providerMock.mockReturnValueOnce(createProvider({ id: 'perplexity' }))
-      expect(isMandatoryWebSearchModel(createModel({ id: 'sonar-pro' }))).toBe(true)
-
+    it('requires sonar ids for openrouter providers', () => {
       providerMock.mockReturnValueOnce(createProvider({ id: SystemProviderIds.openrouter }))
       expect(isMandatoryWebSearchModel(createModel({ id: 'sonar-reasoning' }))).toBe(true)
 
@@ -254,13 +251,13 @@ describe('websearch helpers', () => {
       expect(isMandatoryWebSearchModel(createModel({ id: 'sonar-pro' }))).toBe(false)
     })
 
-    it.each([
-      ['perplexity', 'non-sonar'],
-      ['openrouter', 'gpt-4o-search-preview']
-    ])('returns false for %s provider when id is %s', (providerId, modelId) => {
-      providerMock.mockReturnValueOnce(createProvider({ id: providerId }))
-      expect(isMandatoryWebSearchModel(createModel({ id: modelId }))).toBe(false)
-    })
+    it.each([['openrouter', 'gpt-4o-search-preview']])(
+      'returns false for %s provider when id is %s',
+      (providerId, modelId) => {
+        providerMock.mockReturnValueOnce(createProvider({ id: providerId }))
+        expect(isMandatoryWebSearchModel(createModel({ id: modelId }))).toBe(false)
+      }
+    )
   })
 
   describe('isOpenRouterBuiltInWebSearchModel', () => {

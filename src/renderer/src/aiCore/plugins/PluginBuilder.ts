@@ -16,7 +16,6 @@ import type { AiSdkMiddlewareConfig } from '../types/middlewareConfig'
 import { getReasoningTagName } from '../utils/reasoning'
 import { createAnthropicCachePlugin } from './anthropicCachePlugin'
 import { createDeepseekDsmlParserPlugin } from './deepseekDsmlParserPlugin'
-import { createNoThinkPlugin } from './noThinkPlugin'
 import { createOpenrouterReasoningPlugin } from './openrouterReasoningPlugin'
 import { createPdfCompatibilityPlugin } from './pdfCompatibilityPlugin'
 import { createQwenThinkingPlugin } from './qwenThinkingPlugin'
@@ -93,11 +92,6 @@ export function buildPlugins({ provider, model, config }: BuildPluginsContext): 
   // 0.3.1 DeepSeek DSML tool-call parser — converts leaked DSML tags into proper tool calls
   if (isDeepSeekModel(model)) {
     plugins.push(createDeepseekDsmlParserPlugin())
-  }
-
-  // 0.4 OVMS no-think for MCP tools
-  if (provider.id === 'ovms' && config.mcpTools && config.mcpTools.length > 0) {
-    plugins.push(createNoThinkPlugin())
   }
 
   // 0.5 Qwen thinking control for providers without enable_thinking support

@@ -130,35 +130,17 @@ describe('naming', () => {
       expect(getDefaultGroupName('group-subgroup-model')).toBe('group-subgroup')
     })
 
-    it('should use first delimiters for special providers', () => {
-      // 这些 provider 下，'/', ' ', '-', '_', ':' 都属于第一类分隔符，分割后取第0部分
-      const specialProviders = ['aihubmix', 'silicon', 'ocoolai', 'o3', 'dmxapi']
-      specialProviders.forEach((provider) => {
-        expect(getDefaultGroupName('Qwen/Qwen3-32B', provider)).toBe('qwen')
-        expect(getDefaultGroupName('gpt-4.1-mini', provider)).toBe('gpt')
-        expect(getDefaultGroupName('gpt-4.1', provider)).toBe('gpt')
-        expect(getDefaultGroupName('gpt_4.1', provider)).toBe('gpt')
-        expect(getDefaultGroupName('DeepSeek Chat', provider)).toBe('deepseek')
-        expect(getDefaultGroupName('foo:bar', provider)).toBe('foo')
-      })
-    })
-
     it('should use first and second delimiters for default providers', () => {
       // 默认情况下，'/', ' ', ':' 属于第一类分隔符，'-' '_' 属于第二类
-      expect(getDefaultGroupName('Qwen/Qwen3-32B', 'foobar')).toBe('qwen')
-      expect(getDefaultGroupName('gpt-4.1-mini', 'foobar')).toBe('gpt-4.1')
-      expect(getDefaultGroupName('gpt-4.1', 'foobar')).toBe('gpt-4.1')
-      expect(getDefaultGroupName('DeepSeek Chat', 'foobar')).toBe('deepseek')
-      expect(getDefaultGroupName('foo:bar', 'foobar')).toBe('foo')
+      expect(getDefaultGroupName('Qwen/Qwen3-32B')).toBe('qwen')
+      expect(getDefaultGroupName('gpt-4.1-mini')).toBe('gpt-4.1')
+      expect(getDefaultGroupName('gpt-4.1')).toBe('gpt-4.1')
+      expect(getDefaultGroupName('DeepSeek Chat')).toBe('deepseek')
+      expect(getDefaultGroupName('foo:bar')).toBe('foo')
     })
 
     it('should fallback to id if no delimiters', () => {
-      // 没有分隔符时返回 id
-      const specialProviders = ['aihubmix', 'silicon', 'ocoolai', 'o3', 'dmxapi']
-      specialProviders.forEach((provider) => {
-        expect(getDefaultGroupName('o3', provider)).toBe('o3')
-      })
-      expect(getDefaultGroupName('o3', 'openai')).toBe('o3')
+      expect(getDefaultGroupName('o3')).toBe('o3')
     })
   })
 

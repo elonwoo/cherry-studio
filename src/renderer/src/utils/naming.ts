@@ -17,20 +17,14 @@ import { isSystemProvider } from '@renderer/types'
  * - 'o3' => 'o3'
  *
  * @param {string} id 模型 ID 字符串
- * @param {string} [provider] 提供商 ID 字符串
  * @returns {string} 提取的组名
  */
-export const getDefaultGroupName = (id: string, provider?: string): string => {
+export const getDefaultGroupName = (id: string): string => {
   const str = id.toLowerCase()
 
   // 定义分隔符
-  let firstDelimiters = ['/', ' ', ':']
-  let secondDelimiters = ['-', '_']
-
-  if (provider && ['aihubmix', 'silicon', 'ocoolai', 'o3', 'dmxapi'].includes(provider.toLowerCase())) {
-    firstDelimiters = ['/', ' ', '-', '_', ':']
-    secondDelimiters = []
-  }
+  const firstDelimiters = ['/', ' ', ':']
+  const secondDelimiters = ['-', '_']
 
   // 第一类分隔规则
   for (const delimiter of firstDelimiters) {
