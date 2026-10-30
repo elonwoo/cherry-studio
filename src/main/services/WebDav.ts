@@ -1,6 +1,5 @@
 import { loggerService } from '@logger'
 import type { WebDavConfig } from '@types'
-import https from 'https'
 import path from 'path'
 import type Stream from 'stream'
 import type {
@@ -25,10 +24,7 @@ export default class WebDav {
       username: params.webdavUser,
       password: params.webdavPass,
       maxBodyLength: Infinity,
-      maxContentLength: Infinity,
-      httpsAgent: new https.Agent({
-        rejectUnauthorized: false
-      })
+      maxContentLength: Infinity
     })
 
     this.putFileContents = this.putFileContents.bind(this)

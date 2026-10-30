@@ -39,7 +39,7 @@ import Table from './Table'
 
 const ALLOWED_ELEMENTS =
   /<(style|p|div|span|b|i|strong|em|ul|ol|li|table|tr|td|th|thead|tbody|h[1-6]|blockquote|pre|code|br|hr|svg|path|circle|rect|line|polyline|polygon|text|g|defs|title|desc|tspan|sub|sup|details|summary)/i
-const DISALLOWED_ELEMENTS = ['iframe', 'script']
+const DISALLOWED_ELEMENTS = ['iframe', 'script', 'webview', 'object', 'embed', 'link', 'base', 'form', 'meta', 'input']
 
 interface Props {
   // message: Message & { content: string }

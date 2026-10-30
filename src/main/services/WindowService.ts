@@ -259,8 +259,16 @@ export class WindowService {
     })
 
     mainWindow.webContents.on('will-navigate', (event, url) => {
-      if (url.includes('localhost:517')) {
-        return
+      // Only allow in-app navigation to the Vite dev server, and only in development.
+      // Matching on origin (not substring) prevents `?x=localhost:517` style bypasses.
+      if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
+        try {
+          if (new URL(url).origin === new URL(process.env['ELECTRON_RENDERER_URL']).origin) {
+            return
+          }
+        } catch {
+          // malformed URL, fall through to blocking
+        }
       }
 
       event.preventDefault()
