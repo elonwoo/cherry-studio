@@ -1,15 +1,16 @@
 diff --git a/dist/utils/tiktoken.cjs b/dist/utils/tiktoken.cjs
-index c5b41f121d2e3d24c3a4969e31fa1acffdcad3b9..ec724489dcae79ee6c61acf2d4d84bd19daef036 100644
+index 2ba8ace35d46a930aed3fc48403e8d573e696253..b9e2fa47b8f1af635df7d4d182b79d4c7b24fa92 100644
 --- a/dist/utils/tiktoken.cjs
 +++ b/dist/utils/tiktoken.cjs
-@@ -1,6 +1,5 @@
- const require_rolldown_runtime = require('../_virtual/rolldown_runtime.cjs');
- const require_utils_async_caller = require('./async_caller.cjs');
--const js_tiktoken_lite = require_rolldown_runtime.__toESM(require("js-tiktoken/lite"));
- 
+@@ -1,7 +1,6 @@
+ Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
+ const require_runtime = require("../_virtual/_rolldown/runtime.cjs");
+ const require_utils_async_caller = require("./async_caller.cjs");
+-let js_tiktoken_lite = require("js-tiktoken/lite");
  //#region src/utils/tiktoken.ts
- var tiktoken_exports = {};
-@@ -11,14 +10,10 @@ require_rolldown_runtime.__export(tiktoken_exports, {
+ var tiktoken_exports = /* @__PURE__ */ require_runtime.__exportAll({
+ 	encodingForModel: () => encodingForModel,
+@@ -10,14 +9,10 @@ var tiktoken_exports = /* @__PURE__ */ require_runtime.__exportAll({
  const cache = {};
  const caller = /* @__PURE__ */ new require_utils_async_caller.AsyncCaller({});
  async function getEncoding(encoding) {
@@ -24,20 +25,20 @@ index c5b41f121d2e3d24c3a4969e31fa1acffdcad3b9..ec724489dcae79ee6c61acf2d4d84bd1
 -	return getEncoding((0, js_tiktoken_lite.getEncodingNameForModel)(model));
 +	throw new Error("TikToken Not implemented");
  }
- 
  //#endregion
+ exports.encodingForModel = encodingForModel;
 diff --git a/dist/utils/tiktoken.js b/dist/utils/tiktoken.js
-index 641acca03cb92f04a6fa5c9c31f1880ce635572e..707389970ad957aa0ff20ef37fa8dd2875be737c 100644
+index 9e326b76d9887f917d4bff28d11034f480343e0a..6b0ccd496de366ff298774f6df9fb27f36b3c508 100644
 --- a/dist/utils/tiktoken.js
 +++ b/dist/utils/tiktoken.js
 @@ -1,6 +1,5 @@
- import { __export } from "../_virtual/rolldown_runtime.js";
+ import { __exportAll } from "../_virtual/_rolldown/runtime.js";
  import { AsyncCaller } from "./async_caller.js";
 -import { Tiktoken, getEncodingNameForModel } from "js-tiktoken/lite";
- 
  //#region src/utils/tiktoken.ts
- var tiktoken_exports = {};
-@@ -11,14 +10,10 @@ __export(tiktoken_exports, {
+ var tiktoken_exports = /* @__PURE__ */ __exportAll({
+ 	encodingForModel: () => encodingForModel,
+@@ -9,14 +8,10 @@ var tiktoken_exports = /* @__PURE__ */ __exportAll({
  const cache = {};
  const caller = /* @__PURE__ */ new AsyncCaller({});
  async function getEncoding(encoding) {
@@ -52,17 +53,17 @@ index 641acca03cb92f04a6fa5c9c31f1880ce635572e..707389970ad957aa0ff20ef37fa8dd28
 -	return getEncoding(getEncodingNameForModel(model));
 +	throw new Error("TikToken Not implemented");
  }
- 
  //#endregion
+ export { encodingForModel, getEncoding, tiktoken_exports };
 diff --git a/package.json b/package.json
-index a24f8fc61de58526051999260f2ebee5f136354b..e885359e8966e7730c51772533ce37e01edb3046 100644
+index 17f265e9ebbb70f7da6057b38a3219eb3409a30b..c2e6b20dc98de43f1f4139ad3ed66a307584e546 100644
 --- a/package.json
 +++ b/package.json
-@@ -20,7 +20,6 @@
-     "ansi-styles": "^5.0.0",
-     "camelcase": "6",
-     "decamelize": "1.2.0",
+@@ -18,7 +18,6 @@
+   "dependencies": {
+     "@cfworker/json-schema": "^4.0.2",
+     "@standard-schema/spec": "^1.1.0",
 -    "js-tiktoken": "^1.0.12",
-     "langsmith": "^0.3.64",
+     "langsmith": ">=0.5.0 <1.0.0",
      "mustache": "^4.2.0",
      "p-queue": "^6.6.2",
